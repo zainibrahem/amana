@@ -55,23 +55,17 @@ const OrderCard: React.FC<MobileOrderCardProps> = ({
   progressData,
   orders,
 }) => {
-  //   const displayDetail = className === 'active' ? '100%' : '0';
-  const addAllClasses: string[] = ['accordion'];
-
-  if (className) {
-    addAllClasses.push(className);
-  }
   return (
     <>
       <Collapse
         accordion={true}
-        className={addAllClasses.join(' ')}
+        className={`accordion ${className}`}
         defaultActiveKey="active"
       >
         {orders.map((order: any) => (
           <Panel
             header={
-              <CardWrapper onClick={onClick}>
+              <CardWrapper onClick={() => onClick(order)}>
                 <OrderListHeader>
                   <TrackID>
                     Order <span>#{order.id}</span>

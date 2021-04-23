@@ -58,7 +58,7 @@ const SidebarSection = styled.div`
 `;
 
 const ContentSection = styled.div`
-  width: calc(100%);
+  width: calc(100% - 280px);
   height: auto;
   min-height: 100vh;
   padding: 30px 30px 50px;

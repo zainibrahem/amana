@@ -1,17 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ProductCard } from 'components/product-card/product-card-six';
 import styled from 'styled-components';
 import css from '@styled-system/css';
 import ErrorMessage from 'components/error-message/error-message';
-import { useQuery, NetworkStatus } from '@apollo/client';
-import { GET_PRODUCTS } from 'graphql/query/products.query';
 import { useRouter } from 'next/router';
 import { Button } from 'components/button/loadmore-button';
 import { FormattedMessage } from 'react-intl';
 import { Box } from 'components/box';
-import NoResultFound from 'components/no-result/no-result';
-import Placeholder from 'components/placeholder/placeholder';
-import { LoaderItem, LoaderWrapper } from './product-list/product-list.style';
+import useProducts from 'data/use-products';
 
 const Grid = styled.div(
   css({
@@ -59,61 +55,34 @@ export const ProductGrid = ({
   loadMore = true,
 }: Props) => {
   const router = useRouter();
-  const { data, error, loading, fetchMore, networkStatus } = useQuery(
-    GET_PRODUCTS,
-    {
-      variables: {
-        type,
-        text: router.query.text,
-        category: router.query.category,
-        offset: 0,
-        limit: fetchLimit,
-      },
-      notifyOnNetworkStatusChange: true,
-    }
-  );
-  const loadingMore = networkStatus === NetworkStatus.fetchMore;
+  const [loading, setLoading] = useState(false);
+  const { data, error } = useProducts({
+    type,
+    text: router.query.text,
+    category: router.query.category,
+    offset: 0,
+    limit: fetchLimit,
+  });
 
   if (error) return <ErrorMessage message={error.message} />;
-  if (loading && !loadingMore) {
-    return (
-      <LoaderWrapper>
-        <LoaderItem>
-          <Placeholder uniqueKey='1' />
-        </LoaderItem>
-        <LoaderItem>
-          <Placeholder uniqueKey='2' />
-        </LoaderItem>
-        <LoaderItem>
-          <Placeholder uniqueKey='3' />
-        </LoaderItem>
-      </LoaderWrapper>
-    );
-  }
-  if (!data || !data.products || data.products.items.length === 0) {
-    return <NoResultFound />;
-  }
-  const handleLoadMore = () => {
-    fetchMore({
-      variables: {
-        offset: Number(data.products.items.length),
-        limit: 10,
-      },
-    });
+  if (!data) return null;
+  const handleLoadMore = async () => {
+    setLoading(true);
+    // await fetchMore(Number(data.length), fetchLimit);
+    setLoading(false);
   };
-  const { items, hasMore } = data.products;
   return (
     <section>
       <Grid style={style}>
-        {items.map((product, idx) => (
+        {data.map((product, idx) => (
           <ProductCard data={product} key={product.id} />
         ))}
       </Grid>
-      {loadMore && hasMore && (
+      {loadMore && data?.hasMore && (
         <Box style={{ textAlign: 'center' }} mt={'2rem'}>
           <Button
             onClick={handleLoadMore}
-            loading={loadingMore}
+            loading={loading}
             variant='secondary'
             style={{
               fontSize: 14,

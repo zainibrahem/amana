@@ -5,9 +5,8 @@ import RadioCard from 'components/radio-card/radio-card';
 import { Button } from 'components/button/button';
 import { handleModal } from 'features/checkouts/checkout-modal';
 import { ProfileContext } from 'contexts/profile/profile.context';
+import useUser from 'data/use-user';
 import CreateOrUpdateContact from 'components/contact-card/contact-card';
-import { useMutation } from '@apollo/client';
-import { DELETE_CONTACT } from 'graphql/mutation/contact';
 import { CardHeader } from 'components/card-header/card-header';
 import { ButtonGroup } from 'components/button-group/button-group';
 import { Box } from 'components/box';
@@ -30,7 +29,7 @@ const Contact = ({
     className: 'add-button',
   },
 }: Props) => {
-  const [deleteContactMutation] = useMutation(DELETE_CONTACT);
+  const { deleteContactNumber } = useUser();
 
   const {
     state: { contact },
@@ -39,9 +38,7 @@ const Contact = ({
 
   const handleOnDelete = async (item) => {
     dispatch({ type: 'DELETE_CONTACT', payload: item.id });
-    return await deleteContactMutation({
-      variables: { contactId: JSON.stringify(item.id) },
-    });
+    await deleteContactNumber(item.id);
   };
   return (
     <>

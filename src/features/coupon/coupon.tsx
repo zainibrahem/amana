@@ -3,9 +3,8 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { CouponBoxWrapper, Error } from './coupon.style';
 import { Input } from 'components/forms/input';
 import { Button } from 'components/button/button';
+import useCoupon from 'data/use-coupon';
 import { useCart } from 'contexts/cart/use-cart';
-import { useMutation } from '@apollo/client';
-import { APPLY_COUPON } from 'graphql/mutation/coupon';
 
 type CouponProps = {
   disabled?: any;
@@ -22,19 +21,15 @@ const Coupon: React.FC<CouponProps> = ({
   ...props
 }) => {
   const intl = useIntl();
+  const { verifyCoupon } = useCoupon();
   const { applyCoupon } = useCart();
   const [code, setCode] = useState('');
   const [error, setError] = useState(null);
-  const [appliedCoupon] = useMutation(APPLY_COUPON);
-
   const handleApplyCoupon = async () => {
-    const { data }: any = await appliedCoupon({
-      variables: { code },
-    });
-    if (data.applyCoupon && data.applyCoupon.discountInPercent) {
-      setError('');
-      applyCoupon(data.applyCoupon);
+    const data: any = await verifyCoupon(code);
+    if (data?.discountInPercent) {
       setCode('');
+      applyCoupon(data);
     } else {
       setError('Invalid Coupon');
     }

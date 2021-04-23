@@ -2,9 +2,12 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { FormattedMessage } from 'react-intl';
-import { useQuery } from '@apollo/client';
 import Sticky from 'react-stickynode';
 import { Scrollbar } from 'components/scrollbar/scrollbar';
+import Popover from 'components/popover/popover';
+import { ArrowDropDown } from 'assets/icons/ArrowDropDown';
+import { CategoryIcon } from 'assets/icons/CategoryIcon';
+import { useLocale } from 'contexts/language/language.provider';
 import { useAppState } from 'contexts/app/app.provider';
 import {
   SidebarMobileLoader,
@@ -13,15 +16,16 @@ import {
 import {
   CategoryWrapper,
   TreeWrapper,
+  PopoverHandler,
   PopoverWrapper,
   SidebarWrapper,
   RequestMedicine,
 } from './sidebar.style';
 
 import { TreeMenu } from 'components/tree-menu/tree-menu';
-import { GET_CATEGORIES } from 'graphql/query/category.query';
-
 import { REQUEST_MEDICINE_MENU_ITEM } from 'site-settings/site-navigation';
+import useCategory from 'data/use-category';
+import ErrorMessage from 'components/error-message/error-message';
 import CategoryWalker from 'components/category-walker/category-walker';
 
 type SidebarCategoryProps = {
@@ -38,11 +42,13 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
   type,
 }) => {
   const router = useRouter();
-  const { data, loading } = useQuery(GET_CATEGORIES, {
-    variables: { type },
-  });
+  const { data, error } = useCategory({ type });
+
+  if (error) return <ErrorMessage message={error.message} />;
   const { pathname, query } = router;
   const selectedQueries = query.category;
+
+  const { isRtl } = useLocale();
 
   const onCategoryClick = (slug: string) => {
     const { type, ...rest } = query;
@@ -66,7 +72,7 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
   };
   const isSidebarSticky = useAppState('isSidebarSticky');
 
-  if (!data || loading) {
+  if (!data) {
     if (mobile || tablet) {
       return <SidebarMobileLoader />;
     }
@@ -86,8 +92,9 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
               </RequestMedicine>
             </Link>
           )}
+
           <TreeMenu
-            data={data.categories}
+            data={data}
             onClick={onCategoryClick}
             active={selectedQueries}
           />
@@ -107,10 +114,10 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
             </Link>
           )}
 
-          <Scrollbar className="sidebar-scrollbar">
+          <Scrollbar className='sidebar-scrollbar'>
             <TreeWrapper>
               <TreeMenu
-                data={data.categories}
+                data={data}
                 onClick={onCategoryClick}
                 active={selectedQueries}
               />

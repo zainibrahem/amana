@@ -1,22 +1,23 @@
-import dynamic from 'next/dynamic';
 import React, { useCallback, useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import {
   Box,
+  Image,
   Content,
+  Title,
   ContentRow,
   Description,
   SearchWrapper,
 } from './banner.style';
-
+import dynamic from 'next/dynamic';
 import { Waypoint } from 'react-waypoint';
 import { Button } from 'components/button/button';
 import { useAppDispatch } from 'contexts/app/app.provider';
 import Search from 'features/search/search';
-const SpringModal = dynamic(
-  () => import('components/spring-modal/spring-modal')
-);
 const CategoryIconNav = dynamic(() => import('components/type-nav/type-nav'));
+const SpringModal = dynamic(() =>
+  import('components/spring-modal/spring-modal')
+);
 
 interface Props {
   intlTitleId: string;
@@ -25,7 +26,6 @@ interface Props {
 
 export const MobileBanner: React.FC<Props> = ({ type, intlTitleId }) => {
   const [isOpen, setOpen] = useState(false);
-
   const dispatch = useAppDispatch();
   const setSticky = useCallback(() => dispatch({ type: 'SET_STICKY' }), [
     dispatch,
@@ -67,10 +67,10 @@ export const MobileBanner: React.FC<Props> = ({ type, intlTitleId }) => {
           onLeave={setSticky}
           onPositionChange={onWaypointPositionChange}
         />
-        <SpringModal isOpen={isOpen} onRequestClose={() => setOpen(false)}>
-          <CategoryIconNav />
-        </SpringModal>
       </Content>
+      <SpringModal isOpen={isOpen} onRequestClose={() => setOpen(false)}>
+        <CategoryIconNav />
+      </SpringModal>
     </Box>
   );
 };

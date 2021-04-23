@@ -18,7 +18,6 @@ const OrderPage: NextPage = () => {
           <SidebarSection>
             <Sidebar />
           </SidebarSection>
-
           <Order />
         </PageWrapper>
       </Modal>

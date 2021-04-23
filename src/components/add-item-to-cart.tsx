@@ -5,6 +5,7 @@ import { useCart } from 'contexts/cart/use-cart';
 import { Counter } from './counter/counter';
 import { variant as _variant } from 'styled-system';
 import { Box } from './box';
+
 const Icon = styled.span<any>(
   _variant({
     variants: {
@@ -12,13 +13,14 @@ const Icon = styled.span<any>(
         px: 3,
         height: 36,
         backgroundColor: '#e6e6e6',
-        display: 'flex',
         transition: '0.35s ease-in-out',
+        display: 'flex',
         alignItems: 'center',
       },
     },
   })
 );
+
 const Button = styled.button<any>(
   css({
     width: 36,

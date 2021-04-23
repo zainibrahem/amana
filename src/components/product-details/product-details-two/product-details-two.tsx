@@ -39,7 +39,6 @@ import { Facebook } from 'assets/icons/Facebook';
 import { GooglePlus } from 'assets/icons/GooglePlus';
 import { Twitter } from 'assets/icons/Twitter';
 import { Linkedin } from 'assets/icons/Linkedin';
-
 import { CURRENCY } from 'utils/constant';
 import Products from 'components/product-grid/product-list/product-list';
 import { FormattedMessage } from 'react-intl';
@@ -127,7 +126,7 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
               <a
                 href="#"
                 onClick={scrollToDiv}
-                style={{ color: '#F39C12', fontWeight: 700 }}
+                style={{ color: '#F39C12', fontWeight: 'bold' }}
               >
                 Read More
               </a>

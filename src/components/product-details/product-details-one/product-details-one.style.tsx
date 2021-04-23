@@ -8,13 +8,11 @@ export const ProductDetailsWrapper = styled.div`
   flex-wrap: wrap;
   align-items: stretch;
   box-sizing: border-box;
-
   margin: 30px 15px;
 
   * {
     box-sizing: border-box;
   }
-
   @media (min-width: 991px) {
     margin: 30px 50px;
   }
@@ -247,7 +245,6 @@ export const ProductCartBtn = styled.div`
         height: auto;
         @media (max-width: 990px) {
           width: 14px;
-          margin-right: 8px;
         }
       }
     }
@@ -259,9 +256,9 @@ export const ProductCartBtn = styled.div`
 `;
 
 export const ButtonText = styled.span`
-  /* @media (max-width: 767px) {
+  @media (max-width: 767px) {
     display: none;
-  } */
+  }
 `;
 
 export const ProductMeta = styled.div`

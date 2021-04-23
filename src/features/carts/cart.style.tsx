@@ -328,6 +328,16 @@ const CouponCode = styled.p`
   }
 `;
 
+const ErrorMsg = styled.span`
+  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-size: calc(${themeGet('fontSizes.base', '15')}px - 1px);
+  font-weight: ${themeGet('fontWeights.regular', '400')};
+  color: ${themeGet('colors.secondary.hover', '#FF282F')};
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+`;
+
 const CartSlidePopup = styled.div`
   width: 420px;
   height: 100vh;
@@ -404,4 +414,5 @@ export {
   ItemWrapper,
   CouponBoxWrapper,
   CouponCode,
+  ErrorMsg,
 };

@@ -151,9 +151,11 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
                   href={`/${product.type.toLowerCase()}?category=${item.slug}`}
                   key={`link-${item.id}`}
                 >
-                  <a>
-                    <MetaItem>{item.title}</MetaItem>
-                  </a>
+                  {
+                    <a>
+                      <MetaItem>{item.title}</MetaItem>
+                    </a>
+                  }
                 </Link>
               ))}
             </MetaSingle>
@@ -189,7 +191,7 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
       <RelatedItems>
         <h2>
           <FormattedMessage
-            id="intlRelatedItems"
+            id="intlReletedItems"
             defaultMessage="Related Items"
           />
         </h2>

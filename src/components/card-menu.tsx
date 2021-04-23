@@ -38,7 +38,7 @@ export const CardMenu = ({ data, onClick, active, style }: Props) => {
           style={style}
         >
           <Box
-            padding='10px 15px'
+            padding='1rem'
             height={80}
             alignItems='center'
             justifyContent='center'

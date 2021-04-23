@@ -40,7 +40,7 @@ export const SearchWrapper = styled.div`
 
 const HeaderWrapper = styled.header`
   /* padding: 30px 60px; */
-  padding: 20px 30px;
+  padding: 20px 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -296,10 +296,6 @@ export const MobileHeaderInnerWrapper = styled.div`
   z-index: 999;
   transition: 0.25s ease-in-out;
 
-  @media only screen and (max-width: 990px) {
-    padding: 15px 20px;
-  }
-
   &.home {
     position: absolute;
     background-color: transparent;
@@ -392,8 +388,8 @@ export const HamburgerIcon = styled.div`
     display: block;
     background-color: ${themeGet('colors.text.bold', '#0D1136')};
     border-radius: ${themeGet('radii.base', '6px')};
-    height: 3px;
-    margin-bottom: 5px;
+    height: 2px;
+    margin-bottom: 6px;
 
     transition: 0.2s ease-in-out;
     &:nth-child(1) {

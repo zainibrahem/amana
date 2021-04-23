@@ -41,9 +41,7 @@ export const SearchBox: React.FC<Props> = ({
     >
       {minimal ? (
         <>
-          <SearchIcon
-            style={{ marginLeft: 16, marginRight: 16, color: '#212121' }}
-          />
+          <SearchIcon style={{ marginLeft: 16, marginRight: 16 }} />
           <StyledInput
             type='search'
             onChange={onChange}

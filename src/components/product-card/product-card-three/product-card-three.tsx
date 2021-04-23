@@ -1,4 +1,5 @@
 // product card for furniture
+import dynamic from 'next/dynamic';
 import React from 'react';
 import Image from 'components/image/image';
 import {
@@ -8,9 +9,8 @@ import {
   ProductImageWrapper,
   ProductInfo,
 } from '../product-card.style';
-import { useRouter } from 'next/router';
 import { useModal } from 'contexts/modal/use-modal';
-import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 const QuickViewMobile = dynamic(() =>
   import('features/quick-view/quick-view-mobile')
 );

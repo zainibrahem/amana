@@ -8,8 +8,8 @@ import { CATEGORY_MENU_ITEMS } from 'site-settings/site-navigation';
 import * as categoryMenuIcons from 'assets/icons/category-menu-icons';
 import {
   MainMenu,
-  IconWrapper,
   MenuItem,
+  IconWrapper,
   SelectedItem,
   Icon,
   Arrow,
@@ -69,7 +69,7 @@ export const LeftMenu: React.FC<Props> = ({ logo }) => {
 
       <MainMenu>
         <Popover
-          className="right"
+          className='right'
           handler={
             <SelectedItem>
               <span>

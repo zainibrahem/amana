@@ -4,11 +4,11 @@ import { themeGet } from '@styled-system/theme-get';
 import * as Yup from 'yup';
 import { closeModal } from '@redq/reuse-modal';
 import { FormikProps, ErrorMessage, Formik, Form } from 'formik';
-import { useMutation } from '@apollo/client';
+// import { useMutation } from '@apollo/client';
 import MaskedInput from 'react-text-mask';
 import { ProfileContext } from 'contexts/profile/profile.context';
 import { Button } from 'components/button/button';
-import { UPDATE_CONTACT } from 'graphql/mutation/contact';
+// import { UPDATE_CONTACT } from 'graphql/mutation/contact';
 import { FieldWrapper, Heading } from './contact-card.style';
 import { FormattedMessage } from 'react-intl';
 
@@ -32,12 +32,12 @@ const CreateOrUpdateContact: React.FC<Props> = ({ item }) => {
     type: item.type || 'secondary',
     number: item.number || '',
   };
-  const [addContactMutation] = useMutation(UPDATE_CONTACT);
+  // const [addContactMutation] = useMutation(UPDATE_CONTACT);
   const { state, dispatch } = useContext(ProfileContext);
   const handleSubmit = async (values: FormValues, { setSubmitting }: any) => {
-    await addContactMutation({
-      variables: { contactInput: JSON.stringify(values) },
-    });
+    // await addContactMutation({
+    //   variables: { contactInput: JSON.stringify(values) },
+    // });
     console.log(values, 'formik values');
     dispatch({ type: 'ADD_OR_UPDATE_CONTACT', payload: values });
     closeModal();

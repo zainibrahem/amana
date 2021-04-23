@@ -21,21 +21,7 @@ export const ProductCardWrapper = styled.div(
     fontFamily: 'inherit',
     borderRadius: 'base',
     cursor: 'pointer',
-    ':hover .hidd':{
-      opacity:'1 !important',
-    },
-    ':hover .onhover':{
-      display:'none !important',
-    },
-    
-    '.hidd':{
-      width:'100%',
-      borderRadius:'15px',
-      padding:'5px',
-      background:'#F39C12',
-      border:'0px solid',
-      marginTop:'5px'
-    },
+
     '.card-counter': {
       '@media (max-width: 767px)': {
         width: 30,
@@ -46,10 +32,6 @@ export const ProductCardWrapper = styled.div(
         right: 0,
       },
     },
-  
-    
-     
-    
   })
 );
 
@@ -59,11 +41,10 @@ export const ProductImageWrapper = styled.div`
   position: relative;
   text-align: center;
   display: flex;
-  overflow:hidden;
   align-items: center;
   justify-content: center;
   img {
-    max-width: 170%;
+    max-width: 100%;
     max-height: 100%;
     display: inline-block;
   }
@@ -109,7 +90,7 @@ export const ProductInfo = styled.div`
   padding: 20px 25px 30px;
 
   @media (max-width: 990px) {
-    padding: 15px 20px;
+    padding: 15px;
     min-height: 123px;
   }
   .product-title {
@@ -149,24 +130,8 @@ export const ProductInfo = styled.div`
     .productPriceWrapper {
       position: relative;
       display: flex;
-      width:100%;
       flex-direction: column;
       align-items: flex-start;
-      .hidd{
-        color: ${themeGet('colors.white', '#000')};
-        opacity:0;
-        .btn-text {
-          padding: 0 0 0 6px;
-          @media (max-width: 767px) {
-            display: none;
-          }
-        }
-        &:hover {
-          color: ${themeGet('colors.white', '#000')};
-          background-color: ${themeGet('colors.primary.regular', '#F39C12')};
-          border-color: ${themeGet('colors.primary.regular', '#F39C12')};
-        }
-      }
       .product-price {
         font-family: ${themeGet('fonts.body', 'sans-serif')};
         font-size: ${themeGet('fontSizes.base', '15')}px;
@@ -200,7 +165,37 @@ export const ProductInfo = styled.div`
         }
       }
     }
-  
+    .cart-button {
+      border: 2px solid ${themeGet('colors.gray.200', '#f7f7f7')};
+      border-radius: ${themeGet('radii.big', '18px')};
+      height: 36px;
+      padding-left: 17px;
+      padding-right: 17px;
+      font-size: ${themeGet('fontSizes.sm', '13')}px;
+      font-weight: ${themeGet('fontWeights.bold', '700')};
+      @media (max-width: 767px) {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        border-radius: 50%;
+      }
+      .btn-text {
+        padding: 0 0 0 6px;
+        @media (max-width: 767px) {
+          display: none;
+        }
+      }
+      &:hover {
+        color: ${themeGet('colors.white', '#ffffff')};
+        background-color: ${themeGet('colors.primary.regular', '#F39C12')};
+        border-color: ${themeGet('colors.primary.regular', '#F39C12')};
+      }
+      svg {
+        fill: currentColor;
+        @media (max-width: 767px) {
+          margin: 0;
+        }
+      }
     }
     @media (max-width: 767px) {
       .quantity {
@@ -425,6 +420,10 @@ export const FoodCardWrapper = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 990px) {
+    border-radius: 0;
+  }
 `;
 
 export const FoodImageWrapper = styled.div`
@@ -452,6 +451,7 @@ export const FoodImageWrapper = styled.div`
     left: 0;
     z-index: 1;
   }
+
   @media (max-width: 767px) {
     height: 145px;
   }

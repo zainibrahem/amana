@@ -1,34 +1,22 @@
 import React from 'react';
-import { NextPage, GetStaticProps } from 'next';
-import { useQuery, gql } from '@apollo/client';
+import { NextPage } from 'next';
+import dynamic from 'next/dynamic';
 import { SEO } from 'components/seo';
 import CartPopUp from 'features/carts/cart-popup';
 import { Modal } from '@redq/reuse-modal';
-
+import GiftCard from 'components/gift-card/gift-card';
+import Footer from 'layouts/footer';
+import useCoupon from 'data/use-coupon';
 import {
   OfferPageWrapper,
   ProductsRow,
   MainContentArea,
   ProductsCol,
 } from 'assets/styles/pages.style';
-import GiftCard from 'components/gift-card/gift-card';
-import Footer from 'layouts/footer';
-import { initializeApollo } from 'utils/apollo';
-import dynamic from 'next/dynamic';
 const ErrorMessage = dynamic(() =>
   import('components/error-message/error-message')
 );
 
-const GET_COUPON = gql`
-  query {
-    coupons {
-      id
-      code
-      image
-      discountInPercent
-    }
-  }
-`;
 type GiftCardProps = {
   deviceType: {
     mobile: boolean;
@@ -38,8 +26,9 @@ type GiftCardProps = {
 };
 
 const GiftCardPage: NextPage<GiftCardProps> = ({ deviceType }) => {
-  const { data, error } = useQuery(GET_COUPON);
+  const { data, error } = useCoupon();
   if (error) return <ErrorMessage message={error.message} />;
+  if (!data) return <p>Loading...</p>;
 
   return (
     <Modal>
@@ -48,35 +37,19 @@ const GiftCardPage: NextPage<GiftCardProps> = ({ deviceType }) => {
         <MainContentArea>
           <div style={{ width: '100%' }}>
             <ProductsRow>
-              {data && data.coupons
-                ? data.coupons.map((coupon) => (
-                    <ProductsCol key={coupon.id}>
-                      <GiftCard image={coupon.image} code={coupon.code} />
-                    </ProductsCol>
-                  ))
-                : null}
+              {data.map((coupon) => (
+                <ProductsCol key={coupon.id}>
+                  <GiftCard image={coupon.image} code={coupon.code} />
+                </ProductsCol>
+              ))}
             </ProductsRow>
           </div>
         </MainContentArea>
-
-      
+     
       </OfferPageWrapper>
       <CartPopUp deviceType={deviceType} />
     </Modal>
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const apolloClient = initializeApollo();
-
-  await apolloClient.query({
-    query: GET_COUPON,
-  });
-
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-    },
-  };
-};
 export default GiftCardPage;

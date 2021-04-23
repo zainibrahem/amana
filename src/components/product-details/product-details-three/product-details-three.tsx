@@ -182,6 +182,7 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
           <CartWrapper>
             <Sticky top="#cart-sticky" innerZ={999}>
               <FixedCart
+                scrollbarHeight="100vh"
                 className="fixedCartBox"
                 style={{
                   height: `calc(100vh - 193px)`,

@@ -1,14 +1,9 @@
-import { GetStaticProps } from 'next';
-import { GET_PRODUCTS } from 'graphql/query/products.query';
 import styled from 'styled-components';
 import css from '@styled-system/css';
-import { initializeApollo } from 'utils/apollo';
 import { Banner } from 'components/banner/banner';
 import { ProductGrid } from 'components/product-grid/product-grid-two';
 import { Modal } from '@redq/reuse-modal';
 import dynamic from 'next/dynamic';
-import { GET_CATEGORIES } from 'graphql/query/category.query';
-// import { SidebarWithCardMenu } from 'layouts/sidebar/sidebar-with-card-menu';
 import { sitePages } from 'site-settings/site-pages';
 import { HorizontalCategoryCardMenu } from 'layouts/horizontal-category-menu/horizontal-category-card-menu';
 import { MobileBanner } from 'components/banner/mobile-banner';
@@ -26,31 +21,6 @@ export const Main = styled.div<any>(
 );
 
 const PAGE_TYPE = 'bakery';
-export const getStaticProps: GetStaticProps = async () => {
-  const apolloClient = initializeApollo();
-
-  await apolloClient.query({
-    query: GET_PRODUCTS,
-    variables: {
-      type: PAGE_TYPE,
-      offset: 0,
-      limit: 20,
-    },
-  });
-  await apolloClient.query({
-    query: GET_CATEGORIES,
-    variables: {
-      type: PAGE_TYPE,
-    },
-  });
-
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-    },
-    revalidate: 1,
-  };
-};
 
 export default function BakeryPage({ deviceType }) {
   const page = sitePages[PAGE_TYPE];

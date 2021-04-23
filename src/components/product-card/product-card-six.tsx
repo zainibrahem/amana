@@ -120,25 +120,29 @@ interface Props {
 export const ProductCard = ({ data }: Props) => {
   const { title, image, price, salePrice, slug, discountInPercent } = data;
   return (
-    <Link href='/products/[slug]' as={`/products/${slug}`}>
-      <Card>
-        <Box position='relative'>
-          <CounterWrapper>
-            <AddItemToCart data={data} />
-          </CounterWrapper>
-          <ImageWrapper>
-            <img src={image} alt={title} />
-          </ImageWrapper>
-          {discountInPercent ? <Discount>{discountInPercent}%</Discount> : null}
-        </Box>
-        <Box padding={20}>
-          <PriceWrapper>
-            <Price>${salePrice ? salePrice : price}</Price>
-            {discountInPercent ? <SalePrice>${price}</SalePrice> : null}
-          </PriceWrapper>
-          <Title>{title}</Title>
-        </Box>
-      </Card>
+    <Link href="/products/[slug]" as={`/products/${slug}`}>
+      <a>
+        <Card>
+          <Box position="relative">
+            <CounterWrapper>
+              <AddItemToCart data={data} />
+            </CounterWrapper>
+            <ImageWrapper>
+              <img src={image} alt={title} />
+            </ImageWrapper>
+            {discountInPercent ? (
+              <Discount>{discountInPercent}%</Discount>
+            ) : null}
+          </Box>
+          <Box padding={20}>
+            <PriceWrapper>
+              <Price>${salePrice ? salePrice : price}</Price>
+              {discountInPercent ? <SalePrice>${price}</SalePrice> : null}
+            </PriceWrapper>
+            <Title>{title}</Title>
+          </Box>
+        </Card>
+      </a>
     </Link>
   );
 };

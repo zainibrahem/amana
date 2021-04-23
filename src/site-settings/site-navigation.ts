@@ -1,15 +1,15 @@
 export const HOME_PAGE = '/';
 export const GROCERY_PAGE = '/grocery';
 export const GROCERY_PAGE_TWO = '/grocery-two';
-export const BAKERY_PAGE = '/bakery';
 export const MAKEUP_PAGE = '/makeup';
 export const CLOTHING_PAGE = '/clothing';
 export const BAGS_PAGE = '/bags';
+export const BAKERY_PAGE = '/bakery';
 export const BOOK_PAGE = '/book';
 export const FURNITURE_PAGE = '/furniture';
 export const FURNITURE_PAGE_TWO = '/furniture-two';
 export const MEDICINE_PAGE = '/medicine';
-// export const RESTAURANT_PAGE = '/restaurant';
+export const RESTAURANT_PAGE = '/restaurant';
 export const REQUEST_MEDICINE_PAGE = '/request-medicine';
 export const CHECKOUT_PAGE = '/checkout';
 export const CHECKOUT_PAGE_TWO = '/checkout-alternative';
@@ -154,12 +154,6 @@ export const CATEGORY_MENU_ITEMS = [
     icon: 'MedicineIcon',
     dynamic: true,
   },
-  // {
-  //   id: 'nav.foods',
-  //   defaultMessage: 'Foods',
-  //   href: RESTAURANT_PAGE,
-  //   icon: 'Restaurant',
-  // },
 ];
 
 export const MOBILE_DRAWER_MENU = [

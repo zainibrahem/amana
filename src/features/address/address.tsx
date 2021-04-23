@@ -6,13 +6,11 @@ import { Button } from 'components/button/button';
 import UpdateAddress from 'components/address-card/address-card';
 import { handleModal } from 'features/checkouts/checkout-modal';
 import { ProfileContext } from 'contexts/profile/profile.context';
-import { useMutation } from '@apollo/client';
-import { DELETE_ADDRESS } from 'graphql/mutation/address';
+import useUser from 'data/use-user';
 import { CardHeader } from 'components/card-header/card-header';
 import { ButtonGroup } from 'components/button-group/button-group';
 import { Box } from 'components/box';
 import { Plus } from 'assets/icons/PlusMinus';
-
 interface Props {
   increment?: boolean;
   icon?: boolean;
@@ -23,15 +21,15 @@ interface Props {
 const Address = ({
   increment = false,
   flexStart = false,
+  icon = false,
   buttonProps = {
     size: 'big',
     variant: 'outlined',
     type: 'button',
     className: 'add-button',
   },
-  icon = false,
 }: Props) => {
-  const [deleteAddressMutation] = useMutation(DELETE_ADDRESS);
+  const { deleteAddress } = useUser();
 
   const {
     state: { address },
@@ -40,9 +38,7 @@ const Address = ({
 
   const handleOnDelete = async (item) => {
     dispatch({ type: 'DELETE_ADDRESS', payload: item.id });
-    return await deleteAddressMutation({
-      variables: { addressId: JSON.stringify(item.id) },
-    });
+    await deleteAddress(item.id);
   };
   return (
     <>
@@ -77,6 +73,7 @@ const Address = ({
             <Button
               {...buttonProps}
               onClick={() => handleModal(UpdateAddress, 'add-address-modal')}
+              style={{ borderStyle: 'dashed' }}
             >
               {icon && (
                 <Box mr={2}>
@@ -94,4 +91,5 @@ const Address = ({
     </>
   );
 };
+
 export default Address;

@@ -12,7 +12,7 @@ import {
   SearchModalClose,
 } from './header.style';
 import Search from 'features/search/search';
-import LogoImage from 'assets/images/logo.png';
+import LogoImage from 'assets/images/logo.svg';
 
 import { SearchIcon } from 'assets/icons/SearchIcon';
 import { LongArrowLeft } from 'assets/icons/LongArrowLeft';
@@ -32,11 +32,11 @@ const SearchModal: React.FC<{}> = () => {
   };
   return (
     <SearchModalWrapper>
-      <SearchModalClose type='submit' onClick={() => closeModal()}>
+      <SearchModalClose type="submit" onClick={() => closeModal()}>
         <LongArrowLeft />
       </SearchModalClose>
       <Search
-        className='header-modal-search'
+        className="header-modal-search"
         showButtonText={false}
         onSubmit={onSubmit}
       />
@@ -76,7 +76,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ className }) => {
         </DrawerWrapper>
 
         <LogoWrapper>
-          <Logo imageUrl={LogoImage} alt='shop logo' />
+          <Logo imageUrl={LogoImage} alt="shop logo" />
         </LogoWrapper>
 
         <LanguageSwitcher />
@@ -84,7 +84,7 @@ const MobileHeader: React.FC<MobileHeaderProps> = ({ className }) => {
         {isHomePage ? (
           <SearchWrapper
             onClick={handleSearchModal}
-            className='searchIconWrapper'
+            className="searchIconWrapper"
           >
             <SearchIcon />
           </SearchWrapper>
