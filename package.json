@@ -2,7 +2,6 @@
   "name": "@pick-bazar/shop",
   "version": "5.0.2",
   "private": true,
- 
   "scripts": {
     "dev": "next",
     "build": "next build",
