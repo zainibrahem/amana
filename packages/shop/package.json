@@ -7,7 +7,7 @@
     "dev": "next",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "shop-start": "next start",
+    "shop-start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "shop-dev": "next"
   },
   "dependencies": {
