@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
+    "start": "next start -H 0.0.0.0 -p ${PORT:-3000}",
     "shop-start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "shop-dev": "next"
   },
