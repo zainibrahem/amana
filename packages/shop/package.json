@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "shop-start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "shop-dev": "next"
   },
