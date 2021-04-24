@@ -48,7 +48,7 @@ packages/server/debug.log
 packages/web/.env
 packages/reusecore
 packages/cloud
-dist/
+
 
 .docz
 .now
