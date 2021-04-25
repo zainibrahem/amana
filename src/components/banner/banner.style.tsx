@@ -125,7 +125,7 @@ export const SearchWrapper = styled.div(
 );
 export const ProfileWrapper = styled.div(
   css({
-    width:"650px",
+    width:"569px",
     display:"flex",
     justifyContent:"space-between",
     alignItems:"center",
@@ -133,14 +133,18 @@ export const ProfileWrapper = styled.div(
     position:"relative",
     left:"50%",
     transform:"translateX(-50%)",
+   
     
   })
 );
 export const Hashs = styled.span(
   css({
-      marginTop:"5px",
+      marginTop:"0px",
+      opacity:"0",
       textAlign:"center",
-      color:"text.regular",
+      color:"#191919",
+      fontSize:"12px",
+      transition:".4s all ease"
   })
 );
 export const RoundWrapper = styled.div(
@@ -157,14 +161,22 @@ export const RoundProfile = styled.div(
       width:"50px",
       height:"50px",
       borderRadius:"100%",
-      boxShadow:"0px 0px 8px -1px #000",
+      // boxShadow:"0px 0px 8px -1px #000",
+      border:"1px solid white",
       transition:'.4s all ease',
+      transformOrigin:"center center",
       cursor:'pointer',
       ':hover' : {
         width:"70px !important",
         height:"70px !important",
+        transform:"translate(0%,-7%)",
+        transformOrigin:"center center",
         transition:'.4s all ease'
         
+      },
+      ':hover + .bannerstyle__Hashs-sc-1wl29p7-8':{
+        opacity:"1",
+        transition:".4s all ease"
       }
   })
 );
@@ -182,6 +194,7 @@ export const HashTags = styled.div(
   css({
     width:"570px",
     position:"relative",
+ 
     color:"text.regular",
     fontSize:".8xl",
     fontWeight:"bold",
