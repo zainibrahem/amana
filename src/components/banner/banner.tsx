@@ -7,12 +7,6 @@ import {
   Title,
   Description,
   SearchWrapper,
-  HashTags,
-  ProfileWrapper,
-  RoundWrapper,
-  RoundProfile,
-  Hash,
-  Hashs,
 } from './banner.style';
 
 import { Waypoint } from 'react-waypoint';
