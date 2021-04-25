@@ -12,7 +12,7 @@ import {
   RoundWrapper,
   RoundProfile,
   Hash,
-  Hashs
+  Hashs,
 } from './banner.style';
 import ItemImage from 'assets/images/dummy-img-5.png';
 

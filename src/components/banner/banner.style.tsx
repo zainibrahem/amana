@@ -23,8 +23,6 @@ export const Box = styled.div<any>(
     width: '100%',
     paddingBottom:"50px",
     position: 'relative',
-    // backgroundColor: #f7f7f7;
-
     '@media (max-width: 990px)': {
       padding: '80px 0 25px',
     },
