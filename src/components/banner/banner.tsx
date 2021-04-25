@@ -7,7 +7,14 @@ import {
   Title,
   Description,
   SearchWrapper,
+  HashTags,
+  ProfileWrapper,
+  RoundWrapper,
+  RoundProfile,
+  Hash,
+  Hashs
 } from './banner.style';
+import itemImage from 'assets/images/dummy-img-5.png';
 
 import { Waypoint } from 'react-waypoint';
 import { useAppDispatch } from 'contexts/app/app.provider';
@@ -61,7 +68,90 @@ export const Banner: React.FC<Props> = ({
             shadow="0 21px 36px rgba(0,0,0,0.05)"
           />
         </SearchWrapper>
-       <Waypoint
+        <HashTags>
+          <Hash>
+            #
+          </Hash>
+        <FormattedMessage
+            id="hash"
+            defaultMessage="Get_yout_healthy_foods"
+          />
+        </HashTags>
+        <ProfileWrapper>
+          <RoundWrapper>
+            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <Hashs>
+            <FormattedMessage
+            id="hashing"
+            defaultMessage="# iPhone"
+            /></Hashs>
+          </RoundWrapper>
+          <RoundWrapper>
+            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <Hashs>
+            <FormattedMessage
+            id="hashing"
+            defaultMessage="# iPhone"
+            /></Hashs>
+          </RoundWrapper>
+          <RoundWrapper>
+            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <Hashs>
+            <FormattedMessage
+            id="hashing"
+            defaultMessage="# iPhone"
+            /></Hashs>
+          </RoundWrapper>
+          <RoundWrapper>
+            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <Hashs>
+            <FormattedMessage
+            id="hashing"
+            defaultMessage="# iPhone"
+            /></Hashs>
+          </RoundWrapper>
+          <RoundWrapper>
+            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <Hashs>
+            <FormattedMessage
+            id="hashing"
+            defaultMessage="# iPhone"
+            /></Hashs>
+          </RoundWrapper>
+          <RoundWrapper>
+            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <Hashs>
+            <FormattedMessage
+            id="hashing"
+            defaultMessage="# iPhone"
+            /></Hashs>
+          </RoundWrapper>
+          <RoundWrapper>
+            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <Hashs>
+            <FormattedMessage
+            id="hashing"
+            defaultMessage="# iPhone"
+            /></Hashs>
+          </RoundWrapper>
+          <RoundWrapper>
+            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <Hashs>
+            <FormattedMessage
+            id="hashing"
+            defaultMessage="# iPhone"
+            /></Hashs>
+          </RoundWrapper>
+          <RoundWrapper>
+            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <Hashs>
+            <FormattedMessage
+            id="hashing"
+            defaultMessage="# iPhone"
+            /></Hashs>
+          </RoundWrapper>
+        </ProfileWrapper>
+        <Waypoint
           onEnter={removeSticky}
           onLeave={setSticky}
           onPositionChange={onWaypointPositionChange}

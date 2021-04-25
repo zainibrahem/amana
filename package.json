@@ -50,6 +50,7 @@
     "react-text-mask": "^5.4.3",
     "react-waypoint": "^9.0.3",
     "resize-observer-polyfill": "^1.5.1",
+    "source-map": "^0.7.3",
     "styled-components": "^5.2.3",
     "styled-system": "^5.1.5",
     "stylis-plugin-rtl": "1.1.0",
