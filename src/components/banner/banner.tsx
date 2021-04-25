@@ -14,7 +14,7 @@ import {
   Hash,
   Hashs
 } from './banner.style';
-import itemImage from 'assets/images/dummy-img-5.png';
+import ItemImage from 'assets/images/dummy-img-5.png';
 
 import { Waypoint } from 'react-waypoint';
 import { useAppDispatch } from 'contexts/app/app.provider';
@@ -79,7 +79,7 @@ export const Banner: React.FC<Props> = ({
         </HashTags>
         <ProfileWrapper>
           <RoundWrapper>
-            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <RoundProfile style={{background:`url(${ItemImage})`,backgroundSize:"cover"}}></RoundProfile>
             <Hashs>
             <FormattedMessage
             id="hashing"
@@ -87,7 +87,7 @@ export const Banner: React.FC<Props> = ({
             /></Hashs>
           </RoundWrapper>
           <RoundWrapper>
-            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <RoundProfile style={{background:`url(${ItemImage})`,backgroundSize:"cover"}}></RoundProfile>
             <Hashs>
             <FormattedMessage
             id="hashing"
@@ -95,7 +95,7 @@ export const Banner: React.FC<Props> = ({
             /></Hashs>
           </RoundWrapper>
           <RoundWrapper>
-            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <RoundProfile style={{background:`url(${ItemImage})`,backgroundSize:"cover"}}></RoundProfile>
             <Hashs>
             <FormattedMessage
             id="hashing"
@@ -103,7 +103,7 @@ export const Banner: React.FC<Props> = ({
             /></Hashs>
           </RoundWrapper>
           <RoundWrapper>
-            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <RoundProfile style={{background:`url(${ItemImage})`,backgroundSize:"cover"}}></RoundProfile>
             <Hashs>
             <FormattedMessage
             id="hashing"
@@ -111,7 +111,7 @@ export const Banner: React.FC<Props> = ({
             /></Hashs>
           </RoundWrapper>
           <RoundWrapper>
-            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <RoundProfile style={{background:`url(${ItemImage})`,backgroundSize:"cover"}}></RoundProfile>
             <Hashs>
             <FormattedMessage
             id="hashing"
@@ -119,7 +119,7 @@ export const Banner: React.FC<Props> = ({
             /></Hashs>
           </RoundWrapper>
           <RoundWrapper>
-            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <RoundProfile style={{background:`url(${ItemImage})`,backgroundSize:"cover"}}></RoundProfile>
             <Hashs>
             <FormattedMessage
             id="hashing"
@@ -127,7 +127,7 @@ export const Banner: React.FC<Props> = ({
             /></Hashs>
           </RoundWrapper>
           <RoundWrapper>
-            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <RoundProfile style={{background:`url(${ItemImage})`,backgroundSize:"cover"}}></RoundProfile>
             <Hashs>
             <FormattedMessage
             id="hashing"
@@ -135,7 +135,7 @@ export const Banner: React.FC<Props> = ({
             /></Hashs>
           </RoundWrapper>
           <RoundWrapper>
-            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <RoundProfile style={{background:`url(${ItemImage})`,backgroundSize:"cover"}}></RoundProfile>
             <Hashs>
             <FormattedMessage
             id="hashing"
@@ -143,7 +143,7 @@ export const Banner: React.FC<Props> = ({
             /></Hashs>
           </RoundWrapper>
           <RoundWrapper>
-            <RoundProfile style={{background:`url(${itemImage})`,backgroundSize:"cover"}}></RoundProfile>
+            <RoundProfile style={{background:`url(${ItemImage})`,backgroundSize:"cover"}}></RoundProfile>
             <Hashs>
             <FormattedMessage
             id="hashing"
