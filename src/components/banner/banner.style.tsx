@@ -18,9 +18,10 @@ export const Box = styled.div<any>(
   {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     width: '100%',
+    paddingBottom:"50px",
     position: 'relative',
     // backgroundColor: #f7f7f7;
 
@@ -62,7 +63,7 @@ export const Content = styled.div(
 );
 export const Title = styled.h2(
   css({
-    fontSize: [17, '2xl', 45],
+    fontSize: [17, '2xl', 35],
     color: 'text.bold',
     fontWeight: 'bold',
   }),
@@ -118,9 +119,80 @@ export const SearchWrapper = styled.div(
   css({
     display: 'flex',
     justifyContent: 'center',
+    width:"570px",
+    position:"relative",
+    left:"50%",
+    transform:"translateX(-50%)"
   })
 );
+export const ProfileWrapper = styled.div(
+  css({
+    width:"650px",
+    display:"flex",
+    justifyContent:"space-between",
+    alignItems:"center",
+    marginTop:"30px",
+    position:"relative",
+    left:"50%",
+    transform:"translateX(-50%)",
+    
+  })
+);
+export const Hashs = styled.span(
+  css({
+      marginTop:"5px",
+      textAlign:"center",
+      color:"text.regular",
+  })
+);
+export const RoundWrapper = styled.div(
+  css({
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"space-between",
+    alignItems:"center",
+    height:"95px"
+  })
+);
+export const RoundProfile = styled.div(
+  css({
+      width:"50px",
+      height:"50px",
+      borderRadius:"100%",
+      boxShadow:"0px 0px 8px -1px #000",
+      transition:'.4s all ease',
+      cursor:'pointer',
+      ':hover' : {
+        width:"70px !important",
+        height:"70px !important",
+        transition:'.4s all ease'
+        
+      }
+  })
+);
+export const Hash = styled.span(
+  css({
+    color:"#F39C12",
+    fontSize:"25px",
+    marginRight:"3px",
+    marginTop:"7px",
+    fontWeight:"bolder",
 
+  })
+);
+export const HashTags = styled.div(
+  css({
+    width:"570px",
+    position:"relative",
+    color:"text.regular",
+    fontSize:".8xl",
+    fontWeight:"bold",
+    left:"50%",
+    transform:"translateX(-50%)",
+    textAlign:"left",
+    marginTop:"20px",
+  }),
+);
 export const SliderNav = styled.button(
   css({
     width: 30,

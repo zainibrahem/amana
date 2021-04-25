@@ -23,9 +23,11 @@ export const ProductCardWrapper = styled.div(
     cursor: 'pointer',
     ':hover .hidd':{
       opacity:'1 !important',
+      transition:'.4s all ease'
     },
     ':hover .onhover':{
       display:'none !important',
+      transition:'.4s all ease'
     },
     
     '.hidd':{
@@ -33,8 +35,16 @@ export const ProductCardWrapper = styled.div(
       borderRadius:'15px',
       padding:'5px',
       background:'#F39C12',
+      position:'absolute',
       border:'0px solid',
-      marginTop:'5px'
+      marginTop:'5px',
+      transition:'.4s all ease'
+    },
+    '.onhover':{
+      opacity:'1 !important',
+      transition:'.6s all ease',
+      position:'absolute',
+      width:'100%'
     },
     '.card-counter': {
       '@media (max-width: 767px)': {

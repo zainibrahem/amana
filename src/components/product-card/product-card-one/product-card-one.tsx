@@ -161,7 +161,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               onClick={handleAddClick}
             >
                <ButtonText>
-                <FormattedMessage id="addCartButton" defaultMessage="+ Add To Cart" />
+                <FormattedMessage id="addCartButtons" defaultMessage="+ Add To Cart" />
               </ButtonText>
              
             </Button>
