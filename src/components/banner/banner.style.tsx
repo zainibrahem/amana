@@ -161,7 +161,7 @@ export const RoundProfile = styled.div(
       width:"50px",
       height:"50px",
       borderRadius:"100%",
-      // boxShadow:"0px 0px 8px -1px #000",
+      boxShadow:"0px 0px 12px rgb(0,0,0,.2)",
       border:"1px solid white",
       transition:'.4s all ease',
       transformOrigin:"center center",
@@ -169,6 +169,7 @@ export const RoundProfile = styled.div(
       ':hover' : {
         width:"70px !important",
         height:"70px !important",
+        boxShadow:"0px 0px 28px rgb(0,0,0,.4)",
         transform:"translate(0%,-7%)",
         transformOrigin:"center center",
         transition:'.4s all ease'
