@@ -14,7 +14,6 @@ import {
   Hash,
   Hashs,
 } from './banner.style';
-import ItemImage from 'assets/images/dummy-img-5.png';
 
 import { Waypoint } from 'react-waypoint';
 import { useAppDispatch } from 'contexts/app/app.provider';
