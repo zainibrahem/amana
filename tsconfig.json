@@ -28,7 +28,7 @@
     "noUnusedParameters": false,
     "removeComments": false,
     "preserveConstEnums": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "isolatedModules": true,
     "baseUrl": "src"
   },
