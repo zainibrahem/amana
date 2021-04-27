@@ -88,11 +88,11 @@ export const Banner: React.FC<Props> = ({
             defaultMessage="# iPhone"
             /></Hashs>
           </RoundWrapper> */}
-           <Hover></Hover>
-           <Hover></Hover>
-           <Hover></Hover>
-           <Hover></Hover>
-           <Hover></Hover>
+           <Hover intlTitleId="sss"></Hover>
+           <Hover intlTitleId="sss"></Hover>
+           <Hover intlTitleId="sss"></Hover>
+           <Hover intlTitleId="sss"></Hover>
+           <Hover intlTitleId="sss"></Hover>
            {/* <Hover></Hover>
            <Hover></Hover>
            <Hover></Hover>

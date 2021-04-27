@@ -39,7 +39,7 @@ export const Hover: React.FC<Props> = ({
   const [isShown, setIsShown] = useState(false);
 
     return (
-      <div style={{width:"23%",position:"relative"}}>
+      <div  style={{width:intlTitleId=="sss"?"16%":"23%",position:"relative"}}>
         <Parent onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)} >
             <div className="child" style={{background:`url(${itemImage})`,backgroundSize:"cover",height:"100%"}}>
               <div className="overlay">
