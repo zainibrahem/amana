@@ -29,6 +29,7 @@ import { GET_PRODUCTS } from 'graphql/query/products.query';
 import { GET_CATEGORIES } from 'graphql/query/category.query';
 import { ModalProvider } from 'contexts/modal/modal.provider';
 import { useState } from 'react';
+
 const Sidebar = dynamic(() => import('layouts/sidebar/sidebar'));
 const Products = dynamic(() =>
   import('components/product-grid/product-list/product-list')
@@ -98,7 +99,7 @@ const CategoryPage: React.FC<any> = ({ deviceType }) => {
 
 
                 
-              <Banners image="" title="Best promoters on Amana" description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti quod officiis quae suscipit, officia assumenda, unde eius a repellat neque ut. Sint possimus voluptas laboriosam necessitatibus eaque nisi cupiditate ipsam." />
+              <Banners images={page?.bann} title="Best promoters on Amana" description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti quod officiis quae suscipit, officia assumenda, unde eius a repellat neque ut. Sint possimus voluptas laboriosam necessitatibus eaque nisi cupiditate ipsam." />
 
               <HorizontalCategoryCardMenu sliderType="products" items={4} type={PAGE_TYPE} />
               <HorizontalCategoryCardMenu sliderType="products" items={4} type={PAGE_TYPE} />
