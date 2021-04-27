@@ -5,10 +5,11 @@ export const StyledForm = styled.form<any>(
   (props) =>
     css({
       display: 'flex',
+      justifyContent:'space-between',
       alignItems: 'center',
       borderRadius: 'base',
       overflow: 'hidden',
-      width: props.minimal ? '100%' : 700,
+      width: props.minimal ? '45%' : 700,
       color: 'text.regular',
       backgroundColor: props.minimal ? 'gray.200' : 'white',
       borderWidth: props.minimal ? '1px' : '0',
@@ -24,7 +25,7 @@ export const StyledForm = styled.form<any>(
 
 export const StyledInput = styled.input(
   css({
-    flexGrow: 1,
+    flexGrow: .7,
     fontSize: 'base',
     pr: 20,
     height: 48,

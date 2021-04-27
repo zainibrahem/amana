@@ -26,7 +26,74 @@ const OfferPageWrapper = styled.div`
     padding: 100px 30px 60px;
   }
 `;
+export const Brands = styled.div`
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+  min-height:400px;
+  padding-top:40px;
+  h1{
+    width:100%;
+    text-align:center;
+  }
+  p{
+    width:50%;
+    margin-top:30px;
+    text-align:center;
+  }
+`;
+export const Buttons = styled.button`
+  background:transparent;
+  padding:0px;
+  margin:0px;
+  border:0px solid;
+  height:300px;
+`;
+export const Tabs = styled.div`
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+  align-items:center;
+  ul{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    
+    li{
+      padding-left: 10px;
+      padding-right: 10px;
+      border-bottom: 1px solid #000;
+      padding-bottom: 23px;
+      cursor:pointer;
+    }
+    .actives{
+      font-weight:bold;
+      border-bottom: 3px solid #000;
+    }
+    .brand-image{
+      width:70px;
+      height:70px;
+      border-radius:100%;
+      box-shadow:0px 0px 9px -3px #000;
+      padding:2px;
+    }
+    .no-border{
+      border-bottom:0px solid;
+    }
 
+    &.ul-brands{
+      position:absolute;
+      margin-top:180px !important;
+      opacity:0;
+      transition:1s all ease;
+    }
+    &.active-ul{
+      transition:1s all ease;
+      opacity:1;
+    }
+  }
+`;
 const HeaderSection = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -68,7 +135,7 @@ const ContentSection = styled.div`
   }
 
   @media (max-width: 1367px) and (min-width: 1200px) {
-    padding: 15px 30px 50px;
+    padding: 13px 30px 50px;
   }
 
   @media (max-width: 990px) {

@@ -67,30 +67,7 @@ export const LeftMenu: React.FC<Props> = ({ logo }) => {
         onClick={() => setActiveMenu(CATEGORY_MENU_ITEMS[0])}
       />
 
-      <MainMenu>
-        <Popover
-          className="right"
-          handler={
-            <SelectedItem>
-              <span>
-                <Icon>
-                  <CategoryIcon name={activeMenu?.icon} />
-                </Icon>
-                <span>
-                  <FormattedMessage
-                    id={activeMenu?.id}
-                    defaultMessage={activeMenu?.defaultMessage}
-                  />
-                </span>
-              </span>
-              <Arrow>
-                <MenuDown />
-              </Arrow>
-            </SelectedItem>
-          }
-          content={<CategoryMenu onClick={setActiveMenu} />}
-        />
-      </MainMenu>
+     
     </LeftMenuBox>
   );
 };

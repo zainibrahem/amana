@@ -4,7 +4,8 @@ export const RightMenuBox = styled.div`
   display: flex;
   align-items: center;
   flex-shrink: 0;
-
+  justify-content:space-between;
+  width:32%;
   .menu-icon {
     min-width: 14px;
     margin-right: 7px;
@@ -56,4 +57,9 @@ export const RightMenuBox = styled.div`
       }
     }
   }
+`;
+export const Boxed = styled.div`
+  width:100%;
+  display:flex;
+  justify-content:space-between;
 `;

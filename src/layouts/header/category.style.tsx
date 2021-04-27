@@ -10,8 +10,8 @@ const positionAnim = keyframes`
 
   to {
     opacity: 0;
-    transform:translate(-50.3%,100%);
-    transition: all 0.3s ease;
+    transform:translate(-50.3%,-100%);
+    transition: opcaity 0.7s ease transform 0.6 ease;
   }
 `;
 
@@ -24,7 +24,7 @@ export const CatsMenu = styled.div`
     position: absolute;
     left: 50%;
     transform: translateX(-50.3%);
-    top:90px;
+    top:64px;
     background:#191919;
     box-shadow : 0px 27px 44px -24px #000;
     @media (max-width: 991px){
@@ -40,7 +40,7 @@ export const CatsMenu = styled.div`
             box-shadow: ${themeGet('shadows.header', '0 1px 2px rgba(0, 0, 0, 0.06)')};
             padding-top: 5px !important;
             padding-bottom: 20px;
-            transition: all 0.3s ease;
+            transition: opcaity 0.3s ease transform 0.6 ease;
             @media (max-width: 1400px) {
               padding-top: 5px;
               padding-bottom: 20px;

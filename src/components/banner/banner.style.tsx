@@ -125,7 +125,8 @@ export const SearchWrapper = styled.div(
 );
 export const ProfileWrapper = styled.div(
   css({
-    width:"569px",
+    width:"555px",
+    height:"75px",
     display:"flex",
     justifyContent:"space-between",
     alignItems:"center",
@@ -133,8 +134,76 @@ export const ProfileWrapper = styled.div(
     position:"relative",
     left:"50%",
     transform:"translateX(-50%)",
-   
+    transition:".4s all ease",
+    cursor:"pointer",
+    '&.absolute':{
+      position: "absolute",
+      top: "66.3%",
+      left: "51.1%",
+      height:"100%",
+      ':hover .package':{
+        transition:".4s all ease",
+        display:"block",
+      },
+      ':hover ~ .hovers .overlay':{
+        transition:".4s all ease",
+        display:"block",
+      },
+    },
+    '.child':{
+      width:"78%",
+      clipPath:"polygon(50% 0%, 100% 20%, 100% 75%, 50% 100%, 0 76%, 0 21%)",
+    },
+    '.hovers':{
+      width:"100%",
+      height:"110px",
+      ':hover':{
+        transition:".4s all ease",
+        width:"120%",
+        height:"140px",
+        filter:"drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5))"
+      },
     
+      ':hover + .absolute':{
+        transition:".4s all ease",
+        display:"block",
+      },
+      ':hover .overlay':{
+        transition:".4s all ease",
+        display:"block",
+      },
+      '.overlay':{
+        clipPath:"polygon(50% 0%, 100% 20%, 100% 75%, 50% 100%, 0 76%, 0 21%)",
+        width:"100%",
+        transition:".4s all ease",
+        height:"100%",
+        display:"none",
+        background:"rgb(0,0,0,.4)",
+        'h5':{
+          position: "relative",
+          transition:".4s all ease",
+          left: "15%",
+          top: "50%",
+          color: "#ffffff",
+          fontSize: "14px",
+          transform: "translateY(-50%)",
+        }
+      },
+  
+    },
+   
+    '.package':{
+      position: "absolute",
+      opacity:"0",
+      // clipPath:"polygon(50% 81%, 100% 65%, 50% 100%, 0 66%)",
+      transition:".7s all ease",
+      width: "14%",
+      display:"none",
+      bottom: "-19px",
+      height: "100%",
+      left: "5px",
+      zIndex: "111111",
+    }
   })
 );
 export const Hashs = styled.span(
@@ -158,8 +227,8 @@ export const RoundWrapper = styled.div(
 );
 export const RoundProfile = styled.div(
   css({
-      width:"50px",
-      height:"50px",
+      width:"70px",
+      height:"70px",
       borderRadius:"100%",
       boxShadow:"0px 0px 12px rgb(0,0,0,.2)",
       border:"1px solid white",
@@ -167,8 +236,8 @@ export const RoundProfile = styled.div(
       transformOrigin:"center center",
       cursor:'pointer',
       ':hover' : {
-        width:"70px !important",
-        height:"70px !important",
+        width:"80px !important",
+        height:"80px !important",
         boxShadow:"0px 0px 28px rgb(0,0,0,.4)",
         transform:"translate(0%,-7%)",
         transformOrigin:"center center",

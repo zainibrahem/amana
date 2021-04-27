@@ -6,12 +6,17 @@ import { Modal } from '@redq/reuse-modal';
 import Carousel from 'components/carousel/carousel';
 import { Banner } from 'components/banner/banner';
 import { MobileBanner } from 'components/banner/mobile-banner';
+import { HorizontalCategoryCardMenu } from 'layouts/horizontal-category-menu/horizontal-category-card-menu';
+import {Banners}  from 'layouts/horizontal-category-menu/banners';
 
 import {
   MainContentArea,
   SidebarSection,
   ContentSection,
   OfferSection,
+  Brands,
+  Tabs,
+  Buttons,
   MobileCarouselDropdown,
 } from 'assets/styles/pages.style';
 // Static Data Import Here
@@ -23,6 +28,7 @@ import { initializeApollo } from 'utils/apollo';
 import { GET_PRODUCTS } from 'graphql/query/products.query';
 import { GET_CATEGORIES } from 'graphql/query/category.query';
 import { ModalProvider } from 'contexts/modal/modal.provider';
+import { useState } from 'react';
 const Sidebar = dynamic(() => import('layouts/sidebar/sidebar'));
 const Products = dynamic(() =>
   import('components/product-grid/product-list/product-list')
@@ -45,6 +51,7 @@ const CategoryPage: React.FC<any> = ({ deviceType }) => {
   }, [query.text, query.category]);
   const PAGE_TYPE: any = query.type;
   const page = sitePages[PAGE_TYPE];
+  const [active, setActive] = useState(1);
 
   return (
     <>
@@ -71,15 +78,123 @@ const CategoryPage: React.FC<any> = ({ deviceType }) => {
             </SidebarSection> */}
             <ContentSection>
               <div ref={targetRef}>
-                <Products
+              <HorizontalCategoryCardMenu sliderType="products" items={4} type={PAGE_TYPE} />
+              <HorizontalCategoryCardMenu sliderType="products" items={4} type={PAGE_TYPE} />
+              <HorizontalCategoryCardMenu sliderType="products" items={4} type={PAGE_TYPE} />
+
+                {/* <Products
                   type={PAGE_TYPE}
                   deviceType={deviceType}
                   fetchLimit={20}
-                />
+                /> */}
+
+              <HorizontalCategoryCardMenu sliderType="slider" items={1} type={PAGE_TYPE} />
+              
+              
+
+
+              <HorizontalCategoryCardMenu sliderType="products" items={4} type={PAGE_TYPE} />
+              <HorizontalCategoryCardMenu sliderType="products" items={4} type={PAGE_TYPE} />
+
+
+                
+              <Banners image="" title="Best promoters on Amana" description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti quod officiis quae suscipit, officia assumenda, unde eius a repellat neque ut. Sint possimus voluptas laboriosam necessitatibus eaque nisi cupiditate ipsam." />
+
+              <HorizontalCategoryCardMenu sliderType="products" items={4} type={PAGE_TYPE} />
+              <HorizontalCategoryCardMenu sliderType="products" items={4} type={PAGE_TYPE} />
+              <Brands>
+                <h1>
+                  Our Brands
+                </h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem distinctio temporibus id quia unde quibusdam rerum, illo saepe porro aperiam quisquam aperiam quisquam</p>
+                <Tabs>
+                  <ul>
+                    <Buttons onClick={()=>{setActive(1)}}>
+                      <li  className={active == 1?"actives":""}>Categry 1</li>
+                    </Buttons>
+                    <Buttons onClick={()=>{setActive(2)}}>
+                      <li  className={active == 2?"actives":""}>Categry 2</li>
+                    </Buttons>
+                    <Buttons onClick={()=>{setActive(3)}}>
+                      <li  className={active == 3?"actives":""}>Categry 3</li>
+                    </Buttons>
+                    <Buttons onClick={()=>{setActive(4)}}>
+                      <li  className={active == 4?"actives":""}>Categry 4</li>
+                    </Buttons>
+                    <Buttons onClick={()=>{setActive(5)}}>
+                      <li  className={active == 5?"actives":""}>Categry 5</li>
+                    </Buttons>
+                    <Buttons onClick={()=>{setActive(6)}}>
+                      <li  className={active == 6?"actives":""}>Categry 6</li>
+                    </Buttons>
+                  </ul>
+                  <ul className={active == 1? "active-ul ul-brands":"ul-brands"} style={{marginTop:"40px"}}>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                    </li>
+                  </ul>
+                  <ul className={active == 2? "active-ul ul-brands":"ul-brands"} style={{marginTop:"40px"}}>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                    </li>
+                    <li className="no-border">
+                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                    </li>
+                  </ul>
+                
+                </Tabs>
+              </Brands>
               </div>
             </ContentSection>
           </MainContentArea>
-          <CartPopUp deviceType={deviceType} />
+          {/* <CartPopUp deviceType={deviceType} /> */}
+
+
         </Modal>
       </ModalProvider>
     </>

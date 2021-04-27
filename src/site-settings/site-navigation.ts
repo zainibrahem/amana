@@ -175,27 +175,27 @@ export const PROFILE_SIDEBAR_BOTTOM_MENU = [PROFILE_MENU_ITEM];
 export const LANGUAGE_MENU = [
   {
     id: 'ar',
-    defaultMessage: 'Arabic',
+    defaultMessage: 'Ar',
     icon: 'SAFlag',
   },
   {
     id: 'zh',
-    defaultMessage: 'Chinese',
+    defaultMessage: 'Ch',
     icon: 'CNFlag',
   },
   {
     id: 'en',
-    defaultMessage: 'English',
+    defaultMessage: 'En',
     icon: 'USFlag',
   },
   {
     id: 'de',
-    defaultMessage: 'German',
+    defaultMessage: 'Ge',
     icon: 'DEFlag',
   },
   {
     id: 'es',
-    defaultMessage: 'Spanish',
+    defaultMessage: 'Sp',
     icon: 'ESFlag',
   },
 ];

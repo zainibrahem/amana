@@ -4,6 +4,8 @@ import css from '@styled-system/css';
 export const CategoryWrapper = styled.div<any>(
   css({
     padding: ['30px 15px', '30px 15px', '30px'],
+    paddingTop:"0px !important",
+    paddingBottom:"6px !important"
   })
 );
 
@@ -23,7 +25,34 @@ export const ItemCard = styled.div<any>((props) =>
     borderColor: props.active ? 'primary.regular' : '#fff',
   })
 );
-
+export const Titles = styled.div`
+  background:#ededed;
+  padding:8px;
+  padding-left:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  h3{
+    font-size:14px !important;
+  }
+  .section{
+    display:flex;
+    justify-content:space-between; 
+    .active{
+      color:#F39C12;
+    }
+    h5{
+      color:#77798C;
+      font-size:12px !important;
+      margin-left:20px;
+      margin-right:20px;
+      cursor:pointer;
+      &:hover{
+        color:#F39C12;
+      }
+    }
+  }
+`;
 export const ImageWrapper = styled.div<any>({
   display: 'flex',
   alignItems: 'center',

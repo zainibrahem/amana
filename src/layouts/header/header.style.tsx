@@ -98,8 +98,8 @@ const HeaderWrapper = styled.header`
     padding-bottom: 20px;
 
     @media (max-width: 1400px) {
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding-top: 8px;
+      padding-bottom: 7px;
     }
 
     .headerSearch {

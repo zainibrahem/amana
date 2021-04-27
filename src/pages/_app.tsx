@@ -21,11 +21,14 @@ import "components/scrollbar/scrollbar.css";
 import "@redq/reuse-modal/lib/index.css";
 import "swiper/swiper-bundle.min.css";
 import { GlobalStyle } from "assets/styles/global.style";
+import { useAppState } from 'contexts/app/app.provider';
 
 // Language translation messages
+import { useRouter } from 'next/router';
 import { messages } from "site-settings/site-translation/messages";
 import "typeface-lato";
 import "typeface-poppins";
+
 // need to provide types
 const DemoSwitcher = dynamic(
   () => import("components/demo-switcher/switcher-btn")
@@ -37,7 +40,11 @@ export default function ExtendedApp({ Component, pageProps }) {
   const tablet = useMedia("(max-width: 991px)");
   const desktop = useMedia("(min-width: 992px)");
   const apolloClient = useApollo(pageProps.initialApolloState);
-
+  const { pathname, query } = useRouter();
+  const isSticky =
+    useAppState('isSticky') ||
+    pathname === '/furniture-two' ||
+    pathname === '/grocery-two';
   return (
     <ApolloProvider client={apolloClient}>
       <ThemeProvider theme={defaultTheme}>
@@ -51,6 +58,7 @@ export default function ExtendedApp({ Component, pageProps }) {
                     {...pageProps}
                     deviceType={{ mobile, tablet, desktop }}
                   />
+                  
                 </AppLayout>
               </AuthProvider>
             </AppProvider>

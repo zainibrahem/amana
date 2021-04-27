@@ -16,9 +16,9 @@ const LanguageMenu = ({ onClick }) => {
     <>
       {LANGUAGE_MENU.map((item) => (
         <MenuItem onClick={onClick} key={item.id} value={item.id}>
-          <span>
+          {/* <span>
             <FlagIcon name={item.icon} />
-          </span>
+          </span> */}
           <FormattedMessage id={item.id} defaultMessage={item.defaultMessage} />
         </MenuItem>
       ))}
@@ -38,9 +38,9 @@ const LanguageSwitcher: React.FC<{}> = () => {
         className="right"
         handler={
           <SelectedItem>
-            <Flag>
+            {/* <Flag>
               <FlagIcon name={selectedLanguage?.icon} />
-            </Flag>
+            </Flag> */}
             <span>
               <FormattedMessage
                 id={selectedLanguage?.id}

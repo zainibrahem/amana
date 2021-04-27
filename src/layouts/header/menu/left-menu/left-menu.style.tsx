@@ -11,6 +11,9 @@ export const LeftMenuBox = styled.div`
 export const MainMenu = styled.div`
   display: flex;
   align-items: center;
+  margin-right:24px;
+  margin-left:20px;
+
 `;
 
 export const IconWrapper = styled.span`
@@ -73,7 +76,7 @@ export const SelectedItem = styled.button`
   height: 38px;
   display: flex;
   align-items: center;
-  background-color: ${themeGet('colors.white', '#ffffff')};
+  background-color: transparent;
   border: 1px solid ${themeGet('colors.gray.500', '#f1f1f1')};
   padding-top: 0;
   padding-bottom: 0;
@@ -86,6 +89,7 @@ export const SelectedItem = styled.button`
 
   svg {
     min-width: 15px;
+
     max-width: 20px;
     max-height: 19px;
   }
@@ -96,7 +100,7 @@ export const SelectedItem = styled.button`
     font-family: ${themeGet('fonts.body', 'Lato')};
     font-size: ${themeGet('fontSizes.base', '15')}px;
     font-weight: ${themeGet('fontWeights.bold', '700')};
-    color: ${themeGet('colors.primary.regular', '#F39C12')};
+    color:#000;
     text-decoration: none;
 
     &:first-child {
