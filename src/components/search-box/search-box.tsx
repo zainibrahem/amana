@@ -63,13 +63,16 @@ export const SearchBox: React.FC<Props> = ({
         </>
       ) : (
         <>
-          <StyledCategoryName>{categoryType}</StyledCategoryName>
+          {/* <StyledCategoryName>{categoryType}</StyledCategoryName> */}
           <StyledInput
             type='search'
             onChange={onChange}
             value={value}
             name={name}
             {...rest}
+          />
+           <DictationIcon
+            style={{ marginLeft: 16, marginRight: 16, color: '#212121' }}
           />
           
           <StyledSearchButton>

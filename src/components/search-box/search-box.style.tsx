@@ -71,6 +71,11 @@ export const StyledSearchButton = styled.button(
     color: 'white',
     fontSize: 'base',
     fontWeight: 'bold',
+    transition:".4s all ease",
+    ':hover svg':{
+      marginRight:"20px !important",
+      transition:".4s all ease"
+    }
   }),
   {
     display: 'flex',

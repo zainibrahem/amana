@@ -27,10 +27,12 @@ export const CatsMenu = styled.div`
     top:64px;
     background:#191919;
     box-shadow : 0px 27px 44px -24px #000;
+    @media (min-width:1400px){
+      top:86px !important;
+    }
     @media (max-width: 991px){
       display:none !important;
-    }
-    &.unSticky {
+    }    &.unSticky {
         opacity: 0;
         animation: ${positionAnim} 0.3s ease;
         }

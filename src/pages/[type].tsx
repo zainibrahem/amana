@@ -8,7 +8,6 @@ import { Banner } from 'components/banner/banner';
 import { MobileBanner } from 'components/banner/mobile-banner';
 import { HorizontalCategoryCardMenu } from 'layouts/horizontal-category-menu/horizontal-category-card-menu';
 import {Banners}  from 'layouts/horizontal-category-menu/banners';
-
 import {
   MainContentArea,
   SidebarSection,

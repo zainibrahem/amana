@@ -14,7 +14,7 @@ import {
   Hash,
   Hashs
 } from './banner.style';
-import itemImage from 'assets/images/dummy-img-5.png';
+import itemImage from 'assets/images/prod.png';
 
 import { Waypoint } from 'react-waypoint';
 import { useAppDispatch } from 'contexts/app/app.provider';
@@ -47,7 +47,7 @@ export const Hover: React.FC<Props> = ({
               </div>
             </div>
           <div className={isShown?"package shown":"package"} style={{height:"104%"}}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="91.992" height="128.526" viewBox="0 0 91.992 128.526">
+            <svg xmlns="http://www.w3.org/2000/svg" width="52" height="160" viewBox="0 0 91.992 128.526">
               <g id="Group_884" data-name="Group 884" transform="translate(-629.5 -790.05)">
                 <path id="Path_4436" data-name="Path 4436" d="M-4300.356,1041.215c.336-.225.067-.814-.283-.619-11.629,6.5-30.767,13.84-35.536,13.84-4.908,0-22.239-6.857-32.616-12.494-.3-.166-.535.345-.243.54l29.442,20.758a6.848,6.848,0,0,0,7.731,0Z" transform="translate(5011.938 -145.859)" fill="#f39c12"/>
               </g>

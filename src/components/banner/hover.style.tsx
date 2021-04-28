@@ -14,15 +14,21 @@ import css from '@styled-system/css';
 
 export const Parent = styled.div(
     css({
-    width:"100%",
-    height:"110px",
+      width:"72px",
+      height:"84px",
+      filter:"drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.3))",
     ':hover':{
     transition:".4s all ease",
-    width:"120%",
-    height:"140px",
+    width:"88px",
+    height:"100px",
+    transform:"translateX(-3px)",
     filter:"drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5))"
     },
-
+    ".package":{
+      height:"135%",
+      bottom:"9px",
+      left:"18px",
+    },
     ':hover .overlay':{
     transition:".4s all ease",
     display:"block",
@@ -34,7 +40,7 @@ export const Parent = styled.div(
     transition:".7s all ease",
     height:"100%",
     display:"none",
-    background:"rgb(0,0,0,.4)",
+    background:"rgb(0,0,0,.7)",
     'h5':{
         position: "relative",
         transition:".7s all ease",
@@ -53,7 +59,6 @@ export const Parent = styled.div(
       ".shown":{
           opacity:"1 !important",
           display:"block !important",
-          transition:".7s all ease , display .1s ease ",
         }
     })
 )
