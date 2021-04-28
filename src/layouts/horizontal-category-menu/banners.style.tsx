@@ -43,14 +43,14 @@ export const Background = styled.div<any>(
         zIndex: "111111",
       },
       '.right-side':{
-        width:"30%",
+        width:"464px",
         height:"100%",
         display:"flex",
         flexDirection:"column",
         flexWrap:"no-wrap",
         justifyContent:"space-between",
         ".shown":{
-            left:"12px"
+            left:"17px"
         },
         ".row1":{
             marginLeft:"60px",

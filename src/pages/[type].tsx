@@ -131,60 +131,60 @@ const CategoryPage: React.FC<any> = ({ deviceType }) => {
                   </ul>
                   <ul className={active == 1? "active-ul ul-brands":"ul-brands"} style={{marginTop:"40px"}}>
                     <li className="no-border">
-                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                      <img className="brand-image" src="https://www.thebrandingjournal.com/wp-content/uploads/2019/05/chanel_logo_the_branding_journal.jpg" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                      <img className="brand-image" src="https://www.foodengineeringmag.com/ext/resources/FE-Latest-Headlines/FE-latest-headlines-2/cocacola.jpg?1372262510" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                      <img className="brand-image" src="https://inspirebrands.com/wp-content/uploads/2017/10/inspire-brands-featured-logo.jpg" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                      <img className="brand-image" src="https://www.thelogocreative.co.uk/wp-content/uploads/rolex-min.jpg" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                      <img className="brand-image" src="https://vectorlogoseek.com/wp-content/uploads/2018/11/spectrum-brands-vector-logo.png" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                      <img className="brand-image" src="https://logos-download.com/wp-content/uploads/2016/09/Brands_logo.png" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                      <img className="brand-image" src="http://www.marqueebrands.com/Marquee__social.jpg" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                      <img className="brand-image" src="https://s3.amazonaws.com/cdn.designcrowd.com/blog/100-Famous-Brand%20Logos-From-The-Most-Valuable-Companies-of-2020/Adidas.png" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://logosdownload.com/logo/samsung-logo-512.png" alt=""/>
+                      <img className="brand-image" src="https://seeklogo.com/images/C/constellation-brands-logo-9BA912DAFA-seeklogo.com.png" alt=""/>
                     </li>
                   </ul>
                   <ul className={active == 2? "active-ul ul-brands":"ul-brands"} style={{marginTop:"40px"}}>
                     <li className="no-border">
-                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                      <img className="brand-image" src="https://www.thebrandingjournal.com/wp-content/uploads/2019/05/chanel_logo_the_branding_journal.jpg" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                      <img className="brand-image" src="https://www.foodengineeringmag.com/ext/resources/FE-Latest-Headlines/FE-latest-headlines-2/cocacola.jpg?1372262510" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                      <img className="brand-image" src="https://inspirebrands.com/wp-content/uploads/2017/10/inspire-brands-featured-logo.jpg" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                      <img className="brand-image" src="https://www.thelogocreative.co.uk/wp-content/uploads/rolex-min.jpg" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                      <img className="brand-image" src="https://vectorlogoseek.com/wp-content/uploads/2018/11/spectrum-brands-vector-logo.png" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                      <img className="brand-image" src="https://logos-download.com/wp-content/uploads/2016/09/Brands_logo.png" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                      <img className="brand-image" src="http://www.marqueebrands.com/Marquee__social.jpg" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                      <img className="brand-image" src="https://s3.amazonaws.com/cdn.designcrowd.com/blog/100-Famous-Brand%20Logos-From-The-Most-Valuable-Companies-of-2020/Adidas.png" alt=""/>
                     </li>
                     <li className="no-border">
-                      <img className="brand-image" src="https://banner2.cleanpng.com/20180422/ogq/kisspng-samsung-galaxy-a8-2018-logo-samsung-electronics-arrow-sketch-5adc19b2a478b5.7637149715243739386737.jpg" alt=""/>
+                      <img className="brand-image" src="https://seeklogo.com/images/C/constellation-brands-logo-9BA912DAFA-seeklogo.com.png" alt=""/>
                     </li>
                   </ul>
                 
