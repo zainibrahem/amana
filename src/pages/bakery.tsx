@@ -35,7 +35,7 @@ export default function BakeryPage({ deviceType }) {
         style={{ maxHeight: 560 }}
       />
       <Main>
-        <HorizontalCategoryCardMenu type={PAGE_TYPE} />
+        {/* <HorizontalCategoryCardMenu type={PAGE_TYPE} /> */}
         <Box padding={['0 15px 100px ', '0 15px 30px ', '0 30px 30px']}>
           <ProductGrid type={PAGE_TYPE} />
         </Box>
