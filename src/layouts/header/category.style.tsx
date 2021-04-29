@@ -16,14 +16,14 @@ const positionAnim = keyframes`
 `;
 
 export const CatsMenu = styled.div`
-    width:94.7%;
+    width:93.4%;
     height:55px;
     border-bottom-right-radius:4px;
     border-bottom-left-radius:4px;
     padding-left:20px;
     position: absolute;
     left: 50%;
-    transform: translateX(-50.3%);
+    transform: translateX(-50%);
     top:64px;
     background:#191919;
     box-shadow : 0px 27px 44px -24px #000;

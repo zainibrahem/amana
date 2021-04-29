@@ -44,10 +44,10 @@ import { useCart } from 'contexts/cart/use-cart';
 import { useLocale } from 'contexts/language/language.provider';
 import { useWindowSize } from 'utils/useWindowSize';
 import Coupon from 'features/coupon/coupon';
-import Address from 'features/address/address';
 import Schedules from 'features/schedule/schedule';
 import Contact from 'features/contact/contact';
 import Payment from 'features/payment/payment';
+import Address from 'features/address/address';
 
 // The type of props Checkout Form receives
 interface MyFormProps {
@@ -173,7 +173,7 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
               className='paymentBox'
               style={{ paddingBottom: 30 }}
             >
-              <Payment increment={true} deviceType={deviceType} />
+              <Payment deviceType={deviceType} increment={true} />
 
               {/* Coupon start */}
               {coupon ? (
@@ -203,9 +203,11 @@ const CheckoutWithSidebar: React.FC<MyFormProps> = ({ token, deviceType }) => {
                       />
                     </HaveCoupon>
                   ) : (
-                    <CouponInputBox>
-                      <Coupon errorMsgFixed={true} className='normalCoupon' />
-                    </CouponInputBox>
+                    <>
+                      <CouponInputBox>
+                        <Coupon errorMsgFixed={true} className='normalCoupon' />
+                      </CouponInputBox>
+                    </>
                   )}
                 </CouponBoxWrapper>
               )}

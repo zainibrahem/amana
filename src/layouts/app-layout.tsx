@@ -3,12 +3,11 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import Sticky from 'react-stickynode';
 import { useAppState } from 'contexts/app/app.provider';
-import Header  from './header/header';
+import Header from './header/header';
 import { LayoutWrapper } from './layout.style';
 import { isCategoryPage } from './is-home-page';
-import CategoryHeader from "./header/category";
 import Footers  from '../layouts/header/footers';
-import { HorizontalCategoryCardMenu } from 'layouts/horizontal-category-menu/horizontal-category-card-menu';
+import CategoryHeader from './header/category';
 
 const MobileHeader = dynamic(() => import('./header/mobile-header'), {
   ssr: false,
@@ -22,7 +21,6 @@ type LayoutProps = {
 const Layout: React.FunctionComponent<LayoutProps> = ({
   className,
   children,
-  // deviceType: { mobile, tablet, desktop },
   token,
 }) => {
   const { pathname, query } = useRouter();
@@ -49,14 +47,13 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
         {isHomePage?
         <CategoryHeader className={`${isSticky ? 'sticky' : 'unSticky'}`}></CategoryHeader>
         :""
-        
+          
       }
       </Sticky>
       {children}
 
-              <Footers className="unSticky">
-              </Footers>
-      
+      <Footers className="unSticky">
+        </Footers>
     </LayoutWrapper>
   );
 };

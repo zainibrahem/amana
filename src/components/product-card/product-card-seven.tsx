@@ -113,20 +113,24 @@ export const ProductCard = ({ data }: Props) => {
   const { title, image, price, salePrice, slug, discountInPercent } = data;
   return (
     <Link href="/products/[slug]" as={`/products/${slug}`}>
-      <Card>
-        <ImageWrapper>
-          <Image src={image} alt={title} />
-          {discountInPercent ? <Discount>{discountInPercent}%</Discount> : null}
-        </ImageWrapper>
-        <Box px={20} pb={20}>
-          <PriceWrapper>
-            <Price>${salePrice ? salePrice : price}</Price>
-            {discountInPercent ? <SalePrice>${price}</SalePrice> : null}
-          </PriceWrapper>
-          <Title>{title}</Title>
-          <AddItemToCart data={data} variant="full" buttonText="Add" />
-        </Box>
-      </Card>
+      <a>
+        <Card>
+          <ImageWrapper>
+            <Image src={image} alt={title} />
+            {discountInPercent ? (
+              <Discount>{discountInPercent}%</Discount>
+            ) : null}
+          </ImageWrapper>
+          <Box px={20} pb={20}>
+            <PriceWrapper>
+              <Price>${salePrice ? salePrice : price}</Price>
+              {discountInPercent ? <SalePrice>${price}</SalePrice> : null}
+            </PriceWrapper>
+            <Title>{title}</Title>
+            <AddItemToCart data={data} variant="full" buttonText="Add" />
+          </Box>
+        </Card>
+      </a>
     </Link>
   );
 };

@@ -7,6 +7,7 @@ import {
   FURNITURE_PAGE,
   BOOK_PAGE,
   MEDICINE_PAGE,
+  RESTAURANT_PAGE,
 } from 'site-settings/site-navigation';
 const arr = [
   HOME_PAGE,
@@ -17,6 +18,7 @@ const arr = [
   FURNITURE_PAGE,
   BOOK_PAGE,
   MEDICINE_PAGE,
+  RESTAURANT_PAGE,
 ];
 export function isCategoryPage(pathname) {
   return arr.includes(`/${pathname}`);

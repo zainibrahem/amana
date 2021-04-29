@@ -19,12 +19,11 @@ import { CouponDisplay } from 'components/coupon-box/coupon-box';
 import { ProfileContext } from 'contexts/profile/profile.context';
 import { FormattedMessage } from 'react-intl';
 import { useCart } from 'contexts/cart/use-cart';
-import Schedules from 'features/schedule/schedule';
-import Address from 'features/address/address';
 import Coupon from 'features/coupon/coupon';
+import Address from 'features/address/address';
 import Contact from 'features/contact/contact';
 import Payment from 'features/payment/payment';
-
+import Schedules from 'features/schedule/schedule';
 // The type of props Checkout Form receives
 interface MyFormProps {
   token: string;

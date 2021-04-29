@@ -32,17 +32,17 @@ const ImageWrapper = styled.div({
   },
 });
 
-export const Banner = ({ data }: Props) => {
+const Banner = ({ data }: Props) => {
   return (
     <Swiper
-      id="banner"
-      loop={true}
+      id='banner'
       slidesPerView={1}
+      loop={true}
       navigation={{
         nextEl: '.banner-slider-next',
         prevEl: '.banner-slider-prev',
       }}
-      style={{ marginBottom: 25, minHeight: 180 }}
+      style={{ marginBottom: 20, minHeight: 180 }}
     >
       {data.map((item, idx) => (
         <SwiperSlide key={idx}>
@@ -51,12 +51,13 @@ export const Banner = ({ data }: Props) => {
           </ImageWrapper>
         </SwiperSlide>
       ))}
-      <SliderNav className="banner-slider-next">
+      <SliderNav className='banner-slider-next'>
         <ArrowNext />
       </SliderNav>
-      <SliderNav className="banner-slider-prev">
+      <SliderNav className='banner-slider-prev'>
         <ArrowPrev />
       </SliderNav>
     </Swiper>
   );
 };
+export default Banner;

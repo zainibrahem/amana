@@ -1,11 +1,8 @@
 import React from 'react';
-import { GET_CATEGORIES } from 'graphql/query/category.query';
-import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import ErrorMessage from 'components/error-message/error-message';
 import SwiperCore, { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Text } from 'components/text';
 import Image from 'components/image/image';
 import { ArrowNext } from 'assets/icons/ArrowNext';
 import { ArrowPrev } from 'assets/icons/ArrowPrev';
@@ -18,34 +15,37 @@ import {
   SliderNav,
   Titles
 } from './horizontal-category-card-menu.style';
+import useCategory from 'data/use-category';
 import dynamic from 'next/dynamic';
+import BnaaerImage from 'assets/images/02.jpg';
+import { Container } from 'components/upload/upload.style';
+
 
 SwiperCore.use([Navigation]);
 
 interface Props {
   type: string;
   items:number,
-  sliderType:string
+  sliderType:string,
+  id:string
 }
 
-export const HorizontalCategoryCardMenu = ({ type,items,sliderType }: Props) => {
+export const HorizontalCategoryCardMenu = ({ type,items,sliderType,id }: Props) => {
   const router = useRouter();
-  const { data, loading, error } = useQuery(GET_CATEGORIES, {
-    variables: { type },
-  });
+  const { data, error } = useCategory({ type });
+
   if (error) return <ErrorMessage message={error.message} />;
-  if (loading) return <p>Loading...</p>;
   if (!data) return null;
   const { pathname, query } = router;
   const selectedQueries = query.category;
 
   const onCategoryClick = (slug: string) => {
-    router.push({
-      pathname,
-      query: { ...query, category: slug },
-    });
+    // router.push({
+    //   pathname,
+    //   query: { ...query, category: slug },
+    // });
+    // alert(`.${id}-next`,)
   };
-   
   const breakpoints = sliderType=='products'? {
     320: {
       slidesPerView: 2,
@@ -56,19 +56,22 @@ export const HorizontalCategoryCardMenu = ({ type,items,sliderType }: Props) => 
     },
 
     620: {
-      slidesPerView: 4,
+      slidesPerView: 3,
     },
 
     820: {
-      slidesPerView: 4,
+      slidesPerView: 5,
     },
 
     1100: {
-      slidesPerView: 4,
+      slidesPerView: 5,
     },
 
     1280: {
-      slidesPerView: 4,
+      slidesPerView: 5,
+    },
+    1480: {
+      slidesPerView: 6,
     },
   }:{
     320: {
@@ -98,9 +101,10 @@ export const HorizontalCategoryCardMenu = ({ type,items,sliderType }: Props) => 
   const GeneralCard = dynamic(
     import('components/product-card/product-card-one/product-card-one')
   );
+
   return (
-    <CategoryWrapper>
-      {sliderType == 'products'? 
+    id?(<CategoryWrapper>
+         {sliderType == 'products'? 
       (<Titles>
           <h3>Most Viewed</h3>
           <div className="section">
@@ -111,47 +115,55 @@ export const HorizontalCategoryCardMenu = ({ type,items,sliderType }: Props) => 
         : ''}
       <CategoryInner>
         <Swiper
-          id='category-card-menu'
+          id={id}
           navigation={{
-            nextEl: '.banner-slider-next',
-            prevEl: '.banner-slider-prev',
+            nextEl: `.${id}-next`,
+            prevEl: `.${id}-prev`
           }}
+          className={id}
+          draggable={sliderType=="slider"?false :  true}
+          freeMode={sliderType=="slider"?false :  true}
+          allowSlideNext={sliderType=="slider"?false :  true}
+          allowSlidePrev={sliderType=="slider"?false :  true}
           breakpoints={breakpoints}
-          slidesPerView={items}
+          slidesPerView={7}
           spaceBetween={10}
         >
-          
-          {data.categories.map((category, idx) => (
-            <SwiperSlide key={idx}>
-              {sliderType == 'products'?
-              (
-                <GeneralCard
-                title="Product Title"
-                description="description"
-                image="https://www.pcspecialist.nl/images/landing/nvidia/rtx-laptops/30-laptops-feat1-sm.jpg"
-                weight="unit"
-                currency="$"
-                price={1500}
-                salePrice={2000}
-                discountInPercent={10}
-                data="20-2-2021"
-                deviceType="desktop"
-              />
-                ):
-                <img height="275" style={{width:"100%"}} src="https://www.pcspecialist.nl/images/landing/nvidia/rtx-laptops/30-laptops-feat1-sm.jpg" alt=""/>
-               
-            }
-             
-            </SwiperSlide>
+          {data.map((category, idx) => (
+                  <SwiperSlide key={idx}>
+                  {sliderType == 'products'?
+                  (
+                    <GeneralCard
+                    title="Product Title"
+                    description="description"
+                    image="https://www.pcspecialist.nl/images/landing/nvidia/rtx-laptops/30-laptops-feat1-sm.jpg"
+                    weight="unit"
+                    currency="$"
+                    price={1500}
+                    salePrice={2000}
+                    discountInPercent={10}
+                    data="20-2-2021"
+                    deviceType="desktop"
+                  />
+                    ):
+                    <img height="275" onClick={ ()=>{onCategoryClick}} style={{width:"100%"}} src={BnaaerImage} alt=""/>
+                   
+                }
+                 
+                </SwiperSlide>
           ))}
         </Swiper>
-        <SliderNav className='banner-slider-next'>
-          <ArrowNext />
-        </SliderNav>
-        <SliderNav className='banner-slider-prev'>
-          <ArrowPrev />
-        </SliderNav>
+   
+            <SliderNav className={`${sliderType=="slider"?""+`${id}-next`+" none banner-slider-next":""+`${id}-next`+" banner-slider-next"}`}>
+                <ArrowNext />
+            </SliderNav>
+            <SliderNav className={`${sliderType=="slider"?""+`${id}-prev`+" none banner-slider-prev":""+`${id}-prev`+" banner-slider-prev"}`}>
+              <ArrowPrev />
+            </SliderNav>
+        
+       
       </CategoryInner>
-    </CategoryWrapper>
+    </CategoryWrapper>):(<Container></Container>)
+    
   );
 };

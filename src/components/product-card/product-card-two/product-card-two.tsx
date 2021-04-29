@@ -51,12 +51,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
           alt={title}
         />
         {discountInPercent ? (
-          <>
-            <DiscountPercent>{discountInPercent}%</DiscountPercent>
-          </>
-        ) : (
-          ''
-        )}
+          <DiscountPercent>{discountInPercent}%</DiscountPercent>
+        ) : null}
       </BookImageWrapper>
       <BookInfo>
         <ProductName>{title}</ProductName>

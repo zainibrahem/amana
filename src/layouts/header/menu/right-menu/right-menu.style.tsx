@@ -62,4 +62,9 @@ export const Boxed = styled.div`
   width:100%;
   display:flex;
   justify-content:space-between;
+  svg{
+    margin-right:10px;
+    height:40px;
+    width:20px;
+  }
 `;

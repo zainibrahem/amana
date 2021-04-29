@@ -1,8 +1,9 @@
-import React from "react";
-import { useTransition, animated } from "react-spring";
-import { BaseModal } from "react-spring-modal";
-import { CloseIcon } from "assets/icons/CloseIcon";
-import { Scrollbar } from "components/scrollbar/scrollbar";
+import React from 'react';
+import { useTransition, animated } from 'react-spring';
+import { BaseModal } from 'react-spring-modal';
+import { CloseIcon } from 'assets/icons/CloseIcon';
+// import { useAppState, useAppDispatch } from 'contexts/app/app.provider';
+import { Scrollbar } from 'components/scrollbar/scrollbar';
 
 type SpringModalProps = {
   isOpen: boolean;
@@ -26,45 +27,45 @@ const SpringModal: React.FC<SpringModalProps> = ({
   });
 
   const staticStyles = {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     left: 0,
     padding: 0,
-    width: "calc(100% + 1px)",
-    height: "100%",
-    maxHeight: "100vh",
-    backgroundColor: "#ffffff",
-    borderRadius: "0px",
+    width: 'calc(100% + 1px)',
+    height: '100%',
+    maxHeight: '100vh',
+    backgroundColor: '#ffffff',
+    borderRadius: '0px',
     zIndex: 99999,
   };
 
   const buttonStyle = {
     width: 40,
     height: 40,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#ffffff",
-    color: "#0D1136",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ffffff',
+    color: '#0D1136',
     border: 0,
     outline: 0,
-    boxShadow: "none",
-    borderRadius: "50%",
-    position: "absolute" as "absolute",
+    boxShadow: 'none',
+    borderRadius: '50%',
+    position: 'absolute' as 'absolute',
     top: 20,
     right: 20,
     zIndex: 100000,
-    cursor: "pointer",
+    cursor: 'pointer',
 
-    ":focus": {
+    ':focus': {
       outline: 0,
-      boxShadow: "none",
+      boxShadow: 'none',
     },
   };
 
   const scrollbarStyle = {
-    height: "100%",
-    maxHeight: "100%",
+    height: '100%',
+    maxHeight: '100%',
   };
 
   return (
@@ -78,7 +79,7 @@ const SpringModal: React.FC<SpringModalProps> = ({
             >
               {defaultClose && (
                 <button
-                  type="button"
+                  type='button'
                   onClick={onRequestClose}
                   style={{ ...buttonStyle }}
                 >

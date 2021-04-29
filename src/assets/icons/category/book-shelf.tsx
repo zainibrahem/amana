@@ -1,4 +1,4 @@
-export const Bookshelf = ({
+export const BookShelf = ({
   color = 'currentColor',
   width = '18px',
   height = '18px',

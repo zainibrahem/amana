@@ -1,11 +1,12 @@
 import React from 'react';
-import styled, { keyframes, css } from 'styled-components';
-import systemCss from '@styled-system/css';
+import styled, { keyframes } from 'styled-components';
+import { themeGet } from '@styled-system/theme-get';
+import css from '@styled-system/css';
 import { compose, variant, border, space, layout } from 'styled-system';
 
 export const StyledButton = styled.button(
   (props) =>
-    systemCss({
+    css({
       px: '15px',
       py: 0,
       fontSize: ['base'],
@@ -120,21 +121,37 @@ const rotate = keyframes`
   to {transform: rotate(360deg);}
 `;
 
-const Spinner = styled.div(
-  (props) =>
-    systemCss({
-      width: 18,
-      height: 18,
-      marginLeft: 10,
-      border: '3px solid white',
-      borderTop: `3px solid ${props.color ? props.color : 'primary.regular'}`,
-      borderRadius: '50%',
-      transitionProperty: 'transform',
-    }),
-  css`
-    animation: ${rotate} 1.2s infinite linear;
-  `
-);
+const Spinner = styled.div`
+  width: 18px;
+  height: 18px;
+  margin-left: 10px;
+  border: 3px solid #ffffff;
+  border-top: 3px solid
+    ${(props) =>
+      props.color ? props.color : themeGet('primary.regular', '#F39C12')};
+  border-radius: 50%;
+  transition-property: transform;
+  animation-name: ${rotate};
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+`;
+
+// const Spinner = styled.div((props) =>
+//   css({
+//     width: 18,
+//     height: 18,
+//     marginLeft: 10,
+//     border: '3px solid white',
+//     borderTop: `3px solid ${props.color ? props.color : 'primary.regular'}`,
+//     borderRadius: '50%',
+//     transitionProperty: 'transform',
+//     animationName: `${rotate}`,
+//     animationDuration: '1.2s',
+//     animationIterationCount: 'infinite',
+//     animationTimingFunction: 'linear',
+//   })
+// );
 
 type Props = {
   children: React.ReactNode;

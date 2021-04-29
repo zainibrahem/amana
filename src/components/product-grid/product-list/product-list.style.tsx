@@ -3,7 +3,6 @@ import { themeGet } from '@styled-system/theme-get';
 
 export const ProductsRow = styled.div`
   display: flex;
-  justify-content:center;
   flex-wrap: wrap;
   margin-top: 25px;
   background-color: ${themeGet('colors.gray.200', '#f7f7f7')};
@@ -62,7 +61,7 @@ export const ProductCardWrapper = styled.div`
 
 export const ProductsCol = styled.div`
   flex: 0 0 20%;
-  max-width: 16%;
+  max-width: 20%;
   padding-left: 15px;
   padding-right: 15px;
   margin-bottom: 30px;
@@ -71,7 +70,7 @@ export const ProductsCol = styled.div`
   }
   &.food-col {
     flex: 0 0 25%;
-    max-width: 16%;
+    max-width: 25%;
   }
   @media (min-width: 1501px) {
     &:nth-child(5n + 1) {
@@ -86,7 +85,7 @@ export const ProductsCol = styled.div`
     }
   }
   @media (min-width: 1301px) and (max-width: 1500px) {
-    flex: 0 0 19%;
+    flex: 0 0 25%;
     max-width: 25%;
     &.food-col {
       flex: 0 0 33.333%;
@@ -167,7 +166,7 @@ export const ProductsCol = styled.div`
 `;
 
 export const MedicineCol = styled.div`
-  flex: 0 0 20%;
+  flex: 0 0 30%;
   max-width: 20%;
   padding-left: 15px;
   padding-right: 15px;

@@ -3,10 +3,9 @@ import css from '@styled-system/css';
 
 export const Background = styled.div<any>(
   css({
-      width:"100%",
-      background:"#F39C12",
       height:"300px",
       padding:"30px 0px",
+      margin:"0px 30px",
       display:"flex",
       justifyContent:"space-between",
       alignItems:"center",
@@ -19,8 +18,10 @@ export const Background = styled.div<any>(
           alignItems:"center",
           padding:"30px",
           textAlign:"left",
+         
           'h3':{
             width:"100%",
+            
           },
           'p':{
               color:"white",
@@ -37,7 +38,7 @@ export const Background = styled.div<any>(
         transition:".7s all ease",
         width: "14%",
         display:"none",
-        bottom: "-19px",
+        bottom: "9px !important",
         height: "100%",
         left: "5px",
         zIndex: "111111",

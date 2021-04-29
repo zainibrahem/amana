@@ -1,7 +1,5 @@
 import { NextPage } from 'next';
-import { useQuery } from '@apollo/client';
 import { Modal } from '@redq/reuse-modal';
-import { GET_LOGGED_IN_CUSTOMER } from 'graphql/query/customer.query';
 import { ProfileProvider } from 'contexts/profile/profile.provider';
 import SettingsContent from 'features/user-profile/settings/settings';
 import {
@@ -13,6 +11,7 @@ import Sidebar from 'features/user-profile/sidebar/sidebar';
 import { SEO } from 'components/seo';
 import Footer from 'layouts/footer';
 import ErrorMessage from 'components/error-message/error-message';
+import useUser from 'data/use-user';
 
 type Props = {
   deviceType?: {
@@ -22,15 +21,14 @@ type Props = {
   };
 };
 const ProfilePage: NextPage<Props> = ({ deviceType }) => {
-  const { data, error, loading } = useQuery(GET_LOGGED_IN_CUSTOMER);
-  if (!data || loading) {
-    return <div>loading...</div>;
-  }
+  const { user, error } = useUser();
   if (error) return <ErrorMessage message={error.message} />;
+  if (!user) return <div>loading...</div>;
+
   return (
     <>
       <SEO title="Profile - PickBazar" description="Profile Details" />
-      <ProfileProvider initData={data.me}>
+      <ProfileProvider initData={user}>
         <Modal>
           <PageWrapper>
             <SidebarSection>
@@ -40,7 +38,7 @@ const ProfilePage: NextPage<Props> = ({ deviceType }) => {
               <SettingsContent deviceType={deviceType} />
             </ContentBox>
 
-         
+          
           </PageWrapper>
         </Modal>
       </ProfileProvider>

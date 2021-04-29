@@ -3,15 +3,16 @@ import {
   Background,
 } from './banners.style';
 import {Hover} from '../../components/banner/Hover';
+import Images from 'assets/images/03.jpg';
 interface Props {
-    images:string
+    images?:string
     title:string
     description:string
   }
 
-export const Banners = ({ images ,description ,title}: Props) => {
+export const Banners = ({ description ,title}: Props) => {
 return (
-    <Background style={{backgroundImage:`url(assets/images/${images})`}}>
+    <Background style={{backgroundImage:`url(${Images})`}}>
         <div className="left-side">
           <h3>{title}</h3>
           <p>{description}</p>

@@ -20,6 +20,7 @@ import { ShoppingBagLarge } from 'assets/icons/ShoppingBagLarge';
 import { CURRENCY } from 'utils/constant';
 import { FormattedMessage } from 'react-intl';
 import { useLocale } from 'contexts/language/language.provider';
+
 import { Scrollbar } from 'components/scrollbar/scrollbar';
 import { useCart } from 'contexts/cart/use-cart';
 import { TextCartItem } from 'components/cart-item/text-cart-item';
@@ -28,6 +29,7 @@ import Coupon from 'features/coupon/coupon';
 type CartPropsType = {
   style?: any;
   className?: string;
+  scrollbarHeight?: string;
   onCloseBtnClick?: (e: any) => void;
   onCheckout?: (e: any) => void;
 };
@@ -46,8 +48,10 @@ const FixedCart: React.FC<CartPropsType> = ({
     removeItemFromCart,
     cartItemsCount,
     calculatePrice,
+    applyCoupon,
   } = useCart();
   const [hasCoupon, setCoupon] = useState(false);
+  const { isRtl } = useLocale();
 
   return (
     <CartPopupBody className={className} style={style}>

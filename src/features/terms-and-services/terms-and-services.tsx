@@ -72,6 +72,5 @@ export const StyledLink = styled(Link)(
     display: 'block',
     textTransform: 'uppercase',
     transition: 'all 0.3s ease',
-    cursor: 'pointer',
   }
 );

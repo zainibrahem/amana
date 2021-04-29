@@ -47,8 +47,8 @@ const responsive = {
 
 const CarouselWithCustomDots = ({
   items = [],
-  title,
   deviceType: { mobile, tablet, desktop },
+  title,
   ...rest
 }: any) => {
   const children = items.slice(0, 6).map((item: any, index: number) => (
@@ -62,7 +62,7 @@ const CarouselWithCustomDots = ({
         position: 'relative',
         margin: 'auto',
       }}
-      className="product-image"
+      className='product-image'
     />
   ));
   const images = items.map((item: any, index: number) => (
@@ -77,8 +77,8 @@ const CarouselWithCustomDots = ({
     index,
     onClick,
     active,
-  }: // carouselState: { currentSlide, deviceType },
-  any) => {
+    carouselState: { currentSlide, deviceType },
+  }: any) => {
     return (
       <SingleItem
         data-index={index}
@@ -90,7 +90,6 @@ const CarouselWithCustomDots = ({
       </SingleItem>
     );
   };
-
   let deviceType = 'desktop';
   if (mobile) {
     deviceType = 'mobile';
@@ -104,7 +103,7 @@ const CarouselWithCustomDots = ({
       ssr
       infinite={true}
       slidesToSlide={1}
-      containerClass="carousel-with-custom-dots"
+      containerClass='carousel-with-custom-dots'
       responsive={responsive}
       deviceType={deviceType}
       autoPlay={false}

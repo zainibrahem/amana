@@ -29,6 +29,7 @@ export const Titles = styled.div`
   background:#ededed;
   padding:8px;
   padding-left:20px;
+  margin-bottom:3px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -42,7 +43,7 @@ export const Titles = styled.div`
       color:#F39C12;
     }
     h5{
-      color:#77798C;
+      color:#000;
       font-size:12px !important;
       margin-left:20px;
       margin-right:20px;
@@ -109,7 +110,9 @@ export const SliderNav = styled.button({
   '&.swiper-button-disabled': {
     display: 'none',
   },
-
+  '&.none':{
+  display:"none"
+  },
   '&.banner-slider-prev': {
     left: -15,
   },

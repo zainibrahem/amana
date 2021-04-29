@@ -2,11 +2,12 @@ import React from 'react';
 import { useTransition, animated } from 'react-spring';
 import { BaseModal } from 'react-spring-modal';
 import { CloseIcon } from 'assets/icons/CloseIcon';
+// import { useAppState, useAppDispatch } from 'contexts/app/app.provider';
 import { Scrollbar } from 'components/scrollbar/scrollbar';
 
 type SpringModalProps = {
-  isOpen?: boolean;
-  onRequestClose?: () => void;
+  isOpen: boolean;
+  onRequestClose: () => void;
   children: React.ReactNode;
   style?: any;
 };
@@ -17,6 +18,15 @@ const SpringModal: React.FC<SpringModalProps> = ({
   children,
   style = {},
 }) => {
+  // const dispatch = useAppDispatch();
+  // const isModalOpen = useAppState('isModalOpen');
+
+  // const onClose = () => {
+  //   dispatch({
+  //     type: 'TOGGLE_MODAL',
+  //   });
+  // };
+
   const transition = useTransition(isOpen, null, {
     from: { transform: 'translateY(100%) translateY(55px) translateX(-50%)' },
     enter: { transform: 'translateY(0%) translateY(0) translateX(-50%)' },
@@ -77,7 +87,7 @@ const SpringModal: React.FC<SpringModalProps> = ({
               style={{ ...transitionStyles, ...staticStyles, ...style }}
             >
               <button
-                type="button"
+                type='button'
                 onClick={onRequestClose}
                 style={{ ...buttonStyle }}
               >

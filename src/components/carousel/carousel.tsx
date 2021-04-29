@@ -57,7 +57,7 @@ const PrevButton = ({ onClick, children }: any) => {
         e.preventDefault();
         onClick();
       }}
-      className="prevButton"
+      className='prevButton'
     >
       {children}
     </ButtonPrev>
@@ -70,7 +70,7 @@ const NextButton = ({ onClick, children }: any) => {
         e.preventDefault();
         onClick();
       }}
-      className="nextButton"
+      className='nextButton'
     >
       {children}
     </ButtonNext>
@@ -84,7 +84,7 @@ const ButtonGroup = ({ next, previous }: any) => {
     <ButtonGroupWrapper>
       {isRtl ? (
         <>
-          <NextButton onClick={() => next()} className="rtl">
+          <NextButton onClick={() => next()} className='rtl'>
             <ArrowPrev />
           </NextButton>
           <PrevButton onClick={() => previous()}>
@@ -150,14 +150,14 @@ export default function CustomCarousel({
   ...props
 }: Props) {
   return (
-    <div dir="ltr">
+    <div dir='ltr'>
       <Carousel
         arrows={false}
         responsive={responsive}
         showDots={false}
         slidesToSlide={1}
         infinite={infinite}
-        containerClass="container-with-dots"
+        containerClass='container-with-dots'
         itemClass={itemClass}
         autoPlay={autoPlay}
         autoPlaySpeed={3000}

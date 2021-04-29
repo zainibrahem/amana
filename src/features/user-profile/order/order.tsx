@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Scrollbar } from 'components/scrollbar/scrollbar';
-import { useQuery, gql } from '@apollo/client';
 import {
   DesktopView,
   MobileView,
@@ -23,33 +22,10 @@ import OrderCard from './order-card/order-card';
 import OrderCardMobile from './order-card/order-card-mobile';
 import useComponentSize from 'utils/useComponentSize';
 import { FormattedMessage } from 'react-intl';
+import useOrders from 'data/use-orders';
+import ErrorMessage from 'components/error-message/error-message';
 
 const progressData = ['Order Received', 'Order On The Way', 'Order Delivered'];
-
-const GET_ORDERS = gql`
-  query getAllOrders($text: String, $user: Int!, $limit: Int) {
-    orders(text: $text, limit: $limit, user: $user) {
-      id
-      status
-      deliveryAddress
-      amount
-      date
-      subtotal
-      deliveryFee
-      discount
-      deliveryTime
-      products {
-        title
-        price
-        total
-        image
-        weight
-        quantity
-        id
-      }
-    }
-  }
-`;
 
 const orderTableColumns = [
   {
@@ -96,35 +72,19 @@ const orderTableColumns = [
 ];
 
 const OrdersContent: React.FC<{}> = () => {
-  const [order, setOrder] = useState(null);
-  const [active, setActive] = useState('');
-
   const [targetRef, size] = useComponentSize();
   const orderListHeight = size.height - 79;
-  const { data, error, loading } = useQuery(GET_ORDERS, {
-    variables: {
-      limit: 7,
-      user: 1,
-    },
-  });
+  const { data, error } = useOrders({ userId: 1, limit: 7 });
+  const [selection, setSelection] = useState(null);
 
   useEffect(() => {
-    if (data && data.orders && data.orders.length !== 0) {
-      setOrder(data.orders[0]);
-      setActive(data.orders[0].id);
+    if (data?.length) {
+      setSelection(data[0]);
     }
-  }, [data && data.orders]);
+  }, [data?.length]);
 
-  if (loading) {
-    return <div>loading...</div>;
-  }
-
-  if (error) return <div>{error.message}</div>;
-
-  const handleClick = (order: any) => {
-    setOrder(order);
-    setActive(order.id);
-  };
+  if (error) return <ErrorMessage message={error.message} />;
+  if (!data) return <div>loading...</div>;
 
   return (
     <OrderBox>
@@ -136,21 +96,20 @@ const OrdersContent: React.FC<{}> = () => {
               defaultMessage='My Order'
             />
           </Title>
+
           <Scrollbar className='order-scrollbar'>
             <OrderList>
-              {data.orders.length !== 0 ? (
-                data.orders.map((current: any) => (
+              {data.length !== 0 ? (
+                data.map((current: any) => (
                   <OrderCard
                     key={current.id}
                     orderId={current.id}
-                    className={current.id === active ? 'active' : ''}
+                    className={current.id === selection?.id ? 'active' : ''}
                     status={progressData[current.status - 1]}
                     date={current.date}
                     deliveryTime={current.deliveryTime}
                     amount={current.amount}
-                    onClick={() => {
-                      handleClick(current);
-                    }}
+                    onClick={() => setSelection(current)}
                   />
                 ))
               ) : (
@@ -172,16 +131,16 @@ const OrdersContent: React.FC<{}> = () => {
               defaultMessage='Order Details'
             />
           </Title>
-          {order && order.id && (
+          {selection && (
             <OrderDetails
-              progressStatus={order.status}
+              progressStatus={selection.status}
               progressData={progressData}
-              address={order.deliveryAddress}
-              subtotal={order.subtotal}
-              discount={order.discount}
-              deliveryFee={order.deliveryFee}
-              grandTotal={order.amount}
-              tableData={order.products}
+              address={selection.deliveryAddress}
+              subtotal={selection.subtotal}
+              discount={selection.discount}
+              deliveryFee={selection.deliveryFee}
+              grandTotal={selection.amount}
+              tableData={selection.products}
               columns={orderTableColumns}
             />
           )}
@@ -191,13 +150,11 @@ const OrdersContent: React.FC<{}> = () => {
       <MobileView>
         <OrderList>
           <OrderCardMobile
-            orders={data.orders}
-            className={order && order.id === active ? 'active' : ''}
+            orders={data}
+            // className={order && order.id === active ? 'active' : ''}
             progressData={progressData}
             columns={orderTableColumns}
-            onClick={() => {
-              handleClick(order);
-            }}
+            onClick={setSelection}
           />
         </OrderList>
       </MobileView>

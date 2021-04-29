@@ -74,7 +74,7 @@ export const defaultTheme = {
     },
   },
   // btnBorderRadius: '',
-  breakpoints: ['767px', '991px', '1025px', '1300px'],
+  breakpoints: ['767px', '991px', '70em', '90em'],
   // space: [0, 4, 8, 10, 15, 20, 25, 30, 40, 56],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   // export const space = [0, 0.25, 0.5, 1, 1.5, 3].map(n => n + 'rem')

@@ -1,16 +1,15 @@
-import { GetStaticProps } from 'next';
-import { GET_PRODUCTS } from 'graphql/query/products.query';
-import { initializeApollo } from 'utils/apollo';
-import { Banner } from 'components/banner/banner-two';
 import { ProductGrid } from 'components/product-grid/product-grid';
 import { Modal } from '@redq/reuse-modal';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import css from '@styled-system/css';
-import { GET_CATEGORIES } from 'graphql/query/category.query';
 import { SidebarWithCardMenu } from 'layouts/sidebar/sidebar-with-card-menu';
 import FurnitureImgOne from 'assets/images/banner/furniture-banner-1.jpg';
 import FurnitureImgTwo from 'assets/images/banner/furniture-banner-2.jpg';
+
+const Banner = dynamic(() => import('components/banner/banner-two'), {
+  ssr: false,
+});
 
 const CartPopUp = dynamic(() => import('features/carts/cart-popup'), {
   ssr: false,
@@ -28,31 +27,6 @@ const bannerSlides = [
 ];
 
 const PAGE_TYPE = 'furniture-two';
-export const getStaticProps: GetStaticProps = async () => {
-  const apolloClient = initializeApollo();
-
-  await apolloClient.query({
-    query: GET_PRODUCTS,
-    variables: {
-      type: PAGE_TYPE,
-      offset: 0,
-      limit: 20,
-    },
-  });
-  await apolloClient.query({
-    query: GET_CATEGORIES,
-    variables: {
-      type: PAGE_TYPE,
-    },
-  });
-
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-    },
-    revalidate: 1,
-  };
-};
 
 export default function Home({ deviceType }) {
   return (

@@ -1,13 +1,11 @@
 import React from 'react';
 import { NextPage } from 'next';
-import { useQuery } from '@apollo/client';
 import { Modal } from '@redq/reuse-modal';
 import { SEO } from 'components/seo';
 import Checkout from 'features/checkouts/checkout-one/checkout-one';
-import { GET_LOGGED_IN_CUSTOMER } from 'graphql/query/customer.query';
-
 import { ProfileProvider } from 'contexts/profile/profile.provider';
 import ErrorMessage from 'components/error-message/error-message';
+import useUser from 'data/use-user';
 
 type Props = {
   deviceType: {
@@ -17,10 +15,9 @@ type Props = {
   };
 };
 const CheckoutPage: NextPage<Props> = ({ deviceType }) => {
-  const { data, error, loading } = useQuery(GET_LOGGED_IN_CUSTOMER);
-  if (loading) {
-    return <div>loading...</div>;
-  }
+  const { user, error } = useUser();
+  if (!user) return <div>loading...</div>;
+
   if (error) return <ErrorMessage message={error.message} />;
   const token = 'true';
 
@@ -30,7 +27,7 @@ const CheckoutPage: NextPage<Props> = ({ deviceType }) => {
         title="Checkout Alternative - PickBazar"
         description="Checkout Details"
       />
-      <ProfileProvider initData={data.me}>
+      <ProfileProvider initData={user}>
         <Modal>
           <Checkout token={token} deviceType={deviceType} />
         </Modal>

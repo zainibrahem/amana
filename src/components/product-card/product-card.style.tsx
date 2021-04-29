@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 import css from '@styled-system/css';
+import Discount from 'assets/images/discount.svg';
+import BnaaerImage from 'assets/images/02.jpg';
 
 const StyledBox = styled.div(
   css({
@@ -19,15 +21,16 @@ export const ProductCardWrapper = styled.div(
     backgroundColor: 'white',
     position: 'relative',
     fontFamily: 'inherit',
+    paddingBottom: "37px",
     borderRadius: 'base',
     cursor: 'pointer',
     ':hover .hidd':{
       opacity:'1 !important',
-      transition:'.4s all ease'
+      transition:'.5s all ease-in'
     },
     ':hover .onhover':{
       display:'none !important',
-      transition:'.4s all ease'
+      transition:'.5s all ease-out'
     },
     
     '.hidd':{
@@ -38,14 +41,28 @@ export const ProductCardWrapper = styled.div(
       position:'absolute',
       border:'0px solid',
       marginTop:'5px',
-      transition:'.4s all ease'
+      transition:'.1 all ease-in'
     },
     '.onhover':{
       opacity:'1 !important',
-      transition:'.6s all ease',
+      transition:'.5s all ease-in',
       position:'absolute',
-      width:'100%'
+      width:'100%',
+      marginTop:"10px"
     },
+    '.shipping':{
+      display:"flex",
+      justifyContent:"space-between",
+      alignItems:"center",
+      marginLeft:"-10px",
+      marginTop:"12px"
+    },
+    '.speed':{
+      display:"flex",
+      justifyContent:"space-between",
+      alignItems:"center"
+    },
+
     '.card-counter': {
       '@media (max-width: 767px)': {
         width: 30,
@@ -65,7 +82,7 @@ export const ProductCardWrapper = styled.div(
 
 export const ProductImageWrapper = styled.div`
   height: 240px;
-  padding: 5px;
+  padding: 0px 5px;
   position: relative;
   text-align: center;
   display: flex;
@@ -75,10 +92,24 @@ export const ProductImageWrapper = styled.div`
   img {
     max-width: 170%;
     max-height: 100%;
+    min-height: 100%;
     display: inline-block;
   }
   @media (max-width: 640px) {
     height: 145px;
+  }
+  .extra{
+    width:60%;
+    color:#000;
+    text-align: right;
+    padding-right: 28px !important;
+    position:absolute;
+    background-position:right center !important;
+    right:0px;
+    z-index:2;
+    bottom:0px;
+    font-size:14px;
+    font-weight:bold !important;
   }
 `;
 
@@ -99,19 +130,27 @@ export const SaleTag = styled.span`
 
 export const DiscountPercent = styled.span`
   font-family: ${themeGet('fonts.body', 'sans-serif')};
-  font-size: ${themeGet('fontSizes.sm', '13')}px;
-  font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.white', '#ffffff')};
   line-height: 24px;
-  background-color: ${themeGet('colors.yellow.regular', '#FFAD5E')};
+  background: url(${Discount});
   padding-left: 10px;
   padding-right: 10px;
   position: relative;
   display: inline-block;
   position: absolute;
-  top: 15px;
-  right: 15px;
-  border-radius: ${themeGet('radii.medium', '12px')};
+  top: 0px;
+  left: 0px;
+  width: 100px;
+  font-size: 18px;
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 7px;
+  padding-left: 8px;
+  font-weight: normal;
+  align-items: flex-start;
+  height: 100px;
+  background-repeat: no-repeat;
   z-index: 2;
 `;
 
@@ -137,6 +176,11 @@ export const ProductInfo = styled.div`
       margin: 0 0 5px 0;
     }
   }
+  
+  p{
+    height: 53px;
+    overflow: hidden;
+  }
   .product-weight {
     font-family: ${themeGet('fonts.body', 'sans-serif')};
     font-size: ${themeGet('fontSizes.sm', '13')}px;
@@ -152,6 +196,8 @@ export const ProductInfo = styled.div`
     align-items: center;
     justify-content: space-between;
     position: relative;
+    width: 100%;
+    left: 0px;
 
     @media (max-width: 767px) {
       min-height: 36px;
@@ -162,6 +208,12 @@ export const ProductInfo = styled.div`
       width:100%;
       flex-direction: column;
       align-items: flex-start;
+      p{
+        font-size: 0.8rem !important;
+        text-align: center !important;
+        height: 16px !important;
+        overflow: hidden !important;
+      }
       .hidd{
         color: ${themeGet('colors.white', '#000')};
         opacity:0;

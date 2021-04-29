@@ -15,7 +15,14 @@ export const StyledForm = styled.form<any>(
       borderWidth: props.minimal ? '1px' : '0',
       borderStyle: 'solid',
       borderColor: props.minimal ? `gray.500` : 'white',
-
+      "svg":{
+        width:"50px",
+        cursot:"pointer",
+        ":hover":{
+          height:"23px",
+          transition:".5s all ease"
+        },
+      },
       input: {
         pl: props.minimal ? 0 : 20,
       },

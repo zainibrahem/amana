@@ -6,9 +6,9 @@ import {
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
-import { useMutation } from '@apollo/client';
+// import { useMutation } from '@apollo/client';
 import { closeModal } from '@redq/reuse-modal';
-import { GET_PAYMENT } from 'graphql/mutation/order';
+// import { GET_PAYMENT } from 'graphql/mutation/order';
 import StripeFormWrapper, { Heading, FieldWrapper } from './stripe-form.style';
 import { ProfileContext } from 'contexts/profile/profile.context';
 
@@ -57,12 +57,12 @@ type Item = {
   };
 };
 const StripePaymentForm = ({ item: { price, buttonText } }: Item) => {
-  const [getPayment] = useMutation(GET_PAYMENT);
+  // const [getPayment] = useMutation(GET_PAYMENT);
   const sendTokenToServer = async (token: any) => {
-    const payment_info = await getPayment({
-      variables: { paymentInput: JSON.stringify({ token, amount: price }) },
-    });
-    console.log(payment_info, 'payment_info');
+    // const payment_info = await getPayment({
+    //   variables: { paymentInput: JSON.stringify({ token, amount: price }) },
+    // });
+    // console.log(payment_info, 'payment_info');
   };
 
   return (

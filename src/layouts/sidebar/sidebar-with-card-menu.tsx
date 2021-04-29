@@ -1,13 +1,12 @@
 import React from 'react';
 import { CardMenu } from 'components/card-menu';
-import { GET_CATEGORIES } from 'graphql/query/category.query';
-import { useQuery } from '@apollo/client';
 import { useRouter } from 'next/router';
 import ErrorMessage from 'components/error-message/error-message';
 import styled from 'styled-components';
 import Sticky from 'react-stickynode';
 import { Scrollbar } from 'components/scrollbar/scrollbar';
 import CategoryWalker from 'components/category-walker/category-walker';
+import useCategory from 'data/use-category';
 
 const Aside = styled.aside({
   width: '300px',
@@ -51,11 +50,9 @@ interface Props {
 
 export const SidebarWithCardMenu = ({ type }: Props) => {
   const router = useRouter();
-  const { data, loading, error } = useQuery(GET_CATEGORIES, {
-    variables: { type },
-  });
+  const { data, error } = useCategory({ type });
+
   if (error) return <ErrorMessage message={error.message} />;
-  if (loading) return <p>Loading...</p>;
   if (!data) return null;
   const { pathname, query } = router;
   const selectedQueries = query.category;
@@ -80,7 +77,7 @@ export const SidebarWithCardMenu = ({ type }: Props) => {
           >
             <CardMenuWrapper>
               <CardMenu
-                data={data.categories}
+                data={data}
                 onClick={onCategoryClick}
                 active={selectedQueries}
               />
@@ -102,7 +99,7 @@ export const SidebarWithCardMenu = ({ type }: Props) => {
           >
             <CardMenuWrapper>
               <CardMenu
-                data={data.categories}
+                data={data}
                 onClick={onCategoryClick}
                 active={selectedQueries}
               />

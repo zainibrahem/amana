@@ -3,7 +3,6 @@ export const initialState = {
   isSticky: false,
   isSidebarSticky: true,
   isDrawerOpen: false,
-  isModalOpen: false,
 };
 
 type ActionType =
@@ -12,8 +11,7 @@ type ActionType =
   | { type: 'REMOVE_STICKY' }
   | { type: 'SET_SIDEBAR_STICKY' }
   | { type: 'REMOVE_SIDEBAR_STICKY' }
-  | { type: 'TOGGLE_DRAWER' }
-  | { type: 'TOGGLE_MODAL' };
+  | { type: 'TOGGLE_DRAWER' };
 
 type StateType = typeof initialState;
 
@@ -48,11 +46,6 @@ export function appReducer(state: StateType, action: ActionType): StateType {
       return {
         ...state,
         isDrawerOpen: !state.isDrawerOpen,
-      };
-    case 'TOGGLE_MODAL':
-      return {
-        ...state,
-        isModalOpen: !state.isModalOpen,
       };
     default: {
       throw new Error(`Unsupported action type at App Reducer`);

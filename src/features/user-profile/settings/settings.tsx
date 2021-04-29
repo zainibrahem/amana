@@ -1,19 +1,15 @@
 import React, { useContext } from 'react';
-import { useMutation } from '@apollo/client';
 import { ProfileContext } from 'contexts/profile/profile.context';
-
 import {
   SettingsForm,
   SettingsFormContent,
   HeadingSection,
   Title,
-  Col,
   Row,
+  Col,
 } from './settings.style';
-
 import { Button } from 'components/button/button';
 import { Input } from 'components/forms/input';
-import { UPDATE_ME } from 'graphql/mutation/me';
 import { FormattedMessage } from 'react-intl';
 import { Label } from 'components/forms/label';
 import Contact from 'features/contact/contact';
@@ -30,7 +26,6 @@ type SettingsContentProps = {
 
 const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
   const { state, dispatch } = useContext(ProfileContext);
-  const [updateMeMutation] = useMutation(UPDATE_ME);
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -42,9 +37,7 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
 
   const handleSave = async () => {
     const { name, email } = state;
-    await updateMeMutation({
-      variables: { meInput: JSON.stringify({ name, email }) },
-    });
+    console.log(name, email, 'name, email');
   };
 
   return (
@@ -53,8 +46,8 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
         <HeadingSection>
           <Title>
             <FormattedMessage
-              id="profilePageTitle"
-              defaultMessage="Your Profile"
+              id='profilePageTitle'
+              defaultMessage='Your Profile'
             />
           </Title>
         </HeadingSection>
@@ -62,42 +55,41 @@ const SettingsContent: React.FC<SettingsContentProps> = ({ deviceType }) => {
           <Col xs={12} sm={5} md={5} lg={5}>
             <Label>
               <FormattedMessage
-                id="profileNameField"
-                defaultMessage="Your Name"
+                id='profileNameField'
+                defaultMessage='Your Name'
               />
             </Label>
             <Input
-              type="text"
-              label="Name"
-              name="name"
+              type='text'
+              label='Name'
+              name='name'
               value={state.name}
               onChange={handleChange}
-              backgroundColor="#F7F7F7"
-              height="48px"
-              // intlInputLabelId="profileNameField"
+              backgroundColor='#F7F7F7'
+              height='48px'
             />
           </Col>
 
           <Col xs={12} sm={5} md={5} lg={5}>
             <Label>
               <FormattedMessage
-                id="profileEmailField"
-                defaultMessage="Your Email"
+                id='profileEmailField'
+                defaultMessage='Your Email'
               />
             </Label>
             <Input
-              type="email"
-              name="email"
-              label="Email Address"
+              type='email'
+              name='email'
+              label='Email Address'
               value={state.email}
               onChange={handleChange}
-              backgroundColor="#F7F7F7"
+              backgroundColor='#F7F7F7'
             />
           </Col>
 
           <Col xs={12} sm={2} md={2} lg={2}>
-            <Button size="big" style={{ width: '100%' }} onClick={handleSave}>
-              <FormattedMessage id="profileSaveBtn" defaultMessage="Save" />
+            <Button size='big' style={{ width: '100%' }} onClick={handleSave}>
+              <FormattedMessage id='profileSaveBtn' defaultMessage='Save' />
             </Button>
           </Col>
         </Row>

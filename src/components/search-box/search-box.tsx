@@ -53,11 +53,11 @@ export const SearchBox: React.FC<Props> = ({
             name={name}
             {...rest}
           />
-          <KeyboardIcon
+          {/* <KeyboardIcon
             style={{ marginLeft: 20,  color: '#212121' }}
-          />
+          /> */}
           <DictationIcon
-            style={{ marginLeft: 16, marginRight: 16, color: '#212121' }}
+            style={{ marginLeft: "16px", marginRight: "16px", color: '#212121' }}
           />
           
         </>

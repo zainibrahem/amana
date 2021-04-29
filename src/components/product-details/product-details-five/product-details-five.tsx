@@ -163,7 +163,7 @@ const ProductDetails: React.FunctionComponent<ProductDetailsProps> = ({
         </h2>
 
         <ProductGrid
-          type={product.type.toLowerCase().replace('_', '-')}
+          type={product.type.toLowerCase()}
           loadMore={false}
           fetchLimit={5}
           style={{

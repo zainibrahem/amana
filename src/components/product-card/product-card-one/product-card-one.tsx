@@ -17,6 +17,9 @@ import { FormattedMessage } from 'react-intl';
 import { CartIcon } from 'assets/icons/CartIcon';
 import { useModal } from 'contexts/modal/use-modal';
 import { useRouter } from 'next/router';
+import Extra from 'assets/images/extra.svg';
+import Speed from 'assets/images/speed.svg';
+import Slow from 'assets/images/slow.svg';
 const QuickViewMobile = dynamic(
   () => import('features/quick-view/quick-view-mobile')
 );
@@ -126,33 +129,50 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <ProductCardWrapper onClick={handleQuickViewModal} className="product-card">
       <ProductImageWrapper>
+      <div className="extra" style={{background:`url(${Extra})`,backgroundRepeat:"no-repeat"}}>
+        Extra 10% off
+      </div>
         <Image
           url={image}
           className="product-image"
           style={{ position: 'relative' }}
           alt={title}
         />
+               
         {discountInPercent ? (
           <DiscountPercent>{discountInPercent}%</DiscountPercent>
         ) : null}
+
       </ProductImageWrapper>
       <ProductInfo>
+     
         <h3 className="product-title" style={{fontSize:'1.3rem'}} >{title}</h3>
         <p style={{fontSize:'1rem'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut qui soluta mollitia cumque hic ea,</p>
         <h3 className="product-title" style={{fontSize:'1.1rem',marginTop:'5px'}} >
           {currency}
           {price}
         </h3>
-        <p></p>
+      
         <span className="product-weight">
           {currency}
           {price}
         </span>
         <div className="product-meta">
           <div className="productPriceWrapper" style={{justifyContent:"center"}}>
-            <span className="onhover" style={{fontSize:".8rem",textAlign:"center"}}>
-                Lorem ipsum dolor sit amet, consetetur
-            </span>
+            <div className="onhover" style={{fontSize:".8rem",textAlign:"left"}}>
+                Lorem ipsum dolor sit amet
+                <div className="shipping">
+                  <div className="speed">
+                    <img src={Speed} alt=""/>
+                    <span style={{fontWeight:"bold",marginTop:"6px"}}>Speed Delivery</span>
+                  </div>
+                  {/* <div className="speed">
+                    <span>Speed Delivery</span>
+                    <img src={Slow} alt=""/>
+                  </div> */}
+                </div>
+            </div>
+
 
             <Button
               className="hidd"

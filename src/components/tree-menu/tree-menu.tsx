@@ -4,8 +4,8 @@ import { useSpring, animated } from 'react-spring';
 import { Frame, Title, Content, Header, IconWrapper } from './tree-menu.style';
 import { Button } from 'components/button/button';
 import { ArrowNext } from 'assets/icons/ArrowNext';
-import * as icons from 'assets/icons/category-icons';
 
+import * as icons from 'assets/icons/category-icons';
 const Tree = React.memo(
   ({
     children,

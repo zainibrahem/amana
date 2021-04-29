@@ -3,8 +3,8 @@ export const NotificationIcon = () => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      width='31.705'
-      height='32'
+      width='15.898'
+      height='18'
       viewBox='0 0 15.898 18'
     >
       <path

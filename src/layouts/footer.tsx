@@ -24,7 +24,16 @@ const Box = styled.div(
 );
 const Footer = () => {
   return (
-   ''
+    <Box>
+      <FormattedMessage
+        id='siteFooter'
+        defaultMessage='PickBazar is a product of'
+      />
+      &nbsp;
+      <a href='#' target='_blank'>
+        RedQ, Inc.
+      </a>
+    </Box>
   );
 };
 export default Footer;

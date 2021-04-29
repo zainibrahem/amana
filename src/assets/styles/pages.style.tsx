@@ -31,11 +31,43 @@ export const Brands = styled.div`
   flex-direction:column;
   justify-content:space-between;
   align-items:center;
-  min-height:400px;
-  padding-top:40px;
+  min-height:521px;
+  padding-top:70px;
+  position:relative;
+  padding-bottom:200px;
+
   h1{
     width:100%;
     text-align:center;
+    position:relative;
+    :after{
+      content: "";
+    width: 7px;
+    height: 28px;
+    background: #F39C12;
+    position: absolute;
+    border-top-right-radius: 97px;
+    right: 44%;
+    border-bottom-left-radius: 97px;
+    top: 48px;
+    -webkit-transform: translateX(1200%);
+    -ms-transform: translateX(1200%);
+    transform: translateX(1200%);
+}
+    :before{
+      content: "";
+      width: 13px;
+      height: 41px;
+      background: #F39C12;
+      position: absolute;
+      border-top-right-radius: 97px;
+      left: 49%;
+      border-bottom-left-radius: 97px;
+      top: -26px;
+      -webkit-transform: translateX(-1200%);
+      -ms-transform: translateX(-1200%);
+      transform: translateX(-1200%);
+  }
   }
   p{
     width:50%;
@@ -48,7 +80,7 @@ export const Buttons = styled.button`
   padding:0px;
   margin:0px;
   border:0px solid;
-  height:300px;
+  height:20px;
 `;
 export const Tabs = styled.div`
   display:flex;
@@ -84,7 +116,7 @@ export const Tabs = styled.div`
 
     &.ul-brands{
       position:absolute;
-      margin-top:180px !important;
+      margin-top:250px !important;
       opacity:0;
       transition:1s all ease;
     }
