@@ -56,6 +56,7 @@
     "typeface-poppins": "^1.1.13",
     "url": "^0.11.0",
     "uuid": "^8.3.2",
+    "webpack": "^5.36.1",
     "yup": "^0.32.9"
   },
   "devDependencies": {
