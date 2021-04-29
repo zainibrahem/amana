@@ -28,7 +28,7 @@ padding-right:20px;
 position: relative;
 transition: height .4s;
 bottom:0px;
-background:#ededed;
+background:#fff;
 box-shadow : 0 1px 8px -3px #000;
 @media (max-width: 991px){
   display:none !important;
@@ -43,7 +43,7 @@ box-shadow : 0 1px 8px -3px #000;
     animation: ${positionAnim} 0.3s ease;
     }
     &.sticky {
-        background-color: #ededed;
+        background-color: #fff;
         position: fixed;
         box-shadow:0 1px 8px -3px #000;
         padding-top: 5px !important;
@@ -60,7 +60,7 @@ box-shadow : 0 1px 8px -3px #000;
 export const Logos = styled.div`
     align-self:flex-start;
     margin-left:10px;
-    margin-top:10px;
+    margin-top:20px;
     position:absolute;
     &.hidden{
         opacity:0;
@@ -102,6 +102,10 @@ export const Cols = styled.div`
     p{
         margin-top:9px;
         font-size:12px;
+        :hover{
+            color:#F39C12;
+            cursor:pointer;
+        }
     }
     label{
         margin-top:10px;

@@ -187,11 +187,7 @@ export const LANGUAGE_MENU = [
     defaultMessage: 'German',
     icon: 'DEFlag',
   },
-  {
-    id: 'he',
-    defaultMessage: 'Hebrew',
-    icon: 'ILFlag',
-  },
+
   {
     id: 'es',
     defaultMessage: 'Spanish',
