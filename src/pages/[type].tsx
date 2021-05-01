@@ -54,17 +54,20 @@ const CategoryPage: React.FC<any> = ({ deviceType }) => {
     el.currentTarget.children[0].style.width="100px";
     el.currentTarget.children[0].style.height="100px"
     el.currentTarget.children[0].style.transition=".3s all ease"
-    
+    el.currentTarget.children[0].style.boxShadow="0px 0px 15px -3px #000"
+
     if(el.currentTarget.nextElementSibling){
       el.currentTarget.nextElementSibling.children[0].style.width="90px"
       el.currentTarget.nextElementSibling.children[0].style.height="90px"
       el.currentTarget.nextElementSibling.children[0].style.transition=".3s all ease"
+      
     }
     
     if(el.currentTarget.previousElementSibling){
       el.currentTarget.previousElementSibling.children[0].style.width="90px"
       el.currentTarget.previousElementSibling.children[0].style.height="90px"
       el.currentTarget.previousElementSibling.children[0].style.transition=".3s all ease"
+      
     }
 
 
@@ -72,6 +75,7 @@ const CategoryPage: React.FC<any> = ({ deviceType }) => {
   const outhover = (el) =>{
     el.currentTarget.children[0].style.width="70px";
     el.currentTarget.children[0].style.height="70px"
+    el.currentTarget.children[0].style.boxShadow="0px 0px 9px -3px #000"
     el.currentTarget.children[0].style.transition=".3s all ease"
     if(el.currentTarget.nextElementSibling){
       el.currentTarget.nextElementSibling.children[0].style.width="70px"
@@ -169,13 +173,13 @@ const CategoryPage: React.FC<any> = ({ deviceType }) => {
                 
                 <ul className={active == 1? "active-ul ul-brands":"ul-brands"}>
                   <Lis onMouseEnter={toggleHover} onMouseLeave={outhover}>
-                    <img className="brand-image" src="https://www.fairsaintlouis.org/wp-content/uploads/2018/06/Major-Brands-spot-color-logo.png" alt=""/>
+                    <img className="brand-image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9UTUYT6nKH-op6a-4ajq6s--dV9F0X-AoAw&usqp=CAU" alt=""/>
                   </Lis>
                   <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
-                    <img className="brand-image" src="https://www.fairsaintlouis.org/wp-content/uploads/2018/06/Major-Brands-spot-color-logo.png" alt=""/>
+                    <img className="brand-image" src="https://miro.medium.com/max/3200/0*tDmpSG1CPJt3qy9S.png" alt=""/>
                   </li>
                   <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
-                    <img className="brand-image" src="https://inspirebrands.com/wp-content/uploads/2018/12/Inspire-Brands-Red-Logo-White-Background.jpg" alt=""/>
+                    <img className="brand-image" src="https://www.ideal.nl/img/logo/ideal-logo-1024.png" alt=""/>
                   </li>
                   <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
                     <img className="brand-image" src="https://s3.amazonaws.com/cdn.designcrowd.com/blog/100-Famous-Brand%20Logos-From-The-Most-Valuable-Companies-of-2020/Adidas.png" alt=""/>
