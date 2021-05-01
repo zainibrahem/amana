@@ -31,7 +31,7 @@ export const CatsMenu = styled.div`
       margin-left:55px;
     }
     @media (max-width:1399px){
-      width:1256px;
+      width:1242px;
       margin-left:55px;
     }
     @media (max-width: 991px){
