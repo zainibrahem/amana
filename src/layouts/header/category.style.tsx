@@ -16,19 +16,23 @@ const positionAnim = keyframes`
 `;
 
 export const CatsMenu = styled.div`
-    width:93.4%;
+    
     height:55px;
     border-bottom-right-radius:4px;
     border-bottom-left-radius:4px;
     padding-left:20px;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     top:64px;
     background:#191919;
     box-shadow : 0px 27px 44px -24px #000;
     @media (min-width:1400px){
       top:86px !important;
+      width:1810px;
+      margin-left:55px;
+    }
+    @media (max-width:1399px){
+      width:1256px;
+      margin-left:55px;
     }
     @media (max-width: 991px){
       display:none !important;

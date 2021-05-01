@@ -47,12 +47,15 @@ export const Brands = styled.div`
     background: #F39C12;
     position: absolute;
     border-top-right-radius: 97px;
-    right: 44%;
+    right: 46%;
     border-bottom-left-radius: 97px;
     top: 48px;
     -webkit-transform: translateX(1200%);
     -ms-transform: translateX(1200%);
     transform: translateX(1200%);
+    @media (max-width:1399px){
+      right: 44%;
+    }
 }
     :before{
       content: "";
@@ -70,10 +73,14 @@ export const Brands = styled.div`
   }
   }
   p{
-    width:50%;
+    width:700px;
     margin-top:30px;
+    font-size:18px;
     text-align:center;
   }
+`;
+export const Lis = styled.li`
+  border-bottom:0px solid !important;
 `;
 export const Buttons = styled.button`
   background:transparent;
@@ -109,6 +116,7 @@ export const Tabs = styled.div`
       border-radius:100%;
       box-shadow:0px 0px 9px -3px #000;
       padding:2px;
+      
     }
     .no-border{
       border-bottom:0px solid;
@@ -123,6 +131,7 @@ export const Tabs = styled.div`
     &.active-ul{
       transition:1s all ease;
       opacity:1;
+      z-index:1;
     }
   }
 `;
@@ -160,14 +169,14 @@ const ContentSection = styled.div`
   width: calc(100%);
   height: auto;
   min-height: 100vh;
-  padding: 30px 30px 50px;
+  padding: 30px 0px 50px;
 
   @media (max-width: 1199px) and (min-width: 991px) {
-    padding: 15px 30px 50px;
+    padding: 15px 0px 50px;
   }
 
   @media (max-width: 1367px) and (min-width: 1200px) {
-    padding: 13px 30px 50px;
+    padding: 13px 0px 50px;
   }
 
   @media (max-width: 990px) {

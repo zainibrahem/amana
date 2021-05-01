@@ -102,6 +102,9 @@ export const Cols = styled.div`
     p{
         margin-top:9px;
         font-size:12px;
+        
+    }
+    .onhov{
         :hover{
             color:#F39C12;
             cursor:pointer;

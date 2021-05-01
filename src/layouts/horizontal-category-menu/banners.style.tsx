@@ -5,7 +5,7 @@ export const Background = styled.div<any>(
   css({
       height:"300px",
       padding:"30px 0px",
-      margin:"0px 30px",
+      margin:"0px 55px",
       display:"flex",
       justifyContent:"space-between",
       alignItems:"center",

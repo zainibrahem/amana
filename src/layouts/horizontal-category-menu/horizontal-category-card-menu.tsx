@@ -120,14 +120,15 @@ export const HorizontalCategoryCardMenu = ({ type,items,sliderType,id }: Props) 
             nextEl: `.${id}-next`,
             prevEl: `.${id}-prev`
           }}
+          
           className={id}
           draggable={sliderType=="slider"?false :  true}
           freeMode={sliderType=="slider"?false :  true}
           allowSlideNext={sliderType=="slider"?false :  true}
           allowSlidePrev={sliderType=="slider"?false :  true}
           breakpoints={breakpoints}
-          slidesPerView={7}
-          spaceBetween={10}
+          slidesPerView={6}
+          spaceBetween={13}
         >
           {data.map((category, idx) => (
                   <SwiperSlide key={idx}>
@@ -146,7 +147,7 @@ export const HorizontalCategoryCardMenu = ({ type,items,sliderType,id }: Props) 
                     deviceType="desktop"
                   />
                     ):
-                    <img height="275" onClick={ ()=>{onCategoryClick}} style={{width:"100%"}} src={BnaaerImage} alt=""/>
+                    <img className="imageheight" onClick={ ()=>{onCategoryClick}} style={{width:"100%"}} src={BnaaerImage} alt=""/>
                    
                 }
                  

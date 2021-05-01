@@ -21,7 +21,7 @@ export const ProductCardWrapper = styled.div(
     backgroundColor: 'white',
     position: 'relative',
     fontFamily: 'inherit',
-    paddingBottom: "37px",
+    paddingBottom: "0px",
     borderRadius: 'base',
     cursor: 'pointer',
     ':hover .hidd':{
@@ -48,14 +48,14 @@ export const ProductCardWrapper = styled.div(
       transition:'.5s all ease-in',
       position:'absolute',
       width:'100%',
-      marginTop:"10px"
+      marginTop:"0px"
     },
     '.shipping':{
       display:"flex",
       justifyContent:"space-between",
       alignItems:"center",
-      marginLeft:"-10px",
-      marginTop:"12px"
+      marginLeft:"0px",
+      marginTop:"0px"
     },
     '.speed':{
       display:"flex",
@@ -81,7 +81,7 @@ export const ProductCardWrapper = styled.div(
 );
 
 export const ProductImageWrapper = styled.div`
-  height: 240px;
+  height: 218px;
   padding: 0px 5px;
   position: relative;
   text-align: center;
@@ -94,6 +94,9 @@ export const ProductImageWrapper = styled.div`
     max-height: 100%;
     min-height: 100%;
     display: inline-block;
+  }
+  @media (max-width:1366px){
+    height:213px;
   }
   @media (max-width: 640px) {
     height: 145px;
@@ -155,8 +158,10 @@ export const DiscountPercent = styled.span`
 `;
 
 export const ProductInfo = styled.div`
-  padding: 20px 25px 30px;
-
+  padding: 20px 14px 25px;
+  @media (max-width:1366px){
+    padding: 15px 14px 35px;
+  }
   @media (max-width: 990px) {
     padding: 15px 20px;
     min-height: 123px;

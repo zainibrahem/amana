@@ -3,14 +3,26 @@ import css from '@styled-system/css';
 
 export const CategoryWrapper = styled.div<any>(
   css({
-    padding: ['30px 15px', '30px 15px', '30px'],
+    // padding: ['30px 5px', '30px 15px', '30px'],
     paddingTop:"0px !important",
+    paddingLeft:"5px !important",
+    paddingRight:"5px !important",
     paddingBottom:"6px !important"
   })
 );
 
 export const CategoryInner = styled.div<any>({
   position: 'relative',
+  marginLeft:"50px",
+  marginRight:"50px",
+  '.imageheight':{
+    '@media (max-width:1920x)':{
+      height:"275px"
+    },
+    '@media (max-width:1399px)':{
+      height:"250px"
+    }
+  }
 });
 
 export const ItemCard = styled.div<any>((props) =>
@@ -28,6 +40,8 @@ export const ItemCard = styled.div<any>((props) =>
 export const Titles = styled.div`
   background:#ededed;
   padding:8px;
+  margin-left:50px;
+  margin-right:50px;
   padding-left:20px;
   margin-bottom:3px;
   display:flex;

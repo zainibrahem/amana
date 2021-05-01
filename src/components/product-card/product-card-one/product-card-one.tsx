@@ -146,17 +146,21 @@ const ProductCard: React.FC<ProductCardProps> = ({
       </ProductImageWrapper>
       <ProductInfo>
      
-        <h3 className="product-title" style={{fontSize:'1.3rem'}} >{title}</h3>
-        <p style={{fontSize:'1rem'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut qui soluta mollitia cumque hic ea,</p>
-        <h3 className="product-title" style={{fontSize:'1.1rem',marginTop:'5px'}} >
+        <h3 className="product-title" style={{fontSize:'18px'}} >{title}</h3>
+        <p style={{fontSize:'12px'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut qui soluta mollitia cumque hic ea,</p>
+        <h3 className="product-title" style={{fontSize:'16px',fontWeight:"bold",marginTop:'0px',display:"flex",justifyContent:"space-between"}} >
           {currency}
           {price}
+          <span style={{color:"#909090",fontWeight:"normal",fontSize:"12px"}}>
+            {currency}
+            {price}
+          </span>
         </h3>
       
-        <span className="product-weight">
+        {/* <span className="product-weight" style={{fontSize:'12px'}}>
           {currency}
           {price}
-        </span>
+        </span> */}
         <div className="product-meta">
           <div className="productPriceWrapper" style={{justifyContent:"center"}}>
             <div className="onhover" style={{fontSize:".8rem",textAlign:"left"}}>

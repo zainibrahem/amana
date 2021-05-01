@@ -13,6 +13,7 @@ import {
   Brands,
   Tabs,
   Buttons,
+  Lis,
   MobileCarouselDropdown,
 } from 'assets/styles/pages.style';
 // Static Data Import Here
@@ -48,6 +49,43 @@ const CategoryPage: React.FC<any> = ({ deviceType }) => {
   const PAGE_TYPE: any = query.type;
   const page = sitePages[PAGE_TYPE];
   const [active, setActive] = useState(1);
+  const [isShown, setIsShown] = useState(false);
+  const toggleHover = (el) =>{
+    el.currentTarget.children[0].style.width="100px";
+    el.currentTarget.children[0].style.height="100px"
+    el.currentTarget.children[0].style.transition=".3s all ease"
+    
+    if(el.currentTarget.nextElementSibling){
+      el.currentTarget.nextElementSibling.children[0].style.width="90px"
+      el.currentTarget.nextElementSibling.children[0].style.height="90px"
+      el.currentTarget.nextElementSibling.children[0].style.transition=".3s all ease"
+    }
+    
+    if(el.currentTarget.previousElementSibling){
+      el.currentTarget.previousElementSibling.children[0].style.width="90px"
+      el.currentTarget.previousElementSibling.children[0].style.height="90px"
+      el.currentTarget.previousElementSibling.children[0].style.transition=".3s all ease"
+    }
+
+
+  }
+  const outhover = (el) =>{
+    el.currentTarget.children[0].style.width="70px";
+    el.currentTarget.children[0].style.height="70px"
+    el.currentTarget.children[0].style.transition=".3s all ease"
+    if(el.currentTarget.nextElementSibling){
+      el.currentTarget.nextElementSibling.children[0].style.width="70px"
+      el.currentTarget.nextElementSibling.children[0].style.height="70px"
+      el.currentTarget.nextElementSibling.children[0].style.transition=".3s all ease"
+    }
+  
+
+    if(el.currentTarget.previousElementSibling){
+      el.currentTarget.previousElementSibling.children[0].style.width="70px"
+      el.currentTarget.previousElementSibling.children[0].style.height="70px"
+      el.currentTarget.previousElementSibling.children[0].style.transition=".3s all ease"
+    }
+  }
   if (!page) return null;
 
   return (
@@ -124,62 +162,66 @@ const CategoryPage: React.FC<any> = ({ deviceType }) => {
                   <Buttons onClick={()=>{setActive(6)}}>
                     <li  className={active == 6?"actives":""}>Categry 6</li>
                   </Buttons>
+                  {/* <Lis onMouseEnter={()=>{isShown? setIsShown(false):setIsShown(true);alert('DONE')}} onMouseLeave={()=>{isShown? setIsShown(false):setIsShown(true);alert('NOT DONE')}}>
+                    <img className="brand-image" src="https://www.fairsaintlouis.org/wp-content/uploads/2018/06/Major-Brands-spot-color-logo.png" alt=""/>
+                  </Lis> */}
                 </ul>
-                <ul className={active == 1? "active-ul ul-brands":"ul-brands"} style={{marginTop:"40px"}}>
-                  <li className="no-border">
-                    <img className="brand-image" src="https://www.thebrandingjournal.com/wp-content/uploads/2019/05/chanel_logo_the_branding_journal.jpg" alt=""/>
+                
+                <ul className={active == 1? "active-ul ul-brands":"ul-brands"}>
+                  <Lis onMouseEnter={toggleHover} onMouseLeave={outhover}>
+                    <img className="brand-image" src="https://www.fairsaintlouis.org/wp-content/uploads/2018/06/Major-Brands-spot-color-logo.png" alt=""/>
+                  </Lis>
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
+                    <img className="brand-image" src="https://www.fairsaintlouis.org/wp-content/uploads/2018/06/Major-Brands-spot-color-logo.png" alt=""/>
                   </li>
-                  <li className="no-border">
-                    <img className="brand-image" src="https://www.foodengineeringmag.com/ext/resources/FE-Latest-Headlines/FE-latest-headlines-2/cocacola.jpg?1372262510" alt=""/>
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
+                    <img className="brand-image" src="https://inspirebrands.com/wp-content/uploads/2018/12/Inspire-Brands-Red-Logo-White-Background.jpg" alt=""/>
                   </li>
-                  <li className="no-border">
-                    <img className="brand-image" src="https://inspirebrands.com/wp-content/uploads/2017/10/inspire-brands-featured-logo.jpg" alt=""/>
-                  </li>
-                  <li className="no-border">
-                    <img className="brand-image" src="https://www.thelogocreative.co.uk/wp-content/uploads/rolex-min.jpg" alt=""/>
-                  </li>
-                  <li className="no-border">
-                    <img className="brand-image" src="https://vectorlogoseek.com/wp-content/uploads/2018/11/spectrum-brands-vector-logo.png" alt=""/>
-                  </li>
-                  <li className="no-border">
-                    <img className="brand-image" src="https://logos-download.com/wp-content/uploads/2016/09/Brands_logo.png" alt=""/>
-                  </li>
-                  <li className="no-border">
-                    <img className="brand-image" src="http://www.marqueebrands.com/Marquee__social.jpg" alt=""/>
-                  </li>
-                  <li className="no-border">
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
                     <img className="brand-image" src="https://s3.amazonaws.com/cdn.designcrowd.com/blog/100-Famous-Brand%20Logos-From-The-Most-Valuable-Companies-of-2020/Adidas.png" alt=""/>
                   </li>
-                  <li className="no-border">
-                    <img className="brand-image" src="https://seeklogo.com/images/C/constellation-brands-logo-9BA912DAFA-seeklogo.com.png" alt=""/>
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
+                    <img className="brand-image" src="http://inkbotdesign.com/wp-content/uploads/2015/07/Levis-Logo-Design.png" alt=""/>
+                  </li>
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
+                    <img className="brand-image" src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Mega_Brands_logo.png" alt=""/>
+                  </li>
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
+                    <img className="brand-image" src="https://download.logo.wine/logo/Premium_Brands_Holdings_Corporation/Premium_Brands_Holdings_Corporation-Logo.wine.png" alt=""/>
+                  </li>
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
+                    <img className="brand-image" src="https://logodix.com/logo/1270954.png" alt=""/>
+                  </li>
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
+                    <img className="brand-image" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/3b4cb998417459.5edbafd1aeb69.png" alt=""/>
                   </li>
                 </ul>
                 <ul className={active == 2? "active-ul ul-brands":"ul-brands"} style={{marginTop:"40px"}}>
-                  <li className="no-border">
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
                     <img className="brand-image" src="https://www.thebrandingjournal.com/wp-content/uploads/2019/05/chanel_logo_the_branding_journal.jpg" alt=""/>
                   </li>
-                  <li className="no-border">
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
                     <img className="brand-image" src="https://www.foodengineeringmag.com/ext/resources/FE-Latest-Headlines/FE-latest-headlines-2/cocacola.jpg?1372262510" alt=""/>
                   </li>
-                  <li className="no-border">
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
                     <img className="brand-image" src="https://inspirebrands.com/wp-content/uploads/2017/10/inspire-brands-featured-logo.jpg" alt=""/>
                   </li>
-                  <li className="no-border">
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
                     <img className="brand-image" src="https://www.thelogocreative.co.uk/wp-content/uploads/rolex-min.jpg" alt=""/>
                   </li>
-                  <li className="no-border">
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
                     <img className="brand-image" src="https://vectorlogoseek.com/wp-content/uploads/2018/11/spectrum-brands-vector-logo.png" alt=""/>
                   </li>
-                  <li className="no-border">
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
                     <img className="brand-image" src="https://logos-download.com/wp-content/uploads/2016/09/Brands_logo.png" alt=""/>
                   </li>
-                  <li className="no-border">
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
                     <img className="brand-image" src="http://www.marqueebrands.com/Marquee__social.jpg" alt=""/>
                   </li>
-                  <li className="no-border">
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
                     <img className="brand-image" src="https://s3.amazonaws.com/cdn.designcrowd.com/blog/100-Famous-Brand%20Logos-From-The-Most-Valuable-Companies-of-2020/Adidas.png" alt=""/>
                   </li>
-                  <li className="no-border">
+                  <li onMouseEnter={toggleHover} onMouseLeave={outhover} className="no-border">
                     <img className="brand-image" src="https://seeklogo.com/images/C/constellation-brands-logo-9BA912DAFA-seeklogo.com.png" alt=""/>
                   </li>
                 </ul>
