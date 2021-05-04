@@ -65,9 +65,9 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
           ):(
             <>
           <Header
-            className={`${isStickyNew ? 'sticky' : 'unSticky'}`}
+            className="sticky"
             />
-            <CategoryHeader   className={`${isStickyNew ? 'sticky pages' : 'unSticky pages'}`} ></CategoryHeader>
+            <CategoryHeader   className="sticky pages" ></CategoryHeader>
             <CatsMenunews  className={`${isStickyNew ? 'sticky pages' : 'unSticky pages'}`}></CatsMenunews>
             </>
             )}  

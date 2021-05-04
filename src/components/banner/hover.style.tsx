@@ -12,16 +12,11 @@ import {
 } from 'styled-system';
 import css from '@styled-system/css';
 export const Divs = styled.div`
-
 .pages{
   .package{
     left: 37px !important;
   }
- 
-  
- 
 }
- 
 `;
 export const Parent = styled.div(
     css({

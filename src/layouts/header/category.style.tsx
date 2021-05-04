@@ -61,7 +61,7 @@ export const CatsMenu = styled.div`
           }
           @media (max-width:1399px){
             right:14px !important;
-            width:1037px;
+            width:1044px;
             margin-left:55px;
           }
           @media (max-width: 991px){
@@ -79,7 +79,7 @@ export const CatsMenunews = styled.div`
     border-bottom-left-radius:4px;
     padding-left:20px;
     position: absolute;
-    top:113px;
+    top:111px;
     background:#eee;
     box-shadow : 0px 27px 44px -24px #000;
     @media (min-width:1400px){
@@ -125,7 +125,7 @@ export const CatsMenunews = styled.div`
           }
           @media (max-width:1399px){
             right:14px !important;
-            width:1037px;
+            width:1044px;
             margin-left:55px;
           }
           @media (max-width: 991px){

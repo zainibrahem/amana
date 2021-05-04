@@ -226,6 +226,7 @@ export default function Categories({ deviceType }) {
                     <h5>Category</h5>
                   </div>
               </Titles>
+              
                 <Products
                   type={PAGE_TYPE}
                   deviceType={deviceType}
