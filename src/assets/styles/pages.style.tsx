@@ -193,6 +193,34 @@ const ContentSection = styled.div`
   }
 `;
 
+const ContentSections = styled.div`
+width: calc(100% - 280px);
+  height: auto;
+  min-height: 100vh;
+  padding: 30px 0px 50px;
+
+  @media (max-width: 1199px) and (min-width: 991px) {
+    padding: 15px 0px 50px;
+  }
+
+  @media (max-width: 1367px) and (min-width: 1200px) {
+    padding: 13px 0px 50px;
+  }
+
+  @media (max-width: 990px) {
+    width: 100%;
+    padding: 0px 0px 100px;
+  }
+
+  @media (max-width: 768px) {
+    min-height: auto;
+  }
+
+  .offer-slider {
+    padding: 0 0 30px 30px;
+  }
+`;
+
 const OfferSection = styled.div`
   width: 100%;
   display: block;
@@ -293,6 +321,7 @@ export {
   MainContentArea,
   SidebarSection,
   ContentSection,
+  ContentSections,
   OfferSection,
   Heading,
   ProductsCol,

@@ -1,55 +1,59 @@
+import styled from 'styled-components';
+import css from '@styled-system/css';
+import { Banner } from 'components/banner/banner';
+import { Bannerss } from 'components/banner/Bannerss';
+
+import { ProductGrid } from 'components/product-grid/product-grid-two';
+import { Modal } from '@redq/reuse-modal';
+import { HorizontalCategoryCardMenu } from 'layouts/horizontal-category-menu/horizontal-category-card-menu';
+import { MobileBanner } from 'components/banner/mobile-banner';
+import { Box } from 'components/box';
+import { useCallback, useState } from 'react';
+import { useAppDispatch } from 'contexts/app/app.provider';
+import {Header} from 'components/banner/categorybanner.style';
+import {CategoryBanner} from 'components/banner/categoryBanner';
+import { useRouter } from 'next/router';
 import React from 'react';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
-import { Modal } from '@redq/reuse-modal';
-import Carousel from 'components/carousel/carousel';
-import { Banner } from 'components/banner/banner';
-import { MobileBanner } from 'components/banner/mobile-banner';
-import {
-  MainContentArea,
-  SidebarSection,
-  ContentSection,
-  OfferSection,
-  Brands,
-  Tabs,
-  Buttons,
-  Lis,
-  MobileCarouselDropdown,
-} from 'assets/styles/pages.style';
-// Static Data Import Here
-import { siteOffers } from 'site-settings/site-offers';
-import { sitePages } from 'site-settings/site-pages';
-import { SEO } from 'components/seo';
+import { Brands, Buttons, ContentSections, Lis, MainContentArea, MobileCarouselDropdown, OfferSection, SidebarSection, Tabs } from 'assets/styles/pages.style';
 import { useRefScroll } from 'utils/use-ref-scroll';
+import { sitePages } from 'site-settings/site-pages';
+import Carousel from 'react-multi-carousel';
 import { ModalProvider } from 'contexts/modal/modal.provider';
-import { HorizontalCategoryCardMenu } from 'layouts/horizontal-category-menu/horizontal-category-card-menu';
-import {Banners}  from 'layouts/horizontal-category-menu/banners';
-import { useState } from 'react';
-
+import { siteOffers } from 'site-settings/site-offers';
+import { Titles,Sort } from 'layouts/horizontal-category-menu/horizontal-category-card-menu.style';
 const Sidebar = dynamic(() => import('layouts/sidebar/sidebar'));
-const Products = dynamic(() =>
-  import('components/product-grid/product-list/product-list')
-);
 const CartPopUp = dynamic(() => import('features/carts/cart-popup'), {
   ssr: false,
 });
+const Products = dynamic(() =>
+  import('components/product-grid/product-list/product-list')
+);
+export const Main = styled.div<any>(
+  css({
+    backgroundColor: 'gray.200',
+    position: 'relative',
+  })
+);
 
-const CategoryPage: React.FC<any> = ({ deviceType }) => {
+
+export default function Categories({ deviceType }) {
+  
   const { query } = useRouter();
   const { elRef: targetRef, scroll } = useRefScroll({
     percentOfElement: 0,
     percentOfContainer: 0,
     offsetPX: -110,
   });
+  const [active, setActive] = useState(1);
+
   React.useEffect(() => {
     if (query.text || query.category) {
       scroll();
     }
   }, [query.text, query.category]);
   const PAGE_TYPE: any = query.type;
-  const page = sitePages[PAGE_TYPE];
-  const [active, setActive] = useState(1);
-  const [isShown, setIsShown] = useState(false);
+  const page = sitePages['grocery'];
   const toggleHover = (el) =>{
     console.log(page);
     el.currentTarget.children[0].style.width="100px";
@@ -93,56 +97,26 @@ const CategoryPage: React.FC<any> = ({ deviceType }) => {
   }
   if (!page) return null;
 
-  return (
-    <>
-    <SEO title={page?.page_title} description={page?.page_description} />
-    <ModalProvider>
-      <Modal>
-        <MobileBanner intlTitleId={page?.banner_title_id} type={PAGE_TYPE} />
-        <Banner
-          intlTitleId={page?.banner_title_id}
-          intlDescriptionId={page?.banner_description_id}
-          imageUrl={page?.banner_image_url}
-        />
-        <OfferSection>
-          <div style={{ margin: '0 -10px' }}>
-            <Carousel deviceType={deviceType} data={siteOffers} />
-          </div>
-        </OfferSection>
-        <MobileCarouselDropdown>
-          <Sidebar type={PAGE_TYPE} deviceType={deviceType} />
-        </MobileCarouselDropdown>
-        <MainContentArea>
-          {/* <SidebarSection>
+    return (
+      <>
+     <ModalProvider>
+        <Modal>
+          <MobileBanner intlTitleId={page?.banner_title_id} type={PAGE_TYPE} />
+          <MobileCarouselDropdown>
             <Sidebar type={PAGE_TYPE} deviceType={deviceType} />
-          </SidebarSection> */}
-          <ContentSection>
-            <div ref={targetRef}>
-            <HorizontalCategoryCardMenu id="most-viewd" sliderType="products" items={5} type={PAGE_TYPE} />
-            <HorizontalCategoryCardMenu id="most-rated" sliderType="products" items={5} type={PAGE_TYPE} />
-            <HorizontalCategoryCardMenu id="vendors" sliderType="products" items={5} type={PAGE_TYPE} />
-          
-              {/* <Products
-                type={PAGE_TYPE}
-                deviceType={deviceType}
-                fetchLimit={20}
-              /> */}
-
-            <HorizontalCategoryCardMenu id="banner" sliderType="slider" items={1} type={PAGE_TYPE} />
-            
-            
-
-
-            <HorizontalCategoryCardMenu id="products" sliderType="products" items={5} type={PAGE_TYPE} />
-            <HorizontalCategoryCardMenu id="most-sale" sliderType="products" items={5} type={PAGE_TYPE} />
-
-
-              
-            <Banners  title="Best promoters on Amana" description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deleniti quod officiis quae suscipit, officia assumenda, unde eius a repellat neque ut. Sint possimus voluptas laboriosam necessitatibus eaque nisi cupiditate ipsam." />
-
-            <HorizontalCategoryCardMenu id="best-sale" sliderType="products" items={5} type={PAGE_TYPE} />
-            <HorizontalCategoryCardMenu id="more-info" sliderType="products" items={5} type={PAGE_TYPE} />
-            <Brands>
+          </MobileCarouselDropdown>
+          <MainContentArea>
+            <SidebarSection>
+              <Sidebar type={PAGE_TYPE} deviceType={deviceType} />
+            </SidebarSection>
+            <ContentSections>
+            <Bannerss
+                intlTitleId={page?.banner_title_id}
+                intlDescriptionId={page?.banner_description_id}
+                imageUrl={page?.banner_image_url}
+              />
+              <HorizontalCategoryCardMenu sliderType="products" id="newone" items={5} page="categories"  type="grocery" ></HorizontalCategoryCardMenu>
+              <Brands>
               <h1>
                 Our Brands
               </h1>
@@ -233,16 +207,35 @@ const CategoryPage: React.FC<any> = ({ deviceType }) => {
               
               </Tabs>
             </Brands>
-            </div>
-          </ContentSection>
-        </MainContentArea>
-        {/* <CartPopUp deviceType={deviceType} /> */}
+              <div ref={targetRef}>
+              <Sort>
+                <div className="ledtSide" style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                  <h6 style={{fontWeight:"normal"}}>Sort</h6>
+                  <span style={{fontWeight:"normal",border:"1px solid rgb(206,203,203)",padding:"1px 13px"}}>Recommended</span>
+                  <span style={{fontWeight:"normal",padding:"1px 13px"}}>Display</span>
 
-
-      </Modal>
-    </ModalProvider>
-  </>
-  );
-};
-
-export default CategoryPage;
+                </div>
+                  <div className="section">
+                    <h5 style={{fontWeight:"normal"}}>243434 Search Results for "Deals"</h5>
+                  </div>
+              </Sort>
+              <Titles>
+                  <h3>Most Viewed</h3>
+                  <div className="section">
+                    <h5 className="active">Category</h5>
+                    <h5>Category</h5>
+                  </div>
+              </Titles>
+                <Products
+                  type={PAGE_TYPE}
+                  deviceType={deviceType}
+                  fetchLimit={20}
+                />
+              </div>
+            </ContentSections>
+          </MainContentArea>
+        </Modal>
+      </ModalProvider>
+      </>
+    );
+}

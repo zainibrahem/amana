@@ -11,7 +11,13 @@ export const CategoryWrapper = styled.div<any>(
     "&.categoryhor":{
       width:"800px !important",
     },
-   
+    ".swiper-wrapper":{
+    },
+    ".pages":{
+        position:"relative",
+        left:"50%",
+        transform:"translateX(-50%)"
+    }
   })
 );
 export const CategoryWrappers = styled.div<any>(
@@ -64,15 +70,20 @@ export const CategoryInners = styled.div<any>({
   marginLeft:"50px",
   marginRight:"50px",
   '@media (max-width:1990px)':{
-    width:"1565px",
-    marginLeft:"32px",
+    width:"1600px",
+    marginLeft:"15px",
   },
   '@media (max-width:1400px)':{
-    width:"1043px",
-    marginLeft:"8px",
+    width:"1034px",
+    marginLeft:"15px",
   },
   '.hoverss':{
     height:"200px"
+  },
+  ".parents":{
+    position:"relative",
+    left:"50%",
+    transform:"translateX(-50%)"
   },
   '&.pages':{
     '.swiper-container-horizontal':{
@@ -100,49 +111,11 @@ export const ItemCard = styled.div<any>((props) =>
     borderColor: props.active ? 'primary.regular' : '#fff',
   })
 );
-export const Sort = styled.div`
-background:transparent;
-padding:8px;
-margin-left:25px;
-margin-right:45px;
-padding-left:20px;
-margin-bottom:30px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-.ledtSide{
-  @media (max-width:1980px){
-    width:20%;
-  }
-  @media (max-width:1400px){
-    width:30%;
-  }
-}
-h3{
-  font-size:14px !important;
-}
-.section{
-  display:flex;
-  justify-content:space-between; 
-  .active{
-    color:#F39C12;
-  }
-  h5{
-    color:#000;
-    font-size:12px !important;
-    margin-left:20px;
-    margin-right:20px;
-    cursor:pointer;
-    &:hover{
-      color:#F39C12;
-    }
-  }
-}`;
 export const Titles = styled.div`
   background:#ededed;
   padding:8px;
-  margin-left:25px;
-  margin-right:45px;
+  margin-left:21px;
+  margin-right:15px;
   padding-left:20px;
   margin-bottom:3px;
   display:flex;
@@ -175,7 +148,6 @@ export const Titless = styled.div`
   margin-left:50px;
   margin-right:50px;
   padding-left:20px;
-  margin-top:105px;
   margin-bottom:3px;
   display:flex;
   justify-content:space-between;
@@ -184,11 +156,11 @@ export const Titless = styled.div`
     font-size:14px !important;
   }
   @media (max-width:1980px){
-    margin-left:30px;
-    margin-right:30px
+    margin-left:61px;
+    margin-right:15px
   }
   @media (max-width:1400px){
-    margin-left:6px !important;
+    margin-left:15px !important;
     margin-right:10px !important
   }
   .section{

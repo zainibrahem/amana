@@ -8,7 +8,10 @@ import { ArrowNext } from 'assets/icons/ArrowNext';
 import { ArrowPrev } from 'assets/icons/ArrowPrev';
 import {
   CategoryWrapper,
+  CategoryWrappers,
   CategoryInner,
+  CategoryInners,
+  Titless,
   ItemCard,
   ImageWrapper,
   Title,
@@ -27,10 +30,11 @@ interface Props {
   type: string;
   items:number,
   sliderType:string,
-  id:string
+  id:string,
+  page?:string
 }
 
-export const HorizontalCategoryCardMenu = ({ type,items,sliderType,id }: Props) => {
+export const HorizontalCategoryCardMenu = ({ type,items,sliderType,id,page }: Props) => {
   const router = useRouter();
   const { data, error } = useCategory({ type });
 
@@ -46,7 +50,34 @@ export const HorizontalCategoryCardMenu = ({ type,items,sliderType,id }: Props) 
     // });
     // alert(`.${id}-next`,)
   };
-  const breakpoints = sliderType=='products'? {
+  const breakpoints = page=="categories" && sliderType=='products'? {
+    320: {
+      slidesPerView: 1,
+    },
+
+    440: {
+      slidesPerView: 1,
+    },
+
+    620: {
+      slidesPerView: 2,
+    },
+
+    820: {
+      slidesPerView: 3,
+    },
+
+    1100: {
+      slidesPerView: 4,
+    },
+
+    1280: {
+      slidesPerView: 4,
+    },
+    1480: {
+      slidesPerView: 5,
+    },
+  }:sliderType=='products'? {
     320: {
       slidesPerView: 2,
     },
@@ -103,17 +134,20 @@ export const HorizontalCategoryCardMenu = ({ type,items,sliderType,id }: Props) 
   );
 
   return (
-    id?(<CategoryWrapper>
+    id?(
+    page=="categories"?(
+      <CategoryWrappers className={id=="firstslider"?"firstslider":""}>
          {sliderType == 'products'? 
-      (<Titles>
-          <h3>Most Viewed</h3>
+      (<Titless>
+          <h5>Most Viewed</h5>
           <div className="section">
             <h5 className="active">Category</h5>
             <h5>Category</h5>
           </div>
-      </Titles>)
+      </Titless>)
         : ''}
-      <CategoryInner>
+        {page=="categories"?(
+      <CategoryInners>
         <Swiper
           id={id}
           navigation={{
@@ -127,7 +161,7 @@ export const HorizontalCategoryCardMenu = ({ type,items,sliderType,id }: Props) 
           allowSlideNext={sliderType=="slider"?false :  true}
           allowSlidePrev={sliderType=="slider"?false :  true}
           breakpoints={breakpoints}
-          slidesPerView={6}
+          slidesPerView={1}
           spaceBetween={13}
         >
           {data.map((category, idx) => (
@@ -163,8 +197,182 @@ export const HorizontalCategoryCardMenu = ({ type,items,sliderType,id }: Props) 
             </SliderNav>
         
        
-      </CategoryInner>
-    </CategoryWrapper>):(<Container></Container>)
+      </CategoryInners>
+    ):(
+      <CategoryInner>
+      <Swiper
+        id={id}
+        navigation={{
+          nextEl: `.${id}-next`,
+          prevEl: `.${id}-prev`
+        }}
+        
+        className={id}
+        draggable={sliderType=="slider"?false :  true}
+        freeMode={sliderType=="slider"?false :  true}
+        allowSlideNext={sliderType=="slider"?false :  true}
+        allowSlidePrev={sliderType=="slider"?false :  true}
+        breakpoints={breakpoints}
+        slidesPerView={items}
+        spaceBetween={13}
+      >
+        {data.map((category, idx) => (
+                <SwiperSlide key={idx}>
+                {sliderType == 'products'?
+                (
+                  <GeneralCard
+                  title="Product Title"
+                  description="description"
+                  image="https://www.pcspecialist.nl/images/landing/nvidia/rtx-laptops/30-laptops-feat1-sm.jpg"
+                  weight="unit"
+                  currency="$"
+                  price={1500}
+                  salePrice={2000}
+                  discountInPercent={10}
+                  data="20-2-2021"
+                  deviceType="desktop"
+                />
+                  ):
+                  <img className="imageheight" onClick={ ()=>{onCategoryClick}} style={{width:"100%"}} src={BnaaerImage} alt=""/>
+                 
+              }
+               
+              </SwiperSlide>
+        ))}
+      </Swiper>
+ 
+          <SliderNav className={`${sliderType=="slider"?""+`${id}-next`+" none banner-slider-next":""+`${id}-next`+" banner-slider-next"}`}>
+              <ArrowNext />
+          </SliderNav>
+          <SliderNav className={`${sliderType=="slider"?""+`${id}-prev`+" none banner-slider-prev":""+`${id}-prev`+" banner-slider-prev"}`}>
+            <ArrowPrev />
+          </SliderNav>
+      
+     
+    </CategoryInner>
+  
+    )}
+    </CategoryWrappers>
+    ):(
+      <CategoryWrapper >
+      {sliderType == 'products'? 
+   (<Titles>
+       <h3>Most Viewed</h3>
+       <div className="section">
+         <h5 className="active">Category</h5>
+         <h5>Category</h5>
+       </div>
+   </Titles>)
+     : ''}
+     {page=="categories"?(
+   <CategoryInner style={{width:"1550px",marginLeft:"64px"}}>
+     <Swiper
+       id={id}
+       navigation={{
+         nextEl: `.${id}-next`,
+         prevEl: `.${id}-prev`
+       }}
+       
+       className={id}
+       draggable={sliderType=="slider"?false :  true}
+       freeMode={sliderType=="slider"?false :  true}
+       allowSlideNext={sliderType=="slider"?false :  true}
+       allowSlidePrev={sliderType=="slider"?false :  true}
+       breakpoints={breakpoints}
+       slidesPerView={items}
+       spaceBetween={13}
+     >
+       {data.map((category, idx) => (
+               <SwiperSlide key={idx}>
+               {sliderType == 'products'?
+               (
+                 <GeneralCard
+                 title="Product Title"
+                 description="description"
+                 image="https://www.pcspecialist.nl/images/landing/nvidia/rtx-laptops/30-laptops-feat1-sm.jpg"
+                 weight="unit"
+                 currency="$"
+                 price={1500}
+                 salePrice={2000}
+                 discountInPercent={10}
+                 data="20-2-2021"
+                 deviceType="desktop"
+               />
+                 ):
+                 <img className="imageheight" onClick={ ()=>{onCategoryClick}} style={{width:"100%"}} src={BnaaerImage} alt=""/>
+                
+             }
+              
+             </SwiperSlide>
+       ))}
+     </Swiper>
+
+         <SliderNav className={`${sliderType=="slider"?""+`${id}-next`+" none banner-slider-next":""+`${id}-next`+" banner-slider-next"}`}>
+             <ArrowNext />
+         </SliderNav>
+         <SliderNav className={`${sliderType=="slider"?""+`${id}-prev`+" none banner-slider-prev":""+`${id}-prev`+" banner-slider-prev"}`}>
+           <ArrowPrev />
+         </SliderNav>
+     
+    
+   </CategoryInner>
+ ):(
+   <CategoryInner>
+   <Swiper
+     id={id}
+     navigation={{
+       nextEl: `.${id}-next`,
+       prevEl: `.${id}-prev`
+     }}
+     
+     className={id}
+     draggable={sliderType=="slider"?false :  true}
+     freeMode={sliderType=="slider"?false :  true}
+     allowSlideNext={sliderType=="slider"?false :  true}
+     allowSlidePrev={sliderType=="slider"?false :  true}
+     breakpoints={breakpoints}
+     slidesPerView={items}
+     spaceBetween={13}
+   >
+     {data.map((category, idx) => (
+             <SwiperSlide key={idx}>
+             {sliderType == 'products'?
+             (
+               <GeneralCard
+               title="Product Title"
+               description="description"
+               image="https://www.pcspecialist.nl/images/landing/nvidia/rtx-laptops/30-laptops-feat1-sm.jpg"
+               weight="unit"
+               currency="$"
+               price={1500}
+               salePrice={2000}
+               discountInPercent={10}
+               data="20-2-2021"
+               deviceType="desktop"
+             />
+               ):
+               <img className="imageheight" onClick={ ()=>{onCategoryClick}} style={{width:"100%"}} src={BnaaerImage} alt=""/>
+              
+           }
+            
+           </SwiperSlide>
+     ))}
+   </Swiper>
+
+       <SliderNav className={`${sliderType=="slider"?""+`${id}-next`+" none banner-slider-next":""+`${id}-next`+" banner-slider-next"}`}>
+           <ArrowNext />
+       </SliderNav>
+       <SliderNav className={`${sliderType=="slider"?""+`${id}-prev`+" none banner-slider-prev":""+`${id}-prev`+" banner-slider-prev"}`}>
+         <ArrowPrev />
+       </SliderNav>
+   
+  
+ </CategoryInner>
+
+ )}
+ </CategoryWrapper>
+ 
+    )):(<Container></Container>)
     
   );
 };

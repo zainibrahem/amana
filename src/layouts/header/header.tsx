@@ -52,7 +52,8 @@ const Header: React.FC<Props> = ({ className }) => {
     isCategoryPage(query.type) ||
     pathname === '/furniture-two' ||
     pathname === '/grocery-two' ||
-    pathname === '/bakery';
+    pathname === '/categories';
+    pathname === '/category';
   return (
     <HeaderWrapper className={className} id="layout-header">
       <LeftMenu logo={LogoImage} />

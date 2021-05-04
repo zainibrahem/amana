@@ -26,6 +26,34 @@ export const Box = styled.div<any>(
     '@media (max-width: 990px)': {
       padding: '80px 0 25px',
     },
+    "&.pages":{
+      justifyContent: 'space-between !important',
+      "@media (max-width:1920px)":{
+        height:"90vh",width: "1550px",left: "98.7%",position: "relative",transform: "translateX(-100%)"
+      },
+      
+      "@media (max-width:1400px)":{
+        height:"90vh",width: "1550px",left: "98.7%",position: "relative",transform: "translateX(-100%)"
+      }
+    },
+    '.bannerimage':{
+      
+      '@media (min-width:900px)':{
+        width:"1037px;",
+        right:"20px",
+        height:"200px",
+        position:"relative",
+        borderRadius:"4px"
+      },
+      '@media (min-width:1500px)':{
+        width:"1550px;",
+        right:"-10px",
+        height:"300px",
+        position:"relative",
+        borderRadius:"4px"
+      },
+
+    }
   },
   compose(space, color, layout, position, flexbox, border)
 );
@@ -64,6 +92,59 @@ export const Title = styled.h2(
     fontSize: [17, '2xl', 35],
     color: 'text.bold',
     fontWeight: 'bold',
+    '&.category-title':{
+      width:"100%",
+      marginTop:"229px",
+      textAlign:"center",
+      position:"relative",
+      "&:after":{
+        content: "''",
+        width: "7px",
+        height: "28px",
+        background: "#F39C12",
+        position: "absolute",
+        borderTopRightRadius: "97px",
+        right: "40%",
+        borderBottomLeftRadius:" 97px",
+        top: "48px",
+        // -webkitTransform: "translateX(1200%)"
+        // -ms-transform: "translateX(1200%)"
+        transform: "translateX(1200%)",
+        "@media (max-width:1399px)":{
+          right: "44%"
+      }
+    },
+      "&:before":{
+        content: "''",
+        width: "13px",
+        height: "41px",
+        background: "#F39C12",
+        position: "absolute",
+        borderTopRightRadius: "97px",
+        left: "44%",
+        borderBottomLeftRadius:" 97px",
+        top: "-26px",
+        transform: "translateX(-1200%)"
+      },
+      "@media (max-width:1980px)":{
+        marginTop:"200px",
+        "&:before":{
+          left:"44%"
+        },
+        "&:after":{
+          right:"40%"
+        },
+      },
+      "@media (max-width:1400px)":{
+        marginTop:"230px",
+        "&:before":{
+          left:"42%"
+        },
+        "&:after":{
+          right:"36%"
+        },
+      },
+    }
   }),
   {
     marginBottom: 15,
@@ -130,7 +211,7 @@ export const ProfileWrapper = styled.div(
     display:"flex",
     justifyContent:"space-between",
     alignItems:"center",
-    marginTop:"30px",
+    marginTop:"70px",
     position:"relative",
     left:"50%",
     transform:"translateX(-50%)",

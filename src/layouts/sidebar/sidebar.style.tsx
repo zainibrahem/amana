@@ -8,7 +8,22 @@ const Fade = keyframes`
     opacity: 1;
   }
 `;
-
+export const Menu = styled.ul`
+  border-top:1px solid #bbb;
+  padding:13px 16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  li{
+    font-size:12px;
+    img{
+      filter:grayscale(80%);
+      :hover{
+        filter:grayscale(0%);
+      }
+    }
+  }
+`;
 export const PopoverWrapper = styled.div`
   @media (min-width: 991px) {
     display: none;
@@ -88,7 +103,7 @@ export const CategoryWrapper = styled.div`
 `;
 
 export const TreeWrapper = styled.div`
-  padding-left: 50px;
+  padding-left: 16px;
   padding-right: 20px;
 `;
 

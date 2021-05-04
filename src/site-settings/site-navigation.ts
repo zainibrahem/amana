@@ -1,6 +1,8 @@
 export const HOME_PAGE = '/';
 export const GROCERY_PAGE = '/grocery';
 export const GROCERY_PAGE_TWO = '/grocery-two';
+export const Categories = '/categories';
+export const Category = '/category';
 export const MAKEUP_PAGE = '/makeup';
 export const CLOTHING_PAGE = '/clothing';
 export const BAGS_PAGE = '/bags';
@@ -94,6 +96,20 @@ export const CATEGORY_MENU_ITEMS = [
   {
     id: 'nav.grocery-two',
     href: GROCERY_PAGE_TWO,
+    defaultMessage: 'Grocery Two',
+    icon: 'FruitsVegetable',
+    dynamic: false,
+  },
+  {
+    id: 'nav.grocery-three',
+    href: Categories,
+    defaultMessage: 'Grocery Two',
+    icon: 'FruitsVegetable',
+    dynamic: false,
+  },
+  {
+    id: 'nav.grocery-two',
+    href: Category,
     defaultMessage: 'Grocery Two',
     icon: 'FruitsVegetable',
     dynamic: false,

@@ -14,13 +14,12 @@ import {
   Hash,
   Hashs
 } from './banner.style';
-import itemImage from 'assets/images/prod.png';
 
 import { Waypoint } from 'react-waypoint';
 import { useAppDispatch } from 'contexts/app/app.provider';
 import Search from 'features/search/search';
 import { url } from 'node:inspector';
-import {Parent} from './hover.style';
+import {Parent,Divs} from './hover.style';
 import { useState } from 'react';
 // import * from "./";
 interface Props {
@@ -28,6 +27,8 @@ interface Props {
   imageUrl?: string;
   intlTitleId?: string;
   intlDescriptionId?: string;
+  className?:string
+  itemImage?:string
 }
 
 export const Hover: React.FC<Props> = ({
@@ -35,12 +36,15 @@ export const Hover: React.FC<Props> = ({
   imageUrl,
   intlTitleId,
   intlDescriptionId,
+  className,
+  itemImage
 }) => {
   const [isShown, setIsShown] = useState(false);
 
     return (
-      <div  style={{width:intlTitleId=="sss"?"16%":"23%",position:"relative"}}>
-        <Parent onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)} >
+      <div className={intlTitleId=="ddd"?"pages":""}  style={{width:intlTitleId=="ddd"?"70%":intlTitleId=="sss"?"16%":"23%",   height:"175px",}}>
+        <Divs>
+        <Parent className={className} onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)} >
             <div className="child" style={{background:`url(${itemImage})`,backgroundSize:"cover",height:"100%"}}>
               <div className="overlay">
                   <h5># IPhone</h5>
@@ -54,6 +58,7 @@ export const Hover: React.FC<Props> = ({
             </svg>
           </div>
         </Parent>
+        </Divs>
         </div>
         );
 };

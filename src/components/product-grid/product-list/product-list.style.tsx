@@ -63,7 +63,7 @@ export const ProductsCol = styled.div`
   flex: 0 0 20%;
   max-width: 20%;
   padding-left: 15px;
-  padding-right: 15px;
+  padding-right: 0px;
   margin-bottom: 30px;
   .book-card {
     border-radius: 0;

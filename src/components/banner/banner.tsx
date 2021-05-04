@@ -88,11 +88,11 @@ export const Banner: React.FC<Props> = ({
             defaultMessage="# iPhone"
             /></Hashs>
           </RoundWrapper> */}
-           <Hover intlTitleId="sss"></Hover>
-           <Hover intlTitleId="sss"></Hover>
-           <Hover intlTitleId="sss"></Hover>
-           <Hover intlTitleId="sss"></Hover>
-           <Hover intlTitleId="sss"></Hover>
+           <Hover itemImage={imageUrl} intlTitleId="sss"></Hover>
+           <Hover itemImage={imageUrl} intlTitleId="sss"></Hover>
+           <Hover itemImage={imageUrl} intlTitleId="sss"></Hover>
+           <Hover itemImage={imageUrl} intlTitleId="sss"></Hover>
+           <Hover itemImage={imageUrl} intlTitleId="sss"></Hover>
            {/* <Hover></Hover>
            <Hover></Hover>
            <Hover></Hover>
@@ -100,7 +100,7 @@ export const Banner: React.FC<Props> = ({
         </ProfileWrapper>
        <Waypoint
           onEnter={removeSticky}
-          onLeave={setSticky}
+          onLeave={setSticky} 
           onPositionChange={onWaypointPositionChange}
         />
       </Content>

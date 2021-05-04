@@ -15,6 +15,20 @@ export const sitePages = {
     banner_description_id: 'groceriesSubTitle',
     banner_image_url: groceryImage,
   },
+  categories: {
+    page_title: 'categories',
+    page_description: 'Grocery Details',
+    banner_title_id: 'groceriesTitle',
+    banner_description_id: 'groceriesSubTitle',
+    banner_image_url: groceryImage,
+  },
+  category: {
+    page_title: 'category',
+    page_description: 'Grocery Details',
+    banner_title_id: 'groceriesTitle',
+    banner_description_id: 'groceriesSubTitle',
+    banner_image_url: groceryImage,
+  },
   bakery: {
     page_title: 'Bakery - PickBazar',
     page_description: 'Bakery Details',

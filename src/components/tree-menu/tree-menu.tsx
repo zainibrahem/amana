@@ -45,12 +45,12 @@ const Tree = React.memo(
     return (
       <Frame depth={depth}>
         <Header open={isOpen} depth={depth} className={depth}>
-          {icon && (
+          {/* {icon && (
             <IconWrapper depth={depth}>
               <Icon iconName={icon} />
             </IconWrapper>
-          )}
-          <Title onClick={onClick}>{name}</Title>
+          )} */}
+          <Title onClick={onClick} style={{color:"black"}}>{name}</Title>
 
           {dropdown === true && (
             <Button
