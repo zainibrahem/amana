@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
 
 export const Text = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.label', '#909090')};
@@ -11,7 +11,7 @@ export const Text = styled.span`
 `;
 
 export const TextHighlighted = styled.span`
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009e7f')};
 `;
 
 export const Container = styled.div`

@@ -1,6 +1,7 @@
 // product card for general
+import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
-import React from 'react';
+import { useRouter } from 'next/router';
 import Image from 'components/image/image';
 import { Button } from 'components/button/button';
 import {
@@ -16,14 +17,15 @@ import { cartAnimation } from 'utils/cart-animation';
 import { FormattedMessage } from 'react-intl';
 import { CartIcon } from 'assets/icons/CartIcon';
 import { useModal } from 'contexts/modal/use-modal';
-import { useRouter } from 'next/router';
-import Extra from 'assets/images/extra.svg';
-import Speed from 'assets/images/speed.svg';
-import Slow from 'assets/images/slow.svg';
-const QuickViewMobile = dynamic(
-  () => import('features/quick-view/quick-view-mobile')
-);
+import Discount from 'assets/images/newimages/discount.svg';
+import Speed from 'assets/images/newimages/speed.svg';
+import { CartButton } from '../product-card-five/product-card-five.style';
+import { PlusOutline } from 'assets/icons/PlusOutline';
+import ADS from 'assets/images/newimages/ads.jpg';
 
+const QuickViewMobile = dynamic(() =>
+  import('features/quick-view/quick-view-mobile')
+);
 type ProductCardProps = {
   title: string;
   image: any;
@@ -33,6 +35,7 @@ type ProductCardProps = {
   price: number;
   salePrice?: number;
   discountInPercent?: number;
+  ads?:boolean,
   data: any;
   onChange?: (e: any) => void;
   increment?: (e: any) => void;
@@ -50,11 +53,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
   weight,
   price,
   salePrice,
+  description,
   discountInPercent,
   cartProducts,
   addToCart,
   updateCart,
   value,
+  ads,
   currency,
   onChange,
   increment,
@@ -89,8 +94,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
       },
     }
   );
-  const { addItem, removeItem, getItem, isInCart } = useCart();
+  const { addItem, removeItem, getItem, isInCart, items } = useCart();
+  const [show,setShow] = useState(false)
   const handleAddClick = (e) => {
+    setShow(true);
     e.stopPropagation();
     addItem(data);
     if (!isInCart(data.id)) {
@@ -125,107 +132,161 @@ const ProductCard: React.FC<ProductCardProps> = ({
       }
     );
   };
-
   return (
     <ProductCardWrapper onClick={handleQuickViewModal} className="product-card">
-      <ProductImageWrapper>
-      <div className="extra" style={{background:`url(${Extra})`,backgroundRepeat:"no-repeat"}}>
-        Extra 10% off
-      </div>
+      {ads?(
+        <>
+          <div className="ads" style={{background:`url(${ADS})`}}></div>
+          <ProductImageWrapper style={{opacity:"0"}}>
         <Image
           url={image}
           className="product-image"
           style={{ position: 'relative' }}
           alt={title}
         />
-               
         {discountInPercent ? (
-          <DiscountPercent>{discountInPercent}%</DiscountPercent>
+          <DiscountPercent style={{transform:"rotateY(180deg)",background:`url(${Discount})`,backgroundRepeat:"no-repeat"}}><span>{discountInPercent}%</span></DiscountPercent>
         ) : null}
-
       </ProductImageWrapper>
-      <ProductInfo>
-     
-        <h3 className="product-title" style={{fontSize:'18px'}} >{title}</h3>
-        <p style={{fontSize:'12px'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut qui soluta mollitia cumque hic ea,</p>
-        <h3 className="product-title" style={{fontSize:'16px',fontWeight:"bold",marginTop:'0px',display:"flex",justifyContent:"space-between"}} >
-          {currency}
-          {price}
-          <span style={{color:"#909090",fontWeight:"normal",fontSize:"12px"}}>
-            {currency}
-            {price}
-          </span>
-        </h3>
-      
-        {/* <span className="product-weight" style={{fontSize:'12px'}}>
-          {currency}
-          {price}
-        </span> */}
-        <div className="product-meta">
-          <div className="productPriceWrapper" style={{justifyContent:"center"}}>
-            <div className="onhover" style={{fontSize:".8rem",textAlign:"left"}}>
-                Lorem ipsum dolor sit amet
-                <div className="shipping">
+         <ProductInfo style={{opacity:"0"}}>
+            <h3 className="product-title">{title}</h3>
+            <p className="descriptions">{description}</p>
+            <div className="productPriceWrapper">
+                <span className="product-price">
+                  {currency}
+                  {salePrice ? salePrice : price}
+                </span>
+                {discountInPercent ? (
+                  <span className="discountedPrice">
+                    {currency}
+                    {price}
+                  </span>
+                ) : null}
+              </div>
+            
+                <div className={isInCart(data?.id) ? "before-hover" :"show before-hover" }>
+                  <p className="order-time">تصلك يوم الثلاثاء 20-05 </p>
                   <div className="speed">
-                    <img src={Speed} alt=""/>
-                    <span style={{fontWeight:"bold",marginTop:"6px"}}>Speed Delivery</span>
+                    <img width="30" src={Speed} alt=""/>
+                      توصيل سريع
                   </div>
-                  {/* <div className="speed">
-                    <span>Speed Delivery</span>
-                    <img src={Slow} alt=""/>
-                  </div> */}
                 </div>
+              
+            {/* <span className="product-weight">{weight}</span> */}
+            <div className="mobile-cart">
+              <CartButton  className={!isInCart(data?.id) ?"cart-button": "hidden-btn cart-button"} onClick={handleAddClick}>
+                <PlusOutline />
+              </CartButton>
+              {isInCart(data.id)?(
+                <Counter
+                className={!isInCart(data?.id) ?"hide":"show"}
+                value={getItem(data?.id).quantity}
+                onDecrement={handleRemoveClick}
+                onIncrement={handleAddClick}
+                />
+                ):""}
             </div>
-
-
-            <Button
-              className="hidd"
-              variant="secondary"
-              borderRadius={100}
-              onClick={handleAddClick}
-            >
-               <ButtonText>
-                <FormattedMessage id="addCartButtons" defaultMessage="+ Add To Cart" />
-              </ButtonText>
-             
-            </Button>
-
-            {/* {discountInPercent ? (
-              <span className="discountedPrice">
-                {currency}
-                {price}
-              </span>
-            ) : null}
-
-            <span className="product-price">
-              {currency}
-              {salePrice ? salePrice : price}
-            </span> */}
-          </div>
-
-          {/* {!isInCart(data.id) ? (
-            <Button
-              className="cart-button"
-              variant="secondary"
-              borderRadius={100}
-              onClick={handleAddClick}
-            >
-              <CartIcon mr={2} />
-              <ButtonText>
-                <FormattedMessage id="addCartButton" defaultMessage="Cart" />
-              </ButtonText>
-            </Button>
-          ) : (
-            <Counter
-              value={getItem(data.id).quantity}
-              onDecrement={handleRemoveClick}
-              onIncrement={handleAddClick}
-              className="card-counter"
-            />
-          )} */}
-        </div>
-      </ProductInfo>
-    </ProductCardWrapper>
+            <div className="product-meta">
+              {!isInCart(data.id) ? (
+                <Button
+                  className="cart-button"
+                  variant="secondary"
+                  borderRadius={100}
+                  onClick={handleAddClick}
+                >
+                
+                  <ButtonText>
+                    <FormattedMessage id="addCartButton" defaultMessage="Cart" />
+                  </ButtonText>
+                </Button>
+              ) : (
+                <Counter
+                  value={getItem(data.id).quantity}
+                  onDecrement={handleRemoveClick}
+                  onIncrement={handleAddClick}
+                  className="card-counter"
+                />
+              )}
+            </div>
+          </ProductInfo>
+        </>
+      ):(
+        <>
+         <ProductImageWrapper>
+        <Image
+          url={image}
+          className="product-image"
+          style={{ position: 'relative' }}
+          alt={title}
+        />
+        {discountInPercent ? (
+          <DiscountPercent style={{transform:"rotateY(180deg)",background:`url(${Discount})`,backgroundRepeat:"no-repeat"}}><span>{discountInPercent}%</span></DiscountPercent>
+        ) : null}
+      </ProductImageWrapper>
+         <ProductInfo>
+            <h3 className="product-title">{title}</h3>
+            <p className="descriptions">{description}</p>
+            <div className="productPriceWrapper">
+                <span className="product-price">
+                  {currency}
+                  {salePrice ? salePrice : price}
+                </span>
+                {discountInPercent ? (
+                  <span className="discountedPrice">
+                    {currency}
+                    {price}
+                  </span>
+                ) : null}
+              </div>
+            
+                <div className={isInCart(data?.id) ? "before-hover" :"show before-hover" }>
+                  <p className="order-time">تصلك يوم الثلاثاء 20-05 </p>
+                  <div className="speed">
+                    <img width="30" src={Speed} alt=""/>
+                      توصيل سريع
+                  </div>
+                </div>
+              
+            {/* <span className="product-weight">{weight}</span> */}
+            <div className="mobile-cart">
+              <CartButton  className={!isInCart(data?.id) ?"cart-button": "hidden-btn cart-button"} onClick={handleAddClick}>
+                <PlusOutline />
+              </CartButton>
+              {isInCart(data.id)?(
+                <Counter
+                className={!isInCart(data?.id) ?"hide":"show"}
+                value={getItem(data?.id).quantity}
+                onDecrement={handleRemoveClick}
+                onIncrement={handleAddClick}
+                />
+                ):""}
+            </div>
+            <div className="product-meta">
+              {!isInCart(data.id) ? (
+                <Button
+                  className="cart-button"
+                  variant="secondary"
+                  borderRadius={100}
+                  onClick={handleAddClick}
+                >
+                
+                  <ButtonText>
+                    <FormattedMessage id="addCartButton" defaultMessage="Cart" />
+                  </ButtonText>
+                </Button>
+              ) : (
+                <Counter
+                  value={getItem(data.id).quantity}
+                  onDecrement={handleRemoveClick}
+                  onIncrement={handleAddClick}
+                  className="card-counter"
+                />
+              )}
+            </div>
+          </ProductInfo>
+        </>
+      )}
+     </ProductCardWrapper>
   );
 };
 

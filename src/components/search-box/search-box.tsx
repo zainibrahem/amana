@@ -6,8 +6,6 @@ import {
   StyledSearchButton,
 } from './search-box.style';
 import { SearchIcon } from 'assets/icons/SearchIcon';
-import { KeyboardIcon } from 'assets/icons/Keyboard';
-import { DictationIcon } from 'assets/icons/Dictation';
 
 interface Props {
   onEnter: (e: React.SyntheticEvent) => void;
@@ -43,9 +41,7 @@ export const SearchBox: React.FC<Props> = ({
     >
       {minimal ? (
         <>
-          <SearchIcon
-            style={{ marginLeft: 16, marginRight: 16, color: '#212121' }}
-          />
+          <SearchIcon style={{ marginLeft: 16, marginRight: 16 }} />
           <StyledInput
             type='search'
             onChange={onChange}
@@ -53,13 +49,6 @@ export const SearchBox: React.FC<Props> = ({
             name={name}
             {...rest}
           />
-          {/* <KeyboardIcon
-            style={{ marginLeft: 20,  color: '#212121' }}
-          /> */}
-          <DictationIcon
-            style={{ marginLeft: "16px", marginRight: "16px", color: '#212121' }}
-          />
-          
         </>
       ) : (
         <>
@@ -71,12 +60,8 @@ export const SearchBox: React.FC<Props> = ({
             name={name}
             {...rest}
           />
-           <DictationIcon
-            style={{ marginLeft: 16, marginRight: 16, color: '#212121' }}
-          />
-          
           <StyledSearchButton>
-            <SearchIcon style={{ marginRight: 10 }} />
+            <SearchIcon style={{ marginLeft: 10 }} />
             {showButtonText && buttonText}
           </StyledSearchButton>
         </>

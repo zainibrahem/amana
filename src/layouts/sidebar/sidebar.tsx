@@ -20,21 +20,13 @@ import {
   PopoverWrapper,
   SidebarWrapper,
   RequestMedicine,
-  Menu
 } from './sidebar.style';
-
-import Express from 'assets/images/banner/american-express.svg';
-import Master from 'assets/images/banner/mastercard.svg';
-import Paybal from 'assets/images/banner/paypal.svg';
-import Visa from 'assets/images/banner/visa.svg';
-
 
 import { TreeMenu } from 'components/tree-menu/tree-menu';
 import { REQUEST_MEDICINE_MENU_ITEM } from 'site-settings/site-navigation';
 import useCategory from 'data/use-category';
 import ErrorMessage from 'components/error-message/error-message';
 import CategoryWalker from 'components/category-walker/category-walker';
-import { Horizintal } from 'layouts/horizontal-category-menu/sidebarHorizintal';
 
 type SidebarCategoryProps = {
   deviceType: {
@@ -50,7 +42,7 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
   type,
 }) => {
   const router = useRouter();
-  const { data, error } = useCategory({ type:'grocery' });
+  const { data, error } = useCategory({ type });
 
   if (error) return <ErrorMessage message={error.message} />;
   const { pathname, query } = router;
@@ -123,13 +115,6 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
           )}
 
           <Scrollbar className='sidebar-scrollbar'>
-            <span style={{marginLeft:"12px"}}>Brand</span>
-            <Horizintal ></Horizintal>
-            <span style={{marginLeft:"12px"}}>Brand</span>
-            <Horizintal ></Horizintal>
-            <span style={{marginLeft:"12px"}}>Brand</span>
-            <Horizintal ></Horizintal>
-              <h5 style={{width:"99%",padding:"8px 16px",background:"#F39C12",marginTop:"15px",marginBottom:"15px",fontWeight:"normal",fontSize:"24px"}}>Filter</h5>
             <TreeWrapper>
               <TreeMenu
                 data={data}
@@ -137,32 +122,6 @@ const SidebarCategory: React.FC<SidebarCategoryProps> = ({
                 active={selectedQueries}
               />
             </TreeWrapper>
-            <Menu>
-              <li>Home</li>
-              <li>About Amana</li>
-              <li>Contact</li>
-              <li>Support</li>
-            </Menu>
-            <Menu>
-              <li>
-                <img src={Visa} alt=""/>
-              </li>
-              <li>
-                <img src={Master} alt=""/>
-              </li>
-              <li>
-                <img src={Paybal} alt=""/>
-              </li>
-              <li>
-                <img src={Express} alt=""/>
-              </li>
-            </Menu>
-            
-            <p style={{fontSize:"12px",padding:"10px 16px"}}>Copyright © 2021 Amana .<br></br>  and related marks are registered trademarks <br/>
-            of Amana <span style={{color:"rgb(243, 156, 18)"}}> All rights reserve </span></p>
-              
-            
-            
           </Scrollbar>
         </Sticky>
       </SidebarWrapper>

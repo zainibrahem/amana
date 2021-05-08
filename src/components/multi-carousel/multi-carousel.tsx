@@ -18,7 +18,7 @@ const SingleItem = styled.li`
   }
 
   &.custom-dot--active {
-    border: 2px solid ${themeGet('colors.primary.regular', '#F39C12')};
+    border: 2px solid ${themeGet('colors.primary.regular', '#009E7F')};
   }
 `;
 const responsive = {

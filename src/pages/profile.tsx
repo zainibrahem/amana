@@ -38,7 +38,7 @@ const ProfilePage: NextPage<Props> = ({ deviceType }) => {
               <SettingsContent deviceType={deviceType} />
             </ContentBox>
 
-          
+            <Footer />
           </PageWrapper>
         </Modal>
       </ProfileProvider>

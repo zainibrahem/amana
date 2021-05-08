@@ -16,7 +16,7 @@ const CardWrapper = styled.label`
   margin-bottom: 15px;
   margin-right: 15px;
   position: relative;
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -27,7 +27,7 @@ const CardWrapper = styled.label`
   transition: all 0.25s ease;
 
   &.active {
-    border: 1px solid ${themeGet('colors.primary.regular', '#F39C12')};
+    border: 1px solid ${themeGet('colors.primary.regular', '#009E7F')};
     background-color: ${themeGet('colors.white', '#ffffff')};
   }
 
@@ -63,7 +63,7 @@ const CardWrapper = styled.label`
   }
 `;
 const CardTitle = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.sm', '13')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -73,7 +73,7 @@ const CardTitle = styled.span`
 `;
 
 const CardContent = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.medium', '#424561')};
@@ -107,7 +107,7 @@ const ActionButton = styled.span`
   color: ${themeGet('colors.white', '#ffffff')};
 
   &.edit-btn {
-    background-color: ${themeGet('colors.primary.regular', '#F39C12')};
+    background-color: ${themeGet('colors.primary.regular', '#009E7F')};
   }
   &.delete-btn {
     background-color: ${themeGet('colors.secondary.regular', '#ff5b60')};

@@ -51,7 +51,7 @@ export const Products: React.FC<ProductsProps> = ({
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { data, error } = useProducts({
-    type:'grocery',
+    type,
     text: router.query.text,
     category: router.query.category,
     offset: 0,
@@ -142,7 +142,7 @@ export const Products: React.FC<ProductsProps> = ({
   };
   return (
     <>
-      <ProductsRow style={{marginLeft:"10px",marginRight:"46px"}}>
+      <ProductsRow>
         {data.map((item: any, index: number) => (
           <ProductsCol
             key={index}

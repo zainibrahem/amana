@@ -80,7 +80,7 @@ export default function () {
           <Accordion items={accordionData} />
         </HelpPageContainer>
 
-      
+        <Footer />
       </HelpPageWrapper>
     </Modal>
   );

@@ -40,7 +40,7 @@ export const SearchWrapper = styled.div`
 
 const HeaderWrapper = styled.header`
   /* padding: 30px 60px; */
-  padding: 20px 55px;
+  padding: 20px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -57,9 +57,7 @@ const HeaderWrapper = styled.header`
     background-color: transparent;
     box-shadow: none;
   }
-  @media (max-width:1366px){
-    padding: 20px 55px;
-  }
+
   @media (min-width: 1600px) {
     padding: 25px 40px;
   }
@@ -100,8 +98,8 @@ const HeaderWrapper = styled.header`
     padding-bottom: 20px;
 
     @media (max-width: 1400px) {
-      padding-top: 8px;
-      padding-bottom: 7px;
+      padding-top: 7px;
+      padding-bottom: 8px;
     }
 
     .headerSearch {
@@ -139,10 +137,10 @@ const HeaderWrapper = styled.header`
             border-bottom: 0;
           }
           &:hover {
-            color: ${themeGet('colors.primary.regular', '#F39C12')};
+            color: ${themeGet('colors.primary.regular', '#009e7f')};
           }
           &.current-page {
-            color: ${themeGet('colors.primary.regular', '#F39C12')};
+            color: ${themeGet('colors.primary.regular', '#009e7f')};
           }
 
           .menu-item-icon {
@@ -191,7 +189,7 @@ export const HeaderRightSide = styled.div`
 
   .menu-item {
     a {
-      font-family: ${themeGet('fonts.body', 'Lato')};
+      font-family: ${themeGet('fonts.body', 'Cairo')};
       font-size: ${themeGet('fontSizes.base', '15')}px;
       font-weight: ${themeGet('fontWeights.bold', '700')};
       color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -207,10 +205,10 @@ export const HeaderRightSide = styled.div`
         font-size: ${themeGet('fontSizes.base', '15')}px;
       }
       &:hover {
-        color: ${themeGet('colors.primary.regular', '#F39C12')};
+        color: ${themeGet('colors.primary.regular', '#009e7f')};
       }
       &.current-page {
-        color: ${themeGet('colors.primary.regular', '#F39C12')};
+        color: ${themeGet('colors.primary.regular', '#009e7f')};
       }
     }
   }
@@ -244,7 +242,7 @@ export const MainMenu = styled.div`
   .popover-wrapper {
     .popover-content {
       .menu-item {
-        font-family: ${themeGet('fonts.body', 'Lato')};
+        font-family: ${themeGet('fonts.body', 'Cairo')};
         a {
           font-size: ${themeGet('fontSizes.base', '15')}px;
           font-weight: ${themeGet('fontWeights.bold', '700')};
@@ -266,10 +264,10 @@ export const MainMenu = styled.div`
           }
 
           &:hover {
-            color: ${themeGet('colors.primary.regular', '#F39C12')};
+            color: ${themeGet('colors.primary.regular', '#009e7f')};
           }
           &.current-page {
-            color: ${themeGet('colors.primary.regular', '#F39C12')};
+            color: ${themeGet('colors.primary.regular', '#009e7f')};
             background-color: ${themeGet('colors.white', '#ffffff')};
           }
         }
@@ -297,10 +295,6 @@ export const MobileHeaderInnerWrapper = styled.div`
   left: 0;
   z-index: 999;
   transition: 0.25s ease-in-out;
-
-  @media only screen and (max-width: 990px) {
-    padding: 15px 20px;
-  }
 
   &.home {
     position: absolute;
@@ -345,10 +339,10 @@ export const SelectedType = styled.button`
   span {
     display: flex;
     align-items: center;
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
     font-size: ${themeGet('fontSizes.base', '15')}px;
     font-weight: ${themeGet('fontWeights.bold', '700')};
-    color: ${themeGet('colors.primary.regular', '#F39C12')};
+    color: ${themeGet('colors.primary.regular', '#009e7f')};
     text-decoration: none;
 
     &:first-child {
@@ -394,8 +388,8 @@ export const HamburgerIcon = styled.div`
     display: block;
     background-color: ${themeGet('colors.text.bold', '#0D1136')};
     border-radius: ${themeGet('radii.base', '6px')};
-    height: 3px;
-    margin-bottom: 5px;
+    height: 2px;
+    margin-bottom: 6px;
 
     transition: 0.2s ease-in-out;
     &:nth-child(1) {
@@ -529,7 +523,7 @@ export const DrawerMenuItem = styled.div`
       transition: 0.15s ease-in-out;
 
       &:hover {
-        color: ${themeGet('colors.primary.regular', '#F39C12')};
+        color: ${themeGet('colors.primary.regular', '#009e7f')};
       }
       &:before {
         content: '';
@@ -542,10 +536,10 @@ export const DrawerMenuItem = styled.div`
         background: transparent;
       }
       &.current-page {
-        color: ${themeGet('colors.primary.regular', '#F39C12')};
+        color: ${themeGet('colors.primary.regular', '#009e7f')};
         font-weight: ${themeGet('fontWeights.bold', '700')};
         &:before {
-          background-color: ${themeGet('colors.primary.regular', '#F39C12')};
+          background-color: ${themeGet('colors.primary.regular', '#009e7f')};
         }
       }
     }

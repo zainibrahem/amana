@@ -23,8 +23,6 @@ import { GlobalStyle } from 'assets/styles/global.style';
 
 // Language translation messages
 import { messages } from 'site-settings/site-translation/messages';
-import 'typeface-lato';
-import 'typeface-poppins';
 // need to provide types
 export default function ExtendedApp({ Component, pageProps }) {
   const mobile = useMedia('(max-width: 580px)');

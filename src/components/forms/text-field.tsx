@@ -24,7 +24,7 @@ const InputFeedback = styled.span`
 //   width: 100%;
 //   height: 54px;
 //   border-radius: 6px;
-//   font-family: ${themeGet('fontFamily.0', 'Lato, sans-serif')};
+//   font-family: ${themeGet('fontFamily.0', 'Cairo, sans-serif')};
 //   border: 1px solid ${themeGet('colors.gray.700', '#e6e6e6')};
 //   color: ${themeGet('colors.text.bold', '#0D1136')};
 //   font-size: ${themeGet('fontSizes.base', '15')}px;
@@ -40,7 +40,7 @@ const InputFeedback = styled.span`
 //   }
 
 //   &:focus {
-//     border-color: ${themeGet('colors.primary', '#F39C12')};
+//     border-color: ${themeGet('colors.primary', '#009e7f')};
 //   }
 
 //   &::placeholder {

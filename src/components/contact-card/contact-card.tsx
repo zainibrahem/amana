@@ -114,7 +114,7 @@ const StyledInput = styled.input`
   width: 100%;
   height: 54px;
   border-radius: ${themeGet('radii.base', '6px')};
-  font-family: ${themeGet('fonts.body', 'Lato, sans-serif')};
+  font-family: ${themeGet('fonts.body', 'Cairo, sans-serif')};
   border: 1px solid ${themeGet('colors.gray.700', '#e6e6e6')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
   font-size: 16px;
@@ -130,7 +130,7 @@ const StyledInput = styled.input`
   }
 
   &:focus {
-    border-color: ${themeGet('colors.primary.regular', '#F39C12')};
+    border-color: ${themeGet('colors.primary.regular', '#009e7f')};
   }
 
   &::placeholder {

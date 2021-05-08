@@ -49,7 +49,7 @@ export const BackButton = styled.div`
     left: 25px;
   }
   .reusecore__button {
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
     font-size: ${themeGet('fontSizes.sm', '13')}px;
     font-weight: ${themeGet('fontWeights.bold', '700')};
     color: ${themeGet('colors.text.regular', '#77798C')};
@@ -145,7 +145,7 @@ export const BookTitle = styled.h1`
 `;
 
 export const AuthorName = styled.div`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -163,7 +163,7 @@ export const BookDescriptionWrapper = styled.div`
 `;
 
 export const BookDescription = styled.p`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.medium', '#424561')};
@@ -191,7 +191,7 @@ export const BookMetaTableRow = styled.div`
 `;
 
 export const BookMetaItem = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.medium', '#424561')};
@@ -217,14 +217,14 @@ export const ProductPriceWrapper = styled.div`
 `;
 
 export const ProductPrice = styled.div`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.md', '19')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009E7F')};
 `;
 
 export const SalePrice = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.yellow.hover', '#FBB979')};
@@ -279,10 +279,10 @@ export const ProductCartBtn = styled.div`
       }
 
       &:hover {
-        color: ${themeGet('colors.primary.regular', '#F39C12')};
+        color: ${themeGet('colors.primary.regular', '#009E7F')};
 
         svg {
-          color: ${themeGet('colors.primary.regular', '#F39C12')};
+          color: ${themeGet('colors.primary.regular', '#009E7F')};
         }
       }
     }
@@ -309,7 +309,7 @@ export const MetaSingle = styled.div`
 `;
 
 export const MetaItem = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.sm', '13')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -354,7 +354,7 @@ export const DetailsTitle = styled.h3`
 `;
 
 export const Description = styled.p`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.medium', '#424561')};

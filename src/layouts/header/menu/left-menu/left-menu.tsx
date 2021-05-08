@@ -8,8 +8,8 @@ import { CATEGORY_MENU_ITEMS } from 'site-settings/site-navigation';
 import * as categoryMenuIcons from 'assets/icons/category-menu-icons';
 import {
   MainMenu,
-  IconWrapper,
   MenuItem,
+  IconWrapper,
   SelectedItem,
   Icon,
   Arrow,
@@ -67,7 +67,7 @@ export const LeftMenu: React.FC<Props> = ({ logo }) => {
         onClick={() => setActiveMenu(CATEGORY_MENU_ITEMS[0])}
       />
 
-     
+  
     </LeftMenuBox>
   );
 };

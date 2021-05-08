@@ -5,10 +5,12 @@ module.exports = function (api) {
   const plugins = [
     [
       'styled-components',
+      
       {
         ssr: true,
       },
     ],
+    'styled-jsx/babel'
   ];
 
   return {

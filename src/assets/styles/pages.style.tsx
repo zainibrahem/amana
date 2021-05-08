@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { themeGet } from '@styled-system/theme-get';
-
+// import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap');
 export const MobileCarouselDropdown = styled.div`
   @media (min-width: 990px) {
     display: none;
@@ -26,115 +26,7 @@ const OfferPageWrapper = styled.div`
     padding: 100px 30px 60px;
   }
 `;
-export const Brands = styled.div`
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  align-items:center;
-  min-height:521px;
-  padding-top:70px;
-  position:relative;
-  padding-bottom:200px;
 
-  h1{
-    width:100%;
-    text-align:center;
-    position:relative;
-    :after{
-      content: "";
-    width: 7px;
-    height: 28px;
-    background: #F39C12;
-    position: absolute;
-    border-top-right-radius: 97px;
-    right: 46%;
-    border-bottom-left-radius: 97px;
-    top: 48px;
-    -webkit-transform: translateX(1200%);
-    -ms-transform: translateX(1200%);
-    transform: translateX(1200%);
-    @media (max-width:1399px){
-      right: 44%;
-    }
-}
-    :before{
-      content: "";
-      width: 13px;
-      height: 41px;
-      background: #F39C12;
-      position: absolute;
-      border-top-right-radius: 97px;
-      left: 49%;
-      border-bottom-left-radius: 97px;
-      top: -26px;
-      -webkit-transform: translateX(-1200%);
-      -ms-transform: translateX(-1200%);
-      transform: translateX(-1200%);
-  }
-  }
-  p{
-    width:700px;
-    margin-top:30px;
-    font-size:18px;
-    text-align:center;
-  }
-`;
-export const Lis = styled.li`
-  border-bottom:0px solid !important;
-`;
-export const Buttons = styled.button`
-  background:transparent;
-  padding:0px;
-  margin:0px;
-  border:0px solid;
-  height:20px;
-`;
-export const Tabs = styled.div`
-  display:flex;
-  flex-direction:column;
-  justify-content:space-around;
-  align-items:center;
-  ul{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    
-    li{
-      padding-left: 10px;
-      padding-right: 10px;
-      border-bottom: 1px solid #000;
-      padding-bottom: 23px;
-      cursor:pointer;
-    }
-    .actives{
-      font-weight:bold;
-      border-bottom: 3px solid #000;
-    }
-    .brand-image{
-      width:70px;
-      height:70px;
-      border-radius:100%;
-      box-shadow:0px 0px 9px -3px #000;
-      padding:2px;
-      
-    }
-    .no-border{
-      border-bottom:0px solid;
-    }
-
-    &.ul-brands{
-      position:absolute;
-      margin-top:250px !important;
-      opacity:0;
-      transition:1s all ease;
-    }
-    &.active-ul{
-      transition:1s all ease;
-      opacity:1;
-      z-index:1;
-    }
-  }
-`;
 const HeaderSection = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -169,42 +61,14 @@ const ContentSection = styled.div`
   width: calc(100%);
   height: auto;
   min-height: 100vh;
-  padding: 30px 0px 50px;
+  padding: 30px 30px 50px;
 
   @media (max-width: 1199px) and (min-width: 991px) {
-    padding: 15px 0px 50px;
+    padding: 15px 30px 50px;
   }
 
   @media (max-width: 1367px) and (min-width: 1200px) {
-    padding: 13px 0px 50px;
-  }
-
-  @media (max-width: 990px) {
-    width: 100%;
-    padding: 0px 0px 100px;
-  }
-
-  @media (max-width: 768px) {
-    min-height: auto;
-  }
-
-  .offer-slider {
-    padding: 0 0 30px 30px;
-  }
-`;
-
-const ContentSections = styled.div`
-width: calc(100% - 280px);
-  height: auto;
-  min-height: 100vh;
-  padding: 30px 0px 50px;
-
-  @media (max-width: 1199px) and (min-width: 991px) {
-    padding: 15px 0px 50px;
-  }
-
-  @media (max-width: 1367px) and (min-width: 1200px) {
-    padding: 13px 0px 50px;
+    padding: 15px 30px 50px;
   }
 
   @media (max-width: 990px) {
@@ -256,10 +120,10 @@ const OfferSection = styled.div`
 const Heading = styled.h2`
   font-size: ${themeGet('fontSizes.xl', '24')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009e7f')};
   padding: 0px 20px 20px;
   margin: 50px 10px 20px;
-  border-bottom: 2px solid ${themeGet('colors.primary.regular', '#F39C12')};
+  border-bottom: 2px solid ${themeGet('colors.primary.regular', '#009e7f')};
   width: auto;
   display: inline-block;
 `;
@@ -321,7 +185,6 @@ export {
   MainContentArea,
   SidebarSection,
   ContentSection,
-  ContentSections,
   OfferSection,
   Heading,
   ProductsCol,

@@ -4,10 +4,23 @@ import { variant } from 'styled-system';
 export const CounterBox = styled.div<any>(
   css({
     display: 'flex',
+    marginTop:"-22px",
     backgroundColor: 'primary.regular',
     color: 'white',
     fontSize: 'base',
+    position:"absolute",
     fontWeight: 'bold',
+    '&.show':{
+      opacity:"1",
+      transition:".4s all ease"
+    },
+    '&.hide':{
+      opacity:"0",
+      transition:".4s all ease"
+    },
+    '@media (max-width:400px)':{
+      marginTop:"20px !important",
+    }
   }),
   {
     borderRadius: 200,
@@ -23,7 +36,7 @@ export const CounterBox = styled.div<any>(
     variants: {
       horizontal: {
         width: 104,
-        height: 36,
+        height: 27,
       },
       vertical: {
         width: 30,
@@ -32,7 +45,7 @@ export const CounterBox = styled.div<any>(
       },
       lightHorizontal: {
         width: 104,
-        height: 36,
+        height: 27,
         backgroundColor: 'gray.200',
         color: 'text.bold',
       },
@@ -45,7 +58,7 @@ export const CounterBox = styled.div<any>(
       },
       altHorizontal: {
         width: 104,
-        height: 36,
+        height: 27,
         borderRadius: '6px',
       },
       altVertical: {
@@ -55,7 +68,7 @@ export const CounterBox = styled.div<any>(
       },
       full: {
         width: '100%',
-        height: 36,
+        height: 27,
         borderRadius: '6px',
       },
     },

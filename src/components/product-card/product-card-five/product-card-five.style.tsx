@@ -96,7 +96,7 @@ export const Price = styled.span`
 `;
 
 export const CartButton = styled(Button)`
-  background-color: ${themeGet('colors.primary.regular', '#F39C12')};
+  background-color: ${themeGet('colors.primary.regular', '#009E7F')};
   border: 0;
   color: ${themeGet('colors.white', '#ffffff')};
   border-radius: ${themeGet('radii.big', '18px')};
@@ -112,7 +112,12 @@ export const CartButton = styled(Button)`
   right: 15px;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.3);
   z-index: 1;
-
+  opcaity:1;
+  transition:.4s all ease;
+  &.hidden-btn{
+    opacity:0 !important;
+    transition:.4s all ease;
+  }
   @media (max-width: 767px) {
     width: 32px;
     height: 32px;
@@ -126,7 +131,7 @@ export const CartButton = styled(Button)`
     }
   }
   &:hover {
-    background-color: ${themeGet('colors.primary.regular', '#F39C12')};
+    background-color: ${themeGet('colors.primary.regular', '#009E7F')};
   }
   svg {
     fill: currentColor;

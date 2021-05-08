@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start -H 0.0.0.0 -p ${PORT:-8000}"
+    "start": "next start"
   },
   "dependencies": {
     "@redq/reuse-modal": "1.2.4-beta.0.63",
@@ -21,10 +21,10 @@
     "next": "^10.1.3",
     "next-compose-plugins": "^2.2.1",
     "next-cookies": "^2.0.3",
+    "next-google-fonts": "^2.2.0",
     "next-optimized-images": "^2.6.2",
     "overlayscrollbars": "^1.13.1",
     "overlayscrollbars-react": "^0.2.2",
-    "postcss": "^8.2.13",
     "rc-collapse": "^3.1.0",
     "rc-drawer": "^4.3.1",
     "rc-table": "^7.14.0",
@@ -37,6 +37,7 @@
     "react-image": "4.0.3",
     "react-intl": "^5.15.8",
     "react-multi-carousel": "^2.6.2",
+    "react-owl-carousel": "^2.3.3",
     "react-reveal": "^1.2.2",
     "react-scroll": "^1.8.2",
     "react-select": "^4.3.0",
@@ -52,11 +53,12 @@
     "stylis-plugin-rtl": "1.1.0",
     "swiper": "^6.5.6",
     "swr": "^0.5.5",
-    "typeface-lato": "^1.1.13",
+    "typeface-Cairo": "^1.1.13",
+    "typeface-cairo": "^1.1.13",
     "typeface-poppins": "^1.1.13",
     "url": "^0.11.0",
     "uuid": "^8.3.2",
-    "webpack": "^5.36.1",
+    "webpack": "^5.36.2",
     "yup": "^0.32.9"
   },
   "devDependencies": {

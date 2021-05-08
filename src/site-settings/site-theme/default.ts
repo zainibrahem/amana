@@ -21,8 +21,8 @@ const baseColor = {
   },
   transparent: 'transparent',
   primary: {
-    regular: '#F39C12', // primary color
-    hover: '#F39C12',
+    regular: 'rgb(243, 156, 18)', // primary color
+    hover: 'rgb(243, 156, 18)',
     alternate: '#028489',
     light: '#b7dbdd',
   },
@@ -106,9 +106,9 @@ export const defaultTheme = {
     bolder: 900,
   },
   fonts: {
-    body: 'Lato, sans-serif',
-    heading: 'Poppins, sans-serif',
-    monospace: 'Menlo, monospace',
+    body: 'Cairo, sans-serif',
+    heading: 'Cairo, sans-serif',
+    monospace: 'Cairo, sans-serif',
   },
 
   // Custom Theme keys
@@ -164,10 +164,10 @@ export const defaultTheme = {
   // maxWidths: [16, 32, 64, 128, 256, 512, 768, 1024, 1536],
   globals: {
     // body: {
-    //   backgroundColor: 'red',
-    //   fontFamily: 'body',
-    //   lineHeight: 'body',
-    //   fontWeight: 'body',
+      // backgroundColor: 'red',
+      // fontFamily: 'Cairo',
+      // lineHeight: 'body',
+      // fontWeight: 'body',
     // },
   },
 };

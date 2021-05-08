@@ -72,7 +72,7 @@ export const RestaurantNameAddress = styled.div`
 `;
 
 export const RestaurantName = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.lg', '21')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.blue.dark', '#161F6A')};
@@ -84,7 +84,7 @@ export const RestaurantName = styled.span`
 `;
 
 export const RestaurantAddress = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798C')};
@@ -119,7 +119,7 @@ export const InfoBlock = styled.div`
 `;
 
 export const Label = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.sm', '13')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798C')};
@@ -130,7 +130,7 @@ export const Label = styled.span`
 `;
 
 export const Infos = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.sm', '13')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.blue.dark', '#161F6A')};
@@ -139,13 +139,13 @@ export const Infos = styled.span`
 export const DeliveryOpt = styled.span`
   display: flex;
   flex-direction: column;
-  border: 1px solid ${themeGet('colors.primary.regular', '#F39C12')};
+  border: 1px solid ${themeGet('colors.primary.regular', '#009E7F')};
   border-radius: ${themeGet('radii.small', '3px')};
   padding: 10px;
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.sm', '13')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009E7F')};
   @media (max-width: 990px) {
     flex-shrink: 0;
   }
@@ -177,7 +177,7 @@ export const CategoriesInner = styled.div`
     padding: 20px 0;
   }
   a.category {
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
     font-size: ${themeGet('fontSizes.base', '15')}px;
     font-weight: ${themeGet('fontWeights.regular', '400')};
     color: ${themeGet('colors.text.regular', '#77798C')};
@@ -255,7 +255,7 @@ export const ItemCategoryWrapper = styled.div`
 `;
 
 export const ItemCategoryName = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.md', '19')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.blue.dark', '#161F6A')};
@@ -309,7 +309,7 @@ export const ItemNameDetails = styled.div`
 `;
 
 export const ItemName = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.blue.dark', '#161F6A')};
@@ -317,7 +317,7 @@ export const ItemName = styled.span`
 `;
 
 export const ItemDetails = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.sm', '13')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798C')};
@@ -337,7 +337,7 @@ export const ItemNamePricing = styled.div`
 `;
 
 export const HelpText = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.sm', '13')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798C')};
@@ -347,7 +347,7 @@ export const HelpText = styled.span`
 `;
 
 export const ItemPrice = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.blue.dark', '#161F6A')};

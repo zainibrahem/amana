@@ -11,9 +11,6 @@ export const LeftMenuBox = styled.div`
 export const MainMenu = styled.div`
   display: flex;
   align-items: center;
-  margin-right:24px;
-  margin-left:20px;
-
 `;
 
 export const IconWrapper = styled.span`
@@ -25,7 +22,7 @@ export const IconWrapper = styled.span`
 `;
 
 export const MenuItem = styled.button`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -63,10 +60,10 @@ export const MenuItem = styled.button`
   }
 
   &:hover {
-    color: ${themeGet('colors.primary.regular', '#F39C12')};
+    color: ${themeGet('colors.primary.regular', '#009e7f')};
   }
   &.current-page {
-    color: ${themeGet('colors.primary.regular', '#F39C12')};
+    color: ${themeGet('colors.primary.regular', '#009e7f')};
     background-color: #fff;
   }
 `;
@@ -76,7 +73,7 @@ export const SelectedItem = styled.button`
   height: 38px;
   display: flex;
   align-items: center;
-  background-color: transparent;
+  background-color: ${themeGet('colors.white', '#ffffff')};
   border: 1px solid ${themeGet('colors.gray.500', '#f1f1f1')};
   padding-top: 0;
   padding-bottom: 0;
@@ -89,7 +86,6 @@ export const SelectedItem = styled.button`
 
   svg {
     min-width: 15px;
-
     max-width: 20px;
     max-height: 19px;
   }
@@ -97,10 +93,10 @@ export const SelectedItem = styled.button`
   span {
     display: flex;
     align-items: center;
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
     font-size: ${themeGet('fontSizes.base', '15')}px;
     font-weight: ${themeGet('fontWeights.bold', '700')};
-    color:#000;
+    color: ${themeGet('colors.primary.regular', '#009e7f')};
     text-decoration: none;
 
     &:first-child {

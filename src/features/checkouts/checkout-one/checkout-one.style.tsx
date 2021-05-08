@@ -46,7 +46,7 @@ export const CheckoutHead = styled.div`
   }
 
   span {
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
     font-size: ${themeGet('fontSizes.base', '15')}px;
     font-weight: ${themeGet('fontWeights.regular', '400')};
     color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -141,7 +141,7 @@ export const PaymentCardList = styled.div`
       opacity: 0;
       &:checked {
         & ~ .payment-card {
-          border-color: ${themeGet('colors.primary.regular', '#F39C12')};
+          border-color: ${themeGet('colors.primary.regular', '#009e7f')};
         }
       }
     }
@@ -156,10 +156,10 @@ export const SavedCard = styled.div`
   max-width: calc(100% - 120px);
 
   .saved-card-title {
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
     font-size: ${themeGet('fontSizes.sm', '13')}px;
     font-weight: ${themeGet('fontWeights.bold', '700')};
-    color: ${themeGet('colors.primary.regular', '#F39C12')};
+    color: ${themeGet('colors.primary.regular', '#009e7f')};
     margin-bottom: 10px;
     display: block;
   }
@@ -186,11 +186,11 @@ export const AddCard = styled.div`
       margin-bottom: 5px;
     }
     &:hover {
-      border-color: ${themeGet('colors.primary.regular', '#F39C12')};
+      border-color: ${themeGet('colors.primary.regular', '#009e7f')};
     }
   }
   .safe-label {
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
     font-size: ${themeGet('fontSizes.sm', '13')}px;
     font-weight: ${themeGet('fontWeights.bold', '700')};
     color: ${themeGet('colors.text.regular', '#77798c')};
@@ -221,7 +221,7 @@ export const OtherPayOption = styled.div`
       padding: 12px 20px;
       cursor: pointer;
       color: ${themeGet('colors.text.bold', '#0D1136')};
-      font-family: ${themeGet('fonts.body', 'Lato')};
+      font-family: ${themeGet('fonts.body', 'Cairo')};
       font-size: ${themeGet('fontSizes.sm', '13')}px;
       font-weight: ${themeGet('fontWeights.regular', '400')};
       line-height: 24px;
@@ -235,7 +235,7 @@ export const OtherPayOption = styled.div`
       opacity: 0;
       &:checked {
         & ~ span {
-          border-color: ${themeGet('colors.primary.regular', '#F39C12')};
+          border-color: ${themeGet('colors.primary.regular', '#009e7f')};
           background-color: ${themeGet('colors.white', '#ffffff')};
         }
       }
@@ -259,7 +259,7 @@ export const PaymentGroupWrapper = styled.div``;
 
 export const AddAddressWrapper = styled.div`
   textarea {
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
   }
   .field-wrapper {
     margin-bottom: 30px;
@@ -268,7 +268,7 @@ export const AddAddressWrapper = styled.div`
 
 export const AddcontactWrapper = styled.div`
   textarea {
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
   }
   .field-wrapper,
   .button_outline {
@@ -280,7 +280,7 @@ export const AddcontactWrapper = styled.div`
       margin-right: 5px;
     }
     &:hover {
-      border-color: ${themeGet('colors.primary.regular', '#F39C12')};
+      border-color: ${themeGet('colors.primary.regular', '#009e7f')};
     }
   }
 `;
@@ -307,7 +307,7 @@ export const AuthenticationOverlay = styled.div`
 `;
 
 export const InfoText = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -329,7 +329,7 @@ export const OrderSummary = styled.div`
 `;
 
 export const OrderLabel = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -337,7 +337,7 @@ export const OrderLabel = styled.span`
 `;
 
 export const OrderAmount = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -395,7 +395,7 @@ export const CouponBoxWrapper = styled.div`
 `;
 
 export const CouponCode = styled.p`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.text.regular', '#77798c')};
@@ -406,7 +406,7 @@ export const CouponCode = styled.p`
 
   span {
     font-weight: ${themeGet('fontWeights.bold', '700')};
-    color: ${themeGet('colors.primary.regular', '#F39C12')};
+    color: ${themeGet('colors.primary.regular', '#009e7f')};
     margin-left: 5px;
   }
 `;

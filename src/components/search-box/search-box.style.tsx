@@ -5,24 +5,16 @@ export const StyledForm = styled.form<any>(
   (props) =>
     css({
       display: 'flex',
-      justifyContent:'space-between',
       alignItems: 'center',
       borderRadius: 'base',
       overflow: 'hidden',
-      width: props.minimal ? '45%' : 700,
+      width: props.minimal ? '100%' : 700,
       color: 'text.regular',
       backgroundColor: props.minimal ? 'gray.200' : 'white',
       borderWidth: props.minimal ? '1px' : '0',
       borderStyle: 'solid',
       borderColor: props.minimal ? `gray.500` : 'white',
-      "svg":{
-        width:"50px",
-        cursot:"pointer",
-        ":hover":{
-          height:"23px",
-          transition:".5s all ease"
-        },
-      },
+
       input: {
         pl: props.minimal ? 0 : 20,
       },
@@ -32,10 +24,10 @@ export const StyledForm = styled.form<any>(
 
 export const StyledInput = styled.input(
   css({
-    flexGrow: .7,
+    flexGrow: 1,
     fontSize: 'base',
     pr: 20,
-    height: 48,
+    height: 38,
     color: 'text.regular',
     backgroundColor: 'inherit',
     appearance: 'none',
@@ -78,11 +70,6 @@ export const StyledSearchButton = styled.button(
     color: 'white',
     fontSize: 'base',
     fontWeight: 'bold',
-    transition:".4s all ease",
-    ':hover svg':{
-      marginRight:"20px !important",
-      transition:".4s all ease"
-    }
   }),
   {
     display: 'flex',

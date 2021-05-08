@@ -8,22 +8,7 @@ const Fade = keyframes`
     opacity: 1;
   }
 `;
-export const Menu = styled.ul`
-  border-top:1px solid #bbb;
-  padding:13px 16px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  li{
-    font-size:12px;
-    img{
-      filter:grayscale(80%);
-      :hover{
-        filter:grayscale(0%);
-      }
-    }
-  }
-`;
+
 export const PopoverWrapper = styled.div`
   @media (min-width: 991px) {
     display: none;
@@ -63,7 +48,7 @@ export const RequestMedicine = styled.span`
   align-items: center;
   margin-bottom: 20px;
   padding-left: 50px;
-  background-color: ${themeGet('colors.primary.regular', '#F39C12')};
+  background-color: ${themeGet('colors.primary.regular', '#009e7f')};
   font-size: calc(${themeGet('fontSizes.base', '15px')} - 1px);
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.white', '#ffffff')};
@@ -103,7 +88,7 @@ export const CategoryWrapper = styled.div`
 `;
 
 export const TreeWrapper = styled.div`
-  padding-left: 16px;
+  padding-left: 50px;
   padding-right: 20px;
 `;
 

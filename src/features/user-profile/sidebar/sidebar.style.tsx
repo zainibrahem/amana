@@ -30,7 +30,7 @@ const SidebarBottom = styled.div`
 const SidebarMenu = styled(NavLink)<any>`
   display: flex;
   a {
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
     font-size: ${themeGet('fontSizes.base', '15')}px;
     font-weight: ${themeGet('fontWeights.bold', '700')};
     color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -38,13 +38,13 @@ const SidebarMenu = styled(NavLink)<any>`
     padding: 15px 60px;
 
     &.current-page {
-      color: ${themeGet('colors.primary.regular', '#F39C12')};
-      border-left: 5px solid ${themeGet('colors.primary.regular', '#F39C12')};
+      color: ${themeGet('colors.primary.regular', '#009e7f')};
+      border-left: 5px solid ${themeGet('colors.primary.regular', '#009e7f')};
       padding-left: 55px;
     }
 
     &:hover {
-      color: ${themeGet('colors.primary.regular', '#F39C12')};
+      color: ${themeGet('colors.primary.regular', '#009e7f')};
     }
 
     &:last-child {
@@ -58,7 +58,7 @@ const LogoutButton = styled.button`
   background-color: transparent;
   text-align: left;
   cursor: pointer;
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -67,7 +67,7 @@ const LogoutButton = styled.button`
   outline: 0;
 
   &:hover {
-    color: ${themeGet('colors.primary.regular', '#F39C12')};
+    color: ${themeGet('colors.primary.regular', '#009e7f')};
   }
 
   &:focus {

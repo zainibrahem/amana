@@ -29,7 +29,7 @@ export const NoResult = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.lg', '21')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -63,16 +63,18 @@ export const ProductsCol = styled.div`
   flex: 0 0 20%;
   max-width: 20%;
   padding-left: 15px;
-  padding-right: 0px;
+  padding-right: 15px;
   margin-bottom: 30px;
   .book-card {
     border-radius: 0;
   }
   &.food-col {
-    flex: 0 0 25%;
-    max-width: 25%;
+    flex: 0 0 20%;
+    max-width: 20%;
   }
   @media (min-width: 1501px) {
+    flex: 0 0 16.6%;
+    max-width: 16.6%;
     &:nth-child(5n + 1) {
       .book-card {
         border-radius: 6px 0 0 6px;
@@ -85,8 +87,8 @@ export const ProductsCol = styled.div`
     }
   }
   @media (min-width: 1301px) and (max-width: 1500px) {
-    flex: 0 0 25%;
-    max-width: 25%;
+    flex: 0 0 20%;
+    max-width: 20%;
     &.food-col {
       flex: 0 0 33.333%;
       max-width: 33.333%;
@@ -102,9 +104,9 @@ export const ProductsCol = styled.div`
       }
     }
   }
-  @media (min-width: 768px) and (max-width: 1300px) {
-    flex: 0 0 33.3333333%;
-    max-width: 33.3333333%;
+  @media (min-width: 1200px) and (max-width: 1300px) {
+    flex: 0 0 25%;
+    max-width: 25%;
     &.food-col {
       flex: 0 0 33.3333333%;
       max-width: 33.3333333%;
@@ -130,6 +132,8 @@ export const ProductsCol = styled.div`
   }
   @media (max-width: 1199px) and (min-width: 991px) {
     padding-left: 10px;
+    flex: 0 0 33.333%;
+    max-width: 33.333%;
     padding-right: 10px;
     margin-bottom: 20px;
     &.food-col {
@@ -144,10 +148,46 @@ export const ProductsCol = styled.div`
     margin-right: -1px;
     border: 1px solid #f1f1f1;
   }
-
-  @media (max-width: 767px) {
+ 
+  @media (max-width: 900px) {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    &.food-col {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+    &:nth-child(2n + 1) {
+      .book-card {
+        border-radius: 6px 0 0 6px;
+      }
+    }
+    &:nth-child(2n) {
+      .book-card {
+        border-radius: 0 6px 6px 0;
+      }
+    }
+  }
+  @media (max-width: 700px) {
     flex: 0 0 50%;
     max-width: 50%;
+    &.food-col {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+    &:nth-child(2n + 1) {
+      .book-card {
+        border-radius: 6px 0 0 6px;
+      }
+    }
+    &:nth-child(2n) {
+      .book-card {
+        border-radius: 0 6px 6px 0;
+      }
+    }
+  }
+  @media (max-width: 300px) {
+    flex: 0 0 100%;
+    max-width: 100%;
     &.food-col {
       flex: 0 0 50%;
       max-width: 50%;

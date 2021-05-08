@@ -8,49 +8,24 @@ import { ArrowNext } from 'assets/icons/ArrowNext';
 import { ArrowPrev } from 'assets/icons/ArrowPrev';
 import {
   CategoryWrapper,
-  CategoryWrappers,
   CategoryInner,
-  CategoryInners,
-  Titless,
   ItemCard,
   ImageWrapper,
   Title,
   SliderNav,
-  Titles
 } from './horizontal-category-card-menu.style';
 import useCategory from 'data/use-category';
 import dynamic from 'next/dynamic';
-import BnaaerImage from 'assets/images/02.jpg';
-import { Container } from 'components/upload/upload.style';
-
 
 SwiperCore.use([Navigation]);
 
 interface Props {
   type: string;
-  items:number,
-  sliderType:string,
-  id:string,
-  page?:string
 }
 
-export const HorizontalCategoryCardMenu = ({ type,items,sliderType,id,page }: Props) => {
-  const router = useRouter();
-  const { data, error } = useCategory({ type });
+export const HorizontalCategoryCardMenu = ({ type }: Props) => {
 
-  if (error) return <ErrorMessage message={error.message} />;
-  if (!data) return null;
-  const { pathname, query } = router;
-  const selectedQueries = query.category;
-
-  const onCategoryClick = (slug: string) => {
-    // router.push({
-    //   pathname,
-    //   query: { ...query, category: slug },
-    // });
-    // alert(`.${id}-next`,)
-  };
-  const breakpoints = page=="categories" && sliderType=='products'? {
+  const breakpoints = {
     320: {
       slidesPerView: 1,
     },
@@ -64,315 +39,136 @@ export const HorizontalCategoryCardMenu = ({ type,items,sliderType,id,page }: Pr
     },
 
     820: {
-      slidesPerView: 3,
-    },
-
-    1100: {
-      slidesPerView: 4,
-    },
-
-    1280: {
-      slidesPerView: 4,
-    },
-    1480: {
-      slidesPerView: 5,
-    },
-  }:sliderType=='products'? {
-    320: {
       slidesPerView: 2,
     },
 
-    440: {
-      slidesPerView: 3,
-    },
-
-    620: {
-      slidesPerView: 3,
-    },
-
-    820: {
-      slidesPerView: 5,
-    },
-
     1100: {
-      slidesPerView: 5,
+      slidesPerView: 3,
     },
 
     1280: {
+      slidesPerView: 4,
+    },
+    1366: {
       slidesPerView: 5,
     },
-    1480: {
+    1900: {
       slidesPerView: 6,
-    },
-  }:{
-    320: {
-      slidesPerView: 1,
-    },
-
-    440: {
-      slidesPerView: 1,
-    },
-
-    620: {
-      slidesPerView: 1,
-    },
-
-    820: {
-      slidesPerView: 1,
-    },
-
-    1100: {
-      slidesPerView: 1,
-    },
-
-    1280: {
-      slidesPerView: 1,
     },
   };
   const GeneralCard = dynamic(
     import('components/product-card/product-card-one/product-card-one')
   );
-
   return (
-    id?(
-    page=="categories"?(
-      <CategoryWrappers className={id=="firstslider"?"firstslider":""}>
-         {sliderType == 'products'? 
-      (<Titless>
-          <h5>Most Viewed</h5>
-          <div className="section">
-            <h5 className="active">Category</h5>
-            <h5>Category</h5>
-          </div>
-      </Titless>)
-        : ''}
-        {page=="categories"?(
-      <CategoryInners>
-        <Swiper
-          id={id}
-          navigation={{
-            nextEl: `.${id}-next`,
-            prevEl: `.${id}-prev`
-          }}
-          
-          className={id}
-          draggable={sliderType=="slider"?false :  true}
-          freeMode={sliderType=="slider"?false :  true}
-          allowSlideNext={sliderType=="slider"?false :  true}
-          allowSlidePrev={sliderType=="slider"?false :  true}
-          breakpoints={breakpoints}
-          slidesPerView={1}
-          spaceBetween={13}
-        >
-          {data.map((category, idx) => (
-                  <SwiperSlide key={idx}>
-                  {sliderType == 'products'?
-                  (
-                    <GeneralCard
-                    title="Product Title"
-                    description="description"
-                    image="https://www.pcspecialist.nl/images/landing/nvidia/rtx-laptops/30-laptops-feat1-sm.jpg"
-                    weight="unit"
-                    currency="$"
-                    price={1500}
-                    salePrice={2000}
-                    discountInPercent={10}
-                    data="20-2-2021"
-                    deviceType="desktop"
-                  />
-                    ):
-                    <img className="imageheight" onClick={ ()=>{onCategoryClick}} style={{width:"100%"}} src={BnaaerImage} alt=""/>
-                   
-                }
-                 
-                </SwiperSlide>
-          ))}
-        </Swiper>
-   
-            <SliderNav className={`${sliderType=="slider"?""+`${id}-next`+" none banner-slider-next":""+`${id}-next`+" banner-slider-next"}`}>
-                <ArrowNext />
-            </SliderNav>
-            <SliderNav className={`${sliderType=="slider"?""+`${id}-prev`+" none banner-slider-prev":""+`${id}-prev`+" banner-slider-prev"}`}>
-              <ArrowPrev />
-            </SliderNav>
-        
-       
-      </CategoryInners>
-    ):(
+    <CategoryWrapper>
       <CategoryInner>
-      <Swiper
-        id={id}
-        navigation={{
-          nextEl: `.${id}-next`,
-          prevEl: `.${id}-prev`
-        }}
-        
-        className={id}
-        draggable={sliderType=="slider"?false :  true}
-        freeMode={sliderType=="slider"?false :  true}
-        allowSlideNext={sliderType=="slider"?false :  true}
-        allowSlidePrev={sliderType=="slider"?false :  true}
-        breakpoints={breakpoints}
-        slidesPerView={items}
-        spaceBetween={13}
-      >
-        {data.map((category, idx) => (
-                <SwiperSlide key={idx}>
-                {sliderType == 'products'?
-                (
-                  <GeneralCard
-                  title="Product Title"
-                  description="description"
-                  image="https://www.pcspecialist.nl/images/landing/nvidia/rtx-laptops/30-laptops-feat1-sm.jpg"
-                  weight="unit"
-                  currency="$"
-                  price={1500}
-                  salePrice={2000}
-                  discountInPercent={10}
-                  data="20-2-2021"
-                  deviceType="desktop"
-                />
-                  ):
-                  <img className="imageheight" onClick={ ()=>{onCategoryClick}} style={{width:"100%"}} src={BnaaerImage} alt=""/>
-                 
-              }
-               
+        <Swiper
+          id="category-card-menu"
+          navigation={{
+            nextEl: '.banner-slider-next',
+            prevEl: '.banner-slider-prev',
+          }}
+          breakpoints={breakpoints}
+          slidesPerView={5}
+          spaceBetween={15}
+        >
+              <SwiperSlide>
+                <GeneralCard
+                      title="بلايستيشن 5 "
+                      description="مع شاشة حماية 5G ومزود بتطبيق فيس تايم، لون ذهبي  "
+                      image="https://z.nooncdn.com/products/tr:n-t_240/v1610036835/N42342017A_1.jpg"
+                      weight="unit"
+                      currency="$"
+                      price={1500}
+                      salePrice={2000}
+                      discountInPercent={10}
+                      data="20-2-2021"
+                      deviceType="desktop"
+                    />
               </SwiperSlide>
-        ))}
-      </Swiper>
- 
-          <SliderNav className={`${sliderType=="slider"?""+`${id}-next`+" none banner-slider-next":""+`${id}-next`+" banner-slider-next"}`}>
-              <ArrowNext />
-          </SliderNav>
-          <SliderNav className={`${sliderType=="slider"?""+`${id}-prev`+" none banner-slider-prev":""+`${id}-prev`+" banner-slider-prev"}`}>
-            <ArrowPrev />
-          </SliderNav>
-      
-     
-    </CategoryInner>
-  
-    )}
-    </CategoryWrappers>
-    ):(
-      <CategoryWrapper >
-      {sliderType == 'products'? 
-   (<Titles>
-       <h3>Most Viewed</h3>
-       <div className="section">
-         <h5 className="active">Category</h5>
-         <h5>Category</h5>
-       </div>
-   </Titles>)
-     : ''}
-     {page=="categories"?(
-   <CategoryInner style={{width:"1550px",marginLeft:"64px"}}>
-     <Swiper
-       id={id}
-       navigation={{
-         nextEl: `.${id}-next`,
-         prevEl: `.${id}-prev`
-       }}
-       
-       className={id}
-       draggable={sliderType=="slider"?false :  true}
-       freeMode={sliderType=="slider"?false :  true}
-       allowSlideNext={sliderType=="slider"?false :  true}
-       allowSlidePrev={sliderType=="slider"?false :  true}
-       breakpoints={breakpoints}
-       slidesPerView={items}
-       spaceBetween={13}
-     >
-       {data.map((category, idx) => (
-               <SwiperSlide key={idx}>
-               {sliderType == 'products'?
-               (
-                 <GeneralCard
-                 title="Product Title"
-                 description="description"
-                 image="https://www.pcspecialist.nl/images/landing/nvidia/rtx-laptops/30-laptops-feat1-sm.jpg"
-                 weight="unit"
-                 currency="$"
-                 price={1500}
-                 salePrice={2000}
-                 discountInPercent={10}
-                 data="20-2-2021"
-                 deviceType="desktop"
-               />
-                 ):
-                 <img className="imageheight" onClick={ ()=>{onCategoryClick}} style={{width:"100%"}} src={BnaaerImage} alt=""/>
-                
-             }
-              
-             </SwiperSlide>
-       ))}
-     </Swiper>
-
-         <SliderNav className={`${sliderType=="slider"?""+`${id}-next`+" none banner-slider-next":""+`${id}-next`+" banner-slider-next"}`}>
-             <ArrowNext />
-         </SliderNav>
-         <SliderNav className={`${sliderType=="slider"?""+`${id}-prev`+" none banner-slider-prev":""+`${id}-prev`+" banner-slider-prev"}`}>
-           <ArrowPrev />
-         </SliderNav>
-     
-    
-   </CategoryInner>
- ):(
-   <CategoryInner>
-   <Swiper
-     id={id}
-     navigation={{
-       nextEl: `.${id}-next`,
-       prevEl: `.${id}-prev`
-     }}
-     
-     className={id}
-     draggable={sliderType=="slider"?false :  true}
-     freeMode={sliderType=="slider"?false :  true}
-     allowSlideNext={sliderType=="slider"?false :  true}
-     allowSlidePrev={sliderType=="slider"?false :  true}
-     breakpoints={breakpoints}
-     slidesPerView={items}
-     spaceBetween={13}
-   >
-     {data.map((category, idx) => (
-             <SwiperSlide key={idx}>
-             {sliderType == 'products'?
-             (
-               <GeneralCard
-               title="Product Title"
-               description="description"
-               image="https://www.pcspecialist.nl/images/landing/nvidia/rtx-laptops/30-laptops-feat1-sm.jpg"
-               weight="unit"
-               currency="$"
-               price={1500}
-               salePrice={2000}
-               discountInPercent={10}
-               data="20-2-2021"
-               deviceType="desktop"
-             />
-               ):
-               <img className="imageheight" onClick={ ()=>{onCategoryClick}} style={{width:"100%"}} src={BnaaerImage} alt=""/>
-              
-           }
+              <SwiperSlide>
+                <GeneralCard
+                       title="هاتف آيفون 12 برو"
+                       description="مع شاشة حماية 5G ومزود بتطبيق فيس تايم، لون ذهبي  "
+                      image="https://z.nooncdn.com/products/tr:n-t_240/v1605988778/N41247239A_1.jpg"
+                      weight="unit"
+                      currency="$"
+                      price={1500}
+                      salePrice={2000}
+                      discountInPercent={10}
+                      data="20-2-2021"
+                      deviceType="desktop"
+                    />
+              </SwiperSlide>
+              <SwiperSlide>
             
-           </SwiperSlide>
-     ))}
-   </Swiper>
-
-       <SliderNav className={`${sliderType=="slider"?""+`${id}-next`+" none banner-slider-next":""+`${id}-next`+" banner-slider-next"}`}>
-           <ArrowNext />
-       </SliderNav>
-       <SliderNav className={`${sliderType=="slider"?""+`${id}-prev`+" none banner-slider-prev":""+`${id}-prev`+" banner-slider-prev"}`}>
-         <ArrowPrev />
-       </SliderNav>
-   
-  
- </CategoryInner>
-
- )}
- </CategoryWrapper>
- 
-    )):(<Container></Container>)
-    
+                <GeneralCard
+                     title="سماعات ايفون "
+                     description="مع شاشة حماية 5G ومزود بتطبيق فيس تايم، لون ذهبي  "
+                      image="https://z.nooncdn.com/products/tr:n-t_240/v1612332491/N31748281A_1.jpg"
+                      weight="unit"
+                      currency="$"
+                      price={1500}
+                      salePrice={2000}
+                      discountInPercent={10}
+                      data="20-2-2021"
+                      deviceType="desktop"
+                    />
+              </SwiperSlide>
+              <SwiperSlide>
+          
+                <GeneralCard
+                     title="هاتف آيفون 12 برو "
+                     description="مع شاشة حماية 5G ومزود بتطبيق فيس تايم، لون ذهبي  "
+                      image="https://z.nooncdn.com/products/tr:n-t_240/v1611316703/N41247235A_1.jpg"
+                      weight="unit"
+                      currency="$"
+                      price={1500}
+                      salePrice={2000}
+                      discountInPercent={10}
+                      data="20-2-2021"
+                      deviceType="desktop"
+                    />
+              </SwiperSlide>
+              <SwiperSlide>
+           
+                <GeneralCard
+                       title="زيت العناية بالشعر "
+                       description="مع شاشة حماية 5G ومزود بتطبيق فيس تايم، لون ذهبي  "
+                      image="https://z.nooncdn.com/products/tr:n-t_240/v1611316566/N43853253A_1.jpg"
+                      weight="unit"
+                      currency="$"
+                      price={1500}
+                      salePrice={2000}
+                      discountInPercent={10}
+                      data="20-2-2021"
+                      deviceType="desktop"
+                    />
+              </SwiperSlide>
+              <SwiperSlide>
+            
+                <GeneralCard
+                       title="مرطب للبشرة "
+                       description="مع شاشة حماية 5G ومزود بتطبيق فيس تايم، لون ذهبي  "
+                      image="https://z.nooncdn.com/products/tr:n-t_240/v1555044551/N23112455A_1.jpg"
+                      weight="unit"
+                      currency="$"
+                      price={1500}
+                      salePrice={2000}
+                      discountInPercent={10}
+                      data="20-2-2021"
+                      deviceType="desktop"
+                    />
+              </SwiperSlide>
+            
+        </Swiper>
+        <SliderNav className="banner-slider-next">
+          <ArrowNext />
+        </SliderNav>
+        <SliderNav className="banner-slider-prev">
+          <ArrowPrev />
+        </SliderNav>
+      </CategoryInner>
+    </CategoryWrapper>
   );
 };

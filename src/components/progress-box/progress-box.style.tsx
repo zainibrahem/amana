@@ -21,10 +21,10 @@ const ProgressBar = styled('div')`
 `;
 
 const StatusBox = styled('div')`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.sm', '13')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009E7F')};
   width: 36px;
   height: 36px;
   display: flex;
@@ -33,7 +33,7 @@ const StatusBox = styled('div')`
   border-radius: 50%;
   background-color: ${themeGet('colors.white', '#ffffff')};
   z-index: 1;
-  border: 1px dashed ${themeGet('colors.primary.regular', '#F39C12')};
+  border: 1px dashed ${themeGet('colors.primary.regular', '#009E7F')};
 `;
 
 const CheckMarkWrapper = styled.span`
@@ -58,7 +58,7 @@ const StatusDetails = styled('div')`
 `;
 
 const StatusTitle = styled('span')`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -71,7 +71,7 @@ const StatusTitle = styled('span')`
 `;
 
 const StatusNote = styled('span')`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.sm', '13')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798C')};
@@ -93,11 +93,11 @@ const ProgressBarWrapper = styled('div')`
 
   &.checked {
     ${ProgressBar} {
-      background-color: ${themeGet('colors.primary.regular', '#F39C12')};
+      background-color: ${themeGet('colors.primary.regular', '#009E7F')};
     }
 
     ${StatusBox} {
-      background-color: ${themeGet('colors.primary.regular', '#F39C12')};
+      background-color: ${themeGet('colors.primary.regular', '#009E7F')};
       color: #ffffff;
     }
   }

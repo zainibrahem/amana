@@ -45,7 +45,7 @@ const GiftCardPage: NextPage<GiftCardProps> = ({ deviceType }) => {
             </ProductsRow>
           </div>
         </MainContentArea>
-     
+        <Footer />
       </OfferPageWrapper>
       <CartPopUp deviceType={deviceType} />
     </Modal>

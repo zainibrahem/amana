@@ -8,6 +8,7 @@ export const Header = styled.header<any>(
       fontWeight: 'medium',
       display: 'flex',
       alignItems: 'center',
+      marginBottom: props.depth === 'parent' ? 12 : 0,
       color:
         props.depth === 'parent'
           ? props.open
@@ -84,6 +85,7 @@ export const Content = styled(animated.div)({
 export const Frame = styled.div<any>(
   (props) =>
     css({
+      marginBottom: props.depth === 'parent' ? 15 : 10,
       paddingLeft: props.depth === 'child' ? 32 : 0,
     }),
   {

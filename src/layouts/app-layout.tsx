@@ -1,17 +1,13 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import Sticky from 'react-stickynode';
-import { useAppDispatch, useAppState } from 'contexts/app/app.provider';
+import { useAppState } from 'contexts/app/app.provider';
 import Header from './header/header';
 import { LayoutWrapper } from './layout.style';
 import { isCategoryPage } from './is-home-page';
-import Footers  from '../layouts/header/footers';
-import CategoryHeader from './header/category';
-import CatsMenunews from './header/newCatMenu';
-
-import { Waypoint } from 'react-waypoint';
-
+import CatsMenu from './category menu/CatsMenu';
+import Footers from './header/footer';
 const MobileHeader = dynamic(() => import('./header/mobile-header'), {
   ssr: false,
 });
@@ -31,62 +27,31 @@ const Layout: React.FunctionComponent<LayoutProps> = ({
     useAppState('isSticky') ||
     pathname === '/furniture-two' ||
     pathname === '/grocery-two';
-    pathname === '/categories';
-    pathname === '/category';
-    const isStickyNew = useAppState('isStickyNew')
-
-  const isHomePage = isCategoryPage(query.type) || pathname === '/bakery';
-  const dispatch = useAppDispatch();
-  const setSticky = useCallback(() => dispatch({ type: 'SET_STICKY' }), [
-    dispatch,
-  ]);
-  const removeSticky = useCallback(() => dispatch({ type: 'REMOVE_STICKY' }), [
-    dispatch,
-  ]);
-  const onWaypointPositionChange = ({ currentPosition }) => {
-    if (!currentPosition || currentPosition === 'above') {
-      setSticky();
-    }
-  };
-  return (
     
+    const isHomePage = isCategoryPage(query.type) || pathname === '/bakery';
+    const footers = isHomePage || pathname === '/product';
+  return (
     <LayoutWrapper className={`layoutWrapper ${className}`}>
       <Sticky enabled={isSticky} innerZ={1001}>
         <MobileHeader
-          className={`${isSticky ? 'sticky' : 'unSticky'} desktop`}
+          className={`${isSticky ? 'sticky' : 'unSticky'} ${
+            isHomePage ? 'home' : ''
+          } desktop`}
         />
-        {pathname=='/[type]'?(
-          <>
-          <Header
-          className={`${isSticky ? 'sticky' : 'unSticky'} `}
-          />
-          <CategoryHeader className={`${isSticky ? 'sticky' : 'unSticky'}`}></CategoryHeader>
-          </>
-          ):(
-            <>
-          <Header
-            className="sticky"
-            />
-            <CategoryHeader   className="sticky pages" ></CategoryHeader>
-            <CatsMenunews  className={`${isStickyNew ? 'sticky pages' : 'unSticky pages'}`}></CatsMenunews>
-            </>
-            )}  
-        
+
+        <Header
+          className={`${isSticky ? 'sticky' : 'unSticky'} ${
+            isHomePage ? 'home' : ''
+          }`}
+        />
+        <CatsMenu className={`${isSticky ? 'sticky' : 'unSticky'}`}></CatsMenu>
       </Sticky>
-      {pathname=='/grocery'?(
-        <Waypoint
-        onEnter={removeSticky}
-        onLeave={setSticky}
-        onPositionChange={onWaypointPositionChange}
-        />
-        ):""}
       {children}
-    {isHomePage? (
+      {footers? (
       
       <Footers className="unSticky">
         </Footers>
         ):""}
- 
     </LayoutWrapper>
   );
 };

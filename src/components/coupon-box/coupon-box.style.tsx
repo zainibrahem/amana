@@ -11,14 +11,14 @@ export const Display = styled.div`
 
 export const CouponCode = styled.span`
   font-size: calc(${themeGet('fontSizes.base', '15')}px - 1px);
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009E7F')};
   font-weight: ${themeGet('fontWeights.bold', '700')};
   text-transform: uppercase;
 `;
 
 export const DiscountPrice = styled.span`
   font-size: calc(${themeGet('fontSizes.base', '15')}px - 1px);
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009E7F')};
   font-weight: ${themeGet('fontWeights.bold', '700')};
   margin-left: auto;
 `;

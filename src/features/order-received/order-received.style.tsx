@@ -36,7 +36,7 @@ export const OrderReceivedContainer = styled.div`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
     font-size: ${themeGet('fontSizes.base', '15')}px;
     font-weight: ${themeGet('fontWeights.regular', '400')};
     color: ${themeGet('colors.text.regular', '#77798c')};
@@ -55,8 +55,8 @@ export const OrderReceivedContainer = styled.div`
     }
 
     &:hover {
-      background-color: ${themeGet('colors.primary.regular', '#F39C12')};
-      border-color: ${themeGet('colors.primary.regular', '#F39C12')};
+      background-color: ${themeGet('colors.primary.regular', '#009e7f')};
+      border-color: ${themeGet('colors.primary.regular', '#009e7f')};
       color: ${themeGet('colors.white', '#ffffff')};
     }
   }
@@ -92,7 +92,7 @@ export const BlockTitle = styled.h2`
 `;
 
 export const Text = styled.p<TextProps>`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   color: ${themeGet('colors.text.bold', '#0D1136')};
   font-weight: ${(props) =>

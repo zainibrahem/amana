@@ -40,13 +40,13 @@ const PopupHeader = styled.div`
 const PopupItemCount = styled.div`
   display: inline-flex;
   align-items: center;
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009e7f')};
 
   span {
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
     font-size: ${themeGet('fontSizes.base', '15')}px;
     font-weight: ${themeGet('fontWeights.bold', '700')};
-    color: ${themeGet('colors.primary.regular', '#F39C12')};
+    color: ${themeGet('colors.primary.regular', '#009e7f')};
     padding-left: 10px;
 
     @media (max-width: 767px) {
@@ -130,7 +130,7 @@ const ItemDetails = styled.div`
 `;
 
 const ItemTitle = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -138,22 +138,22 @@ const ItemTitle = styled.span`
 `;
 
 const ItemPrice = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009e7f')};
   margin-bottom: 10px;
 `;
 
 const ItemWeight = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.sm', '13')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798c')};
 `;
 
 const TotalPrice = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -194,10 +194,10 @@ const PromoCode = styled.span`
     background-color: transparent;
     display: inline-flex;
     cursor: pointer;
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
     font-size: ${themeGet('fontSizes.base', '15')}px;
     font-weight: ${themeGet('fontWeights.bold', '700')};
-    color: ${themeGet('colors.primary.regular', '#F39C12')};
+    color: ${themeGet('colors.primary.regular', '#009e7f')};
     transition: color 0.35s ease;
     &:hover {
       color: ${themeGet('colors.primary.hover', '#019376')};
@@ -211,7 +211,7 @@ const CheckoutButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${themeGet('colors.primary.regular', '#F39C12')};
+  background-color: ${themeGet('colors.primary.regular', '#009e7f')};
   padding: 0;
   border-radius: 48px;
   box-shadow: ${themeGet('shadows.base', '0 3px 6px rgba(0, 0, 0, 0.16)')};
@@ -243,7 +243,7 @@ const CheckoutButtonWrapper = styled.div`
 `;
 
 const Title = styled.a`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.white', '#ffffff')};
@@ -261,10 +261,10 @@ const PriceBox = styled.span`
   align-items: center;
   justify-content: center;
   background-color: ${themeGet('colors.white', '#ffffff')};
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009e7f')};
   margin-right: 2px;
 
   @media (max-width: 767px) {
@@ -273,7 +273,7 @@ const PriceBox = styled.span`
 `;
 
 const NoProductMsg = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.text.regular', '#77798c')};
@@ -312,7 +312,7 @@ const CouponBoxWrapper = styled.div`
 `;
 
 const CouponCode = styled.p`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.medium', '500')};
   color: ${themeGet('colors.text.regular', '#77798c')};
@@ -323,13 +323,13 @@ const CouponCode = styled.p`
 
   span {
     font-weight: ${themeGet('fontWeights.bold', '700')};
-    color: ${themeGet('colors.primary.regular', '#F39C12')};
+    color: ${themeGet('colors.primary.regular', '#009e7f')};
     margin-left: 5px;
   }
 `;
 
 const ErrorMsg = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: calc(${themeGet('fontSizes.base', '15')}px - 1px);
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.secondary.hover', '#FF282F')};

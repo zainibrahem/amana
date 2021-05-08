@@ -23,7 +23,7 @@ export const DeliveryAddress = styled.div`
   padding: 20px;
 
   h3 {
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
     font-size: ${themeGet('fontSizes.base', '15')}px;
     font-weight: ${themeGet('fontWeights.bold', '700')};
     color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -32,7 +32,7 @@ export const DeliveryAddress = styled.div`
 `;
 
 export const Address = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798c')};
@@ -52,7 +52,7 @@ export const CostCalculation = styled.div`
 `;
 
 export const PriceRow = styled.div`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798c')};
@@ -116,7 +116,7 @@ export const OrderTable = styled('table')`
     thead {
       th {
         padding: 8px 20px;
-        font-family: ${themeGet('fonts.body', 'Lato')};
+        font-family: ${themeGet('fonts.body', 'Cairo')};
         font-size: ${themeGet('fontSizes.sm', '13')}px;
         font-weight: ${themeGet('fontWeights.bold', '700')};
         color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -136,7 +136,7 @@ export const OrderTable = styled('table')`
 
       td {
         padding: 20px;
-        font-family: ${themeGet('fonts.body', 'Lato')};
+        font-family: ${themeGet('fonts.body', 'Cairo')};
         font-size: ${themeGet('fontSizes.base', '15')}px;
         font-weight: ${themeGet('fontWeights.regular', '400')};
         color: ${themeGet('colors.text.bold', '#0D1136')};

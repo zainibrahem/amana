@@ -44,7 +44,7 @@ export const OrderListHeader = styled.div`
 `;
 
 export const TrackID = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -55,7 +55,7 @@ export const TrackID = styled.span`
 `;
 
 export const Status = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.sm', '13')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.blue.regular', '#2e70fa')};
@@ -72,7 +72,7 @@ export const OrderMeta = styled.div`
 `;
 
 export const Meta = styled.div`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.sm', '13')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -123,7 +123,7 @@ export const SingleOrderList = styled.div`
   }
 
   &.active {
-    border: 2px solid ${themeGet('colors.primary.regular', '#F39C12')};
+    border: 2px solid ${themeGet('colors.primary.regular', '#009e7f')};
   }
 `;
 

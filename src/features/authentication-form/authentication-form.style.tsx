@@ -34,12 +34,12 @@ export const Heading = styled.h3`
   font-family: ${themeGet('fonts.heading', 'sans-serif')};
   font-size: ${themeGet('fontSizes.lg', '21')}px;
   font-weight: ${themeGet('fontWeights.semiBold', '600')};
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009e7f')};
 `;
 
 export const SubHeading = styled.span`
   margin-bottom: 30px;
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798c')};
@@ -49,14 +49,14 @@ export const SubHeading = styled.span`
 export const OfferSection = styled.div`
   padding: 20px;
   background-color: ${themeGet('colors.gray.200', '#F7F7F7')};
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009e7f')};
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const Offer = styled.p`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798c')};
@@ -64,7 +64,7 @@ export const Offer = styled.p`
 `;
 
 export const HelperText = styled.p`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.sm', '13')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798c')};
@@ -85,7 +85,7 @@ export const HelperText = styled.p`
 //   border-radius: ${themeGet('radii.base', '6px')};
 //   background-color: ${themeGet('colors.gray.200', '#f7f7f7')};
 //   border: 1px solid ${themeGet('colors.gray.700', '#e6e6e6')};
-//   font-family: ${themeGet('fonts.body', 'Lato')};
+//   font-family: ${themeGet('fonts.body', 'Cairo')};
 //   font-size: ${themeGet('fontSizes.base', '15')}px;
 //   font-weight: ${themeGet('fontWeights.regular', '400')};
 //   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -101,7 +101,7 @@ export const HelperText = styled.p`
 //   }
 
 //   &:focus {
-//     border-color: ${themeGet('colors.primary.regular', '#F39C12')};
+//     border-color: ${themeGet('colors.primary.regular', '#009e7f')};
 //   }
 
 //   &::placeholder {
@@ -132,7 +132,7 @@ export const Divider = styled.div`
   position: relative;
 
   span {
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
     font-size: ${themeGet('fontSizes.base', '15')}px;
     font-weight: ${themeGet('fontWeights.regular', '400')};
     color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -161,7 +161,7 @@ export const LinkButton = styled.button`
   padding: 0;
   font-size: calc(${themeGet('fontSizes.base', '15')}px - 1px);
   font-weight: ${themeGet('fontWeights.bold', '700')};
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009e7f')};
   text-decoration: underline;
   cursor: pointer;
 `;

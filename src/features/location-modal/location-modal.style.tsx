@@ -22,7 +22,7 @@ export const LogoWrapper = styled.div`
   }
 `;
 export const Heading = styled.h3`
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009e7f')};
   margin-bottom: 10px;
   font-family: ${themeGet('fonts.heading', 'sans-serif')};
   font-size: ${themeGet('fontSizes.lg', '21')}px;
@@ -31,7 +31,7 @@ export const Heading = styled.h3`
 
 export const SubHeading = styled.span`
   margin-bottom: 30px;
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798c')};
@@ -41,13 +41,13 @@ export const SubHeading = styled.span`
 export const OfferSection = styled.div`
   padding: 20px;
   background-color: ${themeGet('colors.gray.200', '#f7f7f7')};
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009e7f')};
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 export const Offer = styled.p`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798c')};
@@ -60,7 +60,7 @@ export const Input = styled.input`
   border-radius: ${themeGet('radii.base', '6px')};
   background-color: ${themeGet('colors.gray.200', '#f7f7f7')};
   border: 1px solid ${themeGet('colors.gray.200', '#f7f7f7')};
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -77,7 +77,7 @@ export const Input = styled.input`
   }
 
   &:focus {
-    border-color: ${themeGet('colors.primary.regular', '#F39C12')};
+    border-color: ${themeGet('colors.primary.regular', '#009e7f')};
   }
 
   &::placeholder {

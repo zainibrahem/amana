@@ -1,7 +1,6 @@
 export const initialState = {
   searchTerm: '',
   isSticky: false,
-  isStickyNew: false,
   isSidebarSticky: true,
   isDrawerOpen: false,
 };
@@ -9,9 +8,7 @@ export const initialState = {
 type ActionType =
   | { type: 'SET_SEARCH_TERM'; payload: string }
   | { type: 'SET_STICKY' }
-  | { type: 'SET_STICKY_NEW' }
   | { type: 'REMOVE_STICKY' }
-  | { type: 'REMOVE_STICKY_NEW' }
   | { type: 'SET_SIDEBAR_STICKY' }
   | { type: 'REMOVE_SIDEBAR_STICKY' }
   | { type: 'TOGGLE_DRAWER' };
@@ -35,16 +32,6 @@ export function appReducer(state: StateType, action: ActionType): StateType {
         ...state,
         isSticky: false,
       };
-      case 'SET_STICKY_NEW':
-        return {
-          ...state,
-          isStickyNew: true,
-        };
-      case 'REMOVE_STICKY_NEW':
-        return {
-          ...state,
-          isStickyNew: false,
-        };
     case 'SET_SIDEBAR_STICKY':
       return {
         ...state,

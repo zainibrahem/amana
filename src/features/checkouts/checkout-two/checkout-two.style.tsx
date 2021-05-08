@@ -53,7 +53,7 @@ export const CheckoutInformation = styled.div`
 `;
 
 export const Heading = styled.h3`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.lg', '21')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -125,7 +125,7 @@ export const CheckoutSubmit = styled.div`
 `;
 
 export const InfoText = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -147,7 +147,7 @@ export const CouponBoxWrapper = styled.div`
 `;
 
 export const CouponCode = styled.p`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: calc(${themeGet('fontSizes.base', '15')}px - 1px);
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798c')};
@@ -158,13 +158,13 @@ export const CouponCode = styled.p`
 
   span {
     font-weight: ${themeGet('fontWeights.bold', '700')};
-    color: ${themeGet('colors.primary.regular', '#F39C12')};
+    color: ${themeGet('colors.primary.regular', '#009e7f')};
     margin-left: 10px;
   }
 `;
 
 export const RemoveCoupon = styled.button`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.xs', '12')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.secondary.regular', '#ff5b60')};
@@ -194,10 +194,10 @@ export const CouponInputBox = styled.div`
 `;
 
 export const HaveCoupon = styled.button`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
-  color: ${themeGet('colors.primary.regular', '#F39C12')};
+  color: ${themeGet('colors.primary.regular', '#009e7f')};
   width: auto;
   height: auto;
   display: inline-block;
@@ -210,7 +210,7 @@ export const HaveCoupon = styled.button`
 `;
 
 export const ErrorMsg = styled('span')`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.xs', '12')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.secondary.hover', '#FF282F')};
@@ -220,7 +220,7 @@ export const ErrorMsg = styled('span')`
 `;
 
 export const TermConditionText = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.smm', '13')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798c')};
@@ -230,7 +230,7 @@ export const TermConditionText = styled.span`
 `;
 
 export const TermConditionLink = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.smm', '13')}px;
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.secondary.regular', '#ff5b60')};
@@ -276,7 +276,7 @@ export const OrderInfo = styled.div`
 `;
 
 export const Title = styled.h3`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: ${themeGet('fontSizes.base', '15')}px;
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -309,14 +309,14 @@ export const Items = styled.div`
 `;
 
 export const Quantity = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: calc(${themeGet('fontSizes.base', '15')}px - 1px);
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
 `;
 
 export const Multiplier = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: calc(${themeGet('fontSizes.base', '15')}px - 1px);
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798c')};
@@ -324,7 +324,7 @@ export const Multiplier = styled.span`
 `;
 
 export const ItemInfo = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: calc(${themeGet('fontSizes.base', '15')}px - 1px);
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798c')};
@@ -332,7 +332,7 @@ export const ItemInfo = styled.span`
 `;
 
 export const Price = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: calc(${themeGet('fontSizes.base', '15')}px - 1px);
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798c')};
@@ -347,26 +347,26 @@ export const TextWrapper = styled.div`
 `;
 
 export const Text = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: calc(${themeGet('fontSizes.base', '15')}px - 1px);
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798c')};
 `;
 
 export const Bold = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: calc(${themeGet('fontSizes.base', '15')}px - 1px);
   font-weight: ${themeGet('fontWeights.bold', '700')};
   color: ${themeGet('colors.text.bold', '#0D1136')};
 `;
 
 export const Small = styled.span`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: 11px;
 `;
 
 export const NoProductMsg = styled.h3`
-  font-family: ${themeGet('fonts.body', 'Lato')};
+  font-family: ${themeGet('fonts.body', 'Cairo')};
   font-size: calc(${themeGet('fontSizes.base', '15')}px - 1px);
   font-weight: ${themeGet('fontWeights.regular', '400')};
   color: ${themeGet('colors.text.regular', '#77798c')};

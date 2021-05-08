@@ -9,7 +9,7 @@ export const CustomizedTable = styled.table`
     thead.rc-table-thead {
       th {
         padding: 15px;
-        font-family: ${themeGet('fonts.body', 'Lato')};
+        font-family: ${themeGet('fonts.body', 'Cairo')};
         font-size: ${themeGet('fontSizes.sm', '13')}px;
         font-weight: ${themeGet('fontWeights.bold', '700')};
         color: ${themeGet('colors.text.bold', '#0D1136')};
@@ -23,7 +23,7 @@ export const CustomizedTable = styled.table`
 
       td {
         padding: 20px 15px;
-        font-family: ${themeGet('fonts.body', 'Lato')};
+        font-family: ${themeGet('fonts.body', 'Cairo')};
         font-size: ${themeGet('fontSizes.base', '15')}px;
         font-weight: ${themeGet('fontWeights.regular', '400')};
         color: ${themeGet('colors.text.bold', '#0D1136')};

@@ -107,7 +107,7 @@ const ButtonGroup = styled.div`
     margin-left: 0;
     margin-right: auto;
     &:hover {
-      border-color: ${themeGet('colors.primary.regular', '#F39C12')};
+      border-color: ${themeGet('colors.primary.regular', '#009e7f')};
     }
 
     @media (max-width: 700px) {

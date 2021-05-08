@@ -3,6 +3,7 @@ import { themeGet } from '@styled-system/theme-get';
 
 export const Box = styled.div`
   margin-right: 20px;
+  margin-left: 20px;
   @media (max-width: 990px) {
     margin-left: auto;
   }
@@ -23,7 +24,7 @@ export const SelectedItem = styled.button`
   height: 38px;
   display: flex;
   align-items: center;
-  background-color: transparent;
+  background-color: ${themeGet('colors.white', '#ffffff')};
   border: 1px solid ${themeGet('colors.gray.500', '#f1f1f1')};
   padding-top: 0;
   padding-bottom: 0;
@@ -41,10 +42,10 @@ export const SelectedItem = styled.button`
   span {
     display: flex;
     align-items: center;
-    font-family: ${themeGet('fonts.body', 'Lato')};
+    font-family: ${themeGet('fonts.body', 'Cairo')};
     font-size: ${themeGet('fontSizes.base', '15')}px;
     font-weight: ${themeGet('fontWeights.bold', '700')};
-    color: #000;
+    color: ${themeGet('colors.primary.regular', '#009e7f')};
     text-decoration: none;
 
     /* @media (max-width: 990px) {
