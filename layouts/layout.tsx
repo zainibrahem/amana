@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { NavBar } from '../../components/navbar/navbar';
-import {SideBar} from '../../components/sidebar/sidebar';
-import { useAppState, useAppDispatch } from '../../contexts/app/app.provider';
+import { NavBar } from '../components/navbar/navbar';
+import {SideBar} from '../components/sidebar/sidebar';
+import { useAppState, useAppDispatch } from '../contexts/app/app.provider';
 export const Layout = (props) => {
     const isDrawerOpen = useAppState('isDrawerOpen');
     const dispatch = useAppDispatch();
