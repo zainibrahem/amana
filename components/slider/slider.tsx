@@ -6,17 +6,17 @@ export default function Slider () {
   SwiperCore.use([Navigation,Autoplay, Pagination, Scrollbar]);
 
     return (
+      <div className="slider">
+
         <Swiper
         spaceBetween={20}
         slidesPerView={1}
         pagination={{ clickable: true }}
-
         autoplay={{
           pauseOnMouseEnter:true,
           delay:4000
         }}
         speed={500}
-        
         // onSlideChange={() => console.log('slide change')}
         // onSwiper={(swiper) => console.log(swiper)}
       >
@@ -28,4 +28,5 @@ export default function Slider () {
         </SwiperSlide>
         {/* <SwiperPagination></SwiperPagination> */}
       </Swiper>
+      </div>
 );}

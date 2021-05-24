@@ -43,7 +43,7 @@ export default function SearchBar () {
                             </li>
                         </ul>
                     </div>
-                    <div className="col-span-12">
+                    <div className="col-span-12 sm:col-span-8 xl:col-span-4 ">
                         <ul className="px-5">
                             <li className="flex justify-end items-center">
                                 <span className="w-full text-center text-xs sm:text-xs lg:text-sm xl:text-md"><span className="font-bold text-gray-500">any product that exists</span> in <span className="sm:hidden lg:contents text-xs sm:text-xs lg:text-sm xl:text-md text-yellow-500">any Category</span></span>
@@ -58,15 +58,14 @@ export default function SearchBar () {
                                 <span className="w-full text-center text-xs sm:text-xs lg:text-sm xl:text-md"><span className="font-bold text-gray-500">any product that exists</span> in <span className="sm:hidden lg:contents text-xs sm:text-xs lg:text-sm xl:text-md text-yellow-500">any Category</span></span>
                             </li>
                             <li className="hidden xl:flex justify-end items-center">
-                                <span className="text-xs sm:text-xs lg:text-sm xl:text-md"><span className="font-bold text-gray-500">any product that exists</span> in <span className="sm:hidden lg:contents text-xs sm:text-xs lg:text-sm xl:text-md text-yellow-500">any Category</span></span>
+                                <span className="w-full text-center text-xs sm:text-xs lg:text-sm xl:text-md"><span className="font-bold text-gray-500">any product that exists</span> in <span className="sm:hidden lg:contents text-xs sm:text-xs lg:text-sm xl:text-md text-yellow-500">any Category</span></span>
                             </li>
                             <li className="hidden xl:flex justify-end items-center">
                                 <span className="w-full text-center text-xs sm:text-xs lg:text-sm xl:text-md"><span className="font-bold text-gray-500">any product that exists</span> in <span className="sm:hidden lg:contents text-xs sm:text-xs lg:text-sm xl:text-md text-yellow-500">any Category</span></span>
                             </li>
-                            
                         </ul>
                     </div>
-                    <div className="col-span-3 hidden sm:block">
+                    <div className="col-span-3 hidden xl:block ">
                             <div className="border-green-500 border-r-2 flex flex-col justify-around items-end px-3 mr-5  h-full choosen">
                                 <span className="text-xs sm:text-xs xl:text-md  self-end text-gray-400">اخترنا لك</span>
                                 <span className="text-xs sm:text-xs xl:text-md  self-end pr-2 text-gray-500">ايفون 12 برو</span>

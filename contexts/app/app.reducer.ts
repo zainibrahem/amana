@@ -11,6 +11,7 @@ type ActionType =
   | { type: 'REMOVE_STICKY' }
   | { type: 'SET_SIDEBAR_STICKY' }
   | { type: 'REMOVE_SIDEBAR_STICKY' }
+  | { type: 'OpenSideBar' }
   | { type: 'TOGGLE_DRAWER' };
 
 type StateType = typeof initialState;
@@ -47,6 +48,11 @@ export function appReducer(state: StateType, action: ActionType): StateType {
         ...state,
         isDrawerOpen: !state.isDrawerOpen,
       };
+    case 'OpenSideBar' :
+      return {
+        ...state,
+        isDrawerOpen: true,
+      }
     default: {
       throw new Error(`Unsupported action type at App Reducer`);
     }

@@ -49,7 +49,7 @@ function useWindowSize() {
             <div className="col-span-12 sm:col-span-12 h-13 md:col-span-12 lg:col-span-12 xl:col-span-12">
               <NavBar toggleHandler={toggleHandler}></NavBar>
             </div>
-            <div className={isDrawerOpen?"col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-9 xl:col-span-10 pl-4 pr-4":"sm:col-span-12 sm:pr-4 md:pr-1 md:col-span-11 lg:col-span-11 xl:col-span-11 pl-4"}>
+            <div className={isDrawerOpen?"overflow-hidden col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-9 xl:col-span-10 pl-4 pr-4 lg:pr-0":"sm:col-span-12 sm:pr-4 md:pr-1 md:col-span-11 lg:col-span-11 xl:col-span-11 pl-4 overflow-hidden"}>
                {props.children}
             </div>
             <div id="col" className={isDrawerOpen?"hidden relative sm:col-span-4 md:col-span-3 lg:block lg:col-span-3 xl:col-span-2":"hidden md:block md:col-span-1 lg:col-span-1 xl:col-span-1 relative"}>
