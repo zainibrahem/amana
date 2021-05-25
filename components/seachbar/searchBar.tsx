@@ -14,7 +14,7 @@ export default function SearchBar () {
                         بحث
                         </button>
                 </div>
-                <span onClick={ ()=> {setFilter(!Filter)} } className='cursor-pointer text-xs flex justify-between items-center'>
+                <span onClick={ ()=> {setFilter(!Filter)} } className='advanced cursor-pointer text-xs flex justify-between items-center'>
                     <svg xmlns="http://www.w3.org/2000/svg" className='mr-1 sm:mr-3' width="8.631" height="10.33" viewBox="0 0 8.631 10.33">
                         <g id="Group_4846" data-name="Group 4846" transform="translate(-410.485 -239.835)">
                             <path id="Icon_material-navigate-next" data-name="Icon material-navigate-next" d="M13.9,9l-1.014,1.014,3.294,3.3-3.294,3.3L13.9,17.631l4.316-4.316Z" transform="translate(428.116 231.95) rotate(90)" fill="#707070"/>

@@ -1,0 +1,62 @@
+<div className={isDrawerOpen?"grid grid-cols-12 sm:grid-cols-12  md:grid-cols-9 lg:grid-cols-9 2xl:grid-cols-12 gap-4":"grid grid-cols-12 sm:grid-cols-12  md:grid-cols-9 lg:grid-cols-8 2xl:grid-cols-12 gap-4"}>
+
+            <div className={isDrawerOpen?"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-3  xl:col-span-2":"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2  xl:col-span-2"}>
+                <ProductCard type={"proposals"}></ProductCard>
+            </div>
+            <div className={isDrawerOpen?"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-3  xl:col-span-2":"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2  xl:col-span-2"}>
+                <ProductCard></ProductCard>
+            </div>
+            <div className={isDrawerOpen?"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-3  xl:col-span-2":"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2  xl:col-span-2"}>
+                <ProductCard></ProductCard>
+            </div>
+            <div className={isDrawerOpen?"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-3  xl:col-span-2":"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2  xl:col-span-2"}>
+                <ProductCard></ProductCard>
+            </div>
+            <div className={isDrawerOpen?"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-3  xl:col-span-2":"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2  xl:col-span-2"}>
+                <ProductCard></ProductCard>
+            </div>
+            <div className={isDrawerOpen?"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-3  xl:col-span-2":"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2  xl:col-span-2"}>
+                <ProductCard></ProductCard>
+            </div>
+            <div className={isDrawerOpen?"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-3  xl:col-span-2":"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2  xl:col-span-2"}>
+                <ProductCard></ProductCard>
+            </div>
+            <div className={isDrawerOpen?"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-3  xl:col-span-2":"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2  xl:col-span-2"}>
+                <ProductCard></ProductCard>
+            </div>
+            <div className={isDrawerOpen?"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-3  xl:col-span-2":"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2  xl:col-span-2"}>
+                <ProductCard></ProductCard>
+            </div>
+            <div className={isDrawerOpen?"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-3  xl:col-span-2":"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2  xl:col-span-2"}>
+                <ProductCard></ProductCard>
+            </div>
+            <div className={isDrawerOpen?"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-3  xl:col-span-2":"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2  xl:col-span-2"}>
+                <ProductCard></ProductCard>
+            </div>
+            <div className={isDrawerOpen?"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-3  xl:col-span-2":"col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2  xl:col-span-2"}>
+                <ProductCard></ProductCard>
+            </div>
+            <div className="col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2  xl:col-span-2">
+                <ProductCard></ProductCard>
+            </div>
+            <div className="col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2  xl:col-span-2">
+                <ProductCard></ProductCard>
+            </div>
+            <div className="col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2  xl:col-span-2">
+                <ProductCard></ProductCard>
+            </div>
+         
+        </div>
+
+
+        className={props.type?
+            isDrawerOpen?
+            "cards flex flex-col justify-center items-center rounded shadow-md card-responsive    mb-3"
+            :
+            "cards flex flex-col justify-center items-center rounded shadow-md   sm:w-60 mb-3"
+            :
+            isDrawerOpen?
+            "cards relative left-1/2 transform -translate-x-1/2  flex flex-col justify-center items-center rounded shadow-md w-full sm:w-52 mb-3"
+            :
+            "cards relative left-1/2 transform -translate-x-1/2  flex flex-col justify-center items-center rounded shadow-md w-full sm:w-52 mb-3"
+            }

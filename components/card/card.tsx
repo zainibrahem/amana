@@ -9,7 +9,7 @@ export default function Card (props) {
     const [openTab, setOpenTab] = React.useState(1);
 return (
     <>
-    <div className="grid grid-cols-12  gap-4 mt-8 sm:mt-12 mb-8 sm:mb-12 rounded bg-white shadow-md p-2">
+    <div className="grid grid-cols-12  gap-4 mt-8 sm:mt-12 rounded bg-white shadow-md p-2">
         <div className="col-span-12 md:col-span-5 order-1 md:order-0 ">
         <ul
             className="flex mb-0 border-b-2 list-none  flex-row"
@@ -31,7 +31,7 @@ return (
                 href="#link1"
                 role="tablist"
               >
-                <i className="fas fa-space-shuttle text-base mr-1"></i> Profile
+                <i className="fas fa-space-shuttle text-base mr-1"></i> شاشات
               </a>
             </li>
             <li className="-mb-0.5 flex-auto text-center">
@@ -50,7 +50,7 @@ return (
                 href="#link2"
                 role="tablist"
               >
-                <i className="fas fa-cog text-base mr-1"></i>  Settings
+                <i className="fas fa-cog text-base mr-1"></i>  الكترونيات
               </a>
             </li>
             <li className="-mb-0.5 flex-auto text-center">
@@ -69,7 +69,7 @@ return (
                 href="#link3"
                 role="tablist"
               >
-                <i className="fas fa-briefcase text-base mr-1"></i>  Options
+                <i className="fas fa-briefcase text-base mr-1"></i>  عرض الكل
               </a>
             </li>
           </ul>

@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+@import url(https://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 *{
     font-family: 'Droid Arabic Kufi', serif;
 }
@@ -12,6 +12,18 @@ body{
 .ltr{
     direction: ltr;
 }
+.numbers{
+  font-family:  Arial, sans-serif !important;
+  font-weight: 500;
+}
+.scrolls::-webkit-scrollbar {
+  width: 2px;
+  position:absolute;
+  left:0px;
+}
+.scrolls::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+} 
 .scroll::-webkit-scrollbar {
   width: 1px;
   position:absolute;
@@ -50,7 +62,7 @@ body{
   right:0px;
   width:.4rem;
   height:1.4rem;
-  top:-1rem;
+  top:-.5rem;
   background:rgb(245, 158, 11,1);
   border-top-left-radius: 9px;
   border-bottom-right-radius: 9px;
@@ -61,12 +73,12 @@ body{
   left:0px;
   width:.3rem;
   height:1rem;
-  top:1rem;
+  top:1.5rem;
   background:rgb(245, 158, 11,1);
   border-top-left-radius: 9px;
   border-bottom-right-radius: 9px;
 }
-@media (min-width: 0px) { 
+/* @media (min-width: 0px) { 
   .title:after{
     width:.26rem;
     height:1.1rem;
@@ -75,6 +87,27 @@ body{
     width:.2rem;
     height:.7rem;
   }
+  .card-responsive{
+    width:49%;
+  }
+} */
+@media (min-width: 640px) { 
+  .title:after{
+    width:.26rem;
+    height:1.1rem;
+  }
+  .title:before{
+    width:.2rem;
+    height:.7rem;
+  }
+  /* .card-responsive{
+    width:17.2rem;
+  } */
+}
+@media (min-width:1900px){
+  /* .card-responsive{
+    width:19.2rem;
+  } */
 }
 .cardTitle:after{
   content:"";
@@ -102,6 +135,12 @@ body{
   background:rgb(82, 82, 82);
 
 }
+@media (max-width:400px){
+  .advanced{
+    padding-right:8px;
+    font-size:0.5rem;
+  }
+}
 @media (min-width:1200px){
   .swiper-wrapper{
     padding:0px 5px;   
@@ -125,4 +164,7 @@ body{
     opacity:1;
     transition:.5s all ease;
   }
+}
+.special-brands-slider .swiper-wrapper{
+  padding:0px 0px;
 }

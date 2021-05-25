@@ -6,7 +6,7 @@ export default function Slider () {
   SwiperCore.use([Navigation,Autoplay, Pagination, Scrollbar]);
 
     return (
-      <div className="slider">
+      <div className="slider rounded">
 
         <Swiper
         spaceBetween={20}
