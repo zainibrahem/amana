@@ -399,7 +399,7 @@ export const NavBar = (props) => {
                         <button onClick={togglecart} className="ml-3 w-8 md:w-10  h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full  flex items-center justify-center">
                             <svg className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current "  xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="3" strokeLinecap="square" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                         </button>
-                        <div className={profile?"cart hidden md:block w-80 shadow-2xl bg-white rounded absolute left-5  -bottom-2 transform translate-y-full ":"cart hidden w-96 shadow-2xl bg-white rounded absolute  left-60 bottom-0 transform translate-y-full"}>
+                        <div className={profile?"cart hidden md:block w-80 shadow-2xl overflow-hidden bg-white rounded absolute left-5  -bottom-2 transform translate-y-full ":"cart overflow-hidden hidden w-96 shadow-2xl bg-white rounded absolute  left-60 bottom-0 transform translate-y-full"}>
 
 
 
