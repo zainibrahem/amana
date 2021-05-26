@@ -42,12 +42,17 @@ body{
 .centered{
   animation: slideRight .6s forwards;
 }
-
+.slidesright{
+  animation: slideRights .6s forwards;
+}
+.slidesleft{
+  animation: slideLefts .6s forwards;
+}
 @keyframes slideRight {
   0% {
     transform:translateX(100%);
     opacity:1;
-    position: relative;
+    
   }
   100% {
     transform:translateX(0%);
@@ -64,6 +69,32 @@ body{
   }
   100% {
     transform:translateX(100%);
+    opacity:0;
+    top:0;
+    position: absolute;
+  }
+}
+@keyframes slideRights{
+  0% {
+    transform:translateX(-100%);
+    opacity:1;
+    position: relative
+  }
+  100% {
+    transform:translateX(0%);
+    opacity:1;
+    position: relative;
+  }
+}
+@keyframes slideLefts{
+  0% {
+    transform:translateX(0%);
+    top:0;
+    opacity:0;
+    position: absolute
+  }
+  100% {
+    transform:translateX(-100%);
     opacity:0;
     top:0;
     position: absolute;
