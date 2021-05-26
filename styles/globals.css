@@ -12,14 +12,66 @@ body{
 .ltr{
     direction: ltr;
 }
+.cart:before{
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 15px;
+  z-index: 0;
+  width: 10px;
+  height: 13px;
+  background: white;
+  transform: translateY(-95%) rotateZ(45deg)
+}
 .numbers{
   font-family:  Arial, sans-serif !important;
   font-weight: 500;
 }
 .scrolls::-webkit-scrollbar {
   width: 2px;
+  margin-top:10px;
   position:absolute;
   left:0px;
+}
+.noti-hover{
+  cursor: pointer;
+}
+.slideLeft{
+  animation: slideLeft .6s forwards;
+}
+.centered{
+  animation: slideRight .6s forwards;
+}
+
+@keyframes slideRight {
+  0% {
+    transform:translateX(-100%);
+    opacity:1;
+    position: relative;
+  }
+  100% {
+    transform:translateX(0%);
+    opacity:1;
+    position: relative;
+  }
+}
+@keyframes slideLeft {
+  0% {
+    transform:translateX(0%);
+    top:0;
+    opacity:0;
+    position: absolute
+  }
+  100% {
+    transform:translateX(-100%);
+    opacity:0;
+    top:0;
+    position: absolute;
+  }
+}
+
+.noti-hover:hover{
+  background:rgba(150, 150, 150, 0.212);
 }
 .scrolls::-webkit-scrollbar-thumb {
   background-color: darkgrey;

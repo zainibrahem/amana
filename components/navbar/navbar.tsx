@@ -1,9 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppState, useAppDispatch } from '../../contexts/app/app.provider';
+import {Menu} from './menu';
+import {SubMenu} from './subMenu';
 
 export const NavBar = (props) => {
     const isDrawerOpen = useAppState('isDrawerOpen');
- 
+    const [cart , setCart]  = useState(false);
+    const [notifications , setNotifications]  = useState(false);
+    const [messages , setMessages]  = useState(false);
+    const [profile , setProfile]  = useState(false);
+    const [menu,setMenu] = useState(1);
+
+    const toggleprofile = () => {
+        setProfile(!profile);
+    }
+    const togglecart = () => {
+        setCart(!cart);
+    }
+    const togglemessages = () => {
+        setMessages(!messages);
+    }
+    const togglenotifications = () => {
+        setNotifications(!notifications);
+    }
         return (
             <div className="fixed top-0 w-full z-30" style={{direction:"rtl"}}>
             <nav className="w-full bg-white shadow-md h-16 flex justify-between items-center ">
@@ -73,7 +92,7 @@ export const NavBar = (props) => {
                     </div>
                     <div className="w-full  h-full flex justify-end  items-center px-3">
                         {/* <div x-data="{ open: false }"> 
-                            <button className="hidden xl:flex h-10 w-24 xl:w-32  rounded-full flex bg-white hover:bg-gray-200 text-gray-600 text-lg font-semibold">
+                            <button className="xl:flex h-10 w-24 xl:w-32  rounded-full flex bg-white hover:bg-gray-200 text-gray-600 text-lg font-semibold">
                                 <div className="h-8 w-8 mx-2 flex items-center">
                                     <img className=" rounded-full" src="https://scontent.fsub1-1.fna.fbcdn.net/v/t1.0-9/37921553_1447009505400641_8037753745087397888_n.jpg?_nc_cat=102&_nc_sid=09cbfe&_nc_oc=AQnDTnRBxV3QgnhKOtk9AiziIOXw0K68iIUQfdK_rlUSFgs8fkvnQ6FjP6UBEkA6Zd8&_nc_ht=scontent.fsub1-1.fna&oh=728962e2c233fec37154419ef79c3998&oe=5EFA545A" alt=""/>
                                 </div>
@@ -92,91 +111,89 @@ export const NavBar = (props) => {
                     </form>
                         </ul>
                         </div> */}
-                
-                     
                         <button className="ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full flex items-center justify-center">
                             <svg className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current "  xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="3" strokeLinecap="square" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                         </button>
-                        <div className="cart w-96 shadow-2xl bg-white rounded absolute left-20 bottom-0 transform translate-y-full">
-                            <div className="grid grid-cols-12">
+                        <div className={cart?"cart hidden md:block w-96 shadow-2xl bg-white rounded absolute left-20 -bottom-2 transform translate-y-full ":"cart hidden w-96 shadow-2xl bg-white rounded absolute  left-20 bottom-0 transform translate-y-full"}>
+                            <div className="grid grid-cols-12 shadow-md 2xl:shadow-lg">
                                 <div className="col-span-12 flex justify-between items-center  py-2">
                                     <span className="px-5">السلة</span>
-                                    <span className="mx-4 rounded bg-gray-200 px-2 text-yellow-500">4 منتجات</span>
+                                    <span className="mx-4 rounded bg-yellow-500 px-2 text-sm text-white">4 منتجات</span>
                                 </div>
                             </div>
                             <div className="scrolls h-90 overflow-y-scroll">
                                 <div className="hidden col-span-12 border-t-2 px-2 py-2  justify-between relative items-center">
-                                    <img className="w-14" src="./images/med-3.jpg" alt="" />
+                                    <img className="w-14" src="./images/med-3.jpeg" alt="" />
                                     <div className="flex  flex-col justify-between items-start">
                                         <span className="text-sm text-gray-700">المنتج الأول</span>
                                         <span className="text-xs text-gray-300">من غوغل</span>
                                     </div>
                                     <div className="z-50  transition-all flex flex-row justify-between  items-center  rounded-md w-28 h-4 bg-gray-100 ">
-                                        <span className="text-xs cursor-pointer rounded-l font-bold px-3 bg-gray-200 h-full flex justify-center items-center">-</span>
+                                        <span className="text-xs cursor-pointer font-bold px-3 bg-gray-200 h-full flex justify-center items-center">-</span>
                                         <span className="block rounded text-xs font-bold">1</span>
-                                        <span className="text-xs cursor-pointer font-bold  rounded-r h-full flex justify-center items-center px-3 bg-gray-200">+</span>
+                                        <span className="text-xs cursor-pointer font-bold h-full flex justify-center items-center px-3 bg-gray-200">+</span>
                                     </div>
                                     <span className="text-xs">1200 ل.س</span>
                                     <div className="absolute top-1 left-3">x</div>
                                 </div>
-                                <div className="col-span-12  px-5 py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc;"}}>
-                                    <img className="w-14" src="./images/med-1.jpg" alt="" />
+                                <div className="col-span-12  px-5 py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                    <img className="w-14 rounded" src="./images/med-1.jpeg" alt="" />
                                     <div className="flex  flex-col justify-between items-start">
                                         <span className="text-sm text-black">المنتج الأول</span>
                                         <span className="text-xs text-gray-500">من غوغل</span>
                                     </div>
                                     <div className="z-50  transition-all flex flex-row justify-between  items-center  rounded-md w-24 border-2 h-6 ">
-                                        <span className="text-xs cursor-pointer rounded-l font-bold px-2  h-2/3 flex justify-center text-gray-700 border-l-2 items-center">-</span>
+                                        <span className="text-xs cursor-pointer  font-bold px-2  h-2/3 flex justify-center text-gray-700 border-l-2 items-center">-</span>
                                         <span className="block rounded text-xs font-bold text-gray-700">1</span>
-                                        <span className="text-xs cursor-pointer font-bold  text-gray-700 rounded-r h-2/3 flex justify-center items-center px-2 border-r-2">+</span>
+                                        <span className="text-xs cursor-pointer font-bold  text-gray-700  h-2/3 flex justify-center items-center px-2 border-r-2">+</span>
                                     </div>
                                     <span className="text-md numbers">1200</span>
                                     <div className="absolute top-2 left-5">
                                         <img src="./images/x.svg" className="w-2" alt="" />
                                     </div>
                                 </div>
-                                <div className="col-span-12  px-5 py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc;"}}>
-                                    <img className="w-14" src="./images/med-1.jpg" alt="" />
+                                <div className="col-span-12  px-5 py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                    <img className="w-14 rounded" src="./images/med-1.jpeg" alt="" />
                                     <div className="flex  flex-col justify-between items-start">
                                         <span className="text-sm text-black">المنتج الأول</span>
                                         <span className="text-xs text-gray-500">من غوغل</span>
                                     </div>
                                     <div className="z-50  transition-all flex flex-row justify-between  items-center  rounded-md w-24 border-2 h-6 ">
-                                        <span className="text-xs cursor-pointer rounded-l font-bold px-2  h-2/3 flex justify-center text-gray-700 border-l-2 items-center">-</span>
+                                        <span className="text-xs cursor-pointer  font-bold px-2  h-2/3 flex justify-center text-gray-700 border-l-2 items-center">-</span>
                                         <span className="block rounded text-xs font-bold text-gray-700">1</span>
-                                        <span className="text-xs cursor-pointer font-bold  text-gray-700 rounded-r h-2/3 flex justify-center items-center px-2 border-r-2">+</span>
+                                        <span className="text-xs cursor-pointer font-bold  text-gray-700  h-2/3 flex justify-center items-center px-2 border-r-2">+</span>
                                     </div>
                                     <span className="text-md numbers">1200</span>
                                     <div className="absolute top-2 left-5">
                                         <img src="./images/x.svg" className="w-2" alt="" />
                                     </div>
                                 </div>
-                                <div className="col-span-12  px-5 py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc;"}}>
-                                    <img className="w-14" src="./images/med-1.jpg" alt="" />
+                                <div className="col-span-12  px-5 py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                    <img className="w-14 rounded" src="./images/med-1.jpeg" alt="" />
                                     <div className="flex  flex-col justify-between items-start">
                                         <span className="text-sm text-black">المنتج الأول</span>
                                         <span className="text-xs text-gray-500">من غوغل</span>
                                     </div>
                                     <div className="z-50  transition-all flex flex-row justify-between  items-center  rounded-md w-24 border-2 h-6 ">
-                                        <span className="text-xs cursor-pointer rounded-l font-bold px-2  h-2/3 flex justify-center text-gray-700 border-l-2 items-center">-</span>
+                                        <span className="text-xs cursor-pointer  font-bold px-2  h-2/3 flex justify-center text-gray-700 border-l-2 items-center">-</span>
                                         <span className="block rounded text-xs font-bold text-gray-700">1</span>
-                                        <span className="text-xs cursor-pointer font-bold  text-gray-700 rounded-r h-2/3 flex justify-center items-center px-2 border-r-2">+</span>
+                                        <span className="text-xs cursor-pointer font-bold  text-gray-700  h-2/3 flex justify-center items-center px-2 border-r-2">+</span>
                                     </div>
                                     <span className="text-md numbers">1200</span>
                                     <div className="absolute top-2 left-5">
                                         <img src="./images/x.svg" className="w-2" alt="" />
                                     </div>
                                 </div>
-                                <div className="col-span-12  px-5 py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc;"}}>
-                                    <img className="w-14" src="./images/med-1.jpg" alt="" />
+                                <div className="col-span-12  px-5 py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                    <img className="w-14 rounded" src="./images/med-1.jpeg" alt="" />
                                     <div className="flex  flex-col justify-between items-start">
                                         <span className="text-sm text-black">المنتج الأول</span>
                                         <span className="text-xs text-gray-500">من غوغل</span>
                                     </div>
                                     <div className="z-50  transition-all flex flex-row justify-between  items-center  rounded-md w-24 border-2 h-6 ">
-                                        <span className="text-xs cursor-pointer rounded-l font-bold px-2  h-2/3 flex justify-center text-gray-700 border-l-2 items-center">-</span>
+                                        <span className="text-xs cursor-pointer  font-bold px-2  h-2/3 flex justify-center text-gray-700 border-l-2 items-center">-</span>
                                         <span className="block rounded text-xs font-bold text-gray-700">1</span>
-                                        <span className="text-xs cursor-pointer font-bold  text-gray-700 rounded-r h-2/3 flex justify-center items-center px-2 border-r-2">+</span>
+                                        <span className="text-xs cursor-pointer font-bold  text-gray-700  h-2/3 flex justify-center items-center px-2 border-r-2">+</span>
                                     </div>
                                     <span className="text-md numbers">1200</span>
                                     <div className="absolute top-2 left-5">
@@ -185,7 +202,7 @@ export const NavBar = (props) => {
                                 </div>
                             </div>
                                
-                            <div className="col-span-12 py-4 border-t-2 flex flex-col justify-between items-center">
+                            <div className="col-span-12 py-2  border-t-2 flex flex-col justify-between items-center">
                                 <div className="flex flex-row w-full justify-between items-center px-5">
                                     <span>المجموع:</span>
                                     <span className="numbers">3600 ل.س</span>
@@ -194,19 +211,356 @@ export const NavBar = (props) => {
                             </div>
                             
                         </div>
-                        <button className="ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full flex items-center justify-center">
+                        <button onClick={togglemessages} className="ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full flex items-center justify-center">
                             <svg className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current " xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="2" strokeLinecap="square" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                         </button>
-                        <button className="relative ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full flex items-center justify-center">
+                        <div className={notifications?"cart hidden md:block w-96 shadow-2xl bg-white rounded absolute left-32  -bottom-2 transform translate-y-full ":"cart hidden w-96 shadow-2xl bg-white rounded absolute  left-40 bottom-0 transform translate-y-full"}>
+                            <div className="grid grid-cols-12 shadow-md 2xl:shadow-lg">
+                                <div className="col-span-12 flex justify-between items-center  py-2">
+                                    <span className="px-5">الإشعارات</span>
+                                    <span className="mx-4 rounded bg-red-400 px-2 text-sm text-white">4 جديد  </span>
+                                </div>
+                            </div>
+                            <div className="scrolls h-90 overflow-y-scroll">
+                                <div className="hidden col-span-12 border-t-2 px-2 py-3  justify-between relative items-center">
+                                    <img className="w-14" src="./images/med-3.jpg" alt="" />
+                                    <div className="flex  flex-col justify-between items-start">
+                                        <span className="text-sm text-gray-700">المنتج الأول</span>
+                                        <span className="text-xs text-gray-300">من غوغل</span>
+                                    </div>
+                                    <div className="z-50  transition-all flex flex-row justify-between  items-center  rounded-md w-28 h-4 bg-gray-100 ">
+                                        <span className="text-xs cursor-pointer font-bold px-3 bg-gray-200 h-full flex justify-center items-center">-</span>
+                                        <span className="block rounded text-xs font-bold">1</span>
+                                        <span className="text-xs cursor-pointer font-bold h-full flex justify-center items-center px-3 bg-gray-200">+</span>
+                                    </div>
+                                    <span className="text-xs">1200 ل.س</span>
+                                    <div className="absolute top-1 left-3">x</div>
+                                </div>
+                                <div className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                    {/* <img className="w-6 h-2 rounded-full" src="./images/med-1.jpg" alt="" /> */}
+                                    <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
+                                    <div className="flex  flex-col justify-between items-start">
+                                        <span className="text-xs text-black">المنتج الأول المنتج الأول المنتج الأول </span>
+                                        <span className="text-xs text-gray-500 mt-2">من غوغل من غوغل من غوغل من غوغل </span>
+                                    </div>
+                                    {/* <div className="z-50  transition-all flex flex-row justify-between  items-center  rounded-md w-24 border-2 h-6 ">
+                                        <span className="text-xs cursor-pointer  font-bold px-2  h-2/3 flex justify-center text-gray-700 border-l-2 items-center">-</span>
+                                        <span className="block rounded text-xs font-bold text-gray-700">1</span>
+                                        <span className="text-xs cursor-pointer font-bold  text-gray-700  h-2/3 flex justify-center items-center px-2 border-r-2">+</span>
+                                    </div> */}
+                                    <div className="flex flex-col h-full justify-between items-center">
+                                        <span className="text-xs">الطلب تم رفضه</span>
+                                        <span className="text-xs bg-yellow-500 mt-2 text-white rounded text-center w-20 py-0.5">معلق</span>
+                                    </div>
+                                    <div className="absolute top-2 left-5">
+                                        {/* <img src="./images/x.svg" className="w-2" alt="" /> */}
+                                    </div>
+                                </div>
+                                <div className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                    {/* <img className="w-6 h-2 rounded-full" src="./images/med-1.jpg" alt="" /> */}
+                                    <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
+                                    <div className="flex  flex-col justify-between items-start">
+                                        <span className="text-xs text-black">المنتج الأول المنتج الأول المنتج الأول </span>
+                                        <span className="text-xs text-gray-500 mt-2">من غوغل من غوغل من غوغل من غوغل </span>
+                                    </div>
+                                    {/* <div className="z-50  transition-all flex flex-row justify-between  items-center  rounded-md w-24 border-2 h-6 ">
+                                        <span className="text-xs cursor-pointer  font-bold px-2  h-2/3 flex justify-center text-gray-700 border-l-2 items-center">-</span>
+                                        <span className="block rounded text-xs font-bold text-gray-700">1</span>
+                                        <span className="text-xs cursor-pointer font-bold  text-gray-700  h-2/3 flex justify-center items-center px-2 border-r-2">+</span>
+                                    </div> */}
+                                    <div className="flex flex-col h-full justify-between items-center">
+                                        <span className="text-xs">الطلب تم رفضه</span>
+                                        <span className="text-xs bg-gray-700 mt-2 text-white rounded text-center w-20 py-0.5">متنازع عليه</span>
+                                    </div>
+                                    <div className="absolute top-2 left-5">
+                                    </div>
+                                </div>
+                                
+                                <div className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                    <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
+                                    <div className="flex  flex-col justify-between items-start">
+                                        <span className="text-xs text-black">المنتج الأول المنتج الأول المنتج الأول </span>
+                                        <span className="text-xs text-gray-500 mt-2">من غوغل من غوغل من غوغل من غوغل </span>
+                                    </div>
+                                    <div className="flex flex-col h-full justify-between items-center">
+                                        <span className="text-xs">الطلب تم رفضه</span>
+                                        <span className="text-xs bg-gray-300 mt-2 text-white rounded text-center w-20 py-0.5">ملغى</span>
+                                    </div>
+                                    <div className="absolute top-2 left-5">
+                                    </div>
+                                </div>
+                                
+                                <div className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                    <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
+                                    <div className="flex  flex-col justify-between items-start">
+                                        <span className="text-xs text-black">المنتج الأول المنتج الأول المنتج الأول </span>
+                                        <span className="text-xs text-gray-500 mt-2">من غوغل من غوغل من غوغل من غوغل </span>
+                                    </div>
+                                    <div className="flex flex-col h-full justify-between items-center">
+                                        <span className="text-xs">الطلب تم رفضه</span>
+                                        <span className="text-xs bg-blue-500 mt-2 text-white rounded text-center w-20 py-0.5">إعادة الأموال</span>
+                                    </div>
+                                    <div className="absolute top-2 left-5">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button onClick={togglenotifications} className="relative ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full flex items-center justify-center">
                             <svg  className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current "  xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="2" strokeLinecap="square" strokeLinejoin="round"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path></svg>
-                            <div className="absolute top-0 right-0 w-5 sm:w-6 h-1 sm:h-2 text-white -mr-2 rounded-full bg-red-500">
+                            <div className="absolute top-0 right-0 w-5 sm:w-6 h-1 sm:h-2 text-white -mr-2 rounded-full bg-red-400">
                                 3
                             </div>
                         </button>
-                        <button className="ml-3 w-8 md:w-10  h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full  flex items-center justify-center">
+                        <div className={messages?"cart hidden md:block w-96 shadow-2xl bg-white rounded absolute left-44  -bottom-2 transform translate-y-full ":"cart hidden w-96 shadow-2xl bg-white rounded absolute  left-60 bottom-0 transform translate-y-full"}>
+                            <div className="grid grid-cols-12 shadow-md 2xl:shadow-lg">
+                                <div className="col-span-12 flex justify-between items-center  py-2">
+                                    <span className="px-5">الرسائل</span>
+                                    <span className="mx-4 rounded bg-red-400 px-2 text-sm text-white">4 جديد  </span>
+                                </div>
+                            </div>
+                            <div className="scrolls h-110 overflow-y-scroll">
+                                <div className="hidden col-span-12 border-t-2 px-2 py-3  justify-between relative items-center">
+                                    <img className="w-14" src="./images/med-3.jpg" alt="" />
+                                    <div className="flex  flex-col justify-between items-start">
+                                        <span className="text-sm text-gray-700">المنتج الأول</span>
+                                        <span className="text-xs text-gray-300">من غوغل</span>
+                                    </div>
+                                    <div className="z-50  transition-all flex flex-row justify-between  items-center  rounded-md w-28 h-4 bg-gray-100 ">
+                                        <span className="text-xs cursor-pointer font-bold px-3 bg-gray-200 h-full flex justify-center items-center">-</span>
+                                        <span className="block rounded text-xs font-bold">1</span>
+                                        <span className="text-xs cursor-pointer font-bold h-full flex justify-center items-center px-3 bg-gray-200">+</span>
+                                    </div>
+                                    <span className="text-xs">1200 ل.س</span>
+                                    <div className="absolute top-1 left-3">x</div>
+                                </div>
+                                <div className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                    {/* <img className="w-6 h-2 rounded-full" src="./images/med-1.jpg" alt="" /> */}
+                                    <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
+                                    <div className="flex  flex-col justify-between items-start">
+                                        <span className="text-xs text-black">متجر الأمين</span>
+                                        <span className="text-xs text-gray-500 leading-5 mt-2">مرحبا ليث, تم استلام طلبك سيتم إعلامك بكل تغيير يحصل على الطلب</span>
+                                    </div>
+                                    <div className="flex flex-col h-full justify-between items-center">
+                                        <span className="text-xs text-gray-700">رقم الطلب</span>
+                                        <span className="text-xs border-gray-300 border-2 text-gray-700 mt-2  rounded text-center w-20 py-0.5">#321422</span>
+                                    </div>
+                                    <div className="absolute top-2 left-5">
+                                    </div>
+                                </div>
+                                <div className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                    <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
+                                    <div className="flex  flex-col justify-between items-start">
+                                        <span className="text-xs text-black">متجر الأمين</span>
+                                        <span className="text-xs text-gray-500 leading-5 mt-2">مرحبا ليث, تم استلام طلبك سيتم إعلامك بكل تغيير يحصل على الطلب</span>
+                                    </div>
+                                    <div className="flex flex-col h-full justify-between items-center">
+                                        <span className="text-xs text-gray-700">رقم الطلب</span>
+                                        <span className="text-xs border-gray-300 border-2 text-gray-700 mt-2  rounded text-center w-20 py-0.5">#321422</span>
+                                    </div>
+                                    <div className="absolute top-2 left-5">
+                                    </div>
+                                </div>
+                                <div className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                    <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
+                                    <div className="flex  flex-col justify-between items-start">
+                                        <span className="text-xs text-black">متجر الأمين</span>
+                                        <span className="text-xs text-gray-500 leading-5 mt-2">مرحبا ليث, تم استلام طلبك سيتم إعلامك بكل تغيير يحصل على الطلب</span>
+                                    </div>
+                                    <div className="flex flex-col h-full justify-between items-center">
+                                        <span className="text-xs text-gray-700">رقم الطلب</span>
+                                        <span className="text-xs border-gray-300 border-2 text-gray-700 mt-2  rounded text-center w-20 py-0.5">#321422</span>
+                                    </div>
+                                    <div className="absolute top-2 left-5">
+                                    </div>
+                                </div>
+                                <div className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                    <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
+                                    <div className="flex  flex-col justify-between items-start">
+                                        <span className="text-xs text-black">متجر الأمين</span>
+                                        <span className="text-xs text-gray-500 leading-5 mt-2">مرحبا ليث, تم استلام طلبك سيتم إعلامك بكل تغيير يحصل على الطلب</span>
+                                    </div>
+                                    <div className="flex flex-col h-full justify-between items-center">
+                                        <span className="text-xs text-gray-700">رقم الطلب</span>
+                                        <span className="text-xs border-gray-300 border-2 text-gray-700 mt-2  rounded text-center w-20 py-0.5">#321422</span>
+                                    </div>
+                                    <div className="absolute top-2 left-5">
+                                        {/* <img src="./images/x.svg" className="w-2" alt="" /> */}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-span-12 py-2  border-t-2 flex flex-col justify-between items-center">
+                                <div className="flex flex-row w-full justify-center cursor-pointer items-center px-5">
+                                    <span className="font-bold text-gray-700 text-center text-sm">جميع الرسائل</span>
+                                    {/* <span className="numbers">3600 ل.س</span> */}
+                                </div>
+                                {/* <div className="rounded w-11/12  bg-yellow-500 text-white text-center py-1 mt-3">متابعة</div> */}
+                            </div>
+                        </div>
+                        <button onClick={togglecart} className="ml-3 w-8 md:w-10  h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full  flex items-center justify-center">
                             <svg className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current "  xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="3" strokeLinecap="square" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                         </button>
-                        <div className="ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 focus:outline-none hover:bg-gray-400 rounded-full flex items-center justify-center" style={{background:"url('./images/user.jpg')",backgroundSize:"cover",backgroundPosition:"center"}}>
+                        <div className={profile?"cart hidden md:block w-80 shadow-2xl bg-white rounded absolute left-5  -bottom-2 transform translate-y-full ":"cart hidden w-96 shadow-2xl bg-white rounded absolute  left-60 bottom-0 transform translate-y-full"}>
+
+
+
+
+                            
+
+                          
+                                   <div className={menu==2?"px-2 py-2 centered":"px-2 py-2  slideLeft"}>
+                                   <div className="hidden col-span-12 border-t-2 px-2 py-3  justify-between relative items-center">
+                                       <img className="w-14" src="./images/med-3.jpg" alt="" />
+                                       <div className="flex  flex-col justify-between items-start">
+                                           <span className="text-sm text-gray-700">المنتج الأول</span>
+                                           <span className="text-xs text-gray-300">من غوغل</span>
+                                       </div>
+                                       <div className="z-50  transition-all flex flex-row justify-between  items-center  rounded-md w-28 h-4 bg-gray-100 ">
+                                           <span className="text-xs cursor-pointer font-bold px-3 bg-gray-200 h-full flex justify-center items-center">-</span>
+                                           <span className="block rounded text-xs font-bold">1</span>
+                                           <span className="text-xs cursor-pointer font-bold h-full flex justify-center items-center px-3 bg-gray-200">+</span>
+                                       </div>
+                                       <span className="text-xs">1200 ل.س</span>
+                                       <div className="absolute top-1 left-3">x</div>
+                                   </div>
+                                   <div className="col-span-12 rounded px-5 py-3 flex justify-start relative items-center">
+                                       <div className="rounded-full w-10 h-8 cursor-pointer" onClick={()=> setMenu(1)} style={{background:"url('./images/right-arrow.svg')",backgroundSize:"cover",backgroundPosition:"center"}}></div>
+                                       <div className="flex  flex-col justify-between items-start mr-2">
+                                           <span className="text-md text-black">الإعدادات والخصوصية</span>
+                                           {/* <span className="text-xs text-gray-500 mt-2">الرصيد : 500 ر.ل </span> */}
+                                       </div>
+                                   </div>
+                                   <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                       <div className="w-2/3 flex justify-start relative items-center">
+                                           <div className="rounded-full w-10 h-8 bg-gray-500 "></div>
+                                           <div  className="flex  flex-col justify-between items-start mr-2">
+                                               <span className="text-xs text-black">الإعدادات</span>
+                                           </div>
+                                       </div>
+                                      
+                                   </div>
+                                   <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" >
+                                       <div className="w-2/3 flex justify-start relative items-center">
+                                           <div className="rounded-full w-10 h-8 bg-gray-500 "></div>
+                                           <div className="flex  flex-col justify-between items-start mr-2">
+                                               <span className="text-xs text-black">التحقق من الخصوصية</span>
+                                           </div>
+                                       </div>
+                                      
+                                   </div>
+                                   <div className="col-span-12  rounded px-5 noti-hover py-3 flex justify-between relative items-center" >
+                                       <div className="w-2/3 flex justify-start relative items-center">
+                                           <div className="rounded-full w-10 h-8 bg-gray-500 "></div>
+                                           <div className="flex  flex-col justify-between items-start mr-2">
+                                               <span className="text-xs text-black">اختصارات الخصوصية</span>
+                                           </div>
+                                       </div>
+                                      
+                                   </div>
+                                   <div className="col-span-12  rounded px-5 noti-hover py-3 flex justify-between relative items-center" >
+                                       <div className="w-2/3 flex justify-start relative items-center">
+                                           <div className="rounded-full w-10 h-8 bg-gray-500 "></div>
+                                           <div className="flex  flex-col justify-between items-start mr-2">
+                                               <span className="text-xs text-black">سجل النشاطات</span>
+                                           </div>
+                                       </div>
+                                      
+                                   </div>
+                                   <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-start relative items-center" >
+                                       <div className="rounded-full w-10 h-8 bg-gray-500 "></div>
+                                       <div className="flex  flex-col justify-between items-start mr-2">
+                                           <span className="text-xs text-black">اللغة</span>
+                                       </div>
+                                   </div>
+                               </div>
+                                    
+                                    <div className={menu==1?"px-2 py-2 centered":"px-2 py-2  slideLeft"}>
+                               <div className="hidden col-span-12 border-t-2 px-2 py-3  justify-between relative items-center">
+                                   <img className="w-14" src="./images/med-3.jpg" alt="" />
+                                   <div className="flex  flex-col justify-between items-start">
+                                       <span className="text-sm text-gray-700">المنتج الأول</span>
+                                       <span className="text-xs text-gray-300">من غوغل</span>
+                                   </div>
+                                   <div className="z-50  transition-all flex flex-row justify-between  items-center  rounded-md w-28 h-4 bg-gray-100 ">
+                                       <span className="text-xs cursor-pointer font-bold px-3 bg-gray-200 h-full flex justify-center items-center">-</span>
+                                       <span className="block rounded text-xs font-bold">1</span>
+                                       <span className="text-xs cursor-pointer font-bold h-full flex justify-center items-center px-3 bg-gray-200">+</span>
+                                   </div>
+                                   <span className="text-xs">1200 ل.س</span>
+                                   <div className="absolute top-1 left-3">x</div>
+                               </div>
+                               <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-start relative items-center">
+                                   <div className="rounded-full w-10 h-8 " style={{background:"url('./images/user.jpg')",backgroundSize:"cover",backgroundPosition:"center"}}></div>
+                                   <div className="flex  flex-col justify-between items-start mr-2">
+                                       <span className="text-xs text-black">زين ابراهيم</span>
+                                       <span className="text-xs text-gray-500 mt-2">الرصيد : 500 ر.ل </span>
+                                   </div>
+                               </div>
+                               <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                   <div className="w-2/3 flex justify-start relative items-center">
+                                       <div className="rounded-full w-10 h-8 bg-gray-500 "></div>
+                                       <div onClick={()=>setMenu(2)} className="flex  flex-col justify-between items-start mr-2">
+                                           <span className="text-xs text-black">الإعدادات والخصوصية</span>
+                                       </div>
+                                   </div>
+                                   <div className="arrow">
+                                       <img className="w-4 relative" src="./images/left-arrow.svg" alt="" />
+                                   </div>
+                               </div>
+                               <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" >
+                                   <div className="w-2/3 flex justify-start relative items-center">
+                                       <div className="rounded-full w-10 h-8 bg-gray-500 "></div>
+                                       <div className="flex  flex-col justify-between items-start mr-2">
+                                           <span className="text-xs text-black">المساعدة والدعم</span>
+                                       </div>
+                                   </div>
+                                   <div className="arrow">
+                                       <img className="w-4 relative" src="./images/left-arrow.svg" alt="" />
+                                   </div>
+                               </div>
+                               <div className="col-span-12  rounded px-5 noti-hover py-3 flex justify-between relative items-center" >
+                                   <div className="w-2/3 flex justify-start relative items-center">
+                                       <div className="rounded-full w-10 h-8 bg-gray-500 "></div>
+                                       <div className="flex  flex-col justify-between items-start mr-2">
+                                           <span className="text-xs text-black">العرض وإمكانية الوصول</span>
+                                       </div>
+                                   </div>
+                                   <div className="arrow">
+                                       <img className="w-4 relative" src="./images/left-arrow.svg" alt="" />
+                                   </div>
+                               </div>
+                               <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-start relative items-center" >
+                                   <div className="rounded-full w-10 h-8 bg-gray-500 "></div>
+                                   <div className="flex  flex-col justify-between items-start mr-2">
+                                       <span className="text-xs text-black">تسجيل الخروج</span>
+                                   </div>
+                               </div>
+                           </div>
+
+                            {menu==3?
+                                <Menu></Menu>:""
+                            }
+
+
+                            {menu==1?
+                            <div className="col-span-12 py-2  border-t-2 flex flex-col justify-between items-center">
+                                <div className="flex flex-row w-full justify-between items-center px-5">
+                                    <span className="text-xs text-gray-500 mt-2">
+                                        الخصوصية
+                                    </span>
+                                    <span className="text-xs border-r-2 pr-2 text-gray-500 mt-2">
+                                        الخصوصية
+                                    </span>
+                                    <span className="text-xs border-r-2 pr-2 text-gray-500 mt-2">
+                                        الخصوصية
+                                    </span>
+                                    <span className="text-xs border-r-2 pr-2 text-gray-500 mt-2">
+                                        الخصوصية
+                                    </span>
+                                </div>
+                            </div>
+                            :""}
+                        </div>
+                        <div onClick={toggleprofile} className="ml-3 cursor-pointer w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 focus:outline-none hover:bg-gray-400 rounded-full flex items-center justify-center" style={{background:"url('./images/user.jpg')",backgroundSize:"cover",backgroundPosition:"center"}}>
                         </div>
                     </div>
             </nav>
