@@ -55,7 +55,7 @@ function useWindowSize() {
                {props.children}
                <Footer></Footer>
             </div>
-            <div id="col" className={isDrawerOpen?"hidden relative sm:col-span-4 md:col-span-3 lg:block lg:col-span-3 xl:col-span-2":"hidden md:block md:col-span-1 lg:col-span-1 xl:col-span-1 relative"}>
+            <div id="col" className={isDrawerOpen?"hidden relative sm:col-span-4 md:col-span-3 lg:block lg:col-span-3 xl:col-span-2 overflow-x-hidden":"hidden overflow-x-hidden md:block md:col-span-1 lg:col-span-1 xl:col-span-1 relative"}>
                 <SideBar width={el2}></SideBar>
             </div>
         </div>

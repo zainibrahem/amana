@@ -65,11 +65,15 @@ body{
     transform:translateX(0%);
     top:0;
     opacity:0;
+    height:0px;
+    overflow: hidden;
     position: absolute
   }
   100% {
     transform:translateX(100%);
     opacity:0;
+    height:0px;
+    overflow: hidden;
     top:0;
     position: absolute;
   }
@@ -77,11 +81,17 @@ body{
 @keyframes slideRights{
   0% {
     transform:translateX(-100%);
+    display:none;
+    height:auto;
+    overflow: visible;
     opacity:1;
     position: relative
   }
   100% {
     transform:translateX(0%);
+    display:block;
+    height:auto;
+    overflow: visible;
     opacity:1;
     position: relative;
   }
@@ -251,3 +261,12 @@ body{
 .special-brands-slider .swiper-wrapper{
   padding:0px 0px;
 }
+.margin-4 .swiper-slide{
+margin-right: 1px !important;
+}
+.hover-side:hover{
+  background:rgb(211, 211, 211);
+}
+
+
+
