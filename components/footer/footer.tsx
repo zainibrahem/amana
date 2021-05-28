@@ -9,7 +9,7 @@ export default function Proposals () {
 
     return (
         <div className="grid grid-cols-12 px-2 mt-8 " >
-            <div className="col-span-12 flex justify-center pb-6 items-center">
+            <div className="col-span-12 flex justify-center pb-6 items-center order-4 md:order-none">
                 {/* <svg xmlns="http://www.w3.org/2000/svg" className="pr-3" width="134.034" height="22.087" viewBox="0 0 134.034 22.087">
                     <g id="Group_4845" data-name="Group 4845" transform="translate(0 0)">
                         <path id="Path_5" data-name="Path 5" d="M-3960.62,856.149a.575.575,0,0,1-.575-.576v-9.935a7.655,7.655,0,0,0-1.87-5.363,6.268,6.268,0,0,0-4.857-2.053,6.375,6.375,0,0,0-4.869,2.031,7.351,7.351,0,0,0-1.9,5.234,7.507,7.507,0,0,0,1.956,5.352,6.537,6.537,0,0,0,4.986,2.085,7.774,7.774,0,0,0,2.676-.473,9.267,9.267,0,0,0,1.739-.86.575.575,0,0,1,.873.493v2.626a.571.571,0,0,1-.3.506,10.725,10.725,0,0,1-2.419.922,12.417,12.417,0,0,1-3,.355,10,10,0,0,1-2.988-.462,9.73,9.73,0,0,1-2.687-1.3,10.547,10.547,0,0,1-3.482-3.923,11.324,11.324,0,0,1-1.2-5.234,10.773,10.773,0,0,1,2.988-7.813,10.112,10.112,0,0,1,7.588-3.084,10.486,10.486,0,0,1,5.546,1.526,10.213,10.213,0,0,1,3.869,4.192,9.532,9.532,0,0,1,.892,2.633,24.956,24.956,0,0,1,.269,4.267v8.28a.576.576,0,0,1-.576.576Z" transform="translate(3978.542 -834.406)" fill="#191919"/>
@@ -20,35 +20,42 @@ export default function Proposals () {
                         <path id="Path_10" data-name="Path 10" d="M-2594.73,833.78a1.957,1.957,0,0,1-1.95,1.982,1.969,1.969,0,0,1-1.969-1.982,1.967,1.967,0,0,1,1.976-1.969A1.952,1.952,0,0,1-2594.73,833.78Zm-3.5.006a1.566,1.566,0,0,0,1.541,1.611,1.561,1.561,0,0,0,1.534-1.611,1.57,1.57,0,0,0-1.541-1.611A1.569,1.569,0,0,0-2598.228,833.787Zm2.308-.639a1.387,1.387,0,0,0-.607-.141.729.729,0,0,0-.793.793.755.755,0,0,0,.786.8,1.255,1.255,0,0,0,.639-.153l.1.326a1.455,1.455,0,0,1-.793.2,1.1,1.1,0,0,1-1.177-1.157,1.186,1.186,0,0,1,1.241-1.189,1.215,1.215,0,0,1,.7.179Z" transform="translate(2728.765 -831.811)" fill="#141414"/>
                     </g>
                 </svg> */}
-                <p className="text-center text-gray-500">
+                <p className="hidden md:block text-center text-xs md:text-sm md:text-md text-gray-500">
                     جميع الحقوق محفوظة لـ شركة أمانة
                     &copy;    
                     2021
                     ,
                     مسجلة في سلطنة عمان
                 </p>
+                <p className="block md:hidden text-center text-xs md:text-sm md:text-md text-gray-500 numbers">
+                    جميع الحقوق محفوظة لـ  أمانة
+                    &copy;    
+                    2021
+                    ,
+                    مسجلة في سلطنة عمان
+                </p>
             </div>
-            
-            
-                <div className="col-span-4 pb-4 flex justify-start items-center">
-                    <img className="mx-1" src="./images/icons/visa.png" alt="" />
-                    <img className="mx-1" src="./images/icons/master-card.png" alt="" />
-                    <img className="mx-1" src="./images/icons/paypal.png" alt="" />
-                </div>
-                <div className="col-span-4 pb-4 flex justify-around items-center">
-                    <span className="text-gray-700">حول أمانة</span>
-                        -
-                    <span className="text-gray-700">تواصل معنا</span>
+            <div className="col-span-12 md:col-span-3 lg:col-span-4 pb-4 flex justify-center md:justify-start items-center order-0 md:order-2 mb-10 md:mb-0">
+                <img className="mx-1 w-4" src="./images/insta.svg" alt="" />
+                <img className="mx-1 w-4" src="./images/face.svg" alt="" />
+                <img className="mx-1 w-4" src="./images/twit.svg" alt="" />
+            </div>
+            <div className="col-span-1 md:hidden order-1"></div>
+            <div className="col-span-12 padding-mobile-0 md:col-span-6 lg:col-span-4 pb-4 flex justify-around px-3 md:px-0 items-center order-2 md:order-3">
+                <span className="text-gray-700 text-xs text-mobile-xs md:text-sm md:text-md">حول أمانة</span>
                     -
-                    <span className="text-gray-700">الشروط والأحكام</span>
-                    -
-                    <span className="text-gray-700">الخصوصية</span>
-                </div>
-                <div className="col-span-4 pb-4 flex justify-end items-center">
-                    <img className="mx-1" src="./images/icons/visa.png" alt="" />
-                    <img className="mx-1" src="./images/icons/master-card.png" alt="" />
-                    <img className="mx-1" src="./images/icons/paypal.png" alt="" />
-                </div>
+                <span className="text-gray-700 text-xs text-mobile-xs md:text-sm md:text-md">تواصل معنا</span>
+                -
+                <span className="text-gray-700 text-xs text-mobile-xs md:text-sm md:text-md">الشروط والأحكام</span>
+                -
+                <span className="text-gray-700 text-xs text-mobile-xs md:text-sm md:text-md">الخصوصية</span>
+            </div>
+            <div className="col-span-1 md:hidden order-3"></div>
+            <div className="col-span-12 md:col-span-3 lg:col-span-4 pb-4 flex justify-center md:justify-end items-center order-5 md:order-3 ">
+                <img className="mx-1 filter grayscale" src="./images/icons/visa.png" alt="" />
+                <img className="mx-1 filter grayscale" src="./images/icons/master-card.png" alt="" />
+                <img className="mx-1 filter grayscale" src="./images/icons/paypal.png" alt="" />
+            </div>
         </div>
     );
 

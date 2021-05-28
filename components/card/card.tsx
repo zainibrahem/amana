@@ -18,7 +18,7 @@ return (
             <li className="-mb-0.5 flex-auto text-center">
               <a
                 className={
-                  "text-xs font-bold uppercase px-5  border-black  block leading-normal " +
+                  "text-xs text-2xs font-bold uppercase px-5  border-black  block leading-normal " +
                   (openTab === 1
                     ? "text-black border-b-2"
                     : "text-black")
@@ -37,7 +37,7 @@ return (
             <li className="-mb-0.5 flex-auto text-center">
               <a
                   className={
-                    "text-xs font-bold uppercase px-5  border-black  block leading-normal " +
+                    "text-xs text-2xs font-bold uppercase px-5  border-black  block leading-normal " +
                     (openTab === 2
                       ? "text-black border-b-2"
                       : "text-black")
@@ -56,7 +56,7 @@ return (
             <li className="-mb-0.5 flex-auto text-center">
               <a
                   className={
-                    "text-xs font-bold uppercase px-5  border-black  block leading-normal " +
+                    "text-xs text-2xs font-bold uppercase px-5  border-black  block leading-normal " +
                     (openTab === 3
                       ? "text-black border-b-2"
                       : "text-black")

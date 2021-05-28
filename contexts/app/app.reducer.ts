@@ -3,6 +3,10 @@ export const initialState = {
   isSticky: false,
   isSidebarSticky: true,
   isDrawerOpen: true,
+  search: false,
+  Draggable:false,
+  toggleIcon:false
+  
 };
 
 type ActionType =
@@ -12,7 +16,13 @@ type ActionType =
   | { type: 'SET_SIDEBAR_STICKY' }
   | { type: 'REMOVE_SIDEBAR_STICKY' }
   | { type: 'OpenSideBar' }
-  | { type: 'TOGGLE_DRAWER' };
+  | { type: 'TOGGLE_DRAWER' }
+  | { type: 'NotDraggable' }
+  | { type: 'ToggleSearch' }
+  | { type: 'NotoggleIcon' }
+  | { type: 'toggleIcon' }
+  | { type: 'NoSearch' }
+  | { type: 'Draggable'};
 
 type StateType = typeof initialState;
 
@@ -28,6 +38,28 @@ export function appReducer(state: StateType, action: ActionType): StateType {
         ...state,
         isSticky: true,
       };
+    case 'ToggleSearch':
+      return {
+        ...state,
+        search: !state.search,
+      };
+    case 'toggleIcon':
+      return {
+        ...state,
+        toggleIcon: true,
+      };
+    case 'NotoggleIcon':
+      return {
+        ...state,
+        toggleIcon: false,
+      };
+      
+    case 'NoSearch':
+      return {
+        ...state,
+        search: false,
+      };
+      
     case 'REMOVE_STICKY':
       return {
         ...state,
@@ -48,6 +80,16 @@ export function appReducer(state: StateType, action: ActionType): StateType {
         ...state,
         isDrawerOpen: !state.isDrawerOpen,
       };
+      case 'Draggable':
+        return {
+          ...state,
+          Draggable: true,
+        };
+      case 'NotDraggable':
+        return {
+          ...state,
+          Draggable: false,
+        };
     case 'OpenSideBar' :
       return {
         ...state,

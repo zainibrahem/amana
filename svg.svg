@@ -1,0 +1,43 @@
+ <svg viewBox="-50 -50 100 100" width="100">
+                    <defs>
+                        <path id="sectorpath" d="M0,0 L38.97114317029974,-22.499999999999996 A45,45 0 0 1 38.97114317029974,22.499999999999996 L0,0 A0,0 0 0 0 0,0"></path>
+                    <mask id="themask">
+                        <use xlinkHref="#sectorpath" style="stroke:red;strokeWidth:3;fill:red"></use>
+                    </mask>
+                        <use xlinkHref="#sectorpath" id="sector" style="mask:url(#themask)"></use>
+                    </defs>
+
+                    <defs>
+                        <path id="sectorpath1" d="M0,0 L38.97114317029974,-22.499999999999996 A45,45 0 0 1 38.97114317029974,22.499999999999996 L0,0 A0,0 0 0 0 0,0"></path>
+                    <mask id="themask1">
+                    <use xlinkHref="#sectorpath1" style="stroke:white;strokeWidth:3;fill:white"></use>
+                    </mask>
+                    <use xlinkHref="#sectorpath1" id="sector1" style="mask:url(#themask1)"></use>
+                    </defs>
+
+                    <defs>
+                        <path id="sectorpath2" d="M0,0 L38.97114317029974,-22.499999999999996 A45,45 0 0 1 38.97114317029974,22.499999999999996 L0,0 A0,0 0 0 0 0,0"></path>
+                    <mask id="themask2">
+                    <use xlinkHref="#sectorpath2" style="stroke:yellow;strokeWidth:3;fill:yellow"></use>
+                    </mask>
+                    <use xlinkHref="#sectorpath2" id="sector2" style="mask:url(#themask2)"></use>
+                    </defs>
+
+                            <a className="second">
+                              <g>
+                                <use xlinkHref="#sector" transform="rotate(-90)" ></use>
+                              </g>  
+                            </a>
+                            
+                            <a className="second">
+                              <g>
+                                <use xlinkHref="#sector1" transform="rotate(-30)"></use>
+                              </g>
+                            </a>
+                        
+                            <a className="second">
+                              <g>
+                                <use xlinkHref="#sector" transform="rotate(210)"></use>
+                              </g>
+                            </a>
+                    </svg>

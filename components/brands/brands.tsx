@@ -11,13 +11,14 @@ export default function Brands () {
     // Handler to call on window resize
     function handleResize() {
       const eleWidth = document.querySelector('#element').clientWidth;
-      
+        
       
       // Set window width/height to state
       setHeight(eleWidth);
     }
     // Add event listener
     window.addEventListener("resize", handleResize);
+
     // Call handler right away so state gets updated with initial window size
     handleResize();
     // Remove event listener on cleanup
@@ -35,7 +36,7 @@ export default function Brands () {
         },
     
         620: {
-          slidesPerView:4,
+          slidesPerView:5,
         },
     
         820: {
@@ -88,9 +89,14 @@ export default function Brands () {
       },
     };
         return (
+          <div className="grid grid-cols-12 gap-4 p-2">
+            <div className="col-span-12 px-2">
+
+            
             <Swiper
             spaceBetween={5}
             slidesPerView={10}
+            // resizeObserver={true}
             autoplay={{
               pauseOnMouseEnter:true,
               delay:4000
@@ -101,63 +107,65 @@ export default function Brands () {
             // onSwiper={(swiper) => console.log(swiper)}
           >
             <SwiperSlide>
-                <div id="element" className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-full" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
+                <div id="element" className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-11/12" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
                 <h4 className="text-center mt-2">Lemon Lemon</h4>
             </SwiperSlide>
             <SwiperSlide>
-                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-full" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
+                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-11/12" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
                 <h4 className="text-center mt-2">Lemon Lemon</h4>
             </SwiperSlide>
             <SwiperSlide>
-                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-full" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
+                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-11/12" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
                 <h4 className="text-center mt-2">Lemon Lemon</h4>
             </SwiperSlide>
             <SwiperSlide>
-                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-full" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
+                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-11/12" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
                 <h4 className="text-center mt-2">Lemon Lemon</h4>
             </SwiperSlide>
             <SwiperSlide>
-                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-full" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
+                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-11/12" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
                 <h4 className="text-center mt-2">Lemon Lemon</h4>
             </SwiperSlide>
             <SwiperSlide>
-                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-full" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
+                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-11/12" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
                 <h4 className="text-center mt-2">Lemon Lemon</h4>
             </SwiperSlide>
             <SwiperSlide>
-                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-full" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
+                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-11/12" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
                 <h4 className="text-center mt-2">Lemon Lemon</h4>
             </SwiperSlide>
             <SwiperSlide>
-                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-full" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
+                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-11/12" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
                 <h4 className="text-center mt-2">Lemon Lemon</h4>
             </SwiperSlide>
             <SwiperSlide>
-                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-full" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
+                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-11/12" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
                 <h4 className="text-center mt-2">Lemon Lemon</h4>
             </SwiperSlide>
             <SwiperSlide>
-                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-full" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
+                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-11/12" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
                 <h4 className="text-center mt-2">Lemon Lemon</h4>
             </SwiperSlide>
             <SwiperSlide>
-                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-full" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
+                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-11/12" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
                 <h4 className="text-center mt-2">Lemon Lemon</h4>
             </SwiperSlide>
             <SwiperSlide>
-                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-full" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
+                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-11/12" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
                 <h4 className="text-center mt-2">Lemon Lemon</h4>
             </SwiperSlide>
             <SwiperSlide>
-                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-full" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
+                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-11/12" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
                 <h4 className="text-center mt-2">Lemon Lemon</h4>
             </SwiperSlide>
             <SwiperSlide>
-                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-full" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
+                <div className="rounded-full elements left-2/4 relative transform -translate-x-1/2 w-11/12" style={{height:Height,backgroundColor:'white',backgroundImage:'url(/images/brands/ssss.png)',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
                 <h4 className="text-center mt-2">Lemon Lemon</h4>
             </SwiperSlide>
             {/* <SwiperPagination></SwiperPagination> */}
           </Swiper>
+          </div>
+          </div>
     );
 }
 

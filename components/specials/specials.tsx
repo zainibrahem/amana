@@ -14,8 +14,8 @@ export default function Specials () {
 return (
     <>
         <Title title={title}></Title>
-        <div className="grid grid-cols-12  gap-4    ">
-            <div className="col-span-12 md:col-span-4">
+        <div className="grid grid-cols-12  gap-4">
+            <div className="col-span-12 md:col-span-4 order-1 md:order-0">
                 <div className="grid grid-cols-12  gap-4 rounded bg-white shadow-md py-2">
                     <div className="col-span-12 flex flex-row-reverse justify-start px-2">
                         <CardTitle title={brands}></CardTitle>
@@ -25,8 +25,8 @@ return (
                     </div>
                 </div>
             </div>
-            <div className="col-span-12 md:col-span-8">
-                <div className="grid grid-cols-12  gap-4">
+            <div className="col-span-12 md:col-span-8 order-0 md:order-1">
+                <div className="grid grid-cols-12 gap-4">
                     <div className="col-span-6   rounded bg-white shadow-md ">
                         <div className="w-full h-41 rounded" style={{background:"url('https://k.nooncdn.com/cms/pages/20210213/3bc0a54552185869817ba573d97bba97/ar_cat-module-appliances.jpg')",backgroundSize:"cover",backgroundPosition:"center"}}></div>
                     </div>
