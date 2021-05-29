@@ -1,15 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { NavBar } from '../components/navbar/navbar';
-import {SideBar} from '../components/sidebar/sidebar';
+import SideBar from '../components/sidebar/sidebar';
 import { useAppState, useAppDispatch } from '../contexts/app/app.provider';
 import Footer from '../components/footer/footer';
 
-export const Layout = (props) => {
+
+interface ListItem {
+  messages: any
+  categories_groups: object
+  carts:any
+ }
+
+ export default function Layout(props) {
     const isDrawerOpen = useAppState('isDrawerOpen');
+    const Loading = useAppState('Loading');
     const [opens,setOpens] = useState(false);
+    const [widths,setWidths] = useState(0);
+
+    const [data,setData] = useState(null);
+    const [userId,setUserId] = useState(0); 
+
     const toggleopens = ()=>{
       setOpens(!opens)
     }
+
     const dispatch = useAppDispatch();
     // Toggle drawer
     const toggleHandler = React.useCallback(() => {
@@ -19,48 +33,53 @@ export const Layout = (props) => {
         console.log(isDrawerOpen);
       }, [dispatch]
       );
-      const [el2, setEl2] = useState(0);
-      useEffect(() => {
-        setEl2(document.querySelector('#col').clientWidth) ;
-      });
-const size = useWindowSize();
 
-      // Hook
-function useWindowSize() {
-  // Initialize state with undefined width/height so server and client renders match
-  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
-  const [windowSize, setWindowSize] = useState({
-    width: undefined,
-  });
+
+
+      const toggleLoader = React.useCallback(() => {
+        dispatch({
+          type: 'Loaded',
+        });
+      }, [dispatch]
+      );
+
+    
+
+      useEffect(() => {
+        fetch("https://amanacart.com/api/navbar")
+         .then(res => res.json())
+         .then(result =>{
+           toggleLoader();
+           setData(result.data);
+         })
+         .catch(e => {
+           console.log(e);
+       });
+     },[widths])
+      const [el2, setEl2] = useState(0);
+
+
+        useEffect(() => {
+          setEl2(200) ;
+        })
+     
+       
   useEffect(() => {
-    // Handler to call on window resize
-    function handleResize() {
-      // Set window width/height to state
-      setWindowSize({
-        width: el2,
-      });
-    }
-    // Add event listener
-    window.addEventListener("resize", handleResize);
-    // Call handler right away so state gets updated with initial window size
-    handleResize();
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
-  return windowSize;
-}
+    setWidths(window.innerWidth);
+  },[])
     return (
-        <div>
+      data?
+        <>
         <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 sm:col-span-12 h-13 md:col-span-12 relative z-50 lg:col-span-12 xl:col-span-12">
-              <NavBar toggleHandler={toggleHandler}></NavBar>
+              <NavBar  toggleHandler={toggleHandler}></NavBar>
             </div>
             <div className={isDrawerOpen?"contentss pb-16 md:pb-0 overflow-hidden col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-9 xl:col-span-10 pl-4 pr-4 lg:pr-0":"sm:col-span-12 sm:pr-4 md:pr-1 md:col-span-11 lg:col-span-11 xl:col-span-11 pl-4 overflow-hidden contentss pb-16 md:pb-0"}>
                {props.children}
                <Footer></Footer>
             </div>
             <div id="col" className={isDrawerOpen?"hidden relative sm:col-span-4 md:col-span-3 lg:block lg:col-span-3 xl:col-span-2 overflow-x-hidden":"hidden overflow-x-hidden md:block md:col-span-1 lg:col-span-1 xl:col-span-1 relative"}>
-                <SideBar width={el2}></SideBar>
+                <SideBar cats={data} width={el2}></SideBar>
             </div>
             <div className="block md:hidden col-span-12 z-50">
               <div className="w-full fixed bottom-0 h-16">
@@ -71,7 +90,7 @@ function useWindowSize() {
                         <path id="sectorpath" d="M0,0 L38.97114317029974,-22.499999999999996 A45,45 0 0 1 38.97114317029974,22.499999999999996 L0,0 A0,0 0 0 0 0,0">
                         </path>
                     <mask id="themask">
-                        <use xlinkHref="#sectorpath"  fill-opacity="1"  style={{stroke:"rgb(180,180,180,1)",strokeWidth:"3",fill:"rgb(180, 180, 180,1)"}}>
+                        <use xlinkHref="#sectorpath"  fillOpacity="1"  style={{stroke:"rgb(180,180,180,1)",strokeWidth:"3",fill:"rgb(180, 180, 180,1)"}}>
                         </use>
                     </mask>
                         <use xlinkHref="#sectorpath" id="sector" style={{mask:"url(#themask)"}}></use>
@@ -149,7 +168,9 @@ function useWindowSize() {
               </div>
             </div>
         </div>
-      </div>
-    );
+      </>
+    :<>
+    </>
+   );
 
 };

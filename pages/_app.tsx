@@ -1,6 +1,6 @@
 import 'tailwindcss/tailwind.css'
 import '../styles/globals.css';
-import {Layout} from '../layouts/layout';
+import Layout from '../layouts/layout';
 import { AppProvider, useAppDispatch, useAppState } from '../contexts/app/app.provider';
 import 'swiper/swiper.scss';
 import 'swiper/components/pagination/pagination.scss';

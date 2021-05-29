@@ -14,10 +14,18 @@ import { Waypoint } from 'react-waypoint';
 export default function Home() {
   const [widths,setWidths] = useState(0);
   const dispatch = useAppDispatch();
-
+  const [data,setData] = useState();
+  const [datas,setDatas] = useState(null);
+  const [userId,setUserId] = useState(0);
   const togglesearch = React.useCallback(() => {
     dispatch({
       type: 'NoSearch',
+    });
+  }, [dispatch]
+  );
+  const toggleLoader = React.useCallback(() => {
+    dispatch({
+      type: 'Loaded',
     });
   }, [dispatch]
   );
@@ -33,13 +41,25 @@ export default function Home() {
     });
   }, [dispatch]
   );
-  
-  
+  useEffect(() => {
+     fetch("https://amanacart.com/api/home")
+      .then(res => res.json())
+      .then(result =>{
+        toggleLoader();
+        setData(result.data);
+      })
+      .catch(e => {
+        console.log(e);
+    });
+  },[userId])
+
 
   useEffect(() => {
-     setWidths(window.innerWidth);
-  });
+    setWidths(window.innerWidth);
+  })
+
   return (
+    data?
     <>
       <SearchBar></SearchBar>
       <Waypoint
@@ -47,11 +67,16 @@ export default function Home() {
       onLeave={toggleIcon}
       />
       
-      <div className="special-brands-slider">
-        <Slider></Slider>
-        </div>
-        <Banners></Banners>
-    
+      <div className="special-brands-slider mt-6 md:mt-0">
+        <Slider sliders={data.first_slider}></Slider>
+      </div>
+      {datas?
+        <Banners data={data.banners}></Banners>
+        :
+        <>
+        </>
+      }
+      
       <Waypoint
       onEnter={toggleIcon}
       >
@@ -63,22 +88,25 @@ export default function Home() {
         onEnter={togglesearch}
       >
         <div>
-        <Categories></Categories>
+        <Categories data={data.banners_slider}></Categories>
         </div>
       </Waypoint>
-      <Card color="pink" title="الشائع في أمانة"></Card>
-      <Deal></Deal>
+      <Card color="pink" title="الشائع في أمانة" data={data.trending_now}></Card>
+      <Deal data={data.deal_of_the_day}></Deal>
       <Card color="pink" title="وصل حديثا"></Card>
-      <Specials></Specials>
-       
-      <Cat></Cat>
-      <Cat></Cat>
-      <Cat></Cat>
+      <Specials cats={data.featured_categories} brands={data.featured_brands}></Specials>
+      {data.categories_sections.map((ele,index) => 
+        <Cat key={ele.id} data={ele}></Cat>
+      )}
 
     
-      <Proposals></Proposals>
+      <Proposals slider={data.second_slider} data={data.suggested_items}></Proposals>
 
 
+    </>
+  
+    :
+    <>
     </>
   )
 }

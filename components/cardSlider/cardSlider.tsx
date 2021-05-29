@@ -4,7 +4,7 @@ import ProductCard from '../productCard/productCard';
 import { useState } from 'react';
 import { useAppState } from '../../contexts/app/app.provider';
 // import Slide1 from '../../public/images/slider/maher.png';
-export default function CardSlider () {
+export default function CardSlider (props) {
   SwiperCore.use([Navigation,Autoplay, Pagination, Scrollbar]);
   const isDrawerOpen = useAppState('isDrawerOpen');
 
@@ -41,6 +41,7 @@ export default function CardSlider () {
    
       
     return (
+      props.cards?
         <>
         <div className="block md:hidden card-slider">
 
@@ -132,42 +133,12 @@ export default function CardSlider () {
         }}
         resizeObserver={true}
         >
-        <SwiperSlide>
-            <ProductCard></ProductCard>
-        </SwiperSlide>
-        <SwiperSlide>
-            <ProductCard></ProductCard>
-        </SwiperSlide>
-        <SwiperSlide>
-            <ProductCard></ProductCard>
-        </SwiperSlide>
-        <SwiperSlide>
-            <ProductCard></ProductCard>
-        </SwiperSlide>
-        <SwiperSlide>
-            <ProductCard></ProductCard>
-        </SwiperSlide>
-        <SwiperSlide>
-            <ProductCard></ProductCard>
-        </SwiperSlide>
-        <SwiperSlide>
-            <ProductCard></ProductCard>
-        </SwiperSlide>
-        <SwiperSlide>
-            <ProductCard></ProductCard>
-        </SwiperSlide>
-        <SwiperSlide>
-            <ProductCard></ProductCard>
-        </SwiperSlide>
-        <SwiperSlide>
-            <ProductCard></ProductCard>
-        </SwiperSlide>
-        <SwiperSlide>
-            <ProductCard></ProductCard>
-        </SwiperSlide>
-        <SwiperSlide>
-            <ProductCard></ProductCard>
-        </SwiperSlide>
+        {props.cards.map(ele => 
+          <SwiperSlide key={ele.id}>
+              <ProductCard card={ele}></ProductCard>
+          </SwiperSlide>
+        )}
+        
         <div className="swiper-button-prev"></div>
         <div className="swiper-button-next"></div>
         {/* <SwiperPagination></SwiperPagination> */}
@@ -175,5 +146,8 @@ export default function CardSlider () {
       </div>
 
         </>
+      :
+      <>
+      </>
     );
 }

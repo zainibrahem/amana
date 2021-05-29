@@ -1,13 +1,16 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay,Navigation, Pagination, Scrollbar } from 'swiper/core';
 import { useAppDispatch, useAppState } from '../../contexts/app/app.provider';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // import Slide1 from '../../public/images/slider/maher.png';
-export default function Slider () {
+export default function Slider (props) {
   SwiperCore.use([Navigation,Autoplay, Pagination, Scrollbar]);
   const Draggable = useAppState('Draggable');
+  const Loading = useAppState('Loading');
   const dispatch = useAppDispatch();
+  const [sliders,setSliders]=useState([]);
+  const [userId,setUserId] = useState(0);
 
   const  toggleDrag = React.useCallback(() => {
     dispatch({
@@ -16,8 +19,14 @@ export default function Slider () {
     console.log('dragging');
   }, [dispatch]
   );
+//   useEffect(() => {
+//     setSliders(props.sliders);
+//     console.log('props.sliders');
+//     console.log(props.sliders);
+//  },[userId])
   
     return (
+      props.sliders?
       <div className="slider rounded" onClick={()=>console.log('asdasd')}>
         <Swiper
         spaceBetween={20}
@@ -35,13 +44,23 @@ export default function Slider () {
         // onSlideChange={() => console.log('slide change')}
         // onSwiper={(swiper) => console.log(swiper)}
       >
-        <SwiperSlide>
-            <div className="img rounded w-full h-36 sm:h-36 lg:h-90" style={{background:"url('./images/slider/maher.png')"}}></div>
-        </SwiperSlide>
-        <SwiperSlide>
-            <div className="img rounded w-full h-36 sm:h-36 lg:h-90" style={{background:"url('./images/slider/maher.png')"}}></div>
-        </SwiperSlide>
+        {props.sliders.map(ele => 
+          <SwiperSlide key={ele.id}>
+            {ele.image!=null?
+            <div className={`img rounded w-full h-36 sm:h-36 lg:h-90 ${Loading?"skeleton-box":""}`} style={Loading?{}:{backgroundImage:"url("+ele.image.path+")"}}></div>
+            :"sss"
+            }
+          </SwiperSlide>
+        )}
+        {/* <SwiperSlide>
+        <div className={`img rounded w-full h-36 sm:h-36 lg:h-90 ${Loading?"skeleton-box":""}`} style={Loading?{}:{backgroundImage:"url('./images/slider/maher.png')"}}></div>
+        </SwiperSlide> */}
         {/* <SwiperPagination></SwiperPagination> */}
       </Swiper>
       </div>
+
+      :
+      <>
+     
+      </>
 );}

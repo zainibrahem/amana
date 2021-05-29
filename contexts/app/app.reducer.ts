@@ -5,7 +5,8 @@ export const initialState = {
   isDrawerOpen: true,
   search: false,
   Draggable:false,
-  toggleIcon:false
+  toggleIcon:false,
+  Loading:true
   
 };
 
@@ -22,6 +23,7 @@ type ActionType =
   | { type: 'NotoggleIcon' }
   | { type: 'toggleIcon' }
   | { type: 'NoSearch' }
+  | { type: 'Loaded' }
   | { type: 'Draggable'};
 
 type StateType = typeof initialState;
@@ -37,6 +39,11 @@ export function appReducer(state: StateType, action: ActionType): StateType {
       return {
         ...state,
         isSticky: true,
+      };
+    case 'Loaded':
+      return {
+        ...state,
+        Loading: false,
       };
     case 'ToggleSearch':
       return {

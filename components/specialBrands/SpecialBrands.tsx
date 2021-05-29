@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay,Navigation, Pagination, Scrollbar } from 'swiper/core';
 
 // import Slide1 from '../../public/images/slider/maher.png';
-export default function SpecialBrands () {
+export default function SpecialBrands (props) {
   SwiperCore.use([Navigation,Autoplay, Pagination, Scrollbar]);
 
     return (
@@ -21,6 +21,7 @@ export default function SpecialBrands () {
         // onSlideChange={() => console.log('slide change')}
         // onSwiper={(swiper) => console.log(swiper)}
       >
+
         <SwiperSlide>
             <div className="grid grid-cols-12  gap-2 py-4">
                 <div className="col-span-1 sm:col-span-2 md:col-span-1"></div>
