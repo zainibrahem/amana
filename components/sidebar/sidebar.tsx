@@ -59,10 +59,10 @@ import { useAppDispatch, useAppState } from '../../contexts/app/app.provider';
                     items[i].children[1].classList.remove('block');
                     items[i].children[1].classList.add('hidden');
                     items[i].classList.add('max-h-11');
+                    items[i].classList.add('backgroundwhite');
                     items[i].classList.remove('max-h-96');
                     items[i].classList.remove('transition-all');
                     items[i].classList.remove('duration-1000');
-                    items[i].style.background="#fff";
                 }
             
             event.currentTarget.children[1].classList.remove('hidden');
@@ -165,7 +165,7 @@ import { useAppDispatch, useAppState } from '../../contexts/app/app.provider';
                                         الكترونيات
                                         <div className="rounded-full w-6 h-4 ml-2 cursor-pointer" onClick={()=> setShown(0)} style={{background:"url('./images/right-arrow.svg')",backgroundSize:"cover",backgroundPosition:"center"}}></div>
                                     </li>
-                                    {ele.sub_groups.map(sub =>
+                                     {ele.sub_groups.map(sub =>
                                      <li onClick={toggleAccordoin} className="overflow-hidden duration-1000 transition-all cursor-pointer w-full flex flex-col pt-2 pb-2 px-3 justify-start items-center text-sm hover-side items">
                                         <div className="flex justify-end items-center w-full">
                                                 {sub.name}
@@ -186,7 +186,7 @@ import { useAppDispatch, useAppState } from '../../contexts/app/app.provider';
                                    )}
                                     </ul>
                             )}
-                            
+
                             </div>
                             <div className="ul  mt-2 ltr">
                                 <ul className="flex h-full flex-col justify-between items-center">

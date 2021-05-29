@@ -34,6 +34,9 @@ body{
 .slideLeft{
   animation: slideLeft .6s forwards;
 }
+.backgroundwhite{
+  background:white !important;
+}
 .centered{
   animation: slideRight .6s forwards;
 }
