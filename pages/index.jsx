@@ -70,12 +70,8 @@ export default function Home() {
       <div className="special-brands-slider mt-6 md:mt-0">
         <Slider sliders={data.first_slider}></Slider>
       </div>
-      {datas?
         <Banners data={data.banners}></Banners>
-        :
-        <>
-        </>
-      }
+      
       
       <Waypoint
       onEnter={toggleIcon}

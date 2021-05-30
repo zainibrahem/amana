@@ -136,7 +136,7 @@ export default function ProductCard (props) {
                     <div className="text-xs flex flex-col justify-between items-center mt-2 relative desc">
                         <p className={!counter?`text-right leading-5  h-8 overflow-hidden ${Loading?"skeleton-box":""}`:`text-right leading-5  h-8 overflow-hidden ${Loading?"skeleton-box":""}`}>
                             <span style={Loading?{opacity:"0"}:{}}>
-                                وصف المنتج الأول  الذي الذي ستقوم بشراءه ويمكنك استعراض تفاصيله عبر الضغط على الصورة أعلاه 
+                                {props.card.description}
                             </span>
                         </p>
                         <p  className={counter?`text-right opacity-0 transition-all self-end lg:self-center text-xs  overflow-hidden text-gray-500 mt-2 before-hover ${Loading?"skeleton-box":""}`:`text-right opacity-1 transition-all self-end lg:self-center text-xs  overflow-hidden text-gray-500 mt-2 before-hover ${Loading?"skeleton-box":""}`}>

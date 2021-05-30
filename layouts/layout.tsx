@@ -3,6 +3,7 @@ import { NavBar } from '../components/navbar/navbar';
 import SideBar from '../components/sidebar/sidebar';
 import { useAppState, useAppDispatch } from '../contexts/app/app.provider';
 import Footer from '../components/footer/footer';
+import { AuthContext } from '../contexts/auth/auth.context';
 
 
 interface ListItem {
@@ -19,7 +20,10 @@ interface ListItem {
 
     const [data,setData] = useState(null);
     const [userId,setUserId] = useState(0); 
-
+    const {
+      authState: { isAuthenticated },
+      authDispatch,
+    } = React.useContext<any>(AuthContext);
     const toggleopens = ()=>{
       setOpens(!opens)
     }
@@ -49,8 +53,10 @@ interface ListItem {
         fetch("https://amanacart.com/api/navbar")
          .then(res => res.json())
          .then(result =>{
-           toggleLoader();
-           setData(result.data);
+          toggleLoader();
+          setData(result.data);
+          const wid = document.querySelector('#col').clientWidth;
+          setEl2(wid) ;
          })
          .catch(e => {
            console.log(e);
@@ -58,28 +64,51 @@ interface ListItem {
      },[widths])
       const [el2, setEl2] = useState(0);
 
-
-        useEffect(() => {
-          setEl2(200) ;
-        })
+      const handleJoin = () => {
+        authDispatch({
+          type: 'SIGNIN',
+        });
+    
+        // openModal({
+        //   show: true,
+        //   overlayClassName: 'quick-view-overlay',
+        //   closeOnClickOutside: true,
+        //   component: AuthenticationForm,
+        //   closeComponent: '',
+        //   config: {
+        //     enableResizing: false,
+        //     disableDragging: true,
+        //     className: 'quick-view-modal',
+        //     width: 458,
+        //     height: 'auto',
+        //   },
+        // });
+      };
      
        
   useEffect(() => {
+    const wid = document.querySelector('#col').clientWidth;
+    setEl2(wid) ;
     setWidths(window.innerWidth);
-  },[])
+  })
     return (
-      data?
         <>
         <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 sm:col-span-12 h-13 md:col-span-12 relative z-50 lg:col-span-12 xl:col-span-12">
+              {data?
               <NavBar  toggleHandler={toggleHandler}></NavBar>
+              :<></>}
             </div>
             <div className={isDrawerOpen?"contentss pb-16 md:pb-0 overflow-hidden col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-9 xl:col-span-10 pl-4 pr-4 lg:pr-0":"sm:col-span-12 sm:pr-4 md:pr-1 md:col-span-11 lg:col-span-11 xl:col-span-11 pl-4 overflow-hidden contentss pb-16 md:pb-0"}>
                {props.children}
                <Footer></Footer>
             </div>
             <div id="col" className={isDrawerOpen?"hidden relative sm:col-span-4 md:col-span-3 lg:block lg:col-span-3 xl:col-span-2 overflow-x-hidden":"hidden overflow-x-hidden md:block md:col-span-1 lg:col-span-1 xl:col-span-1 relative"}>
+            {data?
                 <SideBar cats={data} width={el2}></SideBar>
+                :
+              <></>
+            }
             </div>
             <div className="block md:hidden col-span-12 z-50">
               <div className="w-full fixed bottom-0 h-16">
@@ -169,8 +198,6 @@ interface ListItem {
             </div>
         </div>
       </>
-    :<>
-    </>
    );
 
 };

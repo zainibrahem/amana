@@ -17,25 +17,7 @@ import { useAppDispatch, useAppState } from '../../contexts/app/app.provider';
             console.log(props.cats)
             setCatss(props.cats);
         },[])
-    // useEffect(() => {
-    //     fetch("https://amanacart.com/api/navbar")
-    //      .then(res => res.json())
-    //      .then(result =>{
-    //        toggleLoader();
-    //        setData(result.data);
-    //        console.log(data);
-    //      })
-    //      .catch(e => {
-    //        console.log(e);
-    //    });
-    //  },[userId])
-
-    //  const toggleLoader = React.useCallback(() => {
-    //     dispatch({
-    //       type: 'Loaded',
-    //     });
-    //   }, [dispatch]
-    //   );
+  
 
     const toggleAccordoin = (event) => {
         
@@ -91,7 +73,7 @@ import { useAppDispatch, useAppState } from '../../contexts/app/app.provider';
                         </div>
                         <ul  className={isDrawerOpen?"flex flex-col justify-between items-center border-b-2 pb-2 w-11/12":"flex flex-col justify-between items-center  w-full"}>
                                 <li className={isDrawerOpen?`pt-2 pb-2  w-full flex flex-row justify-end items-center ${Loading?"skeleton-box mt-1":""}`:`pt-2 small-hover text-xs pb-2 w-full flex flex-col-reverse justify-center items-center ${Loading?"skeleton-box mt-1":""}`}>
-                                    <div style={Loading?{opacity:"0"}:{}} className="w-full flex flex-row justify-end items-center">
+                                    <div style={Loading?{opacity:"0"}:{}} className={`w-full flex ${isDrawerOpen?"flex-row justify-end items-center":"flex-col-reverse justify-center items-center"}  `}>
                                         {isDrawerOpen?
                                             "الصفحة الرئيسية":"الرئيسية"
                                         }
@@ -101,7 +83,7 @@ import { useAppDispatch, useAppState } from '../../contexts/app/app.provider';
                                     </div>
                                 </li>
                                 <li className={isDrawerOpen?`pt-2 pb-2  w-full flex flex-row justify-end items-center ${Loading?"skeleton-box mt-1":""}`:`pt-2 text-xs small-hover pb-2 w-full flex flex-col-reverse justify-center items-center ${Loading?"skeleton-box mt-1":""}`}>
-                                    <div style={Loading?{opacity:"0"}:{}} className="w-full flex flex-row justify-end items-center">
+                                <div style={Loading?{opacity:"0"}:{}} className={`w-full flex ${isDrawerOpen?"flex-row justify-end items-center":"flex-col-reverse justify-center items-center"}  `}>
                                         استكشاف
                                         <svg className={isDrawerOpen?"ml-3 w-5":"w-5"} xmlns="http://www.w3.org/2000/svg" width="30.259" height="23.53" viewBox="0 0 30.259 23.53">
                                             <path id="Icon_awesome-home" data-name="Icon awesome-home" d="M14.727,8.358,5.042,16.334v8.609a.84.84,0,0,0,.84.84l5.886-.015a.84.84,0,0,0,.836-.84V19.9a.84.84,0,0,1,.84-.84h3.362a.84.84,0,0,1,.84.84v5.024a.84.84,0,0,0,.84.843l5.884.016a.84.84,0,0,0,.84-.84V16.328L15.531,8.358A.64.64,0,0,0,14.727,8.358Zm15.3,5.421-4.391-3.62V2.884a.63.63,0,0,0-.63-.63H22.062a.63.63,0,0,0-.63.63V6.7l-4.7-3.869a2.521,2.521,0,0,0-3.2,0L.228,13.779a.63.63,0,0,0-.084.888L1.483,16.3a.63.63,0,0,0,.888.086L14.727,6.2a.64.64,0,0,1,.8,0L27.887,16.381a.63.63,0,0,0,.888-.084l1.339-1.628a.63.63,0,0,0-.089-.889Z" transform="translate(0.001 -2.254)" fill="#2c2c2c"/>
@@ -114,7 +96,7 @@ import { useAppDispatch, useAppState } from '../../contexts/app/app.provider';
                                 {isDrawerOpen?
                                 "":(
                                 <li className={isDrawerOpen?`pt-2 pb-2  w-full flex flex-row justify-end items-center ${Loading?"skeleton-box mt-1":""}`:`pt-2 text-xs small-hover pb-2 w-full flex flex-col-reverse justify-center items-center ${Loading?"skeleton-box mt-1":""}`}>
-                                    <div style={Loading?{opacity:"0"}:{}} className="w-full flex flex-row justify-end items-center">
+                                    <div style={Loading?{opacity:"0"}:{}} className={`w-full flex ${isDrawerOpen?"flex-row justify-end items-center":"flex-col-reverse justify-center items-center"}  `}>
 
                                         التصنيفات
                                         <svg className={isDrawerOpen?"ml-3 w-5":"w-5"} xmlns="http://www.w3.org/2000/svg" width="30.259" height="23.53" viewBox="0 0 30.259 23.53">
@@ -127,7 +109,7 @@ import { useAppDispatch, useAppState } from '../../contexts/app/app.provider';
                                     {isDrawerOpen?
                                 "":(
                                 <li className={isDrawerOpen?`pt-2 pb-2  w-full flex flex-row justify-end items-center ${Loading?"skeleton-box mt-1":""}`:`pt-2 text-xs small-hover pb-2 w-full flex flex-col-reverse justify-center items-center ${Loading?"skeleton-box mt-1":""}`}>
-                                    <div style={Loading?{opacity:"0"}:{}} className="w-full flex flex-row justify-end items-center">
+                                    <div style={Loading?{opacity:"0"}:{}} className={`w-full flex ${isDrawerOpen?"flex-row justify-end items-center":"flex-col-reverse justify-center items-center"}  `}>
                                             التصنيفات
                                         <svg className={isDrawerOpen?"ml-3 w-5":"w-5"} xmlns="http://www.w3.org/2000/svg" width="30.259" height="23.53" viewBox="0 0 30.259 23.53">
                                             <path id="Icon_awesome-home" data-name="Icon awesome-home" d="M14.727,8.358,5.042,16.334v8.609a.84.84,0,0,0,.84.84l5.886-.015a.84.84,0,0,0,.836-.84V19.9a.84.84,0,0,1,.84-.84h3.362a.84.84,0,0,1,.84.84v5.024a.84.84,0,0,0,.84.843l5.884.016a.84.84,0,0,0,.84-.84V16.328L15.531,8.358A.64.64,0,0,0,14.727,8.358Zm15.3,5.421-4.391-3.62V2.884a.63.63,0,0,0-.63-.63H22.062a.63.63,0,0,0-.63.63V6.7l-4.7-3.869a2.521,2.521,0,0,0-3.2,0L.228,13.779a.63.63,0,0,0-.084.888L1.483,16.3a.63.63,0,0,0,.888.086L14.727,6.2a.64.64,0,0,1,.8,0L27.887,16.381a.63.63,0,0,0,.888-.084l1.339-1.628a.63.63,0,0,0-.089-.889Z" transform="translate(0.001 -2.254)" fill="#2c2c2c"/>

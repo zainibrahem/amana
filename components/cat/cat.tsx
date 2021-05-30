@@ -13,7 +13,7 @@ export default function Cat (props) {
     const Loading = useAppState("Loading");
     return (
       <>
-        <Title title={title}></Title>
+        <Title title={props.data.name}></Title>
         <div className="grid grid-cols-12 gap-4 py-2 bg-white shadow-md md:shadow-none sm:bg-transparent rounded pt-6 md:pt-0">
             {props.data.banners.map((ele,index) => 
                 <div key={ele.id} className="col-span-12 sm:col-span-4 px-2.5 md:px-0 ">
