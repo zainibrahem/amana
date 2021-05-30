@@ -38,9 +38,9 @@ export default function Slider (props) {
         pagination={{ clickable: true }}
         autoplay={{
           pauseOnMouseEnter:true,
-          delay:4000
+          delay:5000
         }}
-        speed={500}
+        speed={400}
         // onSlideChange={() => console.log('slide change')}
         // onSwiper={(swiper) => console.log(swiper)}
       >

@@ -113,35 +113,38 @@ export default function ProductCard (props) {
                 </div>
                 <div className={`flex bg-white flex-col justify-between items-center w-full px-2 py-2  info`}>
                     
-                        <span className={`${Loading?"skeleton-box":""} text-md self-end `}>
+                        <span className={`${Loading?"skeleton-box ":""} h-16 overflow-hidden text-md self-end `}>
                             <span style={Loading?{opacity:"0"}:{}}>
                                 {props.card.title}
                             </span>    
                         </span>
                         <div className="flex flex-row-reverse w-full justify-between mt-2">
-                        <span className={`text-md self-end font-bold text-black ${Loading?"skeleton-box":""}`} style={{direction:"rtl"}}>
-                            <span style={Loading?{opacity:"0"}:{}}>
+                        <span className={`text-md self-end  text-black ${Loading?"skeleton-box":""}`} style={{direction:"rtl"}}>
+                            <span style={Loading?{opacity:"0",fontWeight:"bold"}:{}} className="numberss">
                                 {props.card.has_offer?props.card.offer_price:props.card.price
                                 }
                             </span>
                         </span>
                         {props.card.discount?
-                        <div className={`${Loading?"skeleton-box":""}`}>
+                        <div className={`${Loading?"skeleton-box numbers font-bold":"numbers font-bold"}`}>
                             <span style={Loading?{opacity:"0"}:{}} className={`text-xs text-gray-500 relative discount self-end `}>
                                     {props.card.price}
                             </span>
                         </div>
                         :""}
                     </div>
-                    <div className="text-xs flex flex-col justify-between items-center mt-2 relative desc">
-                        <p className={!counter?`text-right leading-5  h-8 overflow-hidden ${Loading?"skeleton-box":""}`:`text-right leading-5  h-8 overflow-hidden ${Loading?"skeleton-box":""}`}>
-                            <span style={Loading?{opacity:"0"}:{}}>
+                    <div className="text-xs w-full flex flex-col justify-between items-center mt-2 relative desc">
+                        {/* <p className={!counter?`text-right leading-5  h-8 overflow-hidden ${Loading?"skeleton-box":""}`:`text-right leading-5  h-8 overflow-hidden ${Loading?"skeleton-box":""}`}>
+                            <span style={Loading?{opacity:"0"}:{}} className="text-gray-500">
                                 {props.card.description}
                             </span>
-                        </p>
-                        <p  className={counter?`text-right opacity-0 transition-all self-end lg:self-center text-xs  overflow-hidden text-gray-500 mt-2 before-hover ${Loading?"skeleton-box":""}`:`text-right opacity-1 transition-all self-end lg:self-center text-xs  overflow-hidden text-gray-500 mt-2 before-hover ${Loading?"skeleton-box":""}`}>
+                        </p> */}
+                        <p  className={counter?`text-right opacity-0 transition-all self-end lg:self-end text-xs  overflow-hidden text-gray-500 mt-2 before-hover ${Loading?"skeleton-box":""}`:`text-right opacity-1 transition-all self-end lg:self-end text-xs  overflow-hidden text-gray-500 mt-2 before-hover ${Loading?"skeleton-box":""}`}>
                             <span style={Loading?{opacity:"0"}:{}}>
-                                تصلك يوم الثلاثاء
+                                        تصلك &nbsp;
+                                <span className="font-bold">
+                                     يوم الثلاثاء
+                                </span>
                             </span>
                         </p>
                         <div onClick={toggleCounter} className={!counter?"card-mobile z-20 transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-10 h-7 bg-gray-100 left-0 bottom-0":"z-20  transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-full h-7 bg-gray-100 left-0  bottom-0 card-mobile"}>

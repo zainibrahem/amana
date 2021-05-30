@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NavBar } from '../components/navbar/navbar';
+import Modal from '../components/modal/modal';
 import SideBar from '../components/sidebar/sidebar';
 import { useAppState, useAppDispatch } from '../contexts/app/app.provider';
 import Footer from '../components/footer/footer';
 import { AuthContext } from '../contexts/auth/auth.context';
-
 
 interface ListItem {
   messages: any
@@ -17,7 +17,7 @@ interface ListItem {
     const Loading = useAppState('Loading');
     const [opens,setOpens] = useState(false);
     const [widths,setWidths] = useState(0);
-
+    const modal = useAppState('Modal');
     const [data,setData] = useState(null);
     const [userId,setUserId] = useState(0); 
     const {
@@ -34,7 +34,6 @@ interface ListItem {
         dispatch({
           type: 'TOGGLE_DRAWER',
         });
-        console.log(isDrawerOpen);
       }, [dispatch]
       );
 
@@ -46,6 +45,8 @@ interface ListItem {
         });
       }, [dispatch]
       );
+
+    
 
     
 
@@ -64,10 +65,7 @@ interface ListItem {
      },[widths])
       const [el2, setEl2] = useState(0);
 
-      const handleJoin = () => {
-        authDispatch({
-          type: 'SIGNIN',
-        });
+     
     
         // openModal({
         //   show: true,
@@ -83,20 +81,20 @@ interface ListItem {
         //     height: 'auto',
         //   },
         // });
-      };
      
-       
+ 
   useEffect(() => {
     const wid = document.querySelector('#col').clientWidth;
     setEl2(wid) ;
     setWidths(window.innerWidth);
   })
+
     return (
         <>
         <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 sm:col-span-12 h-13 md:col-span-12 relative z-50 lg:col-span-12 xl:col-span-12">
               {data?
-              <NavBar  toggleHandler={toggleHandler}></NavBar>
+              <NavBar carts={data} auth={isAuthenticated}  toggleHandler={toggleHandler}></NavBar>
               :<></>}
             </div>
             <div className={isDrawerOpen?"contentss pb-16 md:pb-0 overflow-hidden col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-9 xl:col-span-10 pl-4 pr-4 lg:pr-0":"sm:col-span-12 sm:pr-4 md:pr-1 md:col-span-11 lg:col-span-11 xl:col-span-11 pl-4 overflow-hidden contentss pb-16 md:pb-0"}>
@@ -110,6 +108,9 @@ interface ListItem {
               <></>
             }
             </div>
+            
+              <Modal></Modal>
+            
             <div className="block md:hidden col-span-12 z-50">
               <div className="w-full fixed bottom-0 h-16">
                 <div className="grid grid-cols-11 h-full bg-white shadow py-2">

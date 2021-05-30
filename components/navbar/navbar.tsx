@@ -15,11 +15,34 @@ export const NavBar = (props) => {
     const searchIcon = useAppState('toggleIcon');
     const Loading = useAppState('Loading');
 
- 
-
+    
+    const Token = useAppState('Token');
     
 
+    const handlelogout = () =>{
+        console.log('asdasd');
+        fetch('https://amanacart.com/api/auth/logout', {
+            method: 'post',
+            headers: {
+                'Content-Type':'application/json',
+                'Authorization':`Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        .then( async response => {
+            const isJson = response.headers.get('content-type')?.includes('application/json');
+            const data = isJson && await response.json();
 
+            // check for error response
+            if (!response.ok) {
+                // get error message from body or default to response status
+                const error = (data && data.message) || response.status;
+                return Promise.reject(error);
+            }
+            
+            localStorage.removeItem('token');
+            window.location.reload(false);
+        })
+    }
     const toggleprofile = () => {
         setProfile(!profile);
         setCart(false);
@@ -65,23 +88,25 @@ export const NavBar = (props) => {
             /**
              * Alert if clicked on outside of element
              */
-          
+            
             function handleClickOutside(event) {
-               
-                if (ref.current && !ref.current.contains(event.target) && !ref.current.nextSibling.contains(event.target)) {
-                    if(ref.current.id == "messages"){
-                        setMessages(false);
+               if(props.auth){
+
+                   if (ref.current && !ref.current.contains(event.target) && !ref.current.nextSibling.contains(event.target)) {
+                       if(ref.current.id == "messages"){
+                           setMessages(false);
+                        }
+                        if(ref.current.id == "carts"){
+                            setCart(false)
+                        }
+                        if(ref.current.id == "notifications"){
+                            setNotifications(false);
+                        }
+                        if(ref.current.id == "profile"){
+                            setProfile(false);
+                        }
+                        
                     }
-                    if(ref.current.id == "carts"){
-                        setCart(false)
-                    }
-                    if(ref.current.id == "notifications"){
-                        setNotifications(false);
-                    }
-                    if(ref.current.id == "profile"){
-                        setProfile(false);
-                    }
-                 
                 }
             }
     
@@ -96,7 +121,12 @@ export const NavBar = (props) => {
         }, [ref]);
     }
   
-  
+    const toggleModal = React.useCallback(() => {
+        dispatch({
+          type: 'TOGGLE_Modal',
+        });
+      }, [dispatch]
+      );
     const profileRef = useRef(null);
     const cartRef = useRef(null);
     const messagesRef = useRef(null);
@@ -169,11 +199,11 @@ export const NavBar = (props) => {
                         <svg onClick={togglesearch} xmlns="http://www.w3.org/2000/svg" className='mr-3 ml-3 block md:hidden' width="18.179" height="18.179" viewBox="0 0 18.179 18.179">
                             <path id="search_icon" d="M6.817,0a6.817,6.817,0,0,0,0,13.634,6.817,6.817,0,0,0,3.693-.994l5.4,5.539,2.272-2.272-5.539-5.4a6.817,6.817,0,0,0,.994-3.693A6.817,6.817,0,0,0,6.817,0m0,2.272A4.545,4.545,0,1,1,2.272,6.817,4.545,4.545,0,0,1,6.817,2.272" fill="#000"/>
                         </svg>
-                        <button className={`hidden ${Loading?"skeleton-box":""} ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center`}>
+                        {/* <button className={`hidden ${Loading?"skeleton-box":""} ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center`}>
                             <div style={Loading?{opacity:"0"}:{}}>
                                 <svg className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current "  xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="3" strokeLinecap="square" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                             </div>
-                        </button>
+                        </button> */}
                         <div ref={messagesRef} id="messages" className={messages?"cart hidden md:block w-96 shadow-2xl bg-white rounded absolute left-44  -bottom-2 transform translate-y-full ":"cart hidden w-96 shadow-2xl bg-white rounded absolute  left-60 bottom-0 transform translate-y-full"}>
                             <div className="grid grid-cols-12 shadow-md 2xl:shadow-lg">
                                 <div className="col-span-12 flex justify-between items-center  py-2">
@@ -254,16 +284,18 @@ export const NavBar = (props) => {
                             <div className="col-span-12 py-2  border-t-2 flex flex-col justify-between items-center">
                                 <div className="flex flex-row w-full justify-center cursor-pointer items-center px-5">
                                     <span className="font-bold text-gray-700 text-center text-sm">جميع الرسائل</span>
-                                    {/* <span className="numbers">3600 ل.س</span> */}
                                 </div>
-                                {/* <div className="rounded w-11/12  bg-yellow-500 text-white text-center py-1 mt-3">متابعة</div> */}
                             </div>
                         </div>
+                        {localStorage.getItem('token')?
                         <button onClick={togglemessages} className={`ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full flex items-center justify-center ${Loading?"skeleton-box":""}`}>
                             <div style={Loading?{opacity:"0"}:{}}>
                                 <svg className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current " xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="2" strokeLinecap="square" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                             </div>
                         </button>
+                        :
+                        <></>
+                        }
                         <div ref={notificationsRef} id="notifications" className={notifications?"cart  hidden md:block w-96 shadow-2xl bg-white rounded absolute left-32  -bottom-2 transform translate-y-full ":"cart hidden w-96 shadow-2xl bg-white rounded absolute  left-40 bottom-0 transform translate-y-full"}>
                             <div className="grid grid-cols-12 shadow-md 2xl:shadow-lg ">
                                 <div className="col-span-12 flex justify-between items-center  py-2">
@@ -355,7 +387,8 @@ export const NavBar = (props) => {
                                 </div>
                             </div>
                         </div>
-                        <button onClick={togglenotifications} className={`relative ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full flex items-center justify-center ${Loading?"skeleton-box":""}`}>
+                        {localStorage.getItem('token')?
+                            <button onClick={togglenotifications} className={`relative ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full flex items-center justify-center ${Loading?"skeleton-box":""}`}>
                             <div style={Loading?{opacity:"0"}:{}}>
                                 <svg  className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current "  xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="2" strokeLinecap="square" strokeLinejoin="round"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"></path></svg>
                                 <div className="absolute top-0 right-0 w-5 sm:w-6 h-1 sm:h-2 text-white -mr-2 rounded-full bg-red-400">
@@ -363,7 +396,9 @@ export const NavBar = (props) => {
                                 </div>
                             </div>
                         </button>
-                       
+                        :
+                        <></>    
+                    }
                         <div ref={cartRef} id="carts" className={cart?"cart hidden md:block w-96 shadow-2xl bg-white rounded absolute left-20 -bottom-2 transform translate-y-full ":"cart hidden w-96 shadow-2xl bg-white rounded absolute  left-20 bottom-0 transform translate-y-full"}>
                             <div className="grid grid-cols-12 shadow-md 2xl:shadow-lg">
                                 <div className="col-span-12 flex justify-between items-center  py-2">
@@ -465,6 +500,16 @@ export const NavBar = (props) => {
                                         <svg className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current "  xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="3" strokeLinecap="square" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                                     </div>
                         </button>
+                        
+                        {localStorage.getItem('token')?
+                            <div onClick={toggleprofile} className={`hidden ml-3 cursor-pointer w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center ${Loading?"skeleton-box":""}`}  style={Loading?{}:{background:"url('./images/user.jpg')",backgroundSize:"cover",backgroundPosition:"center"}}>
+                            </div>
+                            :
+                            <span className="text-xs block bg-yellow-500 text-white py-1 px-3 rounded cursor-pointer " onClick={toggleModal}>
+                                دخول
+                            </span>    
+                    }
+                        
                         <div ref={profileRef} id="profile" className={profile?"cart hidden md:block w-80 shadow-2xl bg-white rounded absolute left-4  -bottom-2 transform translate-y-full ":"cart overflow-hidden hidden w-96 shadow-2xl bg-white rounded absolute  left-60 bottom-0 transform translate-y-full"}>
                             <div className="overflow-hidden">
                             <div className={menu==2?"px-2 py-2 slidesright":"px-2 py-2  slidesleft"}>
@@ -636,7 +681,7 @@ export const NavBar = (props) => {
                                <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-start relative items-center" >
                                <img src='./images/logout.svg' className="w-7 h-8"/>
                                    <div className="flex  flex-col justify-between items-start mr-2">
-                                       <span className="text-xs text-black">تسجيل الخروج</span>
+                                       <span onClick={handlelogout} className="text-xs text-black">تسجيل الخروج</span>
                                    </div>
                                </div>
                            </div>
@@ -659,11 +704,8 @@ export const NavBar = (props) => {
                             </div>
                          
                         </div>
-                        <div onClick={toggleprofile} className={`hidden ml-3 cursor-pointer w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center ${Loading?"skeleton-box":""}`}  style={Loading?{}:{background:"url('./images/user.jpg')",backgroundSize:"cover",backgroundPosition:"center"}}>
-                        </div>
-                        <span className="text-xs block md:hidden">
-                            دخول
-                        </span>
+                        
+                        
                     </div>
             </nav>
             </div>

@@ -6,6 +6,8 @@ export default function SpecialBrands (props) {
   SwiperCore.use([Navigation,Autoplay, Pagination, Scrollbar]);
 
     return (
+      console.log(props.specs['featured_brands1']),
+      props.specs?
       <div className="slider">
 
         <Swiper
@@ -21,24 +23,51 @@ export default function SpecialBrands (props) {
         // onSlideChange={() => console.log('slide change')}
         // onSwiper={(swiper) => console.log(swiper)}
       >
-
+        
+        {props.specs['featured_brands1']&&props.specs['featured_brands1'].length>0?
         <SwiperSlide>
-            <div className="grid grid-cols-12  gap-2 py-4">
-                <div className="col-span-1 sm:col-span-2 md:col-span-1"></div>
-                <div className="col-span-5 relative sm:col-span-4 md:col-span-5">
-                    <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url('./images/brands/sssss.png')",backgroundPosition:"center",backgroundSize:"cover"}}></div>
-                    <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url('./images/brands/sssss.png')",backgroundPosition:"center",backgroundSize:"cover"}}></div>
-                    <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url('./images/brands/sssss.png')",backgroundPosition:"center",backgroundSize:"cover"}}></div>
-                </div>
-                <div className="col-span-5 relative sm:col-span-4 md:col-span-5">
-                    <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url('./images/brands/sssss.png')",backgroundPosition:"center",backgroundSize:"cover"}}></div>
-                    <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url('./images/brands/sssss.png')",backgroundPosition:"center",backgroundSize:"cover"}}></div>
-                    <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url('./images/brands/sssss.png')",backgroundPosition:"center",backgroundSize:"cover"}}></div>
-                </div>
-                <div className="col-span-1 sm:col-span-2 md:col-span-1"></div>
-            </div>
-        </SwiperSlide>
+        <div className="grid grid-cols-12  gap-2 py-4">
+          <div className="col-span-1 sm:col-span-2 md:col-span-1"></div>
+          <div className="col-span-5 relative sm:col-span-4 md:col-span-5">
+              <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url("+props.specs['featured_brands1'][0].image+")",backgroundPosition:"center",backgroundSize:"contain"}}></div>
+              <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url("+props.specs['featured_brands1'][1].image+")",backgroundPosition:"center",backgroundSize:"contain"}}></div>
+              <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url("+props.specs['featured_brands1'][2].image+")",backgroundPosition:"center",backgroundSize:"contain"}}></div>
+          </div>
+          <div className="col-span-5 relative sm:col-span-4 md:col-span-5">
+              <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url("+props.specs['featured_brands1'][3].image+")",backgroundPosition:"center",backgroundSize:"contain"}}></div>
+              <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url("+props.specs['featured_brands1'][4].image+")",backgroundPosition:"center",backgroundSize:"contain"}}></div>
+              <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url("+props.specs['featured_brands1'][5].image+")",backgroundPosition:"center",backgroundSize:"contain"}}></div>
+          </div>
+          <div className="col-span-1 sm:col-span-2 md:col-span-1"></div>
+        </div>
+    </SwiperSlide>
+    :<></>
+        }
+          {props.specs['featured_brands2']&&props.specs['featured_brands2'].length>0?
+        <SwiperSlide>
+        <div className="grid grid-cols-12  gap-2 py-4">
+          <div className="col-span-1 sm:col-span-2 md:col-span-1"></div>
+          <div className="col-span-5 relative sm:col-span-4 md:col-span-5">
+              <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url("+props.specs['featured_brands2'][0].image+")",backgroundPosition:"center",backgroundSize:"cover"}}></div>
+              <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url("+props.specs['featured_brands2'][1].image+")",backgroundPosition:"center",backgroundSize:"cover"}}></div>
+              <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url("+props.specs['featured_brands2'][2].image+")",backgroundPosition:"center",backgroundSize:"cover"}}></div>
+          </div>
+          <div className="col-span-5 relative sm:col-span-4 md:col-span-5">
+              <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url("+props.specs['featured_brands2'][3].image+")",backgroundPosition:"center",backgroundSize:"cover"}}></div>
+              <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url("+props.specs['featured_brands2'][4].image+")",backgroundPosition:"center",backgroundSize:"cover"}}></div>
+              <div className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative h-24 sm:h-20 mb-2" style={{background:"url("+props.specs['featured_brands2'][5].image+")",backgroundPosition:"center",backgroundSize:"cover"}}></div>
+          </div>
+          <div className="col-span-1 sm:col-span-2 md:col-span-1"></div>
+        </div>
+    </SwiperSlide>
+    :<></>
+        }
+          
+        
+        
         {/* <SwiperPagination></SwiperPagination> */}
       </Swiper>
       </div>
-);}
+    :<></>
+)
+;}

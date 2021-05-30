@@ -11,7 +11,7 @@ export default function Deal (props) {
     return (
         !Loading?
         <>
-        <div className="grid grid-cols-12  gap-4 mt-8 sm:mt-12 mb-8 sm:mb-12 rounded bg-white shadow-md p-2">
+        <div className="grid grid-cols-12  gap-4 mt-8 sm:mt-12 mb-8 sm:mb-12 rounded bg-white shadow-md pt-0 pr-0 p-2">
             <div className="col-span-12 flex flex-row-reverse flex-wrap justify-between items-start">
                 <div className="dealTitle  w-28 bg-red-500 text-right pr-2 text-white rounded-bl-full ">
                     صفقة اليوم

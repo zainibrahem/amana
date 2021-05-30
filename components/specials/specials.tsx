@@ -13,7 +13,8 @@ export default function Specials (props) {
     const brands = "العلامات التجارية";
     const Loading = useAppState('Loading');
 return (
-   
+    console.log(props.brands),
+   props.brands?
     <>
         <Title title={title}></Title>
         <div className="grid grid-cols-12  gap-4">
@@ -27,7 +28,7 @@ return (
                         <CardTitle title={brands}></CardTitle>
                     </div>
                     <div className="col-span-12 smd:col-span-6 special-brands-slider ">
-                        <SpecialBrands data={props.brands}></SpecialBrands>
+                        <SpecialBrands specs={props.brands}></SpecialBrands>
                     </div>
                 </div>
             </div>
@@ -37,8 +38,8 @@ return (
                 <div className="grid grid-cols-12 gap-4">
                 {props.cats.map((ele,index) => 
                     index<=3?
-                    <div key={ele.id} className="col-span-6   rounded bg-white shadow-md ">
-                        <div className={`w-full ${Loading?"skeleton-box":""} h-41 rounded`} style={Loading?{}:{background:"url("+ele.cover_image+")",backgroundSize:"cover",backgroundPosition:"center"}}></div>
+                    <div key={ele.id} className="col-span-6   rounded  ">
+                        <div className={`w-full ${Loading?"skeleton-box":""} h-41 rounded`} style={Loading?{}:{background:"url("+ele.feature_image+")",backgroundSize:"cover",backgroundPosition:"center"}}></div>
                     </div>
                     :""
                 )}
@@ -46,6 +47,9 @@ return (
             </div>
         </div>
     </>
+
+    :
+    <></>
 );
 
 }

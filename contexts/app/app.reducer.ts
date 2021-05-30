@@ -6,7 +6,9 @@ export const initialState = {
   search: false,
   Draggable:false,
   toggleIcon:false,
-  Loading:true
+  Loading:true,
+  Modal:false,
+  Token:null
   
 };
 
@@ -18,12 +20,14 @@ type ActionType =
   | { type: 'REMOVE_SIDEBAR_STICKY' }
   | { type: 'OpenSideBar' }
   | { type: 'TOGGLE_DRAWER' }
+  | { type: 'TOGGLE_Modal' }
   | { type: 'NotDraggable' }
   | { type: 'ToggleSearch' }
   | { type: 'NotoggleIcon' }
   | { type: 'toggleIcon' }
   | { type: 'NoSearch' }
   | { type: 'Loaded' }
+  | { type: 'setToken'; payload: string }
   | { type: 'Draggable'};
 
 type StateType = typeof initialState;
@@ -35,6 +39,16 @@ export function appReducer(state: StateType, action: ActionType): StateType {
         ...state,
         searchTerm: action.payload,
       };
+    case 'setToken':
+      return {
+        ...state,
+        searchTerm: action.payload,
+      }
+    case 'TOGGLE_Modal':
+      return {
+        ...state,
+        Modal: !state.Modal,
+      }; 
     case 'SET_STICKY':
       return {
         ...state,
