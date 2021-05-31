@@ -490,6 +490,13 @@ background-color: rgb(78, 78, 78);
   }
   
 }
+@media (max-width:900px){
+
+  .positionTopmobile{
+    top:40% !important;
+  }
+}
+
 .animation svg{
   position: absolute;
   left:50%;

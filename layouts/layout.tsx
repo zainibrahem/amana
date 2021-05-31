@@ -45,13 +45,19 @@ interface ListItem {
         });
       }, [dispatch]
       );
-
+    
 
 
       const toggleLoader = React.useCallback((number) => {
-        dispatch({
-          type: 'Loaded',
-        });
+        setTimeout(()=>{
+          dispatch({
+            type: 'Loaded',
+          });
+          console.log('ssssssssssssss')
+        }
+        ,4000);
+
+       
         dispatch({
           type: 'Cart',payload:number,
         });
@@ -224,7 +230,7 @@ interface ListItem {
                   </div>
                   <div className="col-span-2 h-full flex flex-col justify-around items-center">
                     <div className="w-8 h-2" style={{background:"url(./images/orders.svg)",backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
-                    <span className="text-xs mt-1">السلة</span>
+                    <span className="text-xs mt-1">حسابي</span>
                   </div>
                   <div className="col-span-2 h-full flex flex-col justify-around items-center">
                   <div className="w-8 h-2" style={{background:"url(./images/orders.svg)",backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
@@ -238,11 +244,11 @@ interface ListItem {
                   </div>
                   <div className="col-span-2 h-full flex flex-col justify-around items-center">
                   <div className="w-8 h-2" style={{background:"url(./images/orders.svg)",backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
-                    <span className="text-xs mt-1">السلة</span>
+                    <span className="text-xs mt-1">تصنيفات</span>
                   </div>
                   <div className="col-span-2 h-full flex flex-col justify-around items-center">
                   <div className="w-8 h-2" style={{background:"url(./images/orders.svg)",backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
-                    <span className="text-xs mt-1">السلة</span>
+                    <span className="text-xs mt-1">الرئيسية</span>
                   </div>
                 </div>
               </div>

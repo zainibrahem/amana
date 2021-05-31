@@ -41,27 +41,37 @@ export default function Home() {
     });
   }, [dispatch]
   );
+  const Loaded = React.useCallback(() => {
+    dispatch({
+      type: 'Loaded',
+    });
+  }, [dispatch]
+  );
   useEffect(() => {
      fetch("https://amanacart.com/api/home")
       .then(res => res.json())
       .then(result =>{
-        toggleLoader();
         setData(result.data);
+      
       })
       .catch(e => {
         console.log(e);
     });
   },[userId])
-
+  const loaded = useAppState('loaded');
 
   useEffect(() => {
     setWidths(window.innerWidth);
+    
   })
 
   return (
     data?
     <>
-      <SearchBar></SearchBar>
+    {loaded?
+      <SearchBar sliders={data.first_slider}></SearchBar>
+      :<></>
+    }
       <Waypoint
       onEnter={NotoggleIcon}
       onLeave={toggleIcon}

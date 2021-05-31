@@ -214,7 +214,7 @@ export default function Modal (props) {
       useOutsideAlerters(modalRed);
     return(
         <div id="overlay"  className={` ${Modal?"block":"hidden"}  fixed w-screen h-screen bg-black bg-opacity-80  z-50`}>
-            <div ref={modalRed} className={` ${Modal?"slideUps":"slideDowns"}  overflow-hidden modal rounded grid grid-cols-12 w-3/4 md:w-2/3  bg-white relative left-1/2 top-1/2 transform -translate-y-2/4 -translate-x-2/4`} style={{minHeight:"32.1rem"}}>
+            <div ref={modalRed} className={`positionTopmobile ${Modal?"slideUps":"slideDowns"}  overflow-hidden modal rounded grid grid-cols-12 w-3/4 md:w-2/3  bg-white relative left-1/2 top-1/2 transform -translate-y-2/4 -translate-x-2/4`} style={{minHeight:"32.1rem"}}>
             <div className="hidden md:block col-span-6 rounded  relative" style={{background:"url('./images/secondback.png')",backgroundSize:"cover",backgroundPosition:"right",backgroundRepeat:"no-repeat"}}>
                 <div className="bg-black rounded bg-opacity-90 w-full h-full absolute top-0 left-0"></div>
                 <div className="absolute rounded top-0 -right-1 w-full h-full" style={{background:"url('./images/signinback.png')",backgroundSize:"cover",backgroundPosition:"center right",backgroundRepeat:"no-repeat"}}></div>
@@ -281,7 +281,7 @@ export default function Modal (props) {
                 <div  className={`${modalType==0? "centered" :"slideLeft" } col-span-12 md:col-span-6 rounded relative flex flex-col justify-between items-center pt-0 md:pt-12 p-3 md:p-12`}>
                         <div className="flex flex-col w-full justify-center items-center ">
                             <div className="w-full h-20 flex justify-center items-center" style={{background:"url(./images/border.png)",backgroundPosition:"center bottom",backgroundRepeat:"no-repeat"}}>
-                                <span className="text-sm md:text-md">تسجيل الدخول</span>
+                                <span className="text-sm cursor-pointer md:text-md">تسجيل الدخول</span>
                             </div>
                         </div>
                         <div className="w-full flex justify-between rounded items-center p-3 shadow">
@@ -294,13 +294,13 @@ export default function Modal (props) {
                                 </g>
                             </svg>
 
-                            <span className="text-sm md:text-md">تسجيل دخول عن طريق غوغل</span>
+                            <span className="text-sm md:text-md cursor-pointer">تسجيل دخول عن طريق غوغل</span>
                         </div>
                         <div className="w-full flex justify-between rounded items-center p-3 shadow mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14.344" height="26.782" viewBox="0 0 14.344 26.782">
                                 <path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f" d="M13.4,15.065l.744-4.847H9.5V7.073A2.423,2.423,0,0,1,12.23,4.454h2.114V.327A25.784,25.784,0,0,0,10.591,0C6.761,0,4.257,2.321,4.257,6.524v3.694H0v4.847H4.257V26.782H9.5V15.065Z" fill="#2359a3"/>
                             </svg>
-                            <span className="text-sm md:text-md">تسجيل دخول عن طريق فيسبوك</span>
+                            <span className="text-sm md:text-md cursor-pointer">تسجيل دخول عن طريق فيسبوك</span>
                         </div>
                         <div className="w-full flex justify-between items-center mt-3">
                             <hr className="w-5/12" />
@@ -320,7 +320,7 @@ export default function Modal (props) {
                                 <input type="text" onChange={handleemail}    className="w-full mt-2 rounded h-13  bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="email@example.com" />
                                 <label htmlFor="" className="self-end text-xs mt-2">كلمة السر</label>
                                 <input type="password" onChange={handlepassword} className="w-full mt-2 rounded h-13   bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="***" />
-                                <button onClick={handleLogin} className="w-full text-white flex justify-center items-center rounded bg-yellow-500 mt-2 h-13">
+                                <button onClick={handleLogin} className="cursor-pointer w-full text-white flex justify-center items-center rounded bg-yellow-500 mt-2 h-13">
                                     تسجيل دخول
                                 </button>
                                 <div className="w-full flex flex-col justify-between items-center mt-2">
@@ -329,10 +329,10 @@ export default function Modal (props) {
                                             <label htmlFor="" className="text-xs mr-2">تذكرني</label>
                                             <input type="checkbox" className="rounded-full bg-white border-2 w-4 h-4 checked:bg-yellow-500 checked:border-transparent appearance-none" name="" id="" />
                                         </div>
-                                        <span onClick={()=>toggleReset(1)} className="text-xs self-end flex ">نسيت كلمة السر؟</span>
+                                        <span onClick={()=>toggleReset(1)} className="text-xs self-end flex cursor-pointer ">نسيت كلمة السر؟</span>
                                     </div>
                                     <span className="text-xs self-end mt-2">
-                                        ليس لديك حساب؟ <span onClick={()=>toggleReset(5)} className="text-xs text-yellow-500">قم بالتسجيل الان</span>
+                                        ليس لديك حساب؟ <span onClick={()=>toggleReset(5)} className="text-xs text-yellow-500 cursor-pointer">قم بالتسجيل الان</span>
                                     </span>
                                 </div>
                             </div>
@@ -378,10 +378,10 @@ export default function Modal (props) {
                             <div className="w-full flex flex-col justify-between items-center mt-2">
                                 <div className="w-full flex justify-end items-center">
                                 
-                                    <span onClick={()=>toggleReset(0)} className="text-xs self-end flex ">تسجيل الدخول</span>
+                                    <span onClick={()=>toggleReset(0)} className="text-xs self-end flex cursor-pointer">تسجيل الدخول</span>
                                 </div>
                                 <span className="text-xs self-end mt-2">
-                                    ليس لديك حساب؟ <span onClick={()=>toggleReset(5)} className="text-xs text-yellow-500">قم بالتسجيل الان</span>
+                                    ليس لديك حساب؟ <span onClick={()=>toggleReset(5)} className="text-xs text-yellow-500 cursor-pointer">قم بالتسجيل الان</span>
                                 </span>
                             </div>
                           
@@ -434,23 +434,18 @@ export default function Modal (props) {
                                 {error}
                             </span>:<></>
                             }
-                            <label htmlFor="" className="self-end text-xs">كلمة السر الجديدة</label>
-                            <input type="password" onChange={handlepassword}    className=" w-full mt-4 rounded h-13  bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="***" />
-
-                            <label htmlFor="" className="self-end text-xs">تأكيد كلمة السر</label>
-                            <input type="password" onChange={handleconfirmation}    className=" w-full mt-4 rounded h-13  bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="***" />
-                            
-                            <button onClick={handleForget} className="w-full mt-4 text-white flex justify-center items-center rounded bg-yellow-500  h-13">
-                                إرسال
-                            </button>
+                           
+                            <span>سيتم التحقق من تواجد بريدك الالكتروني في بياناتنا ثم نرسل لك بريد بخطوات إعادة ضبط كلمة السر</span>
 
                             <div className="w-full flex flex-col justify-between items-center mt-2">
                                 <div className="w-full flex justify-end items-center">
                                 
-                                    <span onClick={()=>toggleReset(0)} className="text-xs self-end flex ">تسجيل الدخول</span>
+                                <a href="/">
+                                    <span className="text-xs self-end flex ">العودة للصفحة الرئيسية</span>
+                                </a> 
                                 </div>
                                 <span className="text-xs self-end mt-2">
-                                    ليس لديك حساب؟ <span onClick={()=>toggleReset(2)} className="text-xs text-yellow-500">قم بالتسجيل الان</span>
+                                    ليس لديك حساب؟ <span onClick={()=>toggleReset(5)} className="text-xs text-yellow-500 cursor-pointer">قم بالتسجيل الان</span>
                                 </span>
                             </div>
                           
@@ -490,7 +485,7 @@ export default function Modal (props) {
                 <div  className={`${modalType==5? "centered" :"slideLeft" } col-span-12 md:col-span-6 rounded relative flex flex-col justify-between items-center pt-0 md:pt-3 p-3 md:p-12`}>
                         <div className="flex flex-col w-full justify-center items-center ">
                             <div className="w-full h-20 flex justify-center items-center" style={{background:"url(./images/border.png)",backgroundPosition:"center bottom",backgroundRepeat:"no-repeat"}}>
-                                <span className="text-sm md:text-md">تسجيل جديد</span>
+                                <span className="text-sm md:text-md cursor-pointer">تسجيل جديد</span>
                             </div>
                         </div>
                         <div className="w-full flex justify-between rounded items-center p-3 shadow">
@@ -503,13 +498,13 @@ export default function Modal (props) {
                                 </g>
                             </svg>
 
-                            <span className="text-sm md:text-md">تسجيل دخول عن طريق غوغل</span>
+                            <span className="text-sm md:text-md cursor-pointer">تسجيل دخول عن طريق غوغل</span>
                         </div>
                         <div className="w-full flex justify-between rounded items-center p-3 shadow mt-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14.344" height="26.782" viewBox="0 0 14.344 26.782">
                                 <path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f" d="M13.4,15.065l.744-4.847H9.5V7.073A2.423,2.423,0,0,1,12.23,4.454h2.114V.327A25.784,25.784,0,0,0,10.591,0C6.761,0,4.257,2.321,4.257,6.524v3.694H0v4.847H4.257V26.782H9.5V15.065Z" fill="#2359a3"/>
                             </svg>
-                            <span className="text-sm md:text-md">تسجيل دخول عن طريق فيسبوك</span>
+                            <span className="text-sm md:text-md cursor-pointer">تسجيل دخول عن طريق فيسبوك</span>
                         </div>
                         <div className="w-full flex justify-between items-center mt-3">
                             <hr className="w-5/12" />
@@ -534,12 +529,12 @@ export default function Modal (props) {
                                 <input type="password" onChange={handlepassword} className="w-full mt-2 rounded h-13   bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="***" />
                                 <label htmlFor="" className="self-end text-xs mt-2">تأكيد كلمة السر</label>
                                 <input type="password" onChange={handleconfirmation} className="w-full mt-2 rounded h-13   bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="***" />
-                                <button onClick={handleRegister} className="w-full text-white flex justify-center items-center rounded bg-yellow-500 mt-2 h-13">
+                                <button onClick={handleRegister} className="w-full cursor-pointer  text-white flex justify-center items-center rounded bg-yellow-500 mt-2 h-13">
                                     تسجيل 
                                 </button>
                                 <div className="w-full flex flex-col justify-between items-center mt-2">
                                     <div className="w-full flex justify-between items-center">
-                                        <span onClick={()=>toggleReset(1)} className="text-xs self-end flex ">نسيت كلمة السر؟</span>
+                                        <span onClick={()=>toggleReset(1)} className="text-xs self-end flex cursor-pointer">نسيت كلمة السر؟</span>
                                         <div className="flex justify-between items-center">
                                             <label htmlFor="" className="text-xs mr-2">أنا أوافق على الشروط</label>
                                             <input type="checkbox" onChange={toggleagree} className="rounded-full bg-white border-2 w-4 h-4 checked:bg-yellow-500 checked:border-transparent appearance-none" name="" id="" />
@@ -550,7 +545,7 @@ export default function Modal (props) {
                                         <input type="checkbox" onChange={togglesubscibe} className="rounded-full self-end bg-white border-2 w-4 h-4 checked:bg-yellow-500 checked:border-transparent appearance-none" name="" id="" />
                                     </div>
                                     <span className="text-xs self-end mt-2">
-                                        مسجل مسبقا؟ <span onClick={()=>toggleReset(0)} className="text-xs text-yellow-500">قم بتسجيل الدخول</span>
+                                        مسجل مسبقا؟ <span onClick={()=>toggleReset(0)} className="text-xs text-yellow-500 cursor-pointer">قم بتسجيل الدخول</span>
                                     </span>
                                 </div>
                             </div>

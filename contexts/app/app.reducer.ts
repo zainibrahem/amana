@@ -4,6 +4,7 @@ export const initialState = {
   isSidebarSticky: true,
   isDrawerOpen: true,
   search: false,
+  loaded: true,
   Draggable:false,
   toggleIcon:false,
   Loading:true,
@@ -32,6 +33,7 @@ type ActionType =
   | { type: 'Nonotification' }
   | { type: 'NoSearch' }
   | { type: 'Loaded' }
+  | { type: 'Loadeds' }
   | { type: 'AddToCart' }
   | { type: 'Cart' ,payload:number }
   | { type: 'setToken'; payload: string }
@@ -83,6 +85,11 @@ export function appReducer(state: StateType, action: ActionType): StateType {
         isSticky: true,
       };
     case 'Loaded':
+      return {
+        ...state,
+        Loading: false,
+      };
+    case 'Loadeds':
       return {
         ...state,
         Loading: false,
