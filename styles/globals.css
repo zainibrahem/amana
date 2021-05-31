@@ -302,6 +302,60 @@ body::-webkit-scrollbar-thumb {
     padding:0px 5px;   
   }
 }
+.swiper-button-prev:after{
+  font-size: 22px !important;
+}
+.swiper-button-next:after{
+  font-size: 22px !important;
+}
+.swiper-container:hover .swiper-button-prev{
+  opacity: 1;
+  transition: all .4s ease;
+}
+.swiper-container:hover .swiper-button-next{
+  opacity: 1;
+  transition: all .4s ease;
+}
+.swiper-button-prev{
+  opacity: 0;
+  right:0px !important;
+  background:rgb(245, 158, 11,.6);
+  border-radius: 100%;
+  width:40px !important;
+  height:40px !important;
+  transition: all .4s ease;
+}
+.swiper-button-next{
+  opacity: 0;
+  left:0px !important;
+  background:rgb(245, 158, 11,.6);
+  border-radius: 100%;
+  width:40px !important;
+  height:40px !important;
+  transition: all .4s ease;
+}
+.categories .swiper-button-prev{
+  margin-top: -33px;
+} 
+.categories .swiper-button-next{
+  margin-top: -33px;
+} 
+.swiper-button-prev:after{
+  color:white;
+  left:50%;
+  position: absolute;
+  top:50%;
+  transform:translate(-50%,-50%);
+  border-radius: 100% !important;
+}
+.swiper-button-next:after{
+  color:white;
+  left:50%;
+  position: absolute;
+  top:50%;
+  transform:translate(-50%,-50%);
+  border-radius: 100% !important;
+}
 @media (min-width:1025px){
   .btn{
     opacity:0;

@@ -118,7 +118,7 @@ export default function CardSlider (props) {
       </div>
        
 
-      <div className="hidden md:block card-slider">
+      <div className="block card-slider">
         <Swiper
         spaceBetween={3}
         dir="rtl"
@@ -139,10 +139,11 @@ export default function CardSlider (props) {
           </SwiperSlide>
         )}
         
-        <div className="swiper-button-prev"></div>
-        <div className="swiper-button-next"></div>
+        <div className="swiper-button-prev swiper-button-hidden"></div>
+        <div className="swiper-button-next swiper-button-hidden"></div>
         {/* <SwiperPagination></SwiperPagination> */}
         </Swiper>
+      
       </div>
 
         </>

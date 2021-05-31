@@ -17,7 +17,11 @@ export default function Cat (props) {
         <div className="grid grid-cols-12 gap-4 py-2 bg-white shadow-md md:shadow-none sm:bg-transparent rounded pt-6 md:pt-0">
             {props.data.banners.map((ele,index) => 
                 <div key={ele.id} className="col-span-12 sm:col-span-4 px-2.5 md:px-0 ">
-                    <div className={`w-full relative left-1/2 transform shadow -translate-x-2/4 h-41 rounded ${Loading?"skeleton-box":""}`} style={Loading?{}:{background:"url(https://amanacart.com/image/"+ele.feature_image.path+")",backgroundSize:"cover",backgroundPosition:"center"}}></div>
+                    {/* <div className={`w-full relative left-1/2 transform shadow -translate-x-2/4 h-41 rounded ${Loading?"skeleton-box":""}`} style={Loading?{}:{background:"url(https://amanacart.com/image/"+ele.feature_image.path+")",backgroundSize:"cover",backgroundPosition:"center"}}></div> */}
+                    {ele.image?
+                    <img src={`${ele.image}`} className={`w-full relative left-1/2 transform shadow -translate-x-2/4  rounded ${Loading?"skeleton-box":""}`} alt="" />
+                    :<></>
+                    }
                 </div>
             )}
             {/* <div className="col-span-12 sm:col-span-4 px-2.5 md:px-0">

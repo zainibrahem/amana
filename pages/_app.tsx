@@ -6,6 +6,7 @@ import { AuthProvider } from '../contexts/auth/auth.provider';
 import 'swiper/swiper.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
+import 'swiper/components/navigation/navigation.scss';
 
 import React, { useEffect, useState } from 'react';
 

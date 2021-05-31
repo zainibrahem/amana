@@ -1,19 +1,79 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay,Navigation, Pagination, Scrollbar } from 'swiper/core';
 import { useState } from 'react';
-import { useAppState } from '../../contexts/app/app.provider';
+import { useAppDispatch, useAppState } from '../../contexts/app/app.provider';
+import React from 'react';
 
 // import Slide1 from '../../public/images/slider/maher.png';
 export default function ProductCard (props) {
     const [counter,setCounter] = useState(false);
     const isDrawerOpen = useAppState('isDrawerOpen');
     const Loading = useAppState("Loading");
-    const toggleCounter = () => {
+    const [error,setError] = useState(null);
+    const [modalType,setModalType] = useState(0);
+    const [message,setMessgae] = useState(null);
+    const [confirmation,setConfirmation] = useState(null);
+    const dispatch = useAppDispatch();
+
+    const addCart = React.useCallback(() => {
+            dispatch({
+              type: 'AddToCart',
+            });
+          
+            }
+            ,[dispatch]
+          );
+        const toggleNotification = React.useCallback((info,errortypes) => {
+            dispatch({
+              type: 'notification',payload:info,types:errortypes
+            });
+            }
+            ,[dispatch]
+          );
+
+    const toggleCounter = (slug) => {
         setCounter(!counter);
+
+        console.log(slug);
+        fetch(`https://amanacart.com/api/addToCart/${slug}`, {
+            method: 'post',
+            headers: {'Content-Type':'application/json'},
+        })
+        .then( async response => {
+            const isJson = response.headers.get('content-type')?.includes('application/json');
+            const data = isJson && await response.json();
+
+            // check for error response
+            if (!response.ok) {
+                // get error message from body or default to response status
+                const error = (data && data.message) || response.status;
+                setError(error);
+                toggleNotification(error,'error');
+                setTimeout(() => {
+                    dispatch({
+                        type: 'Nonotification',
+                      })
+                  }, 5000)
+                return Promise.reject(error);
+            }
+            // setMessgae(data.message);
+            addCart();
+            
+            toggleNotification(data.message,'success');
+            setTimeout(() => {
+                dispatch({
+                    type: 'Nonotification',
+                  })
+              }, 5000)
+          
+            console.log(data);
+        })
     }
     return (
         props.card?
         <>
+  
+
         {props.hidden?
             <div className="hidden md:block 2xl:hidden">
              <div className={props.type?`cards ${Loading?"skeleton-box":""} flex flex-col justify-center items-center rounded shadow-md card-responsive w-40 sm:w-48 mb-3`:`cards  flex flex-col justify-center items-center rounded shadow-md w-full sm:w-48 mb-3 ${Loading?"skeleton-box":""}`} style={{direction:"ltr"}}>
@@ -64,7 +124,7 @@ export default function ProductCard (props) {
                                 تصلك يوم الثلاثاء
                             </span>
                         </p>
-                        <div onClick={toggleCounter} className={!counter?"card-mobile z-20 transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-10 h-7 bg-gray-100 left-0 bottom-0":"z-20  transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-full h-7 bg-gray-100 left-0  bottom-0 card-mobile"}>
+                        <div onClick={()=>toggleCounter(props.card.slug)} id={props.card.slug} className={!counter?"card-mobile z-20 transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-10 h-7 bg-gray-100 left-0 bottom-0":"z-20  transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-full h-7 bg-gray-100 left-0  bottom-0 card-mobile"}>
                             <span className={!counter?"hidden rounded  h-full  justify-center items-center text-2xl font-bold px-3":"text-2xl rounded-l font-bold px-3 bg-gray-200 h-full flex justify-center items-center"}>-</span>
                             <span className={!counter?"hidden rounded text-xl font-bold":"block rounded text-xl font-bold"}>1</span>
                             <span className={!counter?"text-2xl bg-gray-200 font-bold rounded h-full flex justify-center items-center w-full":"text-2xl font-bold  rounded-r h-full flex justify-center items-center px-3 bg-gray-200"}>+</span>
@@ -79,7 +139,7 @@ export default function ProductCard (props) {
                                 </span>
                             </p>
                         </div>
-                        <div className={`btn ${Loading?"skeleton-box":""} absolute left-1/2 transform -translate-x-2/4 w-full bottom-0.5 rounded hidden lg:flex flex-row justify-center items-center h-6 bg-yellow-500 text-white`}>
+                        <div onClick={()=>toggleCounter(props.card.slug)} id={props.card.slug} className={`btn ${Loading?"skeleton-box":""} absolute left-1/2 transform -translate-x-2/4 w-full bottom-0.5 rounded hidden lg:flex flex-row justify-center items-center h-6 bg-yellow-500 text-white`}>
                             <div style={Loading?{opacity:"0"}:{}}>
                                 إضافة للسلة 
                                 <span className="text-lg ml-1 font-bold">+</span>
@@ -139,7 +199,7 @@ export default function ProductCard (props) {
                                 {props.card.description}
                             </span>
                         </p> */}
-                        <p  className={counter?`text-right opacity-0 transition-all self-end lg:self-end text-xs  overflow-hidden text-gray-500 mt-2 before-hover ${Loading?"skeleton-box":""}`:`text-right opacity-1 transition-all self-end lg:self-end text-xs  overflow-hidden text-gray-500 mt-2 before-hover ${Loading?"skeleton-box":""}`}>
+                        <p  className={counter?`text-right opacity-0 transition-all self-end lg:self-end text-xs  overflow-hidden text-gray-500 mt-2  ${Loading?"skeleton-box":""}`:`text-right opacity-1 transition-all self-end lg:self-end text-xs  overflow-hidden text-gray-500 mt-2 before-hover ${Loading?"skeleton-box":""}`}>
                             <span style={Loading?{opacity:"0"}:{}}>
                                         تصلك &nbsp;
                                 <span className="font-bold">
@@ -147,7 +207,7 @@ export default function ProductCard (props) {
                                 </span>
                             </span>
                         </p>
-                        <div onClick={toggleCounter} className={!counter?"card-mobile z-20 transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-10 h-7 bg-gray-100 left-0 bottom-0":"z-20  transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-full h-7 bg-gray-100 left-0  bottom-0 card-mobile"}>
+                        <div onClick={()=>toggleCounter(props.card.slug)} id={props.card.slug} className={!counter?"card-mobile z-20 transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-10 h-7 bg-gray-100 left-0 bottom-0":"z-20  transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-full h-7 bg-gray-100 left-0  bottom-0 card-mobile"}>
                             <span className={!counter?"hidden rounded  h-full  justify-center items-center text-2xl font-bold px-3":"text-2xl rounded-l font-bold px-3 bg-gray-200 h-full flex justify-center items-center"}>-</span>
                             <span className={!counter?"hidden rounded text-xl font-bold":"block rounded text-xl font-bold"}>1</span>
                             <span className={!counter?"text-2xl bg-gray-200 font-bold rounded h-full flex justify-center items-center w-full":"text-2xl font-bold  rounded-r h-full flex justify-center items-center px-3 bg-gray-200"}>+</span>
@@ -164,12 +224,17 @@ export default function ProductCard (props) {
                                 </span>
                             </p>
                         </div>
-                        <div className={`btn ${Loading?"skeleton-box":""} absolute left-1/2 transform -translate-x-2/4 w-full bottom-0.5 rounded hidden lg:flex flex-row justify-center items-center h-6 bg-yellow-500 text-white`}>
+                        <div onClick={()=>toggleCounter(props.card.slug)} id={props.card.slug} className={`btn ${Loading?"skeleton-box":""} absolute left-1/2 transform -translate-x-2/4 w-full bottom-0.5 rounded hidden lg:flex flex-row justify-center items-center h-6 bg-yellow-500 text-white`}>
                             <div style={Loading?{opacity:"0"}:{}}>
                                 إضافة للسلة 
                                 <span className="text-lg ml-1 font-bold">+</span>
                             </div>
                         </div>
+                        {/* <div onClick={toggleCounter} id={props.card.slug} className={!counter?"opacity-0 z-20 transition-all  flex flex-row justify-between  items-center  absolute rounded-md w-full h-7 bg-gray-100 left-0 bottom-0":"z-20  transition-all flex flex-row justify-between  items-center  absolute rounded-md w-full h-7 bg-gray-100 left-0 opacity-100  bottom-0  delay-500 "} >
+                            <span className={!counter?"rounded  h-full  justify-center items-center text-2xl font-bold px-3 bg-gray-200":"rounded  h-full  justify-center items-center text-2xl font-bold px-3 bg-gray-200"}>-</span>
+                            <span className={!counter?"rounded text-xl font-bold":"block rounded text-xl font-bold"}>1</span>
+                            <span className={!counter?"text-2xl order-0 bg-gray-200 font-bold rounded h-full flex justify-center items-center  px-3":"text-2xl font-bold  rounded-r h-full flex justify-center items-center px-3 bg-gray-200 order-0"}>+</span>
+                        </div> */}
                     </div>
                    
                 </div>

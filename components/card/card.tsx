@@ -25,7 +25,7 @@ return (
             <li className="-mb-0.5 flex-auto text-center" key={ele.category_id}>
               <a
                 className={
-                  "text-xs text-2xs font-bold uppercase px-5  border-black  block leading-normal " +
+                  "text-xs text-2xs font-bold uppercase px-1 lg:px-5  border-black  block leading-normal " +
                   (openTab === ele.category_id
                     ? "text-black border-b-2"
                     : "text-black")

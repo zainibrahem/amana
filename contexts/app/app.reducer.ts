@@ -8,7 +8,10 @@ export const initialState = {
   toggleIcon:false,
   Loading:true,
   Modal:false,
-  Token:null
+  Token:null,
+  Cart:0,
+  notification:null,
+  notificationType:null
   
 };
 
@@ -25,8 +28,12 @@ type ActionType =
   | { type: 'ToggleSearch' }
   | { type: 'NotoggleIcon' }
   | { type: 'toggleIcon' }
+  | { type: 'notification',payload:string,types:string }
+  | { type: 'Nonotification' }
   | { type: 'NoSearch' }
   | { type: 'Loaded' }
+  | { type: 'AddToCart' }
+  | { type: 'Cart' ,payload:number }
   | { type: 'setToken'; payload: string }
   | { type: 'Draggable'};
 
@@ -43,6 +50,27 @@ export function appReducer(state: StateType, action: ActionType): StateType {
       return {
         ...state,
         searchTerm: action.payload,
+      }
+    case 'notification':
+      return {
+        ...state,
+        notification: action.payload,
+        notificationType:action.types
+      }
+    case 'Nonotification':
+      return {
+        ...state,
+        notification: null,
+      }
+    case 'AddToCart':
+      return {
+        ...state,
+        Cart: state.Cart+1,
+      }
+    case 'Cart' :
+      return {
+        ...state,
+        Cart: action.payload,
       }
     case 'TOGGLE_Modal':
       return {

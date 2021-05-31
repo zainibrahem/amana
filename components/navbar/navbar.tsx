@@ -14,6 +14,7 @@ export const NavBar = (props) => {
     const search = useAppState('search');
     const searchIcon = useAppState('toggleIcon');
     const Loading = useAppState('Loading');
+    const Cart = useAppState('Cart');
 
     
     const Token = useAppState('Token');
@@ -399,11 +400,11 @@ export const NavBar = (props) => {
                         :
                         <></>    
                     }
-                        <div ref={cartRef} id="carts" className={cart?"cart hidden md:block w-96 shadow-2xl bg-white rounded absolute left-20 -bottom-2 transform translate-y-full ":"cart hidden w-96 shadow-2xl bg-white rounded absolute  left-20 bottom-0 transform translate-y-full"}>
+                        <div ref={cartRef} id="carts" className={cart?"cart hidden  w-96 shadow-2xl bg-white rounded absolute left-20 -bottom-2 transform translate-y-full ":"cart hidden w-96 shadow-2xl bg-white rounded absolute  left-20 bottom-0 transform translate-y-full"}>
                             <div className="grid grid-cols-12 shadow-md 2xl:shadow-lg">
                                 <div className="col-span-12 flex justify-between items-center  py-2">
                                     <span className="px-5">السلة</span>
-                                    <span className="mx-4 rounded bg-yellow-500 px-2 text-sm text-white">4 منتجات</span>
+                                    <span className="mx-4 rounded bg-yellow-500 px-2 text-sm text-white">{Cart} منتجات</span>
                                 </div>
                             </div>
                             <div className="scrolls h-90 overflow-y-scroll">
@@ -496,7 +497,8 @@ export const NavBar = (props) => {
                             </div>
                         </div>
                         <button onClick={togglecart} className={`ml-3 w-8 md:w-10  h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full  flex items-center justify-center ${Loading?"skeleton-box":""}`}>
-                                    <div style={Loading?{opacity:"0"}:{}}>
+                                    <div className="relative " style={Loading?{opacity:"0"}:{}}>
+                                        <div className="absolute -right-1 w-5 h-5 -top-1 rounded-full text-xs text-white flex justify-center items-center bg-red-400">{Cart}</div>
                                         <svg className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current "  xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="3" strokeLinecap="square" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                                     </div>
                         </button>

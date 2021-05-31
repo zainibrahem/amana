@@ -28,11 +28,11 @@ export default function Brands (props) {
     
     const breakpoints =  {
         320: {
-          slidesPerView: 3,
+          slidesPerView: 4,
         },
     
         440: {
-          slidesPerView: 3,
+          slidesPerView: 4,
         },
     
         620: {
@@ -96,10 +96,16 @@ export default function Brands (props) {
             <Swiper
             spaceBetween={5}
             slidesPerView={10}
+            dir="rtl"
+            loop={true}
             // resizeObserver={true}
             autoplay={{
               pauseOnMouseEnter:true,
               delay:4000
+            }}
+            navigation={{
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
             }}
             breakpoints={isDrawerOpen? breakpoints:breakpoints1}
             speed={500}
@@ -108,10 +114,13 @@ export default function Brands (props) {
           >
             {props.data.map(ele => 
               <SwiperSlide key={ele.id}>
-                  <div id="element" className={`rounded-full elements left-2/4 relative transform -translate-x-1/2 w-11/12 ${Loading?"element skeleton-box":""}`} style={Loading?{height:Height}:{height:Height,backgroundColor:'white',backgroundImage:'url('+ele.image+')',backgroundPosition:"center center !important",backgroundSize:"contain",backgroundRepeat:"no-repeat"}}></div>
+                  <img id="element" className={`rounded-full bg-white elements left-2/4 relative transform -translate-x-1/2 w-11/12 ${Loading?"element skeleton-box":""}`} src={ele.image} alt="" />
                   <h4 className={`text-center mt-2 ${Loading?"skeleton-box w-full h-6":""}`}>{Loading?"":ele.title}</h4>
               </SwiperSlide>
             )}
+
+            <div className="swiper-button-prev"></div>
+            <div className="swiper-button-next"></div>
           </Swiper>
           </div>
           </div>

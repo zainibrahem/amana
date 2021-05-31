@@ -39,24 +39,58 @@ interface ListItem {
 
 
 
-      const toggleLoader = React.useCallback(() => {
+      const toggleLoader = React.useCallback((number) => {
         dispatch({
           type: 'Loaded',
         });
-      }, [dispatch]
+        dispatch({
+          type: 'Cart',payload:number,
+        });
+        }
+        ,[dispatch]
       );
 
     
 
-    
+      const addtocart = (item) =>{
+        console.log(item.target.id);
+        fetch(`https://amanacart.com/api/addToCart/${item.target.id}`, {
+            method: 'post',
+            headers: {'Content-Type':'application/json'},
+        })
+        .then( async response => {
+            const isJson = response.headers.get('content-type')?.includes('application/json');
+            const data = isJson && await response.json();
 
+            // check for error response
+            if (!response.ok) {
+                // get error message from body or default to response status
+                const error = (data && data.message) || response.status;
+                return Promise.reject(error);
+            }
+            // setMessgae(data.message);
+            console.log(data);
+        })
+      }
+      const updateCart = (number) => {
+        React.useCallback(() => {
+          dispatch({
+            type: 'Cart',payload:number,
+          });
+        }, [dispatch]
+        );
+      }
       useEffect(() => {
         fetch("https://amanacart.com/api/navbar")
          .then(res => res.json())
          .then(result =>{
-          toggleLoader();
-          setData(result.data);
-          const wid = document.querySelector('#col').clientWidth;
+           setData(result.data);
+           const wid = document.querySelector('#col').clientWidth;
+           var elements = 0;
+           for(var i = 0 ; i < result.data.carts.length ; i ++ ){
+                elements+=result.data.carts[i].items.length;
+           }
+           toggleLoader(elements);
           setEl2(wid) ;
          })
          .catch(e => {
@@ -88,13 +122,20 @@ interface ListItem {
     setEl2(wid) ;
     setWidths(window.innerWidth);
   })
+  const noti = useAppState('notification');
+  const notiType = useAppState('notificationType');
 
     return (
         <>
+        
+          <div className={`fixed top-20 right-0 ${notiType=="error"?"bg-red-400":"bg-green-400"} transition-all duration-500 ${noti?"opacity-100":"opacity-0"} z-50 bg-op-50 w-72 py-4 px-5`} >
+              <span className="w-24 text-white text-md py-2">{notiType=="error"?"Error : ":"Success : " } {noti}</span>
+          </div>
+        
         <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 sm:col-span-12 h-13 md:col-span-12 relative z-50 lg:col-span-12 xl:col-span-12">
               {data?
-              <NavBar carts={data} auth={isAuthenticated}  toggleHandler={toggleHandler}></NavBar>
+              <NavBar addtocart={addtocart} carts={data} auth={isAuthenticated}  toggleHandler={toggleHandler}></NavBar>
               :<></>}
             </div>
             <div className={isDrawerOpen?"contentss pb-16 md:pb-0 overflow-hidden col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-9 xl:col-span-10 pl-4 pr-4 lg:pr-0":"sm:col-span-12 sm:pr-4 md:pr-1 md:col-span-11 lg:col-span-11 xl:col-span-11 pl-4 overflow-hidden contentss pb-16 md:pb-0"}>

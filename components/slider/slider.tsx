@@ -46,8 +46,9 @@ export default function Slider (props) {
       >
         {props.sliders.map(ele => 
           <SwiperSlide key={ele.id}>
-            {ele.image!=null?
-            <div className={`img rounded w-full h-36 sm:h-36 lg:h-90 ${Loading?"skeleton-box":""}`} style={Loading?{}:{backgroundImage:"url("+ele.image.path+")"}}></div>
+            {ele.image?
+            // <div className={`img rounded w-full h-36 sm:h-36 lg:h-90 ${Loading?"skeleton-box":""}`} style={props.type=='specials'?Loading?{}:{backgroundImage:"url("+ele.feature_image+")"} : Loading?{}:{backgroundImage:"url("+ele.image.path+")"}}></div>
+            <img src={ele.image.path} className={`img rounded w-full ${Loading?"skeleton-box":""}`} alt="" />
             :"sss"
             }
           </SwiperSlide>

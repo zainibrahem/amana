@@ -83,7 +83,7 @@ export default function Home() {
       <Waypoint
         onEnter={togglesearch}
       >
-        <div>
+        <div className="categories">
         <Categories data={data.banners_slider}></Categories>
         </div>
       </Waypoint>
