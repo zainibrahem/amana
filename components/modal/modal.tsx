@@ -527,7 +527,7 @@ export default function Modal (props) {
                                 }
 
                                 <label htmlFor="" className="self-end text-xs">الاسم الكامل</label>
-                                <input type="text" onChange={handlename}    className="w-full mt-2 rounded h-13  bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="email@example.com" />
+                                <input type="text" onChange={handlename}    className="w-full mt-2 rounded h-13  bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="اسمك بالكامل" />
                                 <label htmlFor="" className="self-end text-xs">البريد الالكتروني</label>
                                 <input type="text" onChange={handleemail}    className="w-full mt-2 rounded h-13  bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="email@example.com" />
                                 <label htmlFor="" className="self-end text-xs mt-2">كلمة السر</label>

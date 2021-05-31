@@ -20,12 +20,21 @@ interface ListItem {
     const modal = useAppState('Modal');
     const [data,setData] = useState(null);
     const [userId,setUserId] = useState(0); 
+    const [display,setDisplay] = useState(false); 
     const {
       authState: { isAuthenticated },
       authDispatch,
     } = React.useContext<any>(AuthContext);
     const toggleopens = ()=>{
       setOpens(!opens)
+      if(!opens){
+        setTimeout(() => {
+          setDisplay(true);
+        }, 1000);
+      }
+      else{
+        setDisplay(false);
+      }
     }
 
     const dispatch = useAppDispatch();
@@ -156,7 +165,7 @@ interface ListItem {
               <div className="w-full fixed bottom-0 h-16">
                 <div className="grid grid-cols-11 h-full bg-white shadow py-2">
                   <div className="col-span-12 animation ">
-                  <svg viewBox="-50 -50 100 100" width="250" >
+                  <svg className={`${display?"block":"hidden"}`} viewBox="-50 -50 100 100" width="250" >
                     <defs>
                         <path id="sectorpath" d="M0,0 L38.97114317029974,-22.499999999999996 A45,45 0 0 1 38.97114317029974,22.499999999999996 L0,0 A0,0 0 0 0 0,0">
                         </path>
