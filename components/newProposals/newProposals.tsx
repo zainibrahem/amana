@@ -1,11 +1,11 @@
 import {Title} from '../title/title';
-import ProductCard from '../productCard/productCard';
+import RowProductCard from '../rowProductCard/rowProductCard';
 import React from "react";
 import Slider from '../slider/slider';
 import { useAppState } from '../../contexts/app/app.provider';
 
 // import Slide1 from '../../public/images/slider/maher.png';
-export default function Proposals (props) {
+export default function newProposals (props) {
     const isDrawerOpen = useAppState('isDrawerOpen');
 
     const title = 'اقترحنا لك';
@@ -15,17 +15,15 @@ export default function Proposals (props) {
         <div className="propos w-full mb-3 slider special-brands-slider pt-6 md:pt-0">
                 <Slider sliders={props.slider} ></Slider>
         </div>
-        <Title title={title}></Title>
+        {/* <Title title={title}></Title> */}
         <div className="grid grid-cols-12">
-            <div className="col-span-12">
-                <div className="proposals flex flex-row flex-wrap bg-white rounded pt-6 md:pt-2 pb-4 px-3 md:px-5 justify-around items-center">
                 {props.data.map(eles => 
                         <>
-                        <ProductCard card={eles} type={"proposals"}></ProductCard>
+                        <div className="col-span-12 lg:col-span-6 flex justify-center lg:justify-end 2xl:justify-center items-center">
+                            <RowProductCard card={eles} type={"proposals"}></RowProductCard>
+                        </div>
                         </>
                     )}
-                </div>
-            </div>
         </div>
         </>
             :

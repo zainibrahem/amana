@@ -28,9 +28,7 @@ interface ListItem {
     const toggleopens = ()=>{
       setOpens(!opens)
       if(!opens){
-        setTimeout(() => {
           setDisplay(true);
-        }, 1000);
       }
       else{
         setDisplay(false);
@@ -154,8 +152,14 @@ interface ListItem {
               :<></>}
             </div>
             <div className={isDrawerOpen?"contentss pb-16 md:pb-0 overflow-hidden col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-9 xl:col-span-10 pl-4 pr-4 lg:pr-0":"sm:col-span-12 sm:pr-4 md:pr-1 md:col-span-11 lg:col-span-11 xl:col-span-11 pl-4 overflow-hidden contentss pb-16 md:pb-0"}>
-               {props.children}
-               <Footer></Footer>
+               {data?
+               <>
+                {props.children}
+                <Footer></Footer>
+               </>
+               :
+               <></>
+               }
             </div>
             <div id="col" className={isDrawerOpen?"hidden relative sm:col-span-4 md:col-span-3 lg:block lg:col-span-3 xl:col-span-2 overflow-x-hidden":"hidden overflow-x-hidden md:block md:col-span-1 lg:col-span-1 xl:col-span-1 relative"}>
             {data?
@@ -167,7 +171,9 @@ interface ListItem {
             
               <Modal></Modal>
             
-            <div className="block md:hidden col-span-12 z-50">
+        {data?
+          
+          <div className="block md:hidden col-span-12 z-50">
               <div className="w-full fixed bottom-0 h-16">
                 <div className="grid grid-cols-11 h-full bg-white shadow py-2">
                   <div className="col-span-12 animation ">
@@ -253,6 +259,9 @@ interface ListItem {
                 </div>
               </div>
             </div>
+        
+      :<></>
+      }
         </div>
       </>
    );

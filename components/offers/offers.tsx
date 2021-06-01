@@ -5,16 +5,13 @@ import Slider from '../slider/slider';
 import { useAppState } from '../../contexts/app/app.provider';
 
 // import Slide1 from '../../public/images/slider/maher.png';
-export default function Proposals (props) {
+export default function Offers (props) {
     const isDrawerOpen = useAppState('isDrawerOpen');
 
-    const title = 'اقترحنا لك';
+    const title = 'اكتشف كل العروض';
     return (
         props.data?
         <>
-        <div className="propos w-full mb-3 slider special-brands-slider pt-6 md:pt-0">
-                <Slider sliders={props.slider} ></Slider>
-        </div>
         <Title title={title}></Title>
         <div className="grid grid-cols-12">
             <div className="col-span-12">

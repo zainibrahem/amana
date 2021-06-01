@@ -66,10 +66,9 @@ export default function Home() {
   })
 
   return (
-    data?
     <>
     {loaded?
-      <SearchBar sliders={data.first_slider}></SearchBar>
+      <SearchBar sliders={data?data.first_slider:""}></SearchBar>
       :<></>
     }
       <Waypoint
@@ -78,9 +77,9 @@ export default function Home() {
       />
       
       <div className="special-brands-slider mt-6 md:mt-0">
-        <Slider sliders={data.first_slider}></Slider>
+        <Slider sliders={data?data.first_slider:""}></Slider>
       </div>
-        <Banners data={data.banners}></Banners>
+        <Banners data={data?data.banners:""}></Banners>
       
       
       <Waypoint
@@ -94,25 +93,24 @@ export default function Home() {
         onEnter={togglesearch}
       >
         <div className="categories">
-        <Categories data={data.banners_slider}></Categories>
+        <Categories data={data?data.banners_slider:""}></Categories>
         </div>
       </Waypoint>
-      <Card color="pink" title="الشائع في أمانة" data={data.trending_now}></Card>
-      <Deal data={data.deal_of_the_day}></Deal>
+      <Card color="pink" title="الشائع في أمانة" data={data?data.trending_now:""}></Card>
+      <Deal data={data?data.deal_of_the_day:""}></Deal>
       <Card color="pink" title="وصل حديثا"></Card>
-      <Specials cats={data.featured_categories} brands={data.featured_brands}></Specials>
-      {data.categories_sections.map((ele,index) => 
+      <Specials cats={data?data.featured_categories:""} brands={data?data.featured_brands:""}></Specials>
+      {data?
+      data.categories_sections.map((ele,index) => 
         <Cat key={ele.id} data={ele}></Cat>
-      )}
+      ):""}
 
     
-      <Proposals slider={data.second_slider} data={data.suggested_items}></Proposals>
+      <Proposals slider={data?data.second_slider:""} data={data?data.suggested_items:""}></Proposals>
 
 
     </>
   
-    :
-    <>
-    </>
+ 
   )
 }

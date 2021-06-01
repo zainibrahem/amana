@@ -29,14 +29,14 @@ export default function SpecialBrands (props) {
         <div className="grid grid-cols-12  gap-2" >
           <div className="col-span-1 sm:col-span-2 md:col-span-1"></div>
           <div className="col-span-5 relative sm:col-span-4 md:col-span-5">
-              <img src={props.specs['featured_brands1'][0].image} className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative mb-2" alt="" />
-              <img src={props.specs['featured_brands1'][1].image} className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative mb-2" alt="" />
-              <img src={props.specs['featured_brands1'][2].image} className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative mb-2" alt="" />
+              <img src={props.specs['featured_brands1'][0]?props.specs['featured_brands1'][0].image:""} className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative mb-2" alt="" />
+              <img src={props.specs['featured_brands1'][1]?props.specs['featured_brands1'][1].image:""} className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative mb-2" alt="" />
+              <img src={props.specs['featured_brands1'][2]?props.specs['featured_brands1'][2].image:""} className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative mb-2" alt="" />
           </div>
           <div className="col-span-5 relative sm:col-span-4 md:col-span-5">
-              <img src={props.specs['featured_brands1'][3].image} className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative mb-2" alt="" />
-              <img src={props.specs['featured_brands1'][4].image} className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative mb-2" alt="" />
-              <img src={props.specs['featured_brands1'][5].image} className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative mb-2" alt="" />
+              <img src={props.specs['featured_brands1'][3]?props.specs['featured_brands1'][3].image:""} className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative mb-2" alt="" />
+              <img src={props.specs['featured_brands1'][4]?props.specs['featured_brands1'][4].image:""} className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative mb-2" alt="" />
+              <img src={props.specs['featured_brands1'][5]?props.specs['featured_brands1'][5].image:""} className="img rounded w-full sm:w-36 md:w-full lg-w-36 left-1/2 transform -translate-x-2/4 shadow relative mb-2" alt="" />
           </div>
           <div className="col-span-1 sm:col-span-2 md:col-span-1"></div>
         </div>

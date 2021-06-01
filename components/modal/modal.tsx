@@ -22,6 +22,12 @@ export default function Modal (props) {
     const togglesubscibe = () =>{
         setSubscibe(!subscribe);
     }
+    const toggleNotification = React.useCallback((info,errortypes) => {
+        dispatch({
+          type: 'notification',payload:info,types:errortypes
+        });
+        },[dispatch]);
+
     const toggleagree = () =>{
         setAgree(!agree);
     }
@@ -82,6 +88,7 @@ export default function Modal (props) {
             }
             console.log(data);
             localStorage.setItem('token', data.data.api_token)
+            // toggleNotification('تم بنجاح تسجيل حسابك','success');
             handleLogin();
             setModalType(0);
         })

@@ -5,20 +5,16 @@ import Slider from '../slider/slider';
 import { useAppState } from '../../contexts/app/app.provider';
 
 // import Slide1 from '../../public/images/slider/maher.png';
-export default function Proposals (props) {
+export default function CatProducts (props) {
     const isDrawerOpen = useAppState('isDrawerOpen');
 
-    const title = 'اقترحنا لك';
+    const title = 'اكتشف كل العروض';
     return (
-        props.data?
+        props.data&&props.data.length>0?
         <>
-        <div className="propos w-full mb-3 slider special-brands-slider pt-6 md:pt-0">
-                <Slider sliders={props.slider} ></Slider>
-        </div>
-        <Title title={title}></Title>
         <div className="grid grid-cols-12">
             <div className="col-span-12">
-                <div className="proposals flex flex-row flex-wrap bg-white rounded pt-6 md:pt-2 pb-4 px-3 md:px-5 justify-around items-center">
+                <div className="proposals flex flex-row-reverse flex-wrap  rounded pt-6 md:pt-2 pb-4  justify-between items-center">
                 {props.data.map(eles => 
                         <>
                         <ProductCard card={eles} type={"proposals"}></ProductCard>
@@ -29,7 +25,7 @@ export default function Proposals (props) {
         </div>
         </>
             :
-            <h1></h1>
+            <></>
    );
 
 }

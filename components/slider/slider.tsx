@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 export default function Slider (props) {
   SwiperCore.use([Navigation,Autoplay, Pagination, Scrollbar]);
   const Draggable = useAppState('Draggable');
-  const Loading = useAppState('Loading');
+  const [Loading,setLoading] = useState(true);
   const dispatch = useAppDispatch();
   const [sliders,setSliders]=useState([]);
   const [userId,setUserId] = useState(0);
@@ -19,14 +19,13 @@ export default function Slider (props) {
     console.log('dragging');
   }, [dispatch]
   );
-//   useEffect(() => {
-//     setSliders(props.sliders);
-//     console.log('props.sliders');
-//     console.log(props.sliders);
-//  },[userId])
+  const LoadingFalse = () =>{
+    setTimeout(function(){
+      setLoading(false)
+    },1000)
+  }
   
     return (
-      props.sliders?
       <div className="slider rounded" onClick={()=>console.log('asdasd')}>
         <Swiper
         spaceBetween={20}
@@ -44,15 +43,15 @@ export default function Slider (props) {
         // onSlideChange={() => console.log('slide change')}
         // onSwiper={(swiper) => console.log(swiper)}
       >
-        {props.sliders.map(ele => 
+
+        {props.sliders?props.sliders.map(ele => 
           <SwiperSlide key={ele.id}>
-            {ele.image?
-            // <div className={`img rounded w-full h-36 sm:h-36 lg:h-90 ${Loading?"skeleton-box":""}`} style={props.type=='specials'?Loading?{}:{backgroundImage:"url("+ele.feature_image+")"} : Loading?{}:{backgroundImage:"url("+ele.image.path+")"}}></div>
-            <img src={ele.image.path} className={`img rounded w-full ${Loading?"skeleton-box":""}`} alt="" />
-            :"sss"
-            }
+            <div className="w-full">
+              <div className={`w-full h-41 skeleton-box ${Loading?"block":"hidden"}`}></div>
+              <img onLoad={() => LoadingFalse()} src={ele.image?ele.image.path:""} className={`img rounded w-full ${Loading?"hidden":"block"}`} alt="" />
+            </div>
           </SwiperSlide>
-        )}
+        ):""}
         {/* <SwiperSlide>
         <div className={`img rounded w-full h-36 sm:h-36 lg:h-90 ${Loading?"skeleton-box":""}`} style={Loading?{}:{backgroundImage:"url('./images/slider/maher.png')"}}></div>
         </SwiperSlide> */}
@@ -60,8 +59,4 @@ export default function Slider (props) {
       </Swiper>
       </div>
 
-      :
-      <>
-     
-      </>
 );}

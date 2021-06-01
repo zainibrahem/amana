@@ -356,6 +356,20 @@ body::-webkit-scrollbar-thumb {
   transform:translate(-50%,-50%);
   border-radius: 100% !important;
 }
+.shows{
+  height:0px;
+  padding:0px 10px;
+}
+.sort:hover + .shows{
+  max-height: 600px;
+  height: auto;
+  transition: all 0.5s ease;
+}
+.shows:hover{
+  max-height: 600px;
+  height: auto;
+  transition: all 0.5s ease;
+}
 @media (min-width:1025px){
   .btn{
     opacity:0;
@@ -507,19 +521,18 @@ background-color: rgb(78, 78, 78);
 }
 .animation .first{
   animation:sldie 1s forwards ;
-    animation-delay: .1s;
     opacity: 0;
 }
 
 .animation .second{
   animation:sldie 1s forwards ;
-    animation-delay: .2s;
+    animation-delay: .1s;
     opacity: 0;
 }
 
 .animation .third{
   animation:sldie 1s forwards ;
-  animation-delay: .3s;
+  animation-delay: .2s;
   opacity: 0;
 }
 .bar-logo{

@@ -131,7 +131,7 @@ export default function ProductCard (props) {
                         </div>
                         <div className={counter?"opacity-0 mt-2 transition-all flex flex-row-reverse justify-between w-full items-center before-hover":"opacity-1 mt-2 transition-all flex flex-row-reverse justify-between w-full items-center before-hover"}>
                                 <div className={`${Loading?"w-14 h-2 skeleton-box":"hidden"}`}></div>
-                                <img className={counter?` ${Loading?"hidden":""} opacity-0 transition-all w-14 h-2 ml-1`:`${Loading?"hidden":""} w-14 2xl:w-16 h-2 ml-1 `} src="./images/SPEED AR.svg" alt="" />
+                                <img className={counter?` ${Loading?"hidden":""} opacity-0 transition-all w-14 h-2 ml-1`:`${Loading?"hidden":""} w-14 2xl:w-16 h-2 ml-1 `} src="../images/SPEED AR.svg" alt="" />
 
                             <p className={`hidden lg:flex text-xs  flex-row w-1/3 sm:w-1/2 justify-start lg:justify-between items-center ${Loading?"w-14 h-2 skeleton-box":""}`}>
                                 <span className="hidden lg:block text-green-600 font-bold" style={Loading?{opacity:"0"}:{}}>
@@ -173,7 +173,7 @@ export default function ProductCard (props) {
                 </div>
                 <div className={`flex bg-white flex-col justify-between items-center w-full px-2 py-2  info`}>
                     
-                        <span className={`${Loading?"skeleton-box ":""} h-16 overflow-hidden text-md self-end `}>
+                        <span className={`${Loading?"skeleton-box ":""} h-14 overflow-hidden text-md self-end `}>
                             <span style={Loading?{opacity:"0"}:{}}>
                                 {props.card.title}
                             </span>    
@@ -214,7 +214,7 @@ export default function ProductCard (props) {
                         </div>
                         <div className={counter?"opacity-0 mt-2 transition-all flex flex-row-reverse justify-between w-full items-center before-hover":"opacity-1 mt-2 transition-all flex flex-row-reverse justify-between w-full items-center before-hover"}>
                                 <div className={`${Loading?"w-14 h-2 skeleton-box":"hidden"}`}></div>
-                                <img className={counter?` ${Loading?"hidden":""} opacity-0 transition-all w-14 h-2 ml-1`:`${Loading?"hidden":""} w-14 2xl:w-16 h-2 ml-1 `} src="./images/SPEED AR.svg" alt="" />
+                                <img className={counter?` ${Loading?"hidden":""} opacity-0 transition-all w-14 h-2 ml-1`:`${Loading?"hidden":""} w-14 2xl:w-16 h-2 ml-1 `} src="../images/SPEED AR.svg" alt="" />
 
                             <p className={`hidden lg:flex text-xs  flex-row w-1/3 sm:w-1/2 justify-start lg:justify-between items-center ${Loading?"w-14 h-2 skeleton-box":""}`}>
                                 <span className="hidden lg:block text-green-600 font-bold" style={Loading?{opacity:"0"}:{}}>

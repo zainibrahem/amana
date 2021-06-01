@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay,Navigation, Pagination, Scrollbar } from 'swiper/core';
 import { useEffect, useState } from 'react';
 import { useAppState } from '../../contexts/app/app.provider';
+import Link from 'next/link'
 
 export default function Brands (props) {
   const isDrawerOpen = useAppState('isDrawerOpen');
@@ -89,7 +90,7 @@ export default function Brands (props) {
       },
     };
         return (
-          <div className="grid grid-cols-12 gap-4 p-2">
+          <div className="grid grid-cols-12 gap-4 p-2 relative">
             <div className="col-span-12 px-2">
 
             
@@ -107,17 +108,21 @@ export default function Brands (props) {
               nextEl: '.swiper-button-next',
               prevEl: '.swiper-button-prev',
             }}
-            breakpoints={isDrawerOpen? breakpoints:breakpoints1}
+            breakpoints={breakpoints}
             speed={500}
             // onSlideChange={() => console.log('slide change')}
             // onSwiper={(swiper) => console.log(swiper)}
           >
-            {props.data.map(ele => 
-              <SwiperSlide key={ele.id}>
-                  <img id="element" className={`rounded-full bg-white elements left-2/4 relative transform -translate-x-1/2 w-11/12 ${Loading?"element skeleton-box":""}`} src={ele.image} alt="" />
-                  <h4 className={`text-center mt-2 ${Loading?"skeleton-box w-full h-6":""}`}>{Loading?"":ele.title}</h4>
-              </SwiperSlide>
-            )}
+            {props.data?props.data.map(ele => 
+                  <SwiperSlide key={ele.id}>
+                    <Link href={`/category/category?pid=${ele.id}`}>
+                      <div className="cursor-pointer">
+                              <img id="element" className={`rounded-full bg-white elements left-2/4 relative transform -translate-x-1/2 w-11/12 ${Loading?"element skeleton-box":""}`} src={props.type?ele.cover_image:ele.image} alt="" />
+                              <h4 className={`text-center mt-2 ${Loading?"skeleton-box w-full h-6":""}`}>{Loading?"":props.type=="categories"?ele.name:ele.title}</h4>
+                      </div>
+                    </Link>
+                  </SwiperSlide>
+            ):<div id="element"></div>}
 
             <div className="swiper-button-prev"></div>
             <div className="swiper-button-next"></div>

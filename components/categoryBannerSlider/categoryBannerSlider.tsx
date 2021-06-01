@@ -5,7 +5,7 @@ import { useAppState } from '../../contexts/app/app.provider';
 import React from 'react';
 import { CardTitle } from '../cardTitle/cardTitle';
 
-export default function Brands1 (props) {
+export default function CategoryBannerSlider (props) {
 
     SwiperCore.use([Navigation,Autoplay, Pagination, Scrollbar]);
     
@@ -23,15 +23,15 @@ export default function Brands1 (props) {
         },
     
         820: {
-          slidesPerView: 13,
+          slidesPerView: 4,
         },
     
         1000: {
-          slidesPerView: 9,
+          slidesPerView: 5,
         },
     
         1280: {
-          slidesPerView: 7,
+          slidesPerView: 8,
         },
         1366: {
           slidesPerView: 9,
@@ -41,43 +41,41 @@ export default function Brands1 (props) {
         },
       };
         return (
-        
-            <div className="grid special-brands-slider  grid-cols-12 gap-2 mt-8  sm:mt-12 rounded bg-white shadow-md py-2  ">
+          <div className="grid special-brands-slider  grid-cols-12 gap-2 mt-8  sm:mt-12 rounded bg-white shadow-md py-2  ">
                 <div className="col-span-12 md:col-span-12 flex flex-row-reverse justify-between items-center px-2">
-                    <CardTitle title={"العلامات التجارية"}></CardTitle>
+                    <CardTitle title={"تسوق حسب السعر"}></CardTitle>
                 </div>
                 <div className="col-span-12 md:col-span-12  pt-2 pb-4">
                 <div className="px-3">
                     <Swiper
-                    spaceBetween={5}
-                    slidesPerView={10}
+                    spaceBetween={8}
+                    slidesPerView={6}
                     dir="rtl"
                     loop={true}
                     // resizeObserver={true}
                     autoplay={{
                       pauseOnMouseEnter:true,
-                      delay:4000
+                      delay:2000
                     }}
                     navigation={{
                       nextEl: '.swiper-button-next',
                       prevEl: '.swiper-button-prev',
                     }}
                     breakpoints={breakpoints}
-                    // onSlideChange={() => console.log('slide change')}
-                    // onSwiper={(swiper) => console.log(swiper)}
                     >
-                      {props.data?
+                      {props.data&&props.data.length>0?
                         props.data.map(ele=>
                           <SwiperSlide>
-                            <img src={ele.image} className="rounded border-2" alt="" />
-                        </SwiperSlide>
+                            <img className="rounded  w-full" src={ele.image} alt="" />
+                          </SwiperSlide>
                           )
-                          :<></>
+                        :""
                         }
                     </Swiper>
-                </div>
+               
+                    </div>
+                  </div>
             </div>
-          </div>
     );
 }
 
