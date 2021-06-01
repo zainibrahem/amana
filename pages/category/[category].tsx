@@ -18,16 +18,24 @@ import { Waypoint } from 'react-waypoint';
 import Proposals from '../../components/proposals/proposals';
 import NewProposals from '../../components/newProposals/newProposals';
 import { useRouter } from 'next/router'
+import { idText } from 'typescript';
 
 export default function Category(props) {
     const [userId,setUserId] = useState(0);
-    const [data,setData] = useState();
     const [sort,setSort] = useState();
-    const [pros,setPros] = useState();
+    const [pros,setPros] = useState([]);
     const [view,setView] = useState(1);
     const Loading = useAppState("Loading");
     const router = useRouter()
     const { pid } = router.query;
+    interface Data {
+        products: [];
+        suggested_products:[];
+        suggested_categories:[];
+        deals:[]
+      }
+    const [data,setData] = useState<Data>(); 
+
 
 
     const toggleSort = (e) =>{
@@ -74,7 +82,7 @@ export default function Category(props) {
             }); 
         }
         else{
-            setPros(data.products);
+                setPros(data.products);
         }
     }
   
