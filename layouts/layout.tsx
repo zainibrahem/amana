@@ -141,7 +141,7 @@ interface ListItem {
     return (
         <>
         
-          <div className={`fixed top-20 right-0 ${notiType=="error"?"bg-red-400":"bg-green-400"} transition-all duration-500 ${noti?"opacity-100":"opacity-0"} z-50 bg-op-50 w-72 py-4 px-5`} >
+          <div className={`fixed top-20 right-0 ${notiType=="error"?"bg-red-400":"bg-green-400"} transition-all duration-500 ${noti?"opacity-100":"opacity-0 hidden"} z-50 bg-op-50 w-72 py-4 px-5`} >
               <span className="w-24 text-white text-md py-2">{notiType=="error"?"Error : ":"Success : " } {noti}</span>
           </div>
         

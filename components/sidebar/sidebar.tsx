@@ -10,6 +10,7 @@ import Link from 'next/link'
     const [shown,setShown] = useState(0);
     const [catss,setCatss] = useState(null);
     const [type,setType]=useState('home');
+    const Route = useAppState('Route');
     // const [data,setData] = useState();
     // const [userId,setUserId] = useState(0);
     // const dispatch = useAppDispatch();
@@ -206,7 +207,7 @@ import Link from 'next/link'
                                         <Link href={`/categories/categories?pids=${ele.id}`}>
                                                 {ele.name}
                                         </Link>
-                                        <div className="rounded-full w-6 h-4 ml-2 cursor-pointer" onClick={()=> setShown(0)} style={{background:"url('./images/right-arrow.svg')",backgroundSize:"cover",backgroundPosition:"center"}}></div>
+                                        <div className="rounded-full w-6 h-4 ml-2 cursor-pointer" onClick={()=> setShown(0)} style={{background:`url(${Route}/images/right-arrow.svg)`,backgroundSize:"cover",backgroundPosition:"center"}}></div>
                                     </li>
                                      {ele.sub_groups.map(sub =>
                                      <li onClick={toggleAccordoin} className="overflow-hidden  duration-1000 transition-all cursor-pointer w-full flex flex-col pt-2 pb-2 px-3 justify-start items-center text-sm hover-side items">
@@ -219,9 +220,11 @@ import Link from 'next/link'
                                         <div className="content w-full hidden">
                                             <ul className="flex h-full flex-col justify-between items-center">
                                                 {sub.categories.map(secSub => 
-                                                    <li className="w-full flex flex-col pt-2 pb-2 px-3 justify-end items-center text-sm">
-                                                        {secSub.name}
-                                                    </li>
+                                                    <Link href={`http://localhost:3000/category/category?pid=${secSub.id}`} key={secSub.id}>
+                                                        <li className="w-full flex flex-col pt-2 pb-2 px-3 justify-end items-center text-sm">
+                                                            {secSub.name}
+                                                        </li>
+                                                    </Link>
                                                 )}
                                             </ul>
                                         </div>

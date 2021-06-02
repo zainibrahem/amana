@@ -28,6 +28,7 @@ export default function Category(props) {
     const Loading = useAppState("Loading");
     const router = useRouter()
     const { pid } = router.query;
+    const Route = useAppState('Route');
     interface Data {
         products: [];
         suggested_products:[];
@@ -46,6 +47,7 @@ export default function Category(props) {
         setView(e);
     }
     useEffect(() => {
+        
         fetch(`https://amanacart.com/api/sort_category/${pid}?sort_by=${sort}`)
          .then(res => res.json())
          .then(result =>{
@@ -68,7 +70,7 @@ export default function Category(props) {
            console.log(e);
            console.log(props.query.pid)
        });
-     },[userId])
+     },[pid])
      const toggleSearch = (r) =>{
         if(r.target.value.length > 3){
             fetch("https://amanacart.com/api/search/"+r.target.value+"?in_category="+pid+"")
@@ -125,6 +127,8 @@ export default function Category(props) {
                 <div className="flex justify-between items-center">
                     <span className="text-sm mr-3">العرض</span>
                     {/* <div onClick={()=>toggleView(1)} className="w-4 h-4 bg-gray-300"></div> */}
+                    <img onClick={()=>toggleView(1)} className="w-5 cursor-pointer" src={`${Route}/images/icons/dayview.svg`} alt="" />
+                    <img onClick={()=>toggleView(2)} className="w-5 cursor-pointer" src={`${Route}/images/icons/dayview.svg`} alt="" />
                     {/* <div onClick={()=>toggleView(2)} className="w-4 h-4 bg-gray-500"></div> */}
                 </div>
             </div>              
@@ -132,7 +136,7 @@ export default function Category(props) {
         {view==1?
         <CatProducts data={pros?pros:""}></CatProducts>
            :
-        <NewProposals data={data?data.suggested_products:""}></NewProposals>
+        <NewProposals data={pros?pros:""}></NewProposals>
         }
         <Deal data={data?data.deals:""}></Deal>
         <Proposals data={data?data.suggested_products:""}></Proposals>

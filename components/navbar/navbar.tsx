@@ -15,7 +15,7 @@ export const NavBar = (props) => {
     const searchIcon = useAppState('toggleIcon');
     const Loading = useAppState('Loading');
     const Cart = useAppState('Cart');
-
+    const Route = useAppState('Route');
     
     const Token = useAppState('Token');
     
@@ -204,7 +204,7 @@ export const NavBar = (props) => {
                         <button onClick={togglecart} className={`ml-3 w-8 md:w-10  h-6  md:h-8 lg:h-10 lg:w-10  focus:outline-none rounded-full  flex items-center justify-center ${Loading?"skeleton-box":""}`}>
                                     <div className="relative " style={Loading?{opacity:"0"}:{}}>
                                         <div className="absolute -right-1 w-4 h-4 -top-1 rounded-full text-xs text-white bg-red-400 flex justify-center items-center">{Cart}</div>
-                                        <img src="./images/shopping-cart.svg" className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current " alt="" />
+                                        <img src={`${Route}/images/shopping-cart.svg`} className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current " alt="" />
                                     </div>
                         </button>
                         {/* <button className={`hidden ${Loading?"skeleton-box":""} ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center`}>
@@ -221,7 +221,7 @@ export const NavBar = (props) => {
                             </div>
                             <div className="scrolls h-110 overflow-y-scroll">
                                 <div className="hidden col-span-12 border-t-2 px-2 py-3  justify-between relative items-center">
-                                    <img className="w-14" src="./images/med-3.jpg" alt="" />
+                                    <img className="w-14" src={`${Route}/images/med-3.jpg`} alt="" />
                                     <div className="flex  flex-col justify-between items-start">
                                         <span className="text-sm text-gray-700">المنتج الأول</span>
                                         <span className="text-xs text-gray-300">من غوغل</span>
@@ -315,7 +315,7 @@ export const NavBar = (props) => {
                             </div>
                             <div className="scrolls h-90 overflow-y-scroll">
                                 <div className="hidden col-span-12 border-t-2 px-2 py-3  justify-between relative items-center">
-                                    <img className="w-14" src="./images/med-3.jpg" alt="" />
+                                    <img className="w-14" src={`${Route}/images/med-3.jpg`} alt="" />
                                     <div className="flex  flex-col justify-between items-start">
                                         <span className="text-sm text-gray-700">المنتج الأول</span>
                                         <span className="text-xs text-gray-300">من غوغل</span>
@@ -514,7 +514,7 @@ export const NavBar = (props) => {
                             <div className="overflow-hidden">
                             <div className={menu==2?"px-2 py-2 slidesright":"px-2 py-2  slidesleft"}>
                                    <div className="hidden col-span-12 border-t-2 px-2 py-3  justify-between relative items-center">
-                                       <img className="w-14" src="./images/med-3.jpg" alt="" />
+                                       <img className="w-14" src={`${Route}/images/med-3.jpg`} alt="" />
                                        <div className="flex  flex-col justify-between items-start">
                                            <span className="text-sm text-gray-700">المنتج الأول</span>
                                            <span className="text-xs text-gray-300">من غوغل</span>
@@ -528,7 +528,7 @@ export const NavBar = (props) => {
                                        <div className="absolute top-1 left-3">x</div>
                                    </div>
                                    <div className="col-span-12 rounded px-5 py-3 flex justify-start relative items-center">
-                                       <div className="rounded-full  w-6 h-4  cursor-pointer" onClick={()=> setMenu(1)} style={{background:"url('./images/right-arrow.svg')",backgroundSize:"cover",backgroundPosition:"center"}}></div>
+                                       <div className="rounded-full  w-6 h-4  cursor-pointer" onClick={()=> setMenu(1)} style={{background:`url(${Route}/images/right-arrow.svg)`,backgroundSize:"cover",backgroundPosition:"center"}}></div>
                                        <div className="flex  flex-col justify-between items-start mr-2">
                                            <span className="text-md text-black">إعدادات الحساب</span>
                                            {/* <span className="text-xs text-gray-500 mt-2">الرصيد : 500 ر.ل </span> */}
@@ -536,7 +536,7 @@ export const NavBar = (props) => {
                                    </div>
                                    <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}} >
                                        <div className="w-2/3 flex justify-start relative items-center">
-                                       <img src='./images/profile.svg' className=" w-10 h-6 "/>
+                                       <img src={`${Route}/images/profile.svg`} className=" w-10 h-6 "/>
                                            <div className="flex  flex-col justify-between items-start mr-2">
                                                <span className="text-xs text-black">المعلومات الأساسية</span>
                                            </div>
@@ -545,7 +545,7 @@ export const NavBar = (props) => {
                                    </div>
                                    <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" >
                                        <div className="w-2/3 flex justify-start relative items-center">
-                                           <img src='./images/password.svg' className=" w-10 h-6 "/>
+                                           <img src={`${Route}/images/password.svg`} className=" w-10 h-6 "/>
                                            <div  className="flex  flex-col justify-between items-start mr-2">
                                                <span className="text-xs text-black">تغيير كلمة المرور</span>
                                            </div>
@@ -554,7 +554,7 @@ export const NavBar = (props) => {
                                    </div>
                                    <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" >
                                        <div className="w-2/3 flex justify-start relative items-center">
-                                       <img src='./images/shipping.svg' className="w-9 h-6 "/>
+                                       <img src={`${Route}/images/shipping.svg`} className="w-9 h-6 "/>
                                            <div className="flex  flex-col justify-between items-start mr-2">
                                                <span className="text-xs text-black">عناوين الشحن</span>
                                            </div>
@@ -564,7 +564,7 @@ export const NavBar = (props) => {
                                </div>
                             <div className={menu==3?"px-2 py-2 slidesright":"px-2 py-2  slidesleft"}>
                                    <div className="hidden col-span-12 border-t-2 px-2 py-3  justify-between relative items-center">
-                                       <img className="w-14" src="./images/med-3.jpg" alt="" />
+                                       <img className="w-14" src={`${Route}/images/med-3.jpg`} alt="" />
                                        <div className="flex  flex-col justify-between items-start">
                                            <span className="text-sm text-gray-700">المنتج الأول</span>
                                            <span className="text-xs text-gray-300">من غوغل</span>
@@ -578,7 +578,7 @@ export const NavBar = (props) => {
                                        <div className="absolute top-1 left-3">x</div>
                                    </div>
                                    <div className="col-span-12 rounded px-5 py-3 flex justify-start relative items-center">
-                                       <div className="rounded-full  w-6 h-4  cursor-pointer" onClick={()=> setMenu(1)} style={{background:"url('./images/right-arrow.svg')",backgroundSize:"cover",backgroundPosition:"center"}}></div>
+                                       <div className="rounded-full  w-6 h-4  cursor-pointer" onClick={()=> setMenu(1)} style={{background:`url(${Route}/images/right-arrow.svg)`,backgroundSize:"cover",backgroundPosition:"center"}}></div>
                                        <div className="flex  flex-col justify-between items-start mr-2">
                                            <span className="text-md text-black">المعاملات التجارية</span>
                                            {/* <span className="text-xs text-gray-500 mt-2">الرصيد : 500 ر.ل </span> */}
@@ -586,7 +586,7 @@ export const NavBar = (props) => {
                                    </div>
                                    <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}} >
                                        <div className="w-2/3 flex justify-start relative items-center">
-                                       <img src='./images/orders.svg' className=" w-10 h-6 "/>
+                                       <img src={`${Route}/images/orders.svg`} className=" w-10 h-6 "/>
                                            <div className="flex  flex-col justify-between items-start mr-2">
                                                <span className="text-xs text-black">الطلبات</span>
                                            </div>
@@ -595,7 +595,7 @@ export const NavBar = (props) => {
                                    </div>
                                    <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center"  >
                                        <div className="w-2/3 flex justify-start relative items-center">
-                                       <img src='./images/bill.svg' className=" w-10 h-6 "/>
+                                       <img src={`${Route}/images/bill.svg`} className=" w-10 h-6 "/>
                                            <div className="flex  flex-col justify-between items-start mr-2">
                                                <span className="text-xs text-black">الفواتير</span>
                                            </div>
@@ -604,7 +604,7 @@ export const NavBar = (props) => {
                                    </div>
                                    <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" >
                                        <div className="w-2/3 flex justify-start relative items-center">
-                                           <img src='./images/payment.svg' className=" w-10 h-6 "/>
+                                           <img src={`${Route}/images/payment.svg`} className=" w-10 h-6 "/>
                                            <div  className="flex  flex-col justify-between items-start mr-2">
                                                <span className="text-xs text-black">طرق الدفع</span>
                                            </div>
@@ -613,7 +613,7 @@ export const NavBar = (props) => {
                                    </div>
                                    <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" >
                                        <div className="w-2/3 flex justify-start relative items-center">
-                                       <img src='./images/wallet.svg' className="w-9 h-6 "/>
+                                       <img src={`${Route}/images/wallet.svg`} className="w-9 h-6 "/>
                                            <div className="flex  flex-col justify-between items-start mr-2">
                                                <span className="text-xs text-black">المحفظة</span>
                                            </div>
@@ -623,7 +623,7 @@ export const NavBar = (props) => {
                                </div> 
                             <div className={menu==1?"px-2 py-2 centered":"px-2 py-2  slideLeft"}>
                                <div className="hidden col-span-12 border-t-2 px-2 py-3  justify-between relative items-center">
-                                   <img className="w-14" src="./images/med-3.jpg" alt="" />
+                                   <img className="w-14" src={`${Route}/images/med-3.jpg`} alt="" />
                                    <div className="flex  flex-col justify-between items-start">
                                        <span className="text-sm text-gray-700">المنتج الأول</span>
                                        <span className="text-xs text-gray-300">من غوغل</span>
@@ -637,7 +637,7 @@ export const NavBar = (props) => {
                                    <div className="absolute top-1 left-3">x</div>
                                </div>
                                <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-start relative items-center">
-                                   <div className="rounded-full w-10 h-8 " style={{background:"url('./images/user.jpg')",backgroundSize:"cover",backgroundPosition:"center"}}></div>
+                                   <div className="rounded-full w-10 h-8 " style={{background:`url(${Route}/images/user.jpg)`,backgroundSize:"cover",backgroundPosition:"center"}}></div>
                                    <div className="flex  flex-col justify-between items-start mr-2">
                                        <span className="text-xs text-black">زين ابراهيم</span>
                                        <span className="text-xs text-gray-500 mt-2">الرصيد : 500 ر.ل </span>
@@ -645,29 +645,29 @@ export const NavBar = (props) => {
                                </div>
                                <div onClick={()=>setMenu(2)} className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
                                    <div   className="w-2/3 flex justify-start relative items-center">
-                                       <img src='./images/setting.svg' className="w-7 h-8"/>
+                                       <img src={`${Route}/images/setting.svg`} className="w-7 h-8"/>
                                        <div className="flex  flex-col justify-between items-start mr-2">
                                            <span className="text-xs text-black">إعدادات الحساب</span>
                                        </div>
                                    </div>
                                    <div className="arrow">
-                                       <img className="w-4 relative" src="./images/left-arrow.svg" alt="" />
+                                       <img className="w-4 relative" src={`${Route}/images/left-arrow.svg`} alt="" />
                                    </div>
                                </div>
                                <div onClick={()=>setMenu(3)} className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" >
                                    <div className="w-2/3 flex justify-start relative items-center">
-                                    <img src='./images/cashier.svg' className="w-7 h-8"/>
+                                    <img src={`${Route}/images/cashier.svg`} className="w-7 h-8"/>
                                        <div  className="flex  flex-col justify-between items-start mr-2">
                                            <span className="text-xs text-black">المعاملات التجارية</span>
                                        </div>
                                    </div>
                                    <div className="arrow">
-                                       <img className="w-4 relative" src="./images/left-arrow.svg" alt="" />
+                                       <img className="w-4 relative" src={`${Route}/images/left-arrow.svg`} alt="" />
                                    </div>
                                </div>
                                <div className="col-span-12  rounded px-5 noti-hover py-3 flex justify-between relative items-center" >
                                    <div className="w-full flex justify-start relative items-center">
-                                   <img src='./images/support.svg' className="w-7 h-8"/>
+                                   <img src={`${Route}/images/support.svg`} className="w-7 h-8"/>
                                        <div className="flex  flex-col justify-between items-start mr-2">
                                            <span className="text-xs text-black">مركز المساعدة</span>
                                            <span className="text-xs text-gray-500 mt-2">فريق الدعم الفني متوفر 24/7</span>
@@ -679,7 +679,7 @@ export const NavBar = (props) => {
                                    </div> */}
                                </div>
                                <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-start relative items-center" >
-                               <img src='./images/logout.svg' className="w-7 h-8"/>
+                               <img src={`${Route}/images/logout.svg`} className="w-7 h-8"/>
                                    <div className="flex  flex-col justify-between items-start mr-2">
                                        <span onClick={handlelogout} className="text-xs text-black">تسجيل الخروج</span>
                                    </div>
@@ -705,7 +705,7 @@ export const NavBar = (props) => {
                          
                         </div>
                         {localStorage.getItem('token')?
-                            <div onClick={toggleprofile} className={`hidden ml-3 cursor-pointer w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center ${Loading?"skeleton-box":""}`}  style={Loading?{}:{background:"url('./images/user.jpg')",backgroundSize:"cover",backgroundPosition:"center"}}>
+                            <div onClick={toggleprofile} className={`hidden ml-3 cursor-pointer w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center ${Loading?"skeleton-box":""}`}  style={Loading?{}:{background:`url(${Route}/images/user.jpg)`,backgroundSize:"cover",backgroundPosition:"center"}}>
                             </div>
                             :
                             <span className="text-xs block bg-yellow-500 text-white py-1 px-3 rounded cursor-pointer " onClick={toggleModal}>

@@ -9,6 +9,7 @@ export const initialState = {
   toggleIcon:false,
   Loading:true,
   Modal:false,
+  Route:"http://localhost:3000",
   Token:null,
   Cart:0,
   notification:null,

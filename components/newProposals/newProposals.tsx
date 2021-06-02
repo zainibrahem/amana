@@ -19,9 +19,11 @@ export default function newProposals (props) {
         <div className="grid grid-cols-12">
                 {props.data.map(eles => 
                         <>
-                        <div className="col-span-12 lg:col-span-6 flex justify-center lg:justify-end 2xl:justify-center items-center">
+                        <div className="hidden md:block lg:hidden col-span-6"></div>
+                        <div className="col-span-12 sm:col-span-6 lg:col-span-6 flex justify-center lg:justify-end 2xl:justify-center items-center">
                             <RowProductCard card={eles} type={"proposals"}></RowProductCard>
                         </div>
+                        <div className="hidden md:block lg:hidden col-span-6"></div>
                         </>
                     )}
         </div>

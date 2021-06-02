@@ -16,21 +16,34 @@ import Offers from '../../components/offers/offers';
 import { Waypoint } from 'react-waypoint';
 import { useRouter } from 'next/router'
 
-export default function categories(props) {
-
-    const [data,setData] = useState();
+export default function subGroup(props) {
+    interface Data {
+        first_slider: [];
+        sub_groups:[];
+        brands:[];
+        banners:[]
+        deal_of_the_day:[]
+        trending_now:[]
+        price_banners:[]
+        second_slider:[]
+        suggested:[]
+        suggested_categories:[]
+        offers:[]
+      }
+    const [data,setData] = useState<Data>();
     const [userId,setUserId] = useState(0);
     const router = useRouter()
     const { pids } = router.query;
 
     useEffect(() => {
-        fetch(`https://amanacart.com/api/category_group/${pids}`)
+        fetch(`http://amanacart.com/api/category_sub_group/1${pids}`)
          .then(res => res.json())
          .then(result =>{
            setData(result.data);
          })
          .catch(e => {
            console.log(e);
+           console.log('didnt work');
        });
      },[pids])
      const loaded = useAppState('loaded');
