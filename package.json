@@ -8,6 +8,7 @@
     "start": "next start -H 0.0.0.0 -p ${PORT:-8080}"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.3.2",
     "@types/react": "^17.0.6",
     "and": "0.0.3",
     "baseui": "^9.115.2",

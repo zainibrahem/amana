@@ -8,6 +8,7 @@ module.exports = {
   theme: {
     extend: {},
     height: {
+      '0':'0rem',
       '0.5':'0.125rem',
       '0.7':'0.5rem',
       '1':'1.25rem',
@@ -52,5 +53,8 @@ module.exports = {
       borderColor: ['checked'],
     }
   },
-  plugins: [],
+  plugins: [
+    require("@tailwindcss/forms")({
+      strategy: 'class',
+    }),  ],
 }
