@@ -9,7 +9,7 @@ export const initialState = {
   toggleIcon:false,
   Loading:true,
   Modal:false,
-  Route:"http://localhost:3000",
+  Route:"https://amana-63oux.ondigitalocean.app",
   Token:null,
   Cart:0,
   notification:null,
