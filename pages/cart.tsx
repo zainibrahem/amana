@@ -15,7 +15,7 @@ import Discover from '../components/discover/discover';
 export default function Cart() {
     const [height,setHeight] = useState(0);
     const [carts,setCart] = useState([]);
-   
+    const [userId,setUserId] = useState();
     useEffect(() => {
         fetch(`https://amanacart.com/api/carts`,{
             headers:{
@@ -32,6 +32,7 @@ export default function Cart() {
       });
       
         if(carts.length>0){
+          console.log('sssssss');
           var element = document.querySelector('#width').clientWidth;
           setHeight(element);
         }
@@ -49,10 +50,10 @@ export default function Cart() {
           // remove resize listener
           window.removeEventListener('resize', resizeListener);
         }
-      }, [])
+      })
       var totals = 0;
     return (
-        <div className="grid grid-cols-12 bg-white shadow rounded p-3 mt-12">
+        <div className="grid grid-cols-12 p-3 mt-12">
             <div className="col-span-12 flex justify-end items-center">
                 <span className="text-md text-right">السلة</span>
             </div>
@@ -65,7 +66,7 @@ export default function Cart() {
                     totals+= int
                     return (
                      
-                     <div className="w-full mt-2 p-3">
+                     <div className="w-full mt-2 bg-white shadow rounded p-3">
                      <div className="grid grid-cols-12">
                          <div className="col-span-12 flex flex-col justify-between items-center">
                              <div className="w-full bg-gray-100 p-3 flex flex-row-reverse justify-between items-center">
@@ -90,44 +91,44 @@ export default function Cart() {
                                                 <div className="rounded shadow mt-3 py-2 px-2 flex justify-between items-center">
                                                 <div className="grid grid-cols-12 w-full">
                                                     <div className="col-span-1 flex justify-center items-center">
-                                                        <div id="width" className="rounded-full border-2 border-yellow-500 w-14 h-16" style={{height:height,background:`url(${item.image})`,backgroundSize:"cover",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
+                                                        <div id="width" className=" border-2 w-14 h-16" style={{borderRadius:"100%",border:"1px solid rgba(245, 158, 11)",height:height,background:`url(${item.image})`,backgroundSize:"cover",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
                                                     </div>
                                                     <div className="col-span-4 lg:col-span-6 flex justify-center items-center">
-                                                        <span className="text-xs px-2 h-4 lg:h-auto overflow-hidden">
+                                                        <span className="text-xs 2xl:text-sm px-2 h-4 lg:h-auto overflow-hidden">
                                                             {item.description}
                                                         </span>
                                                     </div>
                                                     <div className="col-span-1 flex flex-col justify-start items-center">
-                                                        <span className="text-xs text-gray-300 flex-col flex-justify-between items-center">
+                                                        <span className="text-xs 2xl:text-sm text-gray-400 flex-col flex-justify-between items-center">
                                                             السعر
                                                         </span>
-                                                        <span className="text-xs text-gray-500 flex-col  mt-2 flex-justify-between items-center">
+                                                        <span className="text-xs 2xl:text-sm text-gray-500 flex-col  mt-2 flex-justify-between items-center">
                                                             {item.unit_price}
                                                         </span>
                                                     </div>
                                                     <div className="col-span-3 lg:col-span-2 flex flex-col justify-start items-center">
-                                                        <span className="text-xs text-gray-300 flex-col flex-justify-between items-center">
+                                                        <span className="text-xs 2xl:text-sm text-gray-400 flex-col flex-justify-between items-center">
                                                             الكمية
                                                         </span>
                                                         <div className="rounded border-2 borer-gray-300 flex mt-2  justify-between items-center">
-                                                            <span className="text-xs px-1 lg:px-2 ">-</span>
-                                                            <span className="text-xs px-1 lg:px-2 ">{item.quantity}</span>
-                                                            <span className="text-xs px-1 lg:px-2 ">+</span>
+                                                            <span className="text-xs 2xl:text-sm 2xl:py-1 px-1 lg:px-2 2xl:px-3">-</span>
+                                                            <span className="text-xs 2xl:text-sm 2xl:py-1 px-1 lg:px-2 2xl:px-3">{item.quantity}</span>
+                                                            <span className="text-xs 2xl:text-sm 2xl:py-1 px-1 lg:px-2 2xl:px-3">+</span>
                                                         </div>
                                                     </div>
                                                     <div className="col-span-2 lg:col-span-1 flex flex-col justify-start items-center">
-                                                        <span className="text-xs text-gray-300 flex-col flex-justify-between items-center">
+                                                        <span className="text-xs 2xl:text-sm text-gray-400 flex-col flex-justify-between items-center">
                                                             المجمل
                                                         </span>
-                                                        <span className="text-xs text-gray-500 flex-col  mt-2 flex-justify-between items-center">
+                                                        <span className="text-xs 2xl:text-sm text-gray-500 flex-col  mt-2 flex-justify-between items-center">
                                                             {item.total}
                                                         </span>
                                                     </div>
-                                                    <div className="col-span-1 flex justify-between items-center">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="mr-1" width="25.837" height="22.067" viewBox="0 0 25.837 22.067">
+                                                    <div className="col-span-1 flex justify-between 2xl:justify-around items-center">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="mr-1 2xl:mr-0" width="25.837" height="22.067" viewBox="0 0 25.837 22.067">
                                                             <path id="Path_1" data-name="Path 1" d="M28.9,81.5a7.7,7.7,0,0,0-5.982,3,7.7,7.7,0,0,0-5.974-2.99A6.927,6.927,0,0,0,10,88.719c0,4.819,4.274,8.184,7.4,10.641,1.181.933,2.049,1.592,2.755,2.13a21.634,21.634,0,0,1,2.278,1.875.7.7,0,0,0,.986,0,32.262,32.262,0,0,1,3.462-2.813l1.561-1.184c2.584-1.969,7.4-5.629,7.4-10.7A6.9,6.9,0,0,0,28.9,81.5ZM16.944,82.9a6.563,6.563,0,0,1,5.394,3.156.743.743,0,0,0,1.16,0A6.576,6.576,0,0,1,28.9,82.9a5.538,5.538,0,0,1,5.542,5.774c0,4.036-3.538,7.066-6.855,9.586L26.03,99.438c-1.621,1.229-2.41,1.827-3.114,2.468-.514-.459-1.086-.894-1.922-1.529-.675-.514-1.545-1.176-2.742-2.122-2.895-2.275-6.857-5.394-6.857-9.536A5.563,5.563,0,0,1,16.944,82.9Z" transform="translate(-10 -81.5)" fill="#5c5c5c"/>
                                                         </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="mr-1" width="22.659" height="22.659" viewBox="0 0 22.659 22.659">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="mr-1 2xl:mr-0" width="22.659" height="22.659" viewBox="0 0 22.659 22.659">
                                                             <path id="Icon_ionic-md-close-circle" data-name="Icon ionic-md-close-circle" d="M14.7,3.375A11.33,11.33,0,1,0,26.034,14.7,11.29,11.29,0,0,0,14.7,3.375Zm5.665,15.408-1.586,1.586L14.7,16.291l-4.079,4.079L9.04,18.783,13.118,14.7,9.04,10.626,10.626,9.04,14.7,13.119,18.783,9.04l1.586,1.586L16.291,14.7Z" transform="translate(-3.375 -3.375)" fill="#ff5c60"/>
                                                         </svg>
                                                     </div>
@@ -197,7 +198,7 @@ export default function Cart() {
               
                 
                 <div className="flex justify-center items-center z-20">
-                    <div className="fixed w-11/12 lg:w-2/4  bg-white rounded z-20 bottom-28 lg:bottom-10 shadow-lg drop-shadow-md px-4 py-3 flex flex-row-reverse justify-between items-center">
+                    <div className="fixed w-11/12 lg:w-2/4 border-2  bg-white rounded z-20 bottom-28 lg:bottom-3 shadow-lg drop-shadow-md px-4 py-3 flex flex-row-reverse justify-between items-center">
                         <span className="text-sm">
                             كل السلة رقم 9
                         </span>
