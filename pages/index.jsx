@@ -5,6 +5,7 @@ import SearchBar from '../components/seachbar/searchBar';
 import Banners from '../components/banners/banners';
 import Categories from '../components/categories/categories';
 import Card from '../components/card/card';
+import Recent from '../components/recent/recent';
 import Deal from '../components/deal/deal';
 import Specials from '../components/specials/specials';
 import Cat from '../components/cat/cat';
@@ -98,7 +99,7 @@ export default function Home() {
       </Waypoint>
       <Card color="pink" title="الشائع في أمانة" data={data?data.trending_now:""}></Card>
       <Deal data={data?data.deal_of_the_day:""}></Deal>
-      <Card color="pink" title="وصل حديثا"></Card>
+      <Recent color="pink" title="وصل حديثا" data={data?data.recent:""}></Recent>
       <Specials cats={data?data.featured_categories:""} brands={data?data.featured_brands:""}></Specials>
       {data?
       data.categories_sections.map((ele,index) => 

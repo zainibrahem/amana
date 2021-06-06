@@ -3,6 +3,7 @@ import SwiperCore, { Autoplay,Navigation, Pagination, Scrollbar } from 'swiper/c
 import { useState } from 'react';
 import { useAppDispatch, useAppState } from '../../contexts/app/app.provider';
 import React from 'react';
+import Link from 'next/link';
 
 // import Slide1 from '../../public/images/slider/maher.png';
 export default function ProductCard (props) {
@@ -152,8 +153,11 @@ export default function ProductCard (props) {
    
             </div>
             :
-        <div className={props.type?`cards ${Loading?"skeleton-box":""} flex flex-col justify-center items-center rounded shadow-md card-responsive w-40 sm:w-48 mb-3`:`cards  flex flex-col justify-center items-center rounded shadow-md w-full sm:w-48 mb-3 ${Loading?"skeleton-box":""}`} style={{direction:"ltr"}}>
-                <div className="w-full h-36 relative rounded-tl rounded-tr" style={Loading?{}:{background:"url("+props.card.image+")",backgroundPosition:"center center",backgroundSize:"cover",backgroundRepeat:"no-repeat"}}>
+            
+                <div className={props.type?`cards ${Loading?"skeleton-box":""} flex flex-col justify-center items-center rounded shadow-md card-responsive w-40 sm:w-48 mb-3`:`cards  flex flex-col justify-center items-center rounded shadow-md w-full sm:w-48 mb-3 ${Loading?"skeleton-box":""}`} style={{direction:"ltr"}}>
+                <Link href={`/product/product?pids=${props.card.id}`}>
+                <div className="w-full cursor-pointer  relative rounded-tl rounded-tr">
+                <img src={props.card.image} className="w-full relative rounded-tl rounded-tr" alt="" />
 
                 {Loading?"":
                 props.card.discount?
@@ -171,9 +175,10 @@ export default function ProductCard (props) {
                 }
                   
                 </div>
+                </Link>
                 <div className={`flex bg-white flex-col justify-between items-center w-full px-2 py-2  info`}>
                     
-                        <span className={`${Loading?"skeleton-box ":""} h-14 overflow-hidden text-md self-end `}>
+                        <span className={`${Loading?"skeleton-box ":""} h-14 overflow-hidden text-right text-md self-end `}>
                             <span style={Loading?{opacity:"0"}:{}}>
                                 {props.card.title}
                             </span>    
@@ -239,6 +244,7 @@ export default function ProductCard (props) {
                    
                 </div>
             </div>
+          
     }
         
         </>

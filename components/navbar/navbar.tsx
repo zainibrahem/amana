@@ -93,10 +93,8 @@ export const NavBar = (props) => {
             function handleClickOutside(event) {
 
                    if (ref.current && !ref.current.contains(event.target) && !ref.current.nextSibling.contains(event.target)) {
-                        console.log('inside');
                        if(ref.current.id == "messages"){
                            setMessages(false);
-                           console.log('messages');
                         }
                         // if(ref.current.id == "carts"){
                         //     setCart(false)

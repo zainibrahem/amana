@@ -220,7 +220,7 @@ import Link from 'next/link'
                                         <div className="content w-full hidden">
                                             <ul className="flex h-full flex-col justify-between items-center">
                                                 {sub.categories.map(secSub => 
-                                                    <Link href={`http://localhost:3000/category/category?pid=${secSub.id}`} key={secSub.id}>
+                                                    <Link href={`/category/category?pid=${secSub.id}`} key={secSub.id}>
                                                         <li className="w-full flex flex-col pt-2 pb-2 px-3 justify-end items-center text-sm">
                                                             {secSub.name}
                                                         </li>
