@@ -24,10 +24,10 @@ import ProductCard from '../../components/productCard/productCard';
 export default function Brand(props) {
     const Route = useAppState('Route');
     interface Data {
-        cover_image: [];
-        available_from: [];
-        description:[];
-        image:[];
+        cover_image: ""
+        available_from: []
+        description:[]
+        image:[]
         name:[]
         phone:[]
         listing_count:[]
@@ -38,14 +38,16 @@ export default function Brand(props) {
           brand:Data[]
           items:[]
       }
-    const [data,setData] = useState<Brand>();
+    const [data,setData] = useState<Data>();
+    const [items,setItems] = useState([]);
     const router = useRouter()
     const { pids } = router.query;
     useEffect(() => {
         fetch(`https://amanacart.com/api/brand/${pids}`)
          .then(res => res.json())
          .then(result =>{
-            setData(result.data);
+            setData(result.data.brand);
+            setItems(result.data.items);
             console.log(result.data);
          })
          .catch(e => {
@@ -56,21 +58,21 @@ export default function Brand(props) {
         <div className="grid grid-cols-12 mt-10">
             <div className="col-span-12 relative">
                 <div className="absolute bg-black bg-opacity-50 w-full h-full left-0 top-0"></div>
-                <img src={`${data?data.brand.cover_image:""}`} className="w-full" alt="" />
+                <img src={`${data?data.cover_image:""}`} className="w-full" alt="" />
             </div>
             <div className="col-span-12 flex  flex-row-reverse justify-between items-center relative shadow bg-white">
                 <img src={`${Route}/images/brandlogo.png`} className="absolute w-2/12 right-0 -top-1/2 transform -translate-y-1/4" alt="" />
                 <div className="flex flex-col justify-center items-center lg:mt-20 relative h-full lg:pr-12 pt-1 ">
-                    <span className="text-xs lg:text-sm text-center ">{data?data.brand.name:""}</span>
-                    <span className="text-xs text-center text-gray-500 pb-4" dir="rtl">عضو منذ {data?data.brand.available_from:""}</span>
+                    <span className="text-xs lg:text-sm text-center ">{data?data.name:""}</span>
+                    <span className="text-xs text-center text-gray-500 pb-4" dir="rtl">عضو منذ {data?data.available_from:""}</span>
                 </div>
                 <div className="relative  flex flex-row-reverse justify-between items-center h-full">
                     <div className="flex flex-col lg:ml-12 justify-center items-center">
-                        <span className="text-xs text-center lg:text-sm">{data&&data.brand.listing_count?data.brand.listing_count:0}</span>
+                        <span className="text-xs text-center lg:text-sm">{data&&data.listing_count?data.listing_count:0}</span>
                         <span className="text-xs text-center lg:text-sm">منتجات مباعة</span>
                     </div>
                     <div className="flex flex-col justify-center items-center">
-                        <span className="text-xs text-center lg:text-sm">{data?data.brand.products_count:0}</span>
+                        <span className="text-xs text-center lg:text-sm">{data?data.products_count:0}</span>
                         <span className="text-xs text-center lg:text-sm">منتجات فعالة</span>
                     </div>
                 </div>
@@ -78,7 +80,7 @@ export default function Brand(props) {
                     <div className="flex flex-col justify-between items-end lg:pl-2">
                         <div className="flex flex-col-reverse w-full lg:w-auto lg:flex-row justify-start items-center">
                             <span className="text-xs mr-2 lg:block  hidden">
-                                {data?data.brand.origin:""}
+                                {data?data.origin:""}
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" className="lg:block  hidden" width="15.016" height="18.177" viewBox="0 0 15.016 18.177">
                                 <path id="Icon_map-post-box" data-name="Icon map-post-box" d="M12.758,2.435a5.089,5.089,0,0,0-5.137,5.1V19.617H9.6V15.666H15.92v3.952H17.9V7.536a5.089,5.089,0,0,0-5.137-5.1Zm-9.878-1L5.79,6.182h.3a5.161,5.161,0,0,1,3.5-4.33V1.44Z" transform="translate(-2.88 -1.44)"/>
@@ -86,7 +88,7 @@ export default function Brand(props) {
                         </div>
                         <div className="flex w-full lg:w-auto flex-col-reverse lg:flex-row mt-2  justify-between items-center">
                             <span className="text-xs mr-2 lg:block  hidden">
-                                {data?data.brand.phone:""}
+                                {data?data.phone:""}
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" className="lg:block  hidden" width="14.483" height="14.483" viewBox="0 0 14.483 14.483">
                                 <path id="Icon_awesome-phone-alt" data-name="Icon awesome-phone-alt" d="M14.07,10.234,10.9,8.877a.679.679,0,0,0-.792.2l-1.4,1.714A10.485,10.485,0,0,1,3.694,5.774l1.714-1.4a.677.677,0,0,0,.2-.792L4.246.411A.683.683,0,0,0,3.468.018L.526.7A.679.679,0,0,0,0,1.358,13.124,13.124,0,0,0,13.125,14.483a.679.679,0,0,0,.662-.526l.679-2.942a.687.687,0,0,0-.4-.781Z" transform="translate(0 0)"/>
@@ -94,7 +96,7 @@ export default function Brand(props) {
                         </div>
                         <div className="flex w-full lg:w-auto flex-col-reverse lg:flex-row mt-2  justify-between items-center">
                             <span className="text-xs mr-2 lg:block  hidden">
-                                {data?data.brand.phone:""}
+                                {data?data.phone:""}
                             </span>
                             <svg xmlns="http://www.w3.org/2000/svg" className="lg:block  hidden" width="13.855" height="13.856" viewBox="0 0 13.855 13.856">
                                 <path id="Union_4" data-name="Union 4" d="M.974,10.3A6.867,6.867,0,0,1,11.781,2.013a6.9,6.9,0,0,1,2.075,4.858A6.919,6.919,0,0,1,3.641,12.9L0,13.856Z"/>
@@ -129,7 +131,7 @@ export default function Brand(props) {
                                     <span className="text-xs">عرض</span>
                                 </div>
                                 <div className="flex flex-row-reverse justify-between items-center mr-4">
-                                    <span className="text-xs">عدد المنتجات ضمن هذا التصنيف  <span className="text-xs numbers text-black" style={{fontWeight:"bold"}}>{data?data.items.length:0}</span> منتج</span>
+                                    <span className="text-xs">عدد المنتجات ضمن هذا التصنيف  <span className="text-xs numbers text-black" style={{fontWeight:"bold"}}>{items?items.length:0}</span> منتج</span>
                                 </div>
                             </div>
                         </div>
@@ -140,7 +142,7 @@ export default function Brand(props) {
                 </div>
             
                 <div className="grid grid-cols-12 gap-2 lg:grid-cols-10">
-                    {data&&data.items.length>0?data.items.map(ele=>
+                    {items&&items.length>0?items.map(ele=>
                     <div className="col-span-6 lg:col-span-2 flex justify-center items-center">
                         <ProductCard card={ele} type={"proposals"}></ProductCard>
                     </div>
