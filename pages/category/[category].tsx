@@ -68,7 +68,6 @@ export default function Category(props) {
          })
          .catch(e => {
            console.log(e);
-           console.log(props.query.pid)
        });
      },[pid])
      const toggleSearch = (r) =>{

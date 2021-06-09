@@ -20,6 +20,8 @@ import NewProposals from '../components/newProposals/newProposals';
 import { useRouter } from 'next/router'
 import { idText } from 'typescript';
 import ProductCard from '../components/productCard/productCard';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Autoplay,Navigation, Pagination, Scrollbar } from 'swiper/core';
 
 export default function Offer(props) {
     interface Data {
@@ -54,7 +56,7 @@ export default function Offer(props) {
      },[])
     return (
         <div className="grid grid-cols-12">
-            <div className="col-span-12">
+            <div className="hidden lg:block col-span-12">
                 <div className="offers rounded h-28 px-2 flex justify-around items-center mt-8">
                         <div className="w-11/12 flex justify-between items-center">
                             {data?data.map((ele,index)=>
@@ -67,6 +69,29 @@ export default function Offer(props) {
                             ):""}
                         </div>
                 </div>
+            </div>
+            <div className="block  col-span-12 lg:hidden w-full">
+            <div className="offers rounded h-28 px-2 flex justify-around items-center mt-8">
+
+            <Swiper
+                spaceBetween={20}
+                slidesPerView={3}
+                draggable={false}
+                resizeObserver={true}
+                loop={true}
+            >
+                {data?data.map((ele,index)=>
+                <SwiperSlide key={index}>
+                    <div onClick={()=>setac(index)} key={index} className={`cursor-pointer w-full flex flex-col py-6 px-2 justify-between items-center ${actives==index? "shadow-md w-full active-offer":""}`}>
+                        <img className="w-11" src={ele.icon_image} alt="" />
+                        <span className="span text-gray-700 font-bold text-xs text-center mt-2">
+                            {ele.name}
+                        </span>
+                    </div>
+                </SwiperSlide>
+                ):""}
+            </Swiper>
+            </div>
             </div>
 
             <div className="col-span-12">
@@ -99,7 +124,7 @@ export default function Offer(props) {
                             </div>
                         </div>
                         <div className="w-full flex justify-between items-center px-2">
-                        <div className="grid grid-cols-12 gap-2 lg:grid-cols-10">
+                        <div className="grid grid-cols-12 gap-2 lg:grid-cols-10 mt-6">
                             {items&&items.length>0?items.map(ele=>
                             <div className="col-span-6 lg:col-span-2 flex justify-center items-center">
                                 <ProductCard card={ele} type={"proposals"}></ProductCard>
