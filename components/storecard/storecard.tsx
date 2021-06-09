@@ -72,7 +72,7 @@ export default function Offer(props) {
             </div>
             <div className="w-full relative mt-10 flex  flex-col justify-between h-32 items-center pb-4">
                 <span className="text-md text-center w-full">{props.data?props.data.name:""}</span>
-                <span className="text-center w-full text-xs" dir="rtl">عضو منذ : </span>
+                <span className="text-center w-full text-xs" dir="rtl">عضو منذ : {props.data?props.data.member_since:""} </span>
                 <div className="flex justify-between items-center w-2/3 mt-3">
                     <div className="rounded-full bg-white w-8 h-6 shadow flex justify-center items-center">
                         <img className="w-3 " src="./images/face.png" alt="" />
