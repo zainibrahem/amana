@@ -731,3 +731,12 @@ background-color: rgb(78, 78, 78);
 /* .product-gallery .swiper-container{
     width: 100%;
 } */
+.active-offer{
+  background-color: white !important;
+  border-radius: 4px ;
+  height:136px;
+  justify-content: space-around;
+}
+.offers{
+  background: #FFBC00;
+}
