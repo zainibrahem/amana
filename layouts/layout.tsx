@@ -14,6 +14,7 @@ interface ListItem {
 
  export default function Layout(props) {
     const isDrawerOpen = useAppState('isDrawerOpen');
+    const Route = useAppState('Route');
     const Loading = useAppState('Loading');
     const [opens,setOpens] = useState(false);
     const [widths,setWidths] = useState(0);
@@ -235,11 +236,11 @@ interface ListItem {
                     </svg>
                   </div>
                   <div className="col-span-2 h-full flex flex-col justify-around items-center">
-                    <div className="w-8 h-2" style={{background:"url(./images/orders.svg)",backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
+                    <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
                     <span className="text-xs mt-1">حسابي</span>
                   </div>
                   <div className="col-span-2 h-full flex flex-col justify-around items-center">
-                  <div className="w-8 h-2" style={{background:"url(./images/orders.svg)",backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
+                  <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
                     <span className="text-xs mt-1">السلة</span>
                   </div>
                   <div className="col-span-3 h-full flex flex-col justify-center items-center">
@@ -249,12 +250,14 @@ interface ListItem {
                     <div className="w-full h-0.7 rounded shadow mt-4  border-bottom"></div>
                   </div>
                   <div className="col-span-2 h-full flex flex-col justify-around items-center">
-                  <div className="w-8 h-2" style={{background:"url(./images/orders.svg)",backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
+                  <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
                     <span className="text-xs mt-1">تصنيفات</span>
                   </div>
                   <div className="col-span-2 h-full flex flex-col justify-around items-center">
-                  <div className="w-8 h-2" style={{background:"url(./images/orders.svg)",backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
+                  <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
+                  <a href="/">
                     <span className="text-xs mt-1">الرئيسية</span>
+                  </a>
                   </div>
                 </div>
               </div>

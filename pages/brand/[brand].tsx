@@ -62,7 +62,7 @@ export default function Brand(props) {
             </div>
             <div className="col-span-12 flex pt-10  flex-row-reverse justify-between items-center relative shadow bg-white">
                 {/* <img src={`${Route}/images/brandlogo.png`} className="absolute w-2/12 right-0 -top-1/2 transform -translate-y-1/4" alt="" /> */}
-                <svg className="absolute w-2/12  left-1/2 lg:left-auto lg:right-0 -top-1/4 2xl:top-0 lg:-top-1/3  transform -translate-y-1/4 2xl:-translate-y-1/2  -translate-x-1/2 lg:translate-x-0" xmlns="http://www.w3.org/2000/svg"  width="124.336" height="133.429" viewBox="0 0 124.336 133.429">
+                <svg className="absolute w-2/12  left-1/2 lg:left-auto lg:right-0 -top-1/2 2xl:top-0 lg:-top-1/3  transform -translate-y-1/4 2xl:-translate-y-1/2  -translate-x-1/2 lg:translate-x-0" xmlns="http://www.w3.org/2000/svg"  width="124.336" height="133.429" viewBox="0 0 124.336 133.429">
                     <defs>
                         <filter id="asset-2" x="0" y="0" width="120.195" height="133.429" filterUnits="userSpaceOnUse">
                         <feOffset dy="3" />
