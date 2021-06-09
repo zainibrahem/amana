@@ -15,7 +15,6 @@ export const initialState = {
   Cart:0,
   notification:null,
   notificationType:null
-  
 };
 
 type ActionType =
