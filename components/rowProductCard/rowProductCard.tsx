@@ -82,7 +82,9 @@ export default function RowProductCard (props) {
                     </div>
                     <p className="text-xs h-16 w-full text-right overflow-hidden p-2 text-gray-400">{props.card.description}</p>
                     <div className={`flex justify-between items-center w-full`}>
-                        <span className="text-xs lg:text-md text-black text-right numbers" style={{fontWeight:"bold"}} dir="ltr">{props.card.price}                               <span style={Loading?{opacity:"0"}:{}} className={`text-xs text-gray-500 relative discount self-end `}>2323 ر.ع</span></span>
+                        <span className="text-xs lg:text-md text-black text-right numbers" style={{fontWeight:"bold"}} dir="ltr">{props.card.price}
+                            <span style={Loading?{opacity:"0"}:{}} className={`text-xs text-gray-500 relative discount self-end `}>2323 ر.ع</span>
+                        </span>
 
                         <img className={counter?` ${Loading?"hidden":""} opacity-0 transition-all w-14 h-2 ml-1`:`${Loading?"hidden":""} w-14 2xl:w-16 h-2 ml-1 `} src="../images/SPEED AR.svg" alt="" />
                     </div>
@@ -90,7 +92,7 @@ export default function RowProductCard (props) {
                 <div className="h-36 w-1/3 relative" style={Loading?{}:{background:"url("+props.card.image+")",backgroundPosition:"center center",backgroundSize:"cover",backgroundRepeat:"no-repeat"}}>
                
                     <div className={`absolute ${props.card.discount?"hidden":""}  w-12 text-xs flex justify-center items-center text-center text-white discounts h-1 right-0 top-2 rounded-tl-full rounded-bl-full numbers`}>
-                     {props.card.discount}
+                        {props.card.discount}   
                     </div>
                     <div className="absolute left-1.5 top-1.5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14.56" height="12.562" viewBox="0 0 14.56 12.562">

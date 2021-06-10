@@ -54,8 +54,7 @@ export default function Discover (props) {
         <div className="mt-4">
             <Title title="اكتشف كل التصنيفات"></Title>
             <div className="grid grid-cols-12 mt-5">
-                <div className="col-span-1"></div>
-                <div className="col-span-10">
+                <div className="col-span-11">
                     <div className="grid grid-cols-12 w-full">
                         <div className="col-span-12 order-1 mt-2 md:mt-0 justify-between md:order-0 md:col-span-6 flex flex-row-reverse md:justify-around items-center relative">
                             <span className="text-sm px-2 py-1 bg-gray-300 font-bold cursor-pointer ">عرض الكل</span>
@@ -69,7 +68,7 @@ export default function Discover (props) {
                             </ul>
                         </div>
                         <div className="col-span-12 md:col-span-6 order-0 md:order-1">
-                            <div className="flex flex-row-reverse justify-between items-center w-full">
+                            <div className="flex flex-row-reverse flex-wrap justify-between items-center w-full">
                             {/* px-2 bg-yellow-500 font-bold*/}
                                 <span className="text-xs cursor-pointer py-1  bg-opacity-75 rounded">ا</span>
                                 <span className="text-xs cursor-pointer p-1">ب</span>
