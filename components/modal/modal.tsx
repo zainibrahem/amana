@@ -193,7 +193,13 @@ export default function Modal (props) {
                 setError(error);
                 return Promise.reject(error);
             }
+            console.log(data);
             localStorage.setItem('token', data.data.api_token)
+            localStorage.setItem('nice_name', data.data.nice_name)
+            localStorage.setItem('name', data.data.name)
+            localStorage.setItem('avatar', data.data.avatar)
+            localStorage.setItem('email', data.data.email)
+            localStorage.setItem('member_since', data.data.member_since)
 
            handleJoin();
         })

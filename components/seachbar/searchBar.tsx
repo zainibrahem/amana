@@ -62,14 +62,16 @@ export default function SearchBar (props) {
         </div>
         <div className={data&&data.products.length>0?"mt-6 sm:mt-8 w-full":"mt-6 sm:mt-8 w-full"}>
             <div className="grid grid-cols-12 gap-4">
-                <div className="hidden sm:flex col-span-4  flex-col justify-around items-end px-3">
+                <div className="hidden sm:flex col-span-3  flex-col justify-around items-end pr-5">
                 <span className="text-xs sm:text-xs text-md text-gray-400">العلامات التجارية المطابقة</span>
                     <ul className="w-full">
                         {brands&&brands.length>0?
-                            brands.map(ele=>
+                            brands.map((ele,index)=>
+                            index<5?
                                 <li className="flex justify-end items-center">
                                     <span className="text-xs sm:text-xs lg:text-sm xl:text-md"><span className="font-bold text-gray-500">{ele.name}</span></span>
                                 </li>
+                                :""
                             )
                         :
                         <></>}
@@ -77,18 +79,21 @@ export default function SearchBar (props) {
                      
                     </ul>
                 </div>
-                <div className="col-span-12 sm:col-span-8 xl:col-span-4 ">
+                <div className="col-span-12 sm:col-span-8 xl:col-span-5 ">
                     <ul className="px-5">
-                        {data?data.products.map(ele=>
+                        {data?data.products.map((ele,index)=>
+                            index<5?
                             <li className="flex justify-end items-center">
-                                <span dir="rtl" className="w-full text-right  text-xs sm:text-xs lg:text-sm xl:text-md">
-                                    <span className="font-bold text-gray-500 ml-1"> {ele.title} 
-                                    </span>
-                                    في تصنيف <span className="sm:hidden  lg:contents text-xs sm:text-xs lg:text-sm xl:text-md text-yellow-500">
+                                
+                                <span dir="rtl" className="w-5/12 whitespace-nowrap text-right  text-xs sm:text-xs lg:text-sm xl:text-md">
+                                     في تصنيف  <span className="sm:hidden  lg:contents text-xs font-bold  sm:text-xs lg:text-sm xl:text-md text-yellow-500">
                                     {ele.category.name}
                                     </span>
                                 </span>
+                                <span dir="rtl" className="w-7/12 whitespace-nowrap text-xs font-bold text-right text-gray-500 ml-1  overflow-hidden"> {ele.title} 
+                                </span>
                             </li>    
+                            :""
                         ):""}
                     </ul>
                 </div>

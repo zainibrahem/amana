@@ -24,16 +24,54 @@ export default function Home() {
          .then(res => res.json())
          .then(result =>{
             setData(result.data);
+            console.log('first data');
+            console.log(result.data);
          })
          .catch(e => {
            console.log(e);
        });
      },[])
+     const all = ()=>{
+        fetch(`https://amanacart.com/api/all_categories`)
+        .then(res => res.json())
+        .then(result =>{
+           setData(result.data);
+           console.log('first data');
+           console.log(result.data);
+        })
+        .catch(e => {
+          console.log(e);
+      });
+     }
+     const sort = (sorts) =>{
+         console.log(sorts.target.dataset.id);
+            fetch(`https://amanacart.com/api/all_categories_filter?&sort=${sorts.target.dataset.id}`)
+             .then(res => res.json())
+             .then(result =>{
+                setData(result.data);
+             })
+             .catch(e => {
+               console.log(e);
+           });
+     }
+     const sortletters = (letter) =>{
+         console.log(letter.target.innerText)
+            fetch(`https://amanacart.com/api/all_categories_filter?&key=${letter.target.innerText}`)
+             .then(res => res.json())
+             .then(result =>{
+                setData(result.data);
+                console.log('second data');
+                console.log(result.data);
+             })
+             .catch(e => {
+               console.log(e);
+           });
+     }
     return(
         <>
             <SearchBar></SearchBar>
             <AllCatsSlider data={data?data.banners:""}></AllCatsSlider>
-            <Discover data={data?data.categories_groups:""}></Discover>
+            <Discover all={()=>all} sortletters={()=>sortletters} sort={()=>sort} data={data?data.categories_groups:""}></Discover>
         </>
     );
 }

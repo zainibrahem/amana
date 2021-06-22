@@ -9,8 +9,9 @@ export const initialState = {
   toggleIcon:false,
   Loading:true,
   Modal:false,
-  Route:"https://amana-63oux.ondigitalocean.app",
-  // Route:"http://localhost:3000",
+  CartChange:false,
+  // Route:"https://amana-63oux.ondigitalocean.app",
+  Route:"http://localhost:3000",
   Token:null,
   Cart:0,
   notification:null,
@@ -36,6 +37,7 @@ type ActionType =
   | { type: 'Loaded' }
   | { type: 'Loadeds' }
   | { type: 'AddToCart' }
+  | { type: 'CartChange' }
   | { type: 'Cart' ,payload:number }
   | { type: 'setToken'; payload: string }
   | { type: 'Draggable'};
@@ -48,7 +50,12 @@ export function appReducer(state: StateType, action: ActionType): StateType {
       return {
         ...state,
         searchTerm: action.payload,
-      };
+      }
+      case 'CartChange' :
+        return {
+          ...state,
+          CartChange: !state.CartChange,
+        } 
     case 'setToken':
       return {
         ...state,

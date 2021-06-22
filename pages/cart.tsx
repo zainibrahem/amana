@@ -17,7 +17,9 @@ export default function Cart() {
     const [carts,setCart] = useState([]);
     const [userId,setUserId] = useState();
     useEffect(() => {
-        fetch(`https://amanacart.com/api/carts`,{
+        const fetchData = async () => {
+            try {
+                fetch(`https://amanacart.com/api/carts`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`
             }
@@ -25,19 +27,15 @@ export default function Cart() {
         .then(res => res.json())
         .then(result =>{
            setCart(result.data);
-           console.log(result.data);
+           console.log(result.data)
         })
         .catch(e => {
           console.log(e);
       });
-      
         if(carts.length>0){
-          console.log('sssssss');
           var element = document.querySelector('#width').clientWidth;
           setHeight(element);
         }
-      
-      
         const resizeListener = () => {
             var element = document.querySelector('#width').clientWidth;
             setHeight(element);
@@ -50,7 +48,15 @@ export default function Cart() {
           // remove resize listener
           window.removeEventListener('resize', resizeListener);
         }
-      })
+            } catch(err) {
+              // error handling code
+            } 
+          }
+        
+          // call the async fetchData function
+          fetchData()
+        
+      },[])
       var totals = 0;
     return (
         <div className="grid grid-cols-12 p-3 mt-12">

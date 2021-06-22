@@ -9,6 +9,16 @@ body{
     position:relative;
     direction: rtl;
 }
+.arrowss:after{
+    content: '';
+    position: absolute;
+    top:0%;
+    right: 5px;
+    background: rgba(243, 244, 246);
+    width:20px;
+    height:20px;
+    transform:translateY(-50%) rotate(45deg);
+}
 .ltr{
     direction: ltr;
 }
@@ -32,7 +42,14 @@ body{
   font-family:  Arial, sans-serif !important;
   font-weight: 700;
 }
-
+.orders .swiper-slide:hover .absolute{
+  opacity: 1;
+  transition: .6s all ease;
+}
+.orders .swiper-slide .absolute{
+  opacity: 0;
+  transition: .6s all ease;
+}
 .noti-hover{
   cursor: pointer;
 }
@@ -192,7 +209,26 @@ body::-webkit-scrollbar-thumb {
     transform: translateY(-50%,-50%);
   }
 }
-
+@keyframes slideUpss {
+  0%{
+    opacity: 0;
+    transform: translate(0%,100%);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0%,-50%);
+  }
+}
+@keyframes slideDownss {
+  0%{
+    opacity: 1;
+    transform: translate(0%,-50%);
+  }
+  100%{
+    opacity: 0;
+    transform: translateY(0%,100%);
+  }
+}
 @keyframes slideDowns {
   0%{
     opacity: 1;
@@ -203,11 +239,23 @@ body::-webkit-scrollbar-thumb {
     transform: translateY(-50%,100%);
   }
 }
+.hoverme:hover{
+  color:rgba(245, 158, 11)
+}
+.hoverme:hover svg path{
+  fill:rgba(245, 158, 11)
+}
 .slideDowns{
   animation: slideDowns 1s forwards;
 }
+.slideDownss{
+  animation: slideDownss 1s forwards;
+}
 .slideUps{
   animation: slideUps .7s forwards;
+}
+.slideUpss{
+  animation: slideUpss .7s forwards;
 }
 .swiper-pagination-bullet-active{
   background:rgb(245, 158, 11,1) !important;

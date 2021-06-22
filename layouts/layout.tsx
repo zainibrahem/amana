@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { NavBar } from '../components/navbar/navbar';
 import Modal from '../components/modal/modal';
 import SideBar from '../components/sidebar/sidebar';
+import ProfileSide from '../components/sidebar/profileSidebar';
 import { useAppState, useAppDispatch } from '../contexts/app/app.provider';
 import Footer from '../components/footer/footer';
 import { AuthContext } from '../contexts/auth/auth.context';
@@ -21,6 +22,7 @@ interface ListItem {
     const modal = useAppState('Modal');
     const [data,setData] = useState(null);
     const [userId,setUserId] = useState(0); 
+    const CartChange = useAppState('CartChange');
     const [display,setDisplay] = useState(false); 
     const {
       authState: { isAuthenticated },
@@ -94,23 +96,33 @@ interface ListItem {
         }, [dispatch]
         );
       }
+      const [alls,setAlls] = useState(0);
+      const [route,setRoute] = useState<string>();
       useEffect(() => {
+        setRoute(window.location.href);
         fetch("https://amanacart.com/api/navbar")
          .then(res => res.json())
          .then(result =>{
            setData(result.data);
+           console.log(result.data);
            const wid = document.querySelector('#col').clientWidth;
            var elements = 0;
+           var all = 0;
            for(var i = 0 ; i < result.data.carts.length ; i ++ ){
                 elements+=result.data.carts[i].items.length;
+                all+= parseInt(result.data.carts[i].total_cart);
            }
+           setAlls(all);
+           console.log(all);
+           localStorage.setItem('token','iP0eRBysVAqgJeAhMoO1SLIl4ymLNKqhtZpd1IQpwDoCOvwSD52DC3Skz9wT');
            toggleLoader(elements);
+
           setEl2(wid) ;
          })
          .catch(e => {
            console.log(e);
        });
-     },[widths])
+     },[CartChange])
       const [el2, setEl2] = useState(0);
 
      
@@ -135,7 +147,7 @@ interface ListItem {
     const wid = document.querySelector('#col').clientWidth;
     setEl2(wid) ;
     setWidths(window.innerWidth);
-  })
+  },[])
   const noti = useAppState('notification');
   const notiType = useAppState('notificationType');
 
@@ -149,10 +161,10 @@ interface ListItem {
         <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 sm:col-span-12 h-13 md:col-span-12 relative z-50 lg:col-span-12 xl:col-span-12">
               {data?
-              <NavBar addtocart={addtocart} carts={data} auth={isAuthenticated}  toggleHandler={toggleHandler}></NavBar>
+              <NavBar alls={alls} addtocart={addtocart} carts={data} auth={isAuthenticated}  toggleHandler={toggleHandler}></NavBar>
               :<></>}
             </div>
-            <div className={isDrawerOpen?"contentss pb-16 md:pb-0 overflow-hidden col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-9 xl:col-span-10 pl-4 pr-4 lg:pr-0":"sm:col-span-12 sm:pr-4 md:pr-1 md:col-span-11 lg:col-span-11 xl:col-span-11 pl-4 overflow-hidden contentss pb-16 md:pb-0"}>
+            <div className={isDrawerOpen?"contentss relative pb-16 md:pb-0 overflow-hidden col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-9 xl:col-span-10 pl-4 pr-4 lg:pr-0":"relative sm:col-span-12 sm:pr-4 md:pr-1 md:col-span-11 lg:col-span-11 xl:col-span-11 pl-4 overflow-hidden contentss pb-16 md:pb-0"}>
                {data?
                <>
                 {props.children}
@@ -164,9 +176,16 @@ interface ListItem {
             </div>
             <div id="col" className={isDrawerOpen?"hidden relative sm:col-span-4 md:col-span-3 lg:block lg:col-span-3 xl:col-span-2 overflow-x-hidden":"hidden overflow-x-hidden md:block md:col-span-1 lg:col-span-1 xl:col-span-1 relative"}>
             {data?
+            route.indexOf('dashboard')==-1?
                 <SideBar cats={data} width={el2}></SideBar>
                 :
-              <></>
+              <>
+              <ProfileSide width={el2}></ProfileSide>
+              </>
+              :
+              <>
+              
+              </>
             }
             </div>
             

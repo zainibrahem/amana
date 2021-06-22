@@ -41,7 +41,7 @@ export default function ThumbSlider(props) {
 
           {props.images.map(ele=>
               <SwiperSlide>
-                <img className="rounded w-full" src={`https://amanacart.com/image/${ele.path}`} />
+                <img className="rounded w-full" src={`${ele.path}`} />
               </SwiperSlide>
               )}
       </Swiper>
@@ -58,7 +58,7 @@ export default function ThumbSlider(props) {
           className="mySwiper2">
             {props.images.map(ele=>
               <SwiperSlide>
-                <img className="rounded w-full" src={`https://amanacart.com/image/${ele.path}`} />
+                <img className="rounded w-full" src={`${ele.path}`} />
               </SwiperSlide>
               )}
           

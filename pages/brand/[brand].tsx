@@ -181,12 +181,12 @@ export default function Brand(props) {
                     </div>
                 </div>
             
-                <div className="grid grid-cols-12 mt-4 lg:mt-5` gap-2 lg:grid-cols-10">
-                    {items&&items.length>0?items.map(ele=>
-                    <div className="col-span-6 lg:col-span-2 flex justify-center items-center">
-                        <ProductCard card={ele} type={"proposals"}></ProductCard>
+                <div className="grid grid-cols-12 mt-4 lg:mt-5`  items-center gap-2 lg:grid-cols-10">
+                    <div className="col-span-12 flex justify-between items-center flex-wrap px-2">
+                        {items&&items.length>0?items.map(ele=>
+                            <ProductCard card={ele} type={"proposals"}></ProductCard>
+                            ):""}
                     </div>
-                    ):""}
                 </div>
             </div>
         </div>

@@ -9,6 +9,7 @@ export const NavBar = (props) => {
     const [messages , setMessages]  = useState(false);
     const [profile , setProfile]  = useState(false);
     const [menu,setMenu] = useState(1);
+    const [routes,setRoutes] = useState<string>();
     const Draggable = useAppState('Draggable');
     const dispatch = useAppDispatch();
     const search = useAppState('search');
@@ -41,9 +42,12 @@ export const NavBar = (props) => {
             }
             
             localStorage.removeItem('token');
-            window.location.reload(false);
+            window.location.href="/";
         })
     }
+    useEffect(()=>{
+        setRoutes(window.location.href);
+    },[])
     const toggleprofile = () => {
         setProfile(!profile);
         setCart(false);
@@ -52,6 +56,7 @@ export const NavBar = (props) => {
     const togglecart = () => {
         setCart(!cart);
     }
+   
     const togglemessages = () => {
         setMessages(!messages);
         setCart(false);
@@ -60,13 +65,7 @@ export const NavBar = (props) => {
         setNotifications(!notifications);
         setCart(false);
     }
-    // const  toggleDrag = React.useCallback(() => {
-    //     dispatch({
-    //       type: 'Draggable',
-    //     });
-    //     console.log('dragging');
-    //   }, [dispatch]
-    //   );
+   
     const togglesearch = React.useCallback(() => {
         dispatch({
           type: 'ToggleSearch',
@@ -75,13 +74,7 @@ export const NavBar = (props) => {
       );
       
 
-        // if(Draggable == true){
-           
-        //     // setCart(false);
-        //     // setProfile(false);
-        //     // setNotifications(false);
-        //     // setMessages(false);
-        // }
+       
        
    
     function useOutsideAlerter(ref) {
@@ -132,7 +125,7 @@ export const NavBar = (props) => {
     const notificationsRef = useRef(null);
     
     useOutsideAlerter(profileRef);
-    // useOutsideAlerter(cartRef);
+    useOutsideAlerter(cartRef);
     useOutsideAlerter(messagesRef);
     useOutsideAlerter(notificationsRef);
     
@@ -141,9 +134,11 @@ export const NavBar = (props) => {
             <nav className="w-full bg-white shadow-md h-16 flex justify-between items-center ">
                     <div className="w-full lg:w-4/6 xl:w-full  h-full flex items-center md:pr-1 lg:px-4 ">
                     <div className="flex border-b-4 border-white">
-                            <button onClick={props.toggleHandler} className="hidden items-center h-full w-16 md:flex md:w-12  lg:w-9 xl:w-9 justify-center  bg-white hover:bg-gray-200 focus:outline-none rounded-md">
-                                <svg className="fill-current text-gray-500 w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="3" strokeLinecap="square" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-                            </button>
+                            {routes&&routes.indexOf('dashboard')==-1?
+                                    <button onClick={props.toggleHandler} className="hidden items-center h-full w-16 md:flex md:w-12  lg:w-9 xl:w-9 justify-center  bg-white hover:bg-gray-200 focus:outline-none rounded-md">
+                                        <svg className="fill-current text-gray-500 w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="3" strokeLinecap="square" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                                    </button>
+                            :""}
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" className="hidden sm:block pr-3" width="134.034" height="22.087" viewBox="0 0 134.034 22.087">
                         <g id="Group_4845" data-name="Group 4845" transform="translate(0 0)">
@@ -199,6 +194,70 @@ export const NavBar = (props) => {
                         <svg onClick={togglesearch} xmlns="http://www.w3.org/2000/svg" className='mr-3 ml-3 block md:hidden' width="18.179" height="18.179" viewBox="0 0 18.179 18.179">
                             <path id="search_icon" d="M6.817,0a6.817,6.817,0,0,0,0,13.634,6.817,6.817,0,0,0,3.693-.994l5.4,5.539,2.272-2.272-5.539-5.4a6.817,6.817,0,0,0,.994-3.693A6.817,6.817,0,0,0,6.817,0m0,2.272A4.545,4.545,0,1,1,2.272,6.817,4.545,4.545,0,0,1,6.817,2.272" fill="#000"/>
                         </svg>
+
+                        <div ref={cartRef} id="cart" className={cart?`cart hidden md:block w-80 shadow-2xl bg-white rounded absolute ${localStorage.getItem('token')?"left-44":"left-16" }  -bottom-2 transform translate-y-full `:`cart overflow-hidden hidden w-96 shadow-2xl bg-white rounded absolute  ${localStorage.getItem('token')?"left-60":"left-16" }  bottom-0 transform translate-y-full`}>
+                        <div className="grid grid-cols-12 shadow-md 2xl:shadow-lg">
+                                <div className="col-span-12 flex justify-between items-center  py-2">
+                                    <span className="px-5">السلة</span>
+                                    <span className="mx-4 rounded bg-red-400 px-2 text-sm text-white">{Cart} منتجات</span>
+                                </div>
+                            </div>
+                            <div className="scrolls h-110 overflow-y-scroll">
+                                <div className="hidden col-span-12 border-t-2 px-2 py-3  justify-between relative items-center">
+                                   
+                                    <img className="w-14" src={`${Route}/images/med-3.jpg`} alt="" />
+                                    <div className="flex  flex-col justify-between items-start">
+                                        <span className="text-sm text-gray-700">المنتج الأول</span>
+                                        <span className="text-xs text-gray-300">من غوغل</span>
+                                    </div>
+                                    <div className="z-50  transition-all flex flex-row justify-between  items-center  rounded-md w-28 h-4 bg-gray-100 ">
+                                        <span className="text-xs cursor-pointer font-bold px-3 bg-gray-200 h-full flex justify-center items-center">-</span>
+                                        <span className="block rounded text-xs font-bold">1</span>
+                                        <span className="text-xs cursor-pointer font-bold h-full flex justify-center items-center px-3 bg-gray-200">+</span>
+                                    </div>
+                                    <span className="text-xs">1200 ل.س</span>
+                                    <div className="absolute top-1 left-3">x</div>
+                                </div>
+                                <div className="col-span-12" style={{borderTop:"1px solid #dcdcdc"}}>
+                                    <div className="col-span-12">
+                                        {props.carts?props.carts.carts.map(ele=>
+                                            <div className="grid grid-cols-12 w-full">
+                                            <div className="col-span-12 bg-gray-100 flex flex-row-reverse px-5 py-2 items-center justify-end">
+                                                <span className="text-yellow-500 text-xs">
+                                                </span>
+                                            </div>
+                                            {ele.items.map(ele1=>
+                                                        <a className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" href={`/product/product?pids=${ele1.id}`}>
+                                                        <div className="flex  flex-col justify-between items-start max-w-2xl max-h-12 overflow-hidden">
+                                                            <span className="text-xs text-gray-500 leading-5 mt-2">
+                                                                {ele1.description}
+                                                            </span>
+                                                        </div>
+                                                        <div className="flex flex-col h-full justify-between items-center">
+                                                            <span className="text-xs  text-gray-700 mt-2  rounded text-center w-20 flex items-center justify-center h-full">
+                                                                {ele1.unit_price}
+                                                            </span>
+                                                        </div>
+                                                        <div className="absolute top-2 left-5">
+                                                        </div>
+                                                </a>
+                                            )}
+                                           
+                                            </div>
+                                        ):""}
+                                    </div>
+                                    {/* <img className="w-6 h-2 rounded-full" src="./images/med-1.jpg" alt="" /> */}
+                                </div>
+                               </div>
+                            <div className="col-span-12 py-2  border-t-2 flex flex-col justify-between items-center">
+                                <div className="flex flex-row w-full justify-center cursor-pointer items-center px-5">
+                                    <span className="font-bold text-gray-700 text-center text-sm">
+                                        المجموع الكلي : {props.alls} ر.ع
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                       
                         <button onClick={togglecart} className={`ml-3 w-8 md:w-10  h-6  md:h-8 lg:h-10 lg:w-10  focus:outline-none rounded-full  flex items-center justify-center ${Loading?"skeleton-box":""}`}>
                                     <div className="relative " style={Loading?{opacity:"0"}:{}}>
                                         <div className="absolute -right-1 w-4 h-4 -top-1 rounded-full text-xs text-white bg-red-400 flex justify-center items-center">{Cart}</div>
@@ -232,65 +291,31 @@ export const NavBar = (props) => {
                                     <span className="text-xs">1200 ل.س</span>
                                     <div className="absolute top-1 left-3">x</div>
                                 </div>
-                                <div className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
-                                    {/* <img className="w-6 h-2 rounded-full" src="./images/med-1.jpg" alt="" /> */}
-                                    <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
-                                    <div className="flex  flex-col justify-between items-start">
-                                        <span className="text-xs text-black">متجر الأمين</span>
-                                        <span className="text-xs text-gray-500 leading-5 mt-2">مرحبا ليث, تم استلام طلبك سيتم إعلامك بكل تغيير يحصل على الطلب</span>
+                                
+                                {props.carts&&props.carts.messages?props.carts.messages.map(ele=>
+                                    <div className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                        <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
+                                        <div className="flex  flex-col justify-between items-start">
+                                            <span className="text-xs text-black">متجر الأمين</span>
+                                            <span className="text-xs text-gray-500 leading-5 mt-2">مرحبا ليث, تم استلام طلبك سيتم إعلامك بكل تغيير يحصل على الطلب</span>
+                                        </div>
+                                        <div className="flex flex-col h-full justify-between items-center">
+                                            <span className="text-xs text-gray-700">رقم الطلب</span>
+                                            <span className="text-xs border-gray-300 border-2 text-gray-700 mt-2  rounded text-center w-20 py-0.5">#321422</span>
+                                        </div>
+                                        <div className="absolute top-2 left-5">
+                                            {/* <img src="./images/x.svg" className="w-2" alt="" /> */}
+                                        </div>
                                     </div>
-                                    <div className="flex flex-col h-full justify-between items-center">
-                                        <span className="text-xs text-gray-700">رقم الطلب</span>
-                                        <span className="text-xs border-gray-300 border-2 text-gray-700 mt-2  rounded text-center w-20 py-0.5">#321422</span>
-                                    </div>
-                                    <div className="absolute top-2 left-5">
-                                    </div>
-                                </div>
-                                <div className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
-                                    <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
-                                    <div className="flex  flex-col justify-between items-start">
-                                        <span className="text-xs text-black">متجر الأمين</span>
-                                        <span className="text-xs text-gray-500 leading-5 mt-2">مرحبا ليث, تم استلام طلبك سيتم إعلامك بكل تغيير يحصل على الطلب</span>
-                                    </div>
-                                    <div className="flex flex-col h-full justify-between items-center">
-                                        <span className="text-xs text-gray-700">رقم الطلب</span>
-                                        <span className="text-xs border-gray-300 border-2 text-gray-700 mt-2  rounded text-center w-20 py-0.5">#321422</span>
-                                    </div>
-                                    <div className="absolute top-2 left-5">
-                                    </div>
-                                </div>
-                                <div className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
-                                    <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
-                                    <div className="flex  flex-col justify-between items-start">
-                                        <span className="text-xs text-black">متجر الأمين</span>
-                                        <span className="text-xs text-gray-500 leading-5 mt-2">مرحبا ليث, تم استلام طلبك سيتم إعلامك بكل تغيير يحصل على الطلب</span>
-                                    </div>
-                                    <div className="flex flex-col h-full justify-between items-center">
-                                        <span className="text-xs text-gray-700">رقم الطلب</span>
-                                        <span className="text-xs border-gray-300 border-2 text-gray-700 mt-2  rounded text-center w-20 py-0.5">#321422</span>
-                                    </div>
-                                    <div className="absolute top-2 left-5">
-                                    </div>
-                                </div>
-                                <div className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
-                                    <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
-                                    <div className="flex  flex-col justify-between items-start">
-                                        <span className="text-xs text-black">متجر الأمين</span>
-                                        <span className="text-xs text-gray-500 leading-5 mt-2">مرحبا ليث, تم استلام طلبك سيتم إعلامك بكل تغيير يحصل على الطلب</span>
-                                    </div>
-                                    <div className="flex flex-col h-full justify-between items-center">
-                                        <span className="text-xs text-gray-700">رقم الطلب</span>
-                                        <span className="text-xs border-gray-300 border-2 text-gray-700 mt-2  rounded text-center w-20 py-0.5">#321422</span>
-                                    </div>
-                                    <div className="absolute top-2 left-5">
-                                        {/* <img src="./images/x.svg" className="w-2" alt="" /> */}
-                                    </div>
-                                </div>
+                                ):""}
+                               
                             </div>
                             <div className="col-span-12 py-2  border-t-2 flex flex-col justify-between items-center">
-                                <div className="flex flex-row w-full justify-center cursor-pointer items-center px-5">
-                                    <span className="font-bold text-gray-700 text-center text-sm">جميع الرسائل</span>
-                                </div>
+                                <a href="/dashboard/conversations" className="flex flex-col justify-between items-center">
+                                    <div className="flex flex-row w-full justify-center cursor-pointer items-center px-5">
+                                        <span className="font-bold text-gray-700 text-center text-sm">جميع الرسائل</span>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                         {localStorage.getItem('token')?
@@ -427,20 +452,27 @@ export const NavBar = (props) => {
                                        <div className="absolute top-1 left-3">x</div>
                                    </div>
                                    <div className="col-span-12 rounded px-5 py-3 flex justify-start relative items-center">
-                                       <div className="rounded-full  w-6 h-4  cursor-pointer" onClick={()=> setMenu(1)} style={{background:`url(${Route}/images/right-arrow.svg)`,backgroundSize:"cover",backgroundPosition:"center"}}></div>
-                                       <div className="flex  flex-col justify-between items-start mr-2">
-                                           <span className="text-md text-black">إعدادات الحساب</span>
-                                           {/* <span className="text-xs text-gray-500 mt-2">الرصيد : 500 ر.ل </span> */}
-                                       </div>
+                                        
+
+                                           <div className="rounded-full  w-6 h-4  cursor-pointer" onClick={()=> setMenu(1)} style={{background:`url(${Route}/images/right-arrow.svg)`,backgroundSize:"cover",backgroundPosition:"center"}}></div>
+                                       
+
+
+                                        <div className="flex  flex-col justify-between items-start mr-2">
+                                            <span className="text-md text-black">إعدادات الحساب</span>
+                                            {/* <span className="text-xs text-gray-500 mt-2">الرصيد : 500 ر.ل </span> */}
+                                        </div>
+                                    
                                    </div>
                                    <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}} >
-                                       <div className="w-2/3 flex justify-start relative items-center">
-                                       <img src={`${Route}/images/profile.svg`} className=" w-10 h-6 "/>
-                                           <div className="flex  flex-col justify-between items-start mr-2">
-                                               <span className="text-xs text-black">المعلومات الأساسية</span>
-                                           </div>
-                                       </div>
-                                      
+                                       <a href="/dashboard/profile" className="w-full">
+                                        <div className="w-2/3 flex justify-start relative items-center">
+                                        <img src={`${Route}/images/profile.svg`} className=" w-10 h-6 "/>
+                                            <div className="flex  flex-col justify-between items-start mr-2">
+                                                <span className="text-xs text-black">المعلومات الأساسية</span>
+                                            </div>
+                                        </div>
+                                       </a>
                                    </div>
                                    <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" >
                                        <div className="w-2/3 flex justify-start relative items-center">
@@ -484,22 +516,25 @@ export const NavBar = (props) => {
                                        </div>
                                    </div>
                                    <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}} >
+                                       <a href="/dashboard/order" className="flex justify-between relative items-center">
+
                                        <div className="w-2/3 flex justify-start relative items-center">
                                        <img src={`${Route}/images/orders.svg`} className=" w-10 h-6 "/>
                                            <div className="flex  flex-col justify-between items-start mr-2">
                                                <span className="text-xs text-black">الطلبات</span>
                                            </div>
                                        </div>
-                                      
+                                       </a>
                                    </div>
                                    <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center"  >
+                                   <a href="/dashboard/disputes" className="flex justify-between relative items-center">
                                        <div className="w-2/3 flex justify-start relative items-center">
                                        <img src={`${Route}/images/bill.svg`} className=" w-10 h-6 "/>
                                            <div className="flex  flex-col justify-between items-start mr-2">
-                                               <span className="text-xs text-black">الفواتير</span>
+                                               <span className="text-xs text-black">النزاعات</span>
                                            </div>
                                        </div>
-                                      
+                                    </a>                                      
                                    </div>
                                    <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" >
                                        <div className="w-2/3 flex justify-start relative items-center">
@@ -536,11 +571,13 @@ export const NavBar = (props) => {
                                    <div className="absolute top-1 left-3">x</div>
                                </div>
                                <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-start relative items-center">
+                               <a href="/dashboard" className="w-full flex justify-start relative items-center">
                                    <div className="rounded-full w-10 h-8 " style={{background:`url(${Route}/images/user.jpg)`,backgroundSize:"cover",backgroundPosition:"center"}}></div>
                                    <div className="flex  flex-col justify-between items-start mr-2">
-                                       <span className="text-xs text-black">زين ابراهيم</span>
+                                       <span className="text-xs text-black">{localStorage.getItem('nice_name')?localStorage.getItem('nice_name'):""}</span>
                                        <span className="text-xs text-gray-500 mt-2">الرصيد : 500 ر.ل </span>
                                    </div>
+                                   </a>
                                </div>
                                <div onClick={()=>setMenu(2)} className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
                                    <div   className="w-2/3 flex justify-start relative items-center">
@@ -604,13 +641,16 @@ export const NavBar = (props) => {
                          
                         </div>
                         {localStorage.getItem('token')?
-                            <div onClick={toggleprofile} className={`hidden ml-3 cursor-pointer w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center ${Loading?"skeleton-box":""}`}  style={Loading?{}:{background:`url(${Route}/images/user.jpg)`,backgroundSize:"cover",backgroundPosition:"center"}}>
+                            <div onClick={toggleprofile} className={`hidden ml-3 cursor-pointer w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center ${Loading?"skeleton-box":""}`}  style={Loading?{}:{background:`url(${localStorage.getItem('avatar')?localStorage.getItem('avatar'):""})`,backgroundSize:"cover",backgroundPosition:"center"}}>
                             </div>
                             :
                             <span className="text-xs block bg-yellow-500 text-white py-1 px-3 rounded cursor-pointer " onClick={toggleModal}>
                                 دخول
                             </span>    
-                    }
+                        }
+
+
+                        
                         
                     </div>
             </nav>
