@@ -515,43 +515,47 @@ export const NavBar = (props) => {
                                            {/* <span className="text-xs text-gray-500 mt-2">الرصيد : 500 ر.ل </span> */}
                                        </div>
                                    </div>
-                                   <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}} >
+                                   <div className="col-span-12 rounded px-2 noti-hover py-3 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}} >
                                        <a href="/dashboard/order" className="flex justify-between relative items-center">
 
                                        <div className="w-2/3 flex justify-start relative items-center">
-                                       <img src={`${Route}/images/orders.svg`} className=" w-10 h-6 "/>
-                                           <div className="flex  flex-col justify-between items-start mr-2">
+                                       <img src={`${Route}/images/icons/ordersblack.svg`} className=" w-6/12 h-6 "/>
+                                           <div className="flex  flex-col justify-between items-start mr-2 w-6/12">
                                                <span className="text-xs text-black">الطلبات</span>
                                            </div>
                                        </div>
                                        </a>
                                    </div>
-                                   <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center"  >
+                                   <div className="col-span-12 rounded px-2 noti-hover py-3 flex justify-between relative items-center"  >
                                    <a href="/dashboard/disputes" className="flex justify-between relative items-center">
                                        <div className="w-2/3 flex justify-start relative items-center">
-                                       <img src={`${Route}/images/bill.svg`} className=" w-10 h-6 "/>
-                                           <div className="flex  flex-col justify-between items-start mr-2">
+                                       <img src={`${Route}/images/bill.svg`} className=" w-1/2 h-6 "/>
+                                           <div className="flex  flex-col justify-between items-start mr-2 ">
                                                <span className="text-xs text-black">النزاعات</span>
                                            </div>
                                        </div>
                                     </a>                                      
                                    </div>
-                                   <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" >
+                                   <div className="col-span-12 rounded px-2 noti-hover py-3 flex justify-between relative items-center"  >
+                                   <a href="/dashboard/disputes" className="flex justify-between relative items-center">
                                        <div className="w-2/3 flex justify-start relative items-center">
-                                           <img src={`${Route}/images/payment.svg`} className=" w-10 h-6 "/>
-                                           <div  className="flex  flex-col justify-between items-start mr-2">
-                                               <span className="text-xs text-black">طرق الدفع</span>
+                                            <img src={`${Route}/images/payment.svg`} className=" w-1/2 h-6 "/>
+                                           <div className="flex  flex-col justify-between items-start mr-2 ">
+                                               <span className="text-xs text-black">النزاعات</span>
                                            </div>
                                        </div>
-                                      
+                                    </a>                                      
                                    </div>
-                                   <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-between relative items-center" >
+                                 
+                                   <div className="col-span-12 rounded px-2 noti-hover py-3 flex justify-between relative items-center"  >
+                                   <a href="/dashboard/disputes" className="flex justify-between relative items-center">
                                        <div className="w-2/3 flex justify-start relative items-center">
-                                       <img src={`${Route}/images/wallet.svg`} className="w-9 h-6 "/>
-                                           <div className="flex  flex-col justify-between items-start mr-2">
+                                           <img src={`${Route}/images/wallet.svg`} className="w-1/2 h-6 "/>
+                                           <div className="flex  flex-col justify-between items-start mr-2 ">
                                                <span className="text-xs text-black">المحفظة</span>
                                            </div>
                                        </div>
+                                    </a>                                      
                                    </div>
 
                                </div> 
@@ -572,7 +576,7 @@ export const NavBar = (props) => {
                                </div>
                                <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-start relative items-center">
                                <a href="/dashboard" className="w-full flex justify-start relative items-center">
-                                   <div className="rounded-full w-10 h-8 " style={{background:`url(${Route}/images/user.jpg)`,backgroundSize:"cover",backgroundPosition:"center"}}></div>
+                                   <div className="rounded-full w-10 h-8 " style={{background:`url(${localStorage.getItem('avatar')?localStorage.getItem('avatar'):""})`,backgroundSize:"cover",backgroundPosition:"center"}}></div>
                                    <div className="flex  flex-col justify-between items-start mr-2">
                                        <span className="text-xs text-black">{localStorage.getItem('nice_name')?localStorage.getItem('nice_name'):""}</span>
                                        <span className="text-xs text-gray-500 mt-2">الرصيد : 500 ر.ل </span>

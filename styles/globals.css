@@ -788,3 +788,58 @@ background-color: rgb(78, 78, 78);
 .offers{
   background: #FFBC00;
 }
+@media (max-width:290px){
+  .statistics-icon{
+    width:1.5rem !important;
+  }
+}
+.hover-gray-200{
+  cursor: pointer;
+}
+.hover-gray-200:hover{
+  background-color: rgb(241, 241, 241);
+}
+
+
+.scr::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  height:100px;
+} 
+.scr::-webkit-scrollbar {
+  width: 3px;
+  margin-top:10px;
+  position:absolute;
+  left:0px;
+}
+.cancelation:hover{
+  background: rgba(75, 85, 99);
+  color:white
+}
+.filters:hover{
+  background: #eee;
+}
+.radios {
+	visibility: hidden;
+}
+.radioImg {
+	display: inline-block;
+	padding: 0px;
+	height:10px;
+	width:10px;
+	content:''
+}
+.radios:checked +.radioImg:after {  
+  content: "\2713";
+  display: inline-block;
+	padding: 0px;
+	height:10px;
+	width:10px;
+}
+.hover-black:hover{
+  color: black !important;
+}
+.tables{
+  height: 100px !important;
+  overflow: hidden;
+  max-height:100px !important;
+}

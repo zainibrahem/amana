@@ -15,7 +15,7 @@ import Discover from '../../components/discover/discover';
 export default function Index() {
     interface Order {
         order_date:""
-        order_status:""
+        order_status:string
         order_number:""
         items_count:""
         total:""
@@ -53,7 +53,7 @@ export default function Index() {
         coupons_count:""
     }
     const [data,setData] = useState<Data>();
-
+    const Route = useAppState('Route');
     useEffect(() => {
         console.log(localStorage.getItem('token'));
         fetch(`https://amanacart.com/api/dashboard/index`,{
@@ -71,25 +71,17 @@ export default function Index() {
      },[])
 
     return (
-        <div className="grid grid-cols-10 gap-2 mt-12" dir="rtl">
-            <div className="col-span-5 lg:col-span-2">
-                <div className="w-full bg-white shadow flex justify-between py-6 p-3 items-center">
-                    <div className=" bg-gray-200 flex justify-start items-center  p-1 lg:p-2 rounded ">
-                        <svg className="w-4 h-4 lg:w-auto lg:h-auto"  xmlns="http://www.w3.org/2000/svg" width="35.95" height="43.347" viewBox="0 0 35.95 43.347">
-                            <g id="Group_5287" data-name="Group 5287" transform="translate(0)">
-                                <path id="Path_337" data-name="Path 337" d="M74.976,248.645a12.061,12.061,0,0,0-.036-1.251,3.825,3.825,0,0,0-2.488-3.272,3.932,3.932,0,0,0-1.284-.237c-.1,0-.194,0-.295,0s-.187,0-.28,0c-1.244-.014-2.492,0-3.74,0-.234,0-.467-.032-.748-.058a3.183,3.183,0,0,0-2.114-3.585H50.12l-.054.022a3.184,3.184,0,0,0-2.057,3.56c-.309.022-.565.061-.82.061-1.215.007-2.435-.011-3.65,0-.093,0-.187,0-.28,0-.133,0-.266,0-.4,0a3.921,3.921,0,0,0-2.079.629l-.1.065A3.268,3.268,0,0,0,39.469,246c-.018.036-.036.076-.054.111s-.032.083-.05.126a4.031,4.031,0,0,0-.291,1.154l-.011.14c-.032.367-.029.737-.029,1.111q-.005,11.732,0,23.471v6.548a8.25,8.25,0,0,0,.245,2.309c.37,1.223,1.208,1.874,2.945,2.6H71.8c1.654-.7,2.492-1.327,2.88-2.452a7.609,7.609,0,0,0,.295-2.46V271.2Q74.98,259.916,74.976,248.645Zm-23.245-4.754h10.6v3.51h-10.6Zm19.7,35.158c-.007.723-.237.928-.975.921-3.826-.022-7.652-.018-11.479-.018H55.112c-3.848,0-7.692,0-11.54.018-.759.007-.982-.209-.978-.978v-.011q.016-6.246.018-12.5.005-9.057-.014-18.113a2.259,2.259,0,0,1,.025-.367V248a.6.6,0,0,1,.554-.579h1.187a.087.087,0,0,1,.043,0c.917.007,1.841,0,2.787,0h.795c.011.086.018.173.022.252a7.48,7.48,0,0,0,.011.816,2.735,2.735,0,0,0,1.356,2.19c.058.032.115.065.173.09a1.79,1.79,0,0,0,.173.076c.079.032.158.058.241.083a2.017,2.017,0,0,0,.255.058c.086.018.176.029.266.04s.18.011.273.011q6.279.022,12.565,0h.029a2.705,2.705,0,0,0,2.747-2.546c.029-.313,0-.633,0-1.068h.737c.946,0,1.87.011,2.791,0a.1.1,0,0,1,.047,0h1.169c.471.072.583.381.583.953q-.011,7.023-.014,14.043v4q0,1.359,0,2.715,0,2.228,0,4.448.005,2.708.011,5.412Z" transform="translate(-39.03 -240.23)" fill="#4791ff"/>
-                                <path id="Path_338" data-name="Path 338" d="M73.314,302.531a1.951,1.951,0,0,1-2.128,2.067c-1.034.008-2.063.012-3.1.012-2.262.008-4.524,0-6.781-.012a1.99,1.99,0,0,1-2.169-2.039,1.892,1.892,0,0,1,1.532-1.865,2.948,2.948,0,0,1,.616-.073c1.666-.02,3.332-.008,4.994-.008,1.629,0,3.255-.012,4.884,0C72.515,300.638,73.285,301.339,73.314,302.531Z" transform="translate(-52.402 -279.143)" fill="#4791ff"/>
-                                <path id="Path_339" data-name="Path 339" d="M101.394,282.409c.012,1.265-.8,2.019-2.266,2.047-1.265.024-2.529,0-3.794,0s-2.529.02-3.8,0a2.047,2.047,0,1,1,.053-4.053q3.739-.024,7.483,0C100.514,280.41,101.378,281.18,101.394,282.409Z" transform="translate(-72.162 -266.116)" fill="#4791ff"/>
-                                <path id="Path_340" data-name="Path 340" d="M66.326,322.636a2.043,2.043,0,0,1-2.1,1.986q-.128.012-.255.012c-1.265.012-2.533,0-3.794,0s-2.533.016-3.8,0a1.973,1.973,0,0,1-2.213-1.99,2.017,2.017,0,0,1,2.266-2.059q3.362-.024,6.729,0c.288,0,.576,0,.863,0A2.078,2.078,0,0,1,66.326,322.636Z" transform="translate(-49.022 -292.013)" fill="#4791ff"/>
-                                <path id="Path_341" data-name="Path 341" d="M67.21,282.359a1.92,1.92,0,0,1-1.909,2.063c-.272.02-.539.028-.811.028-.178,0-.357,0-.535-.008-.041,0-.081,0-.118,0-.142,0-.276,0-.418,0-.045,0-.093,0-.142,0h-.146c-.105,0-.211,0-.316,0-.158,0-.316,0-.474.008-.292.008-.58.008-.871,0-.13,0-.263-.012-.4-.02a1.99,1.99,0,0,1-1.933-2.063,1.963,1.963,0,0,1,1.929-1.958c1.407-.065,2.821-.061,4.228,0A1.936,1.936,0,0,1,67.21,282.359Z" transform="translate(-52.136 -266.093)" fill="#4791ff"/>
-                            </g>
-                        </svg>
+        <div className="grid grid-cols-12 gap-6 mt-12" dir="rtl">
+            <div className="col-span-6 lg:col-span-3">
+                <div className="w-full shadow rounded flex justify-between py-6 p-3 items-center bg-blue-400">
+                    <div className=" flex justify-start items-center  p-1 lg:p-2 rounded ">
+                       <img className="w-12 statistics-icon" src={`${Route}/images/icons/orders.svg`} alt="" />
                     </div>
                     <div className="flex flex-col justify-between items-start ">
-                        <span className="text-sm lg:text-lg text-gray-500">
-                            عدد الطلبات
+                        <span className="text-sm lg:text-lg text-white">
+                         الطلبات
                         </span>
-                        <span className="text-lg lg:text-4xl text-black numbers" style={{fontWeight:"bold"}}>
+                        <span className="text-lg lg:text-4xl text-white numbers" style={{fontWeight:"bold"}}>
                             {data?data.orders_count:""}
                         </span>
                     </div>
@@ -98,50 +90,16 @@ export default function Index() {
                     </div>
                 </div>
             </div>
-            <div className="col-span-5 lg:col-span-2">
-                <div className="w-full bg-white shadow flex justify-between py-6 p-3 items-center">
-                    <div className=" bg-gray-200 flex justify-start items-center  p-1 lg:p-2 rounded ">
-                        <svg className="w-4 h-4 lg:w-auto lg:h-auto"  xmlns="http://www.w3.org/2000/svg" width="35.95" height="43.347" viewBox="0 0 35.95 43.347">
-                            <g id="Group_5287" data-name="Group 5287" transform="translate(0)">
-                                <path id="Path_337" data-name="Path 337" d="M74.976,248.645a12.061,12.061,0,0,0-.036-1.251,3.825,3.825,0,0,0-2.488-3.272,3.932,3.932,0,0,0-1.284-.237c-.1,0-.194,0-.295,0s-.187,0-.28,0c-1.244-.014-2.492,0-3.74,0-.234,0-.467-.032-.748-.058a3.183,3.183,0,0,0-2.114-3.585H50.12l-.054.022a3.184,3.184,0,0,0-2.057,3.56c-.309.022-.565.061-.82.061-1.215.007-2.435-.011-3.65,0-.093,0-.187,0-.28,0-.133,0-.266,0-.4,0a3.921,3.921,0,0,0-2.079.629l-.1.065A3.268,3.268,0,0,0,39.469,246c-.018.036-.036.076-.054.111s-.032.083-.05.126a4.031,4.031,0,0,0-.291,1.154l-.011.14c-.032.367-.029.737-.029,1.111q-.005,11.732,0,23.471v6.548a8.25,8.25,0,0,0,.245,2.309c.37,1.223,1.208,1.874,2.945,2.6H71.8c1.654-.7,2.492-1.327,2.88-2.452a7.609,7.609,0,0,0,.295-2.46V271.2Q74.98,259.916,74.976,248.645Zm-23.245-4.754h10.6v3.51h-10.6Zm19.7,35.158c-.007.723-.237.928-.975.921-3.826-.022-7.652-.018-11.479-.018H55.112c-3.848,0-7.692,0-11.54.018-.759.007-.982-.209-.978-.978v-.011q.016-6.246.018-12.5.005-9.057-.014-18.113a2.259,2.259,0,0,1,.025-.367V248a.6.6,0,0,1,.554-.579h1.187a.087.087,0,0,1,.043,0c.917.007,1.841,0,2.787,0h.795c.011.086.018.173.022.252a7.48,7.48,0,0,0,.011.816,2.735,2.735,0,0,0,1.356,2.19c.058.032.115.065.173.09a1.79,1.79,0,0,0,.173.076c.079.032.158.058.241.083a2.017,2.017,0,0,0,.255.058c.086.018.176.029.266.04s.18.011.273.011q6.279.022,12.565,0h.029a2.705,2.705,0,0,0,2.747-2.546c.029-.313,0-.633,0-1.068h.737c.946,0,1.87.011,2.791,0a.1.1,0,0,1,.047,0h1.169c.471.072.583.381.583.953q-.011,7.023-.014,14.043v4q0,1.359,0,2.715,0,2.228,0,4.448.005,2.708.011,5.412Z" transform="translate(-39.03 -240.23)" fill="#4791ff"/>
-                                <path id="Path_338" data-name="Path 338" d="M73.314,302.531a1.951,1.951,0,0,1-2.128,2.067c-1.034.008-2.063.012-3.1.012-2.262.008-4.524,0-6.781-.012a1.99,1.99,0,0,1-2.169-2.039,1.892,1.892,0,0,1,1.532-1.865,2.948,2.948,0,0,1,.616-.073c1.666-.02,3.332-.008,4.994-.008,1.629,0,3.255-.012,4.884,0C72.515,300.638,73.285,301.339,73.314,302.531Z" transform="translate(-52.402 -279.143)" fill="#4791ff"/>
-                                <path id="Path_339" data-name="Path 339" d="M101.394,282.409c.012,1.265-.8,2.019-2.266,2.047-1.265.024-2.529,0-3.794,0s-2.529.02-3.8,0a2.047,2.047,0,1,1,.053-4.053q3.739-.024,7.483,0C100.514,280.41,101.378,281.18,101.394,282.409Z" transform="translate(-72.162 -266.116)" fill="#4791ff"/>
-                                <path id="Path_340" data-name="Path 340" d="M66.326,322.636a2.043,2.043,0,0,1-2.1,1.986q-.128.012-.255.012c-1.265.012-2.533,0-3.794,0s-2.533.016-3.8,0a1.973,1.973,0,0,1-2.213-1.99,2.017,2.017,0,0,1,2.266-2.059q3.362-.024,6.729,0c.288,0,.576,0,.863,0A2.078,2.078,0,0,1,66.326,322.636Z" transform="translate(-49.022 -292.013)" fill="#4791ff"/>
-                                <path id="Path_341" data-name="Path 341" d="M67.21,282.359a1.92,1.92,0,0,1-1.909,2.063c-.272.02-.539.028-.811.028-.178,0-.357,0-.535-.008-.041,0-.081,0-.118,0-.142,0-.276,0-.418,0-.045,0-.093,0-.142,0h-.146c-.105,0-.211,0-.316,0-.158,0-.316,0-.474.008-.292.008-.58.008-.871,0-.13,0-.263-.012-.4-.02a1.99,1.99,0,0,1-1.933-2.063,1.963,1.963,0,0,1,1.929-1.958c1.407-.065,2.821-.061,4.228,0A1.936,1.936,0,0,1,67.21,282.359Z" transform="translate(-52.136 -266.093)" fill="#4791ff"/>
-                            </g>
-                        </svg>
+            <div className="col-span-6 lg:col-span-3">
+                <div className="w-full bg-green-400 rounded shadow flex justify-between py-6 p-3 items-center">
+                    <div className="flex justify-start items-center  p-1 lg:p-2 rounded ">
+                        <img className="w-10 statistics-icon" src={`${Route}/images/icons/Group 1.svg`} alt="" />
                     </div>
                     <div className="flex flex-col justify-between items-start ">
-                        <span className="text-sm lg:text-lg text-gray-500">
-                            المفضلة
-                        </span>
-                        <span className="text-lg lg:text-4xl text-black numbers" style={{fontWeight:"bold"}}>
-                            {data?data.wishlists_count:""}
-                        </span>
-                    </div>
-                    <div className="flex flex-col justify-between items-end lg:ml-2">
-                      
-                    </div>
-                </div>
-            </div>
-            <div className="col-span-5 lg:col-span-2">
-                <div className="w-full bg-white shadow flex justify-between py-6 p-3 items-center">
-                    <div className=" bg-gray-200 flex justify-start items-center  p-1 lg:p-2 rounded ">
-                        <svg className="w-4 h-4 lg:w-auto lg:h-auto"  xmlns="http://www.w3.org/2000/svg" width="35.95" height="43.347" viewBox="0 0 35.95 43.347">
-                            <g id="Group_5287" data-name="Group 5287" transform="translate(0)">
-                                <path id="Path_337" data-name="Path 337" d="M74.976,248.645a12.061,12.061,0,0,0-.036-1.251,3.825,3.825,0,0,0-2.488-3.272,3.932,3.932,0,0,0-1.284-.237c-.1,0-.194,0-.295,0s-.187,0-.28,0c-1.244-.014-2.492,0-3.74,0-.234,0-.467-.032-.748-.058a3.183,3.183,0,0,0-2.114-3.585H50.12l-.054.022a3.184,3.184,0,0,0-2.057,3.56c-.309.022-.565.061-.82.061-1.215.007-2.435-.011-3.65,0-.093,0-.187,0-.28,0-.133,0-.266,0-.4,0a3.921,3.921,0,0,0-2.079.629l-.1.065A3.268,3.268,0,0,0,39.469,246c-.018.036-.036.076-.054.111s-.032.083-.05.126a4.031,4.031,0,0,0-.291,1.154l-.011.14c-.032.367-.029.737-.029,1.111q-.005,11.732,0,23.471v6.548a8.25,8.25,0,0,0,.245,2.309c.37,1.223,1.208,1.874,2.945,2.6H71.8c1.654-.7,2.492-1.327,2.88-2.452a7.609,7.609,0,0,0,.295-2.46V271.2Q74.98,259.916,74.976,248.645Zm-23.245-4.754h10.6v3.51h-10.6Zm19.7,35.158c-.007.723-.237.928-.975.921-3.826-.022-7.652-.018-11.479-.018H55.112c-3.848,0-7.692,0-11.54.018-.759.007-.982-.209-.978-.978v-.011q.016-6.246.018-12.5.005-9.057-.014-18.113a2.259,2.259,0,0,1,.025-.367V248a.6.6,0,0,1,.554-.579h1.187a.087.087,0,0,1,.043,0c.917.007,1.841,0,2.787,0h.795c.011.086.018.173.022.252a7.48,7.48,0,0,0,.011.816,2.735,2.735,0,0,0,1.356,2.19c.058.032.115.065.173.09a1.79,1.79,0,0,0,.173.076c.079.032.158.058.241.083a2.017,2.017,0,0,0,.255.058c.086.018.176.029.266.04s.18.011.273.011q6.279.022,12.565,0h.029a2.705,2.705,0,0,0,2.747-2.546c.029-.313,0-.633,0-1.068h.737c.946,0,1.87.011,2.791,0a.1.1,0,0,1,.047,0h1.169c.471.072.583.381.583.953q-.011,7.023-.014,14.043v4q0,1.359,0,2.715,0,2.228,0,4.448.005,2.708.011,5.412Z" transform="translate(-39.03 -240.23)" fill="#4791ff"/>
-                                <path id="Path_338" data-name="Path 338" d="M73.314,302.531a1.951,1.951,0,0,1-2.128,2.067c-1.034.008-2.063.012-3.1.012-2.262.008-4.524,0-6.781-.012a1.99,1.99,0,0,1-2.169-2.039,1.892,1.892,0,0,1,1.532-1.865,2.948,2.948,0,0,1,.616-.073c1.666-.02,3.332-.008,4.994-.008,1.629,0,3.255-.012,4.884,0C72.515,300.638,73.285,301.339,73.314,302.531Z" transform="translate(-52.402 -279.143)" fill="#4791ff"/>
-                                <path id="Path_339" data-name="Path 339" d="M101.394,282.409c.012,1.265-.8,2.019-2.266,2.047-1.265.024-2.529,0-3.794,0s-2.529.02-3.8,0a2.047,2.047,0,1,1,.053-4.053q3.739-.024,7.483,0C100.514,280.41,101.378,281.18,101.394,282.409Z" transform="translate(-72.162 -266.116)" fill="#4791ff"/>
-                                <path id="Path_340" data-name="Path 340" d="M66.326,322.636a2.043,2.043,0,0,1-2.1,1.986q-.128.012-.255.012c-1.265.012-2.533,0-3.794,0s-2.533.016-3.8,0a1.973,1.973,0,0,1-2.213-1.99,2.017,2.017,0,0,1,2.266-2.059q3.362-.024,6.729,0c.288,0,.576,0,.863,0A2.078,2.078,0,0,1,66.326,322.636Z" transform="translate(-49.022 -292.013)" fill="#4791ff"/>
-                                <path id="Path_341" data-name="Path 341" d="M67.21,282.359a1.92,1.92,0,0,1-1.909,2.063c-.272.02-.539.028-.811.028-.178,0-.357,0-.535-.008-.041,0-.081,0-.118,0-.142,0-.276,0-.418,0-.045,0-.093,0-.142,0h-.146c-.105,0-.211,0-.316,0-.158,0-.316,0-.474.008-.292.008-.58.008-.871,0-.13,0-.263-.012-.4-.02a1.99,1.99,0,0,1-1.933-2.063,1.963,1.963,0,0,1,1.929-1.958c1.407-.065,2.821-.061,4.228,0A1.936,1.936,0,0,1,67.21,282.359Z" transform="translate(-52.136 -266.093)" fill="#4791ff"/>
-                            </g>
-                        </svg>
-                    </div>
-                    <div className="flex flex-col justify-between items-start ">
-                        <span className="text-sm lg:text-lg text-gray-500">
+                        <span className="text-sm lg:text-lg text-white">
                             الكوبونات
                         </span>
-                        <span className="text-lg lg:text-4xl text-black numbers" style={{fontWeight:"bold"}}>
+                        <span className="text-lg lg:text-4xl text-white numbers" style={{fontWeight:"bold"}}>
                             {data?data.coupons_count:""}
                         </span>
                     </div>
@@ -150,24 +108,16 @@ export default function Index() {
                     </div>
                 </div>
             </div>
-            <div className="col-span-5 lg:col-span-2">
-                <div className="w-full bg-white shadow flex justify-between py-6 p-3 items-center">
-                    <div className=" bg-gray-200 flex justify-start items-center  p-1 lg:p-2 rounded ">
-                        <svg className="w-4 h-4 lg:w-auto lg:h-auto"  xmlns="http://www.w3.org/2000/svg" width="35.95" height="43.347" viewBox="0 0 35.95 43.347">
-                            <g id="Group_5287" data-name="Group 5287" transform="translate(0)">
-                                <path id="Path_337" data-name="Path 337" d="M74.976,248.645a12.061,12.061,0,0,0-.036-1.251,3.825,3.825,0,0,0-2.488-3.272,3.932,3.932,0,0,0-1.284-.237c-.1,0-.194,0-.295,0s-.187,0-.28,0c-1.244-.014-2.492,0-3.74,0-.234,0-.467-.032-.748-.058a3.183,3.183,0,0,0-2.114-3.585H50.12l-.054.022a3.184,3.184,0,0,0-2.057,3.56c-.309.022-.565.061-.82.061-1.215.007-2.435-.011-3.65,0-.093,0-.187,0-.28,0-.133,0-.266,0-.4,0a3.921,3.921,0,0,0-2.079.629l-.1.065A3.268,3.268,0,0,0,39.469,246c-.018.036-.036.076-.054.111s-.032.083-.05.126a4.031,4.031,0,0,0-.291,1.154l-.011.14c-.032.367-.029.737-.029,1.111q-.005,11.732,0,23.471v6.548a8.25,8.25,0,0,0,.245,2.309c.37,1.223,1.208,1.874,2.945,2.6H71.8c1.654-.7,2.492-1.327,2.88-2.452a7.609,7.609,0,0,0,.295-2.46V271.2Q74.98,259.916,74.976,248.645Zm-23.245-4.754h10.6v3.51h-10.6Zm19.7,35.158c-.007.723-.237.928-.975.921-3.826-.022-7.652-.018-11.479-.018H55.112c-3.848,0-7.692,0-11.54.018-.759.007-.982-.209-.978-.978v-.011q.016-6.246.018-12.5.005-9.057-.014-18.113a2.259,2.259,0,0,1,.025-.367V248a.6.6,0,0,1,.554-.579h1.187a.087.087,0,0,1,.043,0c.917.007,1.841,0,2.787,0h.795c.011.086.018.173.022.252a7.48,7.48,0,0,0,.011.816,2.735,2.735,0,0,0,1.356,2.19c.058.032.115.065.173.09a1.79,1.79,0,0,0,.173.076c.079.032.158.058.241.083a2.017,2.017,0,0,0,.255.058c.086.018.176.029.266.04s.18.011.273.011q6.279.022,12.565,0h.029a2.705,2.705,0,0,0,2.747-2.546c.029-.313,0-.633,0-1.068h.737c.946,0,1.87.011,2.791,0a.1.1,0,0,1,.047,0h1.169c.471.072.583.381.583.953q-.011,7.023-.014,14.043v4q0,1.359,0,2.715,0,2.228,0,4.448.005,2.708.011,5.412Z" transform="translate(-39.03 -240.23)" fill="#4791ff"/>
-                                <path id="Path_338" data-name="Path 338" d="M73.314,302.531a1.951,1.951,0,0,1-2.128,2.067c-1.034.008-2.063.012-3.1.012-2.262.008-4.524,0-6.781-.012a1.99,1.99,0,0,1-2.169-2.039,1.892,1.892,0,0,1,1.532-1.865,2.948,2.948,0,0,1,.616-.073c1.666-.02,3.332-.008,4.994-.008,1.629,0,3.255-.012,4.884,0C72.515,300.638,73.285,301.339,73.314,302.531Z" transform="translate(-52.402 -279.143)" fill="#4791ff"/>
-                                <path id="Path_339" data-name="Path 339" d="M101.394,282.409c.012,1.265-.8,2.019-2.266,2.047-1.265.024-2.529,0-3.794,0s-2.529.02-3.8,0a2.047,2.047,0,1,1,.053-4.053q3.739-.024,7.483,0C100.514,280.41,101.378,281.18,101.394,282.409Z" transform="translate(-72.162 -266.116)" fill="#4791ff"/>
-                                <path id="Path_340" data-name="Path 340" d="M66.326,322.636a2.043,2.043,0,0,1-2.1,1.986q-.128.012-.255.012c-1.265.012-2.533,0-3.794,0s-2.533.016-3.8,0a1.973,1.973,0,0,1-2.213-1.99,2.017,2.017,0,0,1,2.266-2.059q3.362-.024,6.729,0c.288,0,.576,0,.863,0A2.078,2.078,0,0,1,66.326,322.636Z" transform="translate(-49.022 -292.013)" fill="#4791ff"/>
-                                <path id="Path_341" data-name="Path 341" d="M67.21,282.359a1.92,1.92,0,0,1-1.909,2.063c-.272.02-.539.028-.811.028-.178,0-.357,0-.535-.008-.041,0-.081,0-.118,0-.142,0-.276,0-.418,0-.045,0-.093,0-.142,0h-.146c-.105,0-.211,0-.316,0-.158,0-.316,0-.474.008-.292.008-.58.008-.871,0-.13,0-.263-.012-.4-.02a1.99,1.99,0,0,1-1.933-2.063,1.963,1.963,0,0,1,1.929-1.958c1.407-.065,2.821-.061,4.228,0A1.936,1.936,0,0,1,67.21,282.359Z" transform="translate(-52.136 -266.093)" fill="#4791ff"/>
-                            </g>
-                        </svg>
+            <div className="col-span-6 lg:col-span-3">
+                <div className="w-full rounded bg-red-400 shadow flex justify-between py-6 p-3 items-center">
+                    <div className="flex justify-start items-center  p-1 lg:p-2 rounded ">
+                        <img className="w-10 statistics-icon" src={`${Route}/images/icons/edit-list.svg`} alt="" />
                     </div>
                     <div className="flex flex-col justify-between items-start ">
-                        <span className="text-sm lg:text-lg text-gray-500">
+                        <span className="text-sm lg:text-lg text-white">
                             النزاعات
                         </span>
-                        <span className="text-lg lg:text-4xl text-black numbers" style={{fontWeight:"bold"}}>
+                        <span className="text-lg lg:text-4xl text-white numbers" style={{fontWeight:"bold"}}>
                             {data?data.disputes_count:""}
                         </span>
                     </div>
@@ -176,24 +126,16 @@ export default function Index() {
                     </div>
                 </div>
             </div>
-            <div className="hidden lg:block lg:col-span-2">
-                <div className="w-full bg-white shadow flex justify-between py-6 p-3 items-center">
-                    <div className="bg-gray-200 flex justify-start items-center  p-2 rounded ">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="35.95" height="43.347" viewBox="0 0 35.95 43.347">
-                            <g id="Group_5287" data-name="Group 5287" transform="translate(0)">
-                                <path id="Path_337" data-name="Path 337" d="M74.976,248.645a12.061,12.061,0,0,0-.036-1.251,3.825,3.825,0,0,0-2.488-3.272,3.932,3.932,0,0,0-1.284-.237c-.1,0-.194,0-.295,0s-.187,0-.28,0c-1.244-.014-2.492,0-3.74,0-.234,0-.467-.032-.748-.058a3.183,3.183,0,0,0-2.114-3.585H50.12l-.054.022a3.184,3.184,0,0,0-2.057,3.56c-.309.022-.565.061-.82.061-1.215.007-2.435-.011-3.65,0-.093,0-.187,0-.28,0-.133,0-.266,0-.4,0a3.921,3.921,0,0,0-2.079.629l-.1.065A3.268,3.268,0,0,0,39.469,246c-.018.036-.036.076-.054.111s-.032.083-.05.126a4.031,4.031,0,0,0-.291,1.154l-.011.14c-.032.367-.029.737-.029,1.111q-.005,11.732,0,23.471v6.548a8.25,8.25,0,0,0,.245,2.309c.37,1.223,1.208,1.874,2.945,2.6H71.8c1.654-.7,2.492-1.327,2.88-2.452a7.609,7.609,0,0,0,.295-2.46V271.2Q74.98,259.916,74.976,248.645Zm-23.245-4.754h10.6v3.51h-10.6Zm19.7,35.158c-.007.723-.237.928-.975.921-3.826-.022-7.652-.018-11.479-.018H55.112c-3.848,0-7.692,0-11.54.018-.759.007-.982-.209-.978-.978v-.011q.016-6.246.018-12.5.005-9.057-.014-18.113a2.259,2.259,0,0,1,.025-.367V248a.6.6,0,0,1,.554-.579h1.187a.087.087,0,0,1,.043,0c.917.007,1.841,0,2.787,0h.795c.011.086.018.173.022.252a7.48,7.48,0,0,0,.011.816,2.735,2.735,0,0,0,1.356,2.19c.058.032.115.065.173.09a1.79,1.79,0,0,0,.173.076c.079.032.158.058.241.083a2.017,2.017,0,0,0,.255.058c.086.018.176.029.266.04s.18.011.273.011q6.279.022,12.565,0h.029a2.705,2.705,0,0,0,2.747-2.546c.029-.313,0-.633,0-1.068h.737c.946,0,1.87.011,2.791,0a.1.1,0,0,1,.047,0h1.169c.471.072.583.381.583.953q-.011,7.023-.014,14.043v4q0,1.359,0,2.715,0,2.228,0,4.448.005,2.708.011,5.412Z" transform="translate(-39.03 -240.23)" fill="#4791ff"/>
-                                <path id="Path_338" data-name="Path 338" d="M73.314,302.531a1.951,1.951,0,0,1-2.128,2.067c-1.034.008-2.063.012-3.1.012-2.262.008-4.524,0-6.781-.012a1.99,1.99,0,0,1-2.169-2.039,1.892,1.892,0,0,1,1.532-1.865,2.948,2.948,0,0,1,.616-.073c1.666-.02,3.332-.008,4.994-.008,1.629,0,3.255-.012,4.884,0C72.515,300.638,73.285,301.339,73.314,302.531Z" transform="translate(-52.402 -279.143)" fill="#4791ff"/>
-                                <path id="Path_339" data-name="Path 339" d="M101.394,282.409c.012,1.265-.8,2.019-2.266,2.047-1.265.024-2.529,0-3.794,0s-2.529.02-3.8,0a2.047,2.047,0,1,1,.053-4.053q3.739-.024,7.483,0C100.514,280.41,101.378,281.18,101.394,282.409Z" transform="translate(-72.162 -266.116)" fill="#4791ff"/>
-                                <path id="Path_340" data-name="Path 340" d="M66.326,322.636a2.043,2.043,0,0,1-2.1,1.986q-.128.012-.255.012c-1.265.012-2.533,0-3.794,0s-2.533.016-3.8,0a1.973,1.973,0,0,1-2.213-1.99,2.017,2.017,0,0,1,2.266-2.059q3.362-.024,6.729,0c.288,0,.576,0,.863,0A2.078,2.078,0,0,1,66.326,322.636Z" transform="translate(-49.022 -292.013)" fill="#4791ff"/>
-                                <path id="Path_341" data-name="Path 341" d="M67.21,282.359a1.92,1.92,0,0,1-1.909,2.063c-.272.02-.539.028-.811.028-.178,0-.357,0-.535-.008-.041,0-.081,0-.118,0-.142,0-.276,0-.418,0-.045,0-.093,0-.142,0h-.146c-.105,0-.211,0-.316,0-.158,0-.316,0-.474.008-.292.008-.58.008-.871,0-.13,0-.263-.012-.4-.02a1.99,1.99,0,0,1-1.933-2.063,1.963,1.963,0,0,1,1.929-1.958c1.407-.065,2.821-.061,4.228,0A1.936,1.936,0,0,1,67.21,282.359Z" transform="translate(-52.136 -266.093)" fill="#4791ff"/>
-                            </g>
-                        </svg>
+            <div className="col-span-6 lg:col-span-3">
+                <div className="w-full rounded bg-yellow-400 min-h-full shadow flex justify-between py-6 p-3 items-center">
+                    <div className="flex justify-start  items-center p-1  lg:p-2 rounded ">
+                        <img className="w-96 lg:w-16 statistics-icon" src={`${Route}/images/icons/email-mail-sent.svg`} alt="" />
                     </div>
                     <div className="flex flex-col justify-between items-start ">
-                        <span className="text-lg text-gray-500">
+                        <span className="text-sm text-white font-bold">
                             الرسائل
                         </span>
-                        <span className="text-4xl text-black numbers" style={{fontWeight:"bold"}}>
+                        <span className="text-xl lg:text-4xl text-white numbers" style={{fontWeight:"bold"}}>
                             {data?data.messages_count:""}
                         </span>
                     </div>
@@ -207,114 +149,123 @@ export default function Index() {
 
 
 
-            <div className={`col-span-10 lg:col-span-3 rounded bg-white shadow px-2 ${data&&data.wishlists_count>0?"block":"hidden"}`}>
-                <div className="w-full flex justify-start items-center py-2 px-4 border-b-2">
-                    <span className="text-sm">
+            <div className={`col-span-12 lg:col-span-4 rounded bg-white shadow  `}>
+                <div className="w-full flex justify-start items-center py-3 px-4 " style={{border:"1px solid #eee"}}>
+                    <span className="text-sm font-bold">
                         المفضلة
                     </span>
                 </div>
+                <div className="w-full flex flex-col justify-between items-center mt-2 mb-2 scr overflow-y-scroll">
+                    <div className="w-full flex justify-between items-center px-2">
+                        
+                        <div className="w-12 h-14 rounded-full bg-gray-300"></div>
+                        <div className="flex w-3/4 flex-col items-start px-2">
+                            <span className="text-sm h-8 overflow-hidden text-right">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, obcaecati?</span>
+                        </div>
+                      
+                        <div className="w-4 h-4 rounded-full bg-gray-300"></div>
+                    </div>
+                   
+                </div>
                 <div className="w-full flex flex-col justify-between items-center mt-2 mb-2">
                     <div className="w-full flex justify-between items-center px-2">
-                        <div className="w-4 h-4 rounded-full bg-gray-300"></div>
+                        
                         <div className="w-12 h-14 rounded-full bg-gray-300"></div>
-                        <div className="flex w-2/4 flex-col items-start px-2">
-                            <span className="text-md">User</span>
+                        <div className="flex w-3/4 flex-col items-start px-2">
                             <span className="text-sm  h-8 overflow-hidden text-right">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, obcaecati?</span>
                         </div>
-                        <div className="bg-red-500 rounded px-2 py-1 text-white text-xs">
-                            شراء الان
-                        </div>
-                    </div>
-
-
-                    <div className="w-full flex justify-between items-center px-2">
+                      
                         <div className="w-4 h-4 rounded-full bg-gray-300"></div>
-                        <div className="w-12 h-14 rounded-full bg-gray-300"></div>
-                        <div className="flex w-2/4 flex-col items-start px-2">
-                            <span className="text-md">User</span>
-                            <span className="text-sm  h-8 overflow-hidden text-right">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, obcaecati?</span>
-                        </div>
-                        <div className="bg-red-500 rounded px-2 py-1 text-white text-xs">
-                            شراء الان
-                        </div>
                     </div>
-
-
-                    <div className="w-full flex justify-between items-center px-2">
-                        <div className="w-4 h-4 rounded-full bg-gray-300"></div>
-                        <div className="w-12 h-14 rounded-full bg-gray-300"></div>
-                        <div className="flex w-2/4 flex-col items-start px-2">
-                            <span className="text-md">User</span>
-                            <span className="text-sm  h-8 overflow-hidden text-right">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, obcaecati?</span>
-                        </div>
-                        <div className="bg-red-500 rounded px-2 py-1 text-white text-xs">
-                            شراء الان
-                        </div>
-                    </div>
-
-
-                    <div className="w-full flex justify-between items-center px-2">
-                        <div className="w-4 h-4 rounded-full bg-gray-300"></div>
-                        <div className="w-12 h-14 rounded-full bg-gray-300"></div>
-                        <div className="flex w-2/4 flex-col items-start px-2">
-                            <span className="text-md">User</span>
-                            <span className="text-sm  h-8 overflow-hidden text-right">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, obcaecati?</span>
-                        </div>
-                        <div className="bg-red-500 rounded px-2 py-1 text-white text-xs">
-                            شراء الان
-                        </div>
-                    </div>
+                   
                 </div>
+                <div className="w-full flex flex-col justify-between items-center mt-2 mb-2">
+                    <div className="w-full flex justify-between items-center px-2">
+                        
+                        <div className="w-12 h-14 rounded-full bg-gray-300"></div>
+                        <div className="flex w-3/4 flex-col items-start px-2">
+                            <span className="text-sm  h-8 overflow-hidden text-right">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, obcaecati?</span>
+                        </div>
+                      
+                        <div className="w-4 h-4 rounded-full bg-gray-300"></div>
+                    </div>
+                   
+                </div>
+                <div className="w-full flex flex-col justify-between items-center mt-2 mb-2">
+                    <div className="w-full flex justify-between items-center px-2">
+                        
+                        <div className="w-12 h-14 rounded-full bg-gray-300"></div>
+                        <div className="flex w-3/4 flex-col items-start px-2">
+                            <span className="text-sm  h-8 overflow-hidden text-right">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, obcaecati?</span>
+                        </div>
+                      
+                        <div className="w-4 h-4 rounded-full bg-gray-300"></div>
+                    </div>
+                   
+                </div>
+                {/* <div className="w-full flex flex-col justify-center items-center mt-2 self-end ">
+                    <span className="w-full text-gray-700 flex cursor-pointer flex-col justify-center items-center py-2 border-t-2">
+                        عرض المفضلة
+                    </span>
+                </div> */}
             </div>
-            <div className={`${data&&data.wishlists_count>0?"lg:col-span-7":"lg:col-span-10"} col-span-10 lg:col-span-7 rounded bg-white shadow px-2`}>
-                <div className="w-full flex justify-start items-center py-2 px-4 border-b-2">
-                    <span className="text-sm">
+            <div className={` lg:col-span-8 col-span-12   rounded bg-white shadow `}>
+                <div className="w-full flex justify-start items-center py-3 px-5 ">
+                    <span className="text-sm font-bold">
                         الطلبات
                     </span>
                 </div>
-                <div className="w-full flex justify-between overflow-x-scroll items-center px-3 py-2 mt-3 ">
-                    <table className="w-full ">
+                <div className="w-full flex justify-between max-h-72 overflow-y-scroll scr overflow-x-scroll lg:overflow-visible items-center">
+                    <table className="w-full">
                         <thead className="">
                             <tr className="bg-gray-200">
-                                <th className="text-xs py-2 px-2 font-bold">التاريخ</th>
-                                <th className="text-xs py-2 px-2 font-bold">الطلب</th>
-                                <th className="text-xs py-2 px-2 font-bold">الحالة</th>
-                                <th className="text-xs py-2 px-2 font-bold">العناصر</th>
-                                <th className="text-xs py-2 px-2 font-bold">الكمية</th>
+                                <th style={{padding:"0.7rem 0rem"}} className="text-xs 0  text-gray-700 font-bold">الطلب</th>
+                                <th style={{padding:"0.7rem 0rem"}} className="text-xs 0  text-gray-700 font-bold">التاريخ</th>
+                                <th style={{padding:"0.7rem 0rem"}} className="text-xs 0  text-gray-700 font-bold">الحالة</th>
+                                <th style={{padding:"0.7rem 0rem"}} className="text-xs 0  text-gray-700 font-bold">العناصر</th>
+                                <th style={{padding:"0.7rem 0rem"}} className="text-xs 0  text-gray-700 font-bold">الإجمالي</th>
+                                <th style={{padding:"0.7rem 0rem"}} className="text-xs 0  text-gray-700 font-bold">الفاتورة</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {data?data.orders.map(ele=>
-                                <tr>
-                                <td className="text-center py-2">
-                                    <a className="w-full" href={`dashboard/payment/payment?pid=${ele.id}`}>
-                                        {ele.order_date}
+                            {data?data.orders.map((ele,index)=>
+                                <tr className="hover-gray-200" style={data.orders.length==index+1?{}:{borderBottom:"1px solid rgb(224 225 225)"}}>
+                                    <td className="text-center " style={{padding:".4rem 0rem"}}>
+                                        <a className="w-full" href={`dashboard/payment/payment?pid=${ele.id}`}>
+                                        <div className="flex justify-center items-center">
+                                            <span className="mr-2 numbers text-gray-600 text-right" dir="ltr">
+                                                {ele.order_number.split('#')}
+                                            </span>
+                                        </div>
+                                        </a>
+                                    </td>
+                                <td className="text-center " style={{padding:".4rem 0rem"}}>
+                                    <a className="w-full text-gray-600 numbers" href={`dashboard/payment/payment?pid=${ele.id}`}>
+                                        12-4-2020
                                     </a>
                                 </td>
-                                <td className="text-center py-2">
+                              
+                                <td className="text-center " style={{padding:".4rem 0rem"}}>
                                     <a className="w-full" href={`dashboard/payment/payment?pid=${ele.id}`}>
-                                    <div className="flex justify-center items-center">
-                                        {/* <div className="w-8 h-6 rounded-full bg-gray-200"></div> */}
-                                        <span className="mr-2">{ele.order_number}</span>
-                                    </div>
-                                    </a>
-                                </td>
-                                <td className="text-center py-2">
-                                    <a className="w-full" href={`dashboard/payment/payment?pid=${ele.id}`}>
-                                    <span className="text-xs font-semibold inline-block py-1 px-2 bg-yellow-500 text-white rounded text-amber-600 bg-amber-200 uppercase last:mr-0 mr-1">
-                                        {ele.order_status}
+                                    <span style={{padding:"0.1rem .6rem"}}  className={`text-xs text-white inline-block    px-2 ${ele.order_status=="CONFIRMED"?"bg-green-500":"bg-yellow-500"} text-white rounded-full text-amber-600 bg-amber-200 uppercase last:mr-0 mr-1`}>
+                                        قيد الانتظار
                                     </span>
                                     </a>
                                 </td>
-                                <td className="text-center py-2">
+                                <td className="text-center " style={{padding:".4rem 0rem"}}>
                                     <a className="w-full" href={`dashboard/payment/payment?pid=${ele.id}`}>
-                                    <span>{ele.items_count}</span> 
+                                    <span className="numbers text-gray-600 ">{ele.items_count}</span> 
                                     </a>
                                 </td>
-                                <td className="text-center py-2">
-                                    <a className="w-full" href={`dashboard/payment/payment?pid=${ele.id}`}>
-                                    <span className="numbers">{ele.total}$</span>
+                                <td className="text-center " style={{padding:".4rem 0rem"}}>
+                                    <a className="w-full"  href={`dashboard/payment/payment?pid=${ele.id}`}>
+                                    <span className=" text-gray-600" >
+                                        1000 ريال
+                                        </span>
                                     </a>
+                                </td>
+                                <td className="text-center flex justify-center items-center" style={{padding:".4rem 0rem"}}>
+                                    <svg  width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#8899a4" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"></path></svg>
                                 </td>
                             </tr>
                             ):""}
@@ -326,45 +277,42 @@ export default function Index() {
             </div>
         
 
-            <div className="col-span-10 lg:col-span-5  rounded bg-white shadow px-2">
-                <div className="w-full flex justify-start items-center py-2 px-4 border-b-2">
-                    <span className="text-sm">
-                        طلبات الإرجاع   
+            <div className="col-span-12 lg:col-span-6  rounded bg-white shadow ">
+                <div className="w-full flex justify-start items-center py-3 px-5">
+                    <span className="text-sm font-bold">
+                        النزاعات   
                     </span>
                 </div>
-                <div className="w-full flex justify-between overflow-x-scroll items-center px-3 py-2 mt-3 ">
+                <div className="w-full flex justify-between overflow-x-scroll max-h-72 overflow-y-scroll scr lg:overflow-visible items-center  pb-2  ">
                     <table className="w-full">
                         <thead className="">
                             <tr className="bg-gray-200">
-                                <th className="text-xs py-2 px-2 font-bold">التاريخ</th>
-                                <th className="text-xs py-2 px-2 font-bold">الطلب</th>
-                                <th className="text-xs py-2 px-2 font-bold">الحالة</th>
-                                <th className="text-xs py-2 px-2 font-bold">العناصر</th>
-                                <th className="text-xs py-2 px-2 font-bold">السبب</th>
+                                <th style={{padding:"0.7rem 0rem"}} className="text-xs py-2 px-2 text-gray-700 font-bold">الطلب</th>
+                                <th style={{padding:"0.7rem 0rem"}} className="text-xs py-2 px-2 text-gray-700 font-bold">التاريخ</th>
+                                <th style={{padding:"0.7rem 0rem"}} className="text-xs py-2 px-2 text-gray-700 font-bold">الحالة</th>
+                                <th style={{padding:"0.7rem 0rem"}} className="text-xs py-2 px-2 text-gray-700 font-bold">السبب</th>
                             </tr>
                         </thead>
                         <tbody>
-                           {data?data.disputes.map(ele=>
-                                 <tr>
+                           {data?data.disputes.map((ele,index)=>
+                                 <tr className="hover-gray-200" style={data.orders.length==index+1?{}:{borderBottom:"1px solid rgb(224 225 225)"}}>
+                                
                                  <td className="text-center py-2">
+                                     <div className="flex justify-center items-center">
+                                         <span className="mr-2 numbers text-gray-600 text-right">{ele.order_number.split('#')}</span>
+                                     </div>
+                                 </td>
+                                 <td className="text-center py-2 text-gray-600">
                                      {ele.updated_at}
                                  </td>
                                  <td className="text-center py-2">
-                                     <div className="flex justify-center items-center">
-                                         <div className="w-8 h-6 rounded-full bg-gray-200"></div>
-                                         <span className="mr-2">{ele.order_number}</span>
-                                     </div>
-                                 </td>
-                                 <td className="text-center py-2">
-                                     <span className="text-xs font-semibold inline-block py-1 px-2 bg-yellow-500 text-white rounded text-amber-600 bg-amber-200 uppercase last:mr-0 mr-1">
-                                         {ele.status}
+                                     <span style={{padding:"0rem .6rem 0.1rem .6rem"}} className="text-xs inline-block  bg-yellow-500 text-white rounded-full text-amber-600 bg-amber-200 uppercase last:mr-0 mr-1">
+                                         تم الحل
                                      </span>
                                  </td>
+                                
                                  <td className="text-center py-2">
-                                     <span>{ele.items_count}</span> 
-                                 </td>
-                                 <td className="text-center py-2">
-                                     <span className="numbers">{ele.reason}</span>
+                                     <span className="text-gray-600">{ele.reason}</span>
                                  </td>
                              </tr>
                            ):""}
@@ -373,25 +321,38 @@ export default function Index() {
                 </div>
             </div>
         
-            <div className={` col-span-10 lg:col-span-5 rounded bg-white shadow px-2`}>
-            <div className="w-full flex justify-start items-center py-2 px-4 border-b-2">
-                    <span className="text-sm">
+            <div className={` col-span-12 lg:col-span-6 rounded bg-white shadow `}>
+            <div className="w-full flex justify-start items-center pt-3 pb-3 px-4" style={{border:"1px #eee solid"}}>
+                    <span className="text-sm font-bold">
                         الرسائل
                     </span>
                 </div>
-                <div className="w-full flex flex-col justify-between items-center px-3 py-2 mt-3 ">
-                    {data?data.messages.map(ele=>
-                            <a className="w-full" href={`/dashboard/conversation/conversation?pid=${ele.id}`}>
-                        <div className="w-full flex justify-between items-center px-2">
-                            <div className="w-24 lg:w-12 h-14 rounded-full border-2 border-yellow-500" style={{background:`url(https://amanacart.com/image/${ele.shop.image.path})`,backgroundSize:"contain",backgroundRepeat:"no-repeat",backgroundPosition:"center center"}}></div>
-                            <div className="flex  flex-col items-start px-2">
-                                <span className="text-md">{ele.shop.name}</span>
-                                <span className="text-sm  max-w-md h-8 overflow-hidden text-right">
-                                    {ele.message}
-                                </span>
+            <div className="w-full flex flex-col justify-between items-center max-h-72 overflow-y-scroll scr mt-3   pb-2 ">
+                    {data?data.messages.map((ele,index)=>
+                        <a className="w-full hover-gray-200" href={`/dashboard/conversation/conversation?pid=${ele.id}`}>
+                            <div className="w-full flex justify-between items-center px-2 pb-2" style={data.orders.length==index+1?{}:{borderBottom:"1px solid rgb(224 225 225)"}}>
+                                <div className="w-24 lg:w-12 h-14 rounded-full  shadow " style={{border:"1px solid #eee",background:`url(https://amanacart.com/image/${ele.shop.image.path})`,backgroundSize:"contain",backgroundRepeat:"no-repeat",backgroundPosition:"center center"}}></div>
+                                <div className="flex  flex-col items-start px-2 w-11/12">
+                                    <span className="text-sm font-bold  text-gray-600 pt-2">
+                                        {/* {ele.shop.name} */}
+                                        متجر هرمس
+                                    </span>
+                                    <div className="flex justify-between items-center">
+                                        <span className="text-xs  max-w-md h-14 text-gray-600 leading-6 overflow-hidden text-right mt-1">
+                                            {/* {ele.message} */}
+                                            الرسالة المرسلة من الزبون الى التاجر وعلى عيني يا معلم وابو جعفر يصبرني واحلى 500 محروقة للاستاذ المحترم
+                                        </span>
+                                        <div className="flex flex-col justify-center items-center rounded w-3/12 " style={{border:"1px solid rgba(96, 165, 250)"}}>
+                                            <span className="text-xs  bg-blue-400 color-white w-full   text-white text-center" style={{padding:".1rem .6rem"}}>
+                                                رقم الطلب
+                                            </span>
+                                            <span className="px-2 text-xs my-1">
+                                                123423
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            
-                        </div>
                         </a>
                     ):""}
                 </div>

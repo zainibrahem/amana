@@ -42,6 +42,15 @@ export default function Orders() {
         tracking_url:""
       
     }
+    interface Dispute{
+        id:""
+        order_number:""
+        order_status:""
+        total:""
+        grand_total:""
+        items:Item
+        dispute_type:[]
+    }
     interface Reply{
 
     }
@@ -57,8 +66,35 @@ export default function Orders() {
         status:string
         updated_at:""
     }
+    const [dispute,setDispute] = useState<Dispute>()
+
     const router = useRouter()
     const { pid } = router.query;
+    const [rec,setRec] = useState<boolean>(false)
+    const [modals,setModals] = useState<boolean>(false)
+    const handlModalss = () =>{
+        setModals(!modals)
+        fetch(`https://amanacart.com/api/order/${pid?pid:""}/dispute`,{
+            headers:{
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`
+            }})
+         .then(res => res.json())
+         .then(result =>{
+            setDispute(result.data);
+         })
+         .catch(e => {
+           console.log(e);
+       });
+    }
+    const closeModals = () => {
+        setModals(false)
+    }
+      const notreceived = () => {
+        setRec(false)
+    }
+    const received = () => {
+        setRec(true)
+    }
     async function postData() {
        const response = await fetch(`https://amanacart.com/api/dispute/${data?data.id:""}/solved`, {
            method: 'PUT', // *GET, POST, PUT, DELETE, etc.
@@ -243,6 +279,78 @@ export default function Orders() {
                     </span>
                 </div>
                 :""}
+                 <div className={`${modals?"flex":"hidden"} fixed z-50 top-0 left-0 h-screen w-full flex flex-col  justify-center items-center bg-black bg-opacity-70`}>
+            <div onClick={closeModals} className="rounded-full border-2 border-white w-8 h-6 mb-4 text-white text-center text-md cursor-pointer">
+                x
+            </div>
+            <div className={`${modals?"slideUpss":"slideDownss"} relative p-5 w-1/2 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
+                    <div className="col-span-12">
+                        <span className="text-md font-bold">
+                            فتح نزاع
+                        </span>
+                    </div>
+                    <div className="col-span-12 mt-5 flex flex-col justify-between items-start">
+                        <span className="text-sm">
+                            اختر السبب
+                        </span>
+                        <select name="" id="" className="w-full border-2 rounded mt-3 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
+                            <option value="">اختر سببا</option>
+                            {dispute?Object.values(dispute.dispute_type).map((ele, i)=>
+                                <option value={ele}>{ele}</option>
+                            ):""}
+                        </select>
+                        <span className="text-sm  pb-1 mt-4 w-full">
+                                وصلت المنتجات؟
+                        </span>
+                        <div className="flex flex-col px-3 ">
+                            <div className="flex w-full justify-between items-center">
+                                <input onClick={received} type="radio" className="ml-2" name="returned" id="" />
+                                <label className="w-8 text-right" htmlFor="">نعم</label>
+                            </div>
+
+                            <div className="flex w-full justify-between items-center">
+                                <input onClick={notreceived} type="radio" className="ml-2" name="returned" id="" />
+                                <label className="w-8 text-right" htmlFor="">لا</label>
+                            </div>
+                        </div>
+                        {rec?
+                            <div className="w-full">
+                                 <span className="text-sm">
+                                    اختر المنتج
+                                </span>
+                                <select name="" id="" className="w-full border-2 rounded mt-3 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
+                                    <option value="">كل المنتجات</option>
+                                    {dispute?Object.values(dispute.dispute_type).map((ele, i)=>
+                                        <option value={ele}>{ele}</option>
+                                    ):""}
+                                </select>
+                            </div>
+                        :""}
+
+                        <span className="text-sm  pb-1 mt-4 w-full">
+                               قيمة المرجعات
+                        </span>
+                        <input type="text" className="w-full rounded border-2 py-1  mt-3 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent" />
+                        <span className="text-xs text-gray-500 text-right mt-1">
+                                لقد قمت بدفع <span className="font-bold">1500</span> غير شاملة الشحن والضرائب
+                        </span>
+                        
+                            
+                        <span className="w-full text-sm mt-5">
+                            الوصف
+                        </span>
+                        <textarea className="w-full h-16 border-2 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent rounded mt-3" name="" id=""></textarea>
+
+                        <span className="text-xs w-full mt-2">
+                            ملاحظة : الإرجاع غير مضمون   !
+                        </span>
+                        <span className="text-sm text-white text-center w-56 cursor-pointer py-1 rounded bg-yellow-500 mt-4">
+                            إرسال الطلب
+                        </span>
+                    </div>
+            </div>
+        </div>
+       
             </div>
         </div>
     );

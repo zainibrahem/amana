@@ -419,7 +419,11 @@ export default function Orders() {
                         <span className="text-sm pb-1 mt-4 w-full">
                             اسم العنوان
                         </span>
-                        <input type="text" name="" onChange={(e) => {setAddressTitle(e.target.value)}} className="w-full h-6 border-2 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent rounded mt-1" id="" />
+                        <select name="" id="" onChange={(e) => {setAddressTitle(e.target.value)}} className="w-full border-2 rounded mt-3 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
+                                    <option value={"المنزل"}>المنزل</option>
+                                    <option value={"العمل"}>العمل</option>
+                                    <option value={"مكان اخر"}>مكان اخر</option>
+                        </select>
 
                         <span className="w-full text-sm mt-5">
                             تفاصيل العنوان

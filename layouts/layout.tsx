@@ -113,10 +113,9 @@ interface ListItem {
                 all+= parseInt(result.data.carts[i].total_cart);
            }
            setAlls(all);
-           console.log(all);
-           localStorage.setItem('token','iP0eRBysVAqgJeAhMoO1SLIl4ymLNKqhtZpd1IQpwDoCOvwSD52DC3Skz9wT');
+          //  localStorage.setItem('token',localStorage.getItem('token'));
+          // localStorage.removeItem('token')
            toggleLoader(elements);
-
           setEl2(wid) ;
          })
          .catch(e => {
@@ -159,7 +158,7 @@ interface ListItem {
           </div>
         
         <div className="grid grid-cols-12 gap-4">
-            <div className="col-span-12 sm:col-span-12 h-13 md:col-span-12 relative z-50 lg:col-span-12 xl:col-span-12">
+            <div className="col-span-12 sm:col-span-12 h-13 md:col-span-12 relative lg:col-span-12 xl:col-span-12">
               {data?
               <NavBar alls={alls} addtocart={addtocart} carts={data} auth={isAuthenticated}  toggleHandler={toggleHandler}></NavBar>
               :<></>}
@@ -168,7 +167,10 @@ interface ListItem {
                {data?
                <>
                 {props.children}
+                {route.indexOf('dashboard')==-1?
                 <Footer></Footer>
+                :""
+                }
                </>
                :
                <></>
