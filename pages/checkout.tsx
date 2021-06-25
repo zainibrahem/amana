@@ -1,0 +1,417 @@
+import React, { useState,useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Autoplay,Navigation, Pagination, Scrollbar } from 'swiper/core';
+import { useAppState, useAppDispatch } from '../contexts/app/app.provider';
+import Slider from '../components/slider/slider';
+import SearchBar from '../components/seachbar/searchBar';
+import Banners from '../components/banners/banners';
+import Categories from '../components/categories/categories';
+import Card from '../components/card/card';
+import Deal from '../components/deal/deal';
+import Specials from '../components/specials/specials';
+import Cat from '../components/cat/cat';
+import Proposals from '../components/proposals/proposals';
+import { Waypoint } from 'react-waypoint';
+import AllCatsSlider from '../components/allcatsSlider/allCatsSlider';
+import Discover from '../components/discover/discover';
+import { useRouter } from 'next/router';
+export default function Orders() {
+    interface Address{
+        address_type:""
+        address_title:""
+        address_line_1:""
+        address_line_2:""
+        city:""
+        zip_code:""
+        country:Country
+        state:State
+        phone:""
+        id:""
+        states:[]
+        address_types:[]
+    }
+    interface State{
+        id:""
+    }
+    interface Country{
+        name:""
+        id:""
+    }
+     
+    const [ship,setShip] = useState(false);    
+    const [ships,setShips] = useState(false);  
+    const [addaddress,setAddAddress] = useState<boolean>() 
+    const [addinfo,setaddinfo] = useState<Address>(); 
+    const [addressType,setAddressType] = useState<string>()
+    const [addresstitle,setAddressTitle] = useState<string>()
+    const [addressdesc,setaddressdesc] = useState<string>()
+    const [editadd,seteditadd] = useState<Address>()
+    const [city,setcity] = useState<string>()
+    const [state,setstate] = useState<string>()
+    const [phone,setphone] = useState<string>()
+    const [avatar,setAvatar] = useState([])
+    const closeModal = () =>{
+        setAddAddress(false)
+    }
+    const datass = {
+        address_title : addresstitle,
+        address_type:addressType,
+        city:city,
+        state_id:state,
+        address_line_1:addressdesc,
+        phone:phone,
+        avatar:avatar[0]
+    }
+    var formBodys = [];
+    for (var property in datass) {
+      var encodedKey = encodeURIComponent(property);
+      var encodedValue = encodeURIComponent(datass[property]);
+      formBodys.push(encodedKey + "=" + encodedValue);
+    }
+    const addAddress = () =>{
+        addAddresss()
+        .then(data => {
+          console.log('address'); // JSON data parsed by `data.json()` call
+          console.log(data); // JSON data parsed by `data.json()` call
+          window.location.reload(false)
+        });
+    }
+    async function addAddresss() {
+        console.log(datass)
+       const response = await fetch('https://amanacart.com/api/address/store', {
+           method: 'post', // *GET, POST, PUT, DELETE, etc.
+           headers: {
+           'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+           'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+           },
+           body: formBodys.join("&") // body data type must match "Content-Type" header
+       });
+       return response.json(); // parses JSON response into native JavaScript objects
+    }
+    const handleModal = () =>{
+        setAddAddress(!addaddress)
+        fetch(`https://amanacart.com/api/address/create`,{
+            headers:{
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+         .then(res => res.json())
+         .then(result =>{
+            setaddinfo(result.data)
+            console.log(result.data)
+         })
+         .catch(e => {
+           console.log(e);
+       });
+    }
+    const toggleShipping = () =>{
+        setShip(!ship);
+    }
+    const toggleShippings = () =>{
+        setShips(!ships);
+    }
+    return (
+        <div className="grid grid-cols-12 gap-2 bg-white rounded shadow p-4 mt-12" style={{border:"1px solid #eee"}} dir="rtl">
+            <div className="col-span-4  p-2 flex flex-col justify-start items-start" >
+                <div className="rounded bg-gray-100 shadow p-2 flex flex-col justify-between items-start" style={{border:"1px solid #eee"}}>
+                <span className="text-xs flex justify-between items-center">
+                    <svg className="w-4 ml-2" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 145.254 136.317">
+                        <path id="Path_11710" data-name="Path 11710" d="M4241.016,542.33v63.906a6.6,6.6,0,0,0,6.6,6.6h118.434a6.6,6.6,0,0,0,6.6-6.6V542.33a2.2,2.2,0,0,1,2.2-2.2h.219a4.4,4.4,0,0,0,4.4-4.4v-16.89a15.375,15.375,0,0,0-2.166-7.876l-17.332-29.084a11.034,11.034,0,0,0-9.439-5.369h-87.373a11.05,11.05,0,0,0-9.447,5.369l-17.33,29.084a15.413,15.413,0,0,0-2.166,7.876v16.89a4.4,4.4,0,0,0,4.4,4.4A2.4,2.4,0,0,1,4241.016,542.33Zm51.611,65.388a2.268,2.268,0,0,1-1.557.717h-25.285a2.2,2.2,0,0,1-2.2-2.2v-48a2.2,2.2,0,0,1,2.2-2.2h25.285a2.195,2.195,0,0,1,2.2,2.2v47.856A2.358,2.358,0,0,1,4292.627,607.718Zm75.617-1.482a2.2,2.2,0,0,1-2.2,2.2h-66.182a2.2,2.2,0,0,1-2.2-2.2v-48a2.2,2.2,0,0,1,2.2-2.2h48.006a2.2,2.2,0,0,1,2.2,2.2v45.657h4.4V556.036a4.4,4.4,0,0,0-4.4-4.4h-86.482a4.4,4.4,0,0,0-4.4,4.4v50.2a2.2,2.2,0,0,1-2.2,2.2h-9.379a2.2,2.2,0,0,1-2.2-2.2V542.33a2.2,2.2,0,0,1,2.2-2.2h118.434a2.2,2.2,0,0,1,2.2,2.2Zm-95.566-72.7V519.609a2.2,2.2,0,0,1,2.2-2.2h63.906a2.2,2.2,0,0,1,2.2,2.2v13.926a2.2,2.2,0,0,1-2.2,2.2h-63.906A2.2,2.2,0,0,1,4272.678,533.535Zm-34.08,0V518.844a11.009,11.009,0,0,1,1.547-5.624l17.33-29.084a6.629,6.629,0,0,1,5.67-3.223h87.373a6.635,6.635,0,0,1,5.664,3.219l17.328,29.088a10.973,10.973,0,0,1,1.549,5.624v14.691a2.2,2.2,0,0,1-2.2,2.2h-25.283a2.2,2.2,0,0,1-2.2-2.2V519.609a6.6,6.6,0,0,0-6.6-6.6h-63.906a6.6,6.6,0,0,0-6.6,6.6v13.926a2.2,2.2,0,0,1-2.2,2.2H4240.8A2.2,2.2,0,0,1,4238.6,533.535Z" transform="translate(-4234.201 -476.515)"/>
+                    </svg>
+                    تباع بواسطة
+                    <span className="text-blue-400 text-xs mr-2">
+                        متجر هرمس
+                    </span>
+                </span>
+                <div className="relative flex justify-center items-start mt-2">
+                    <input type="text" name="" className="text-xs pr-2 py-1 border-2 w-full relative focus:outline-none focus:shadow -600 focus:ring-0  focus:border-0 rounded" id="" />
+                    <div className="absolute text-xs flex py-1 items-center left-0 top-0 h-full px-2 rounded-l bg-white border-2" >
+                        تحقق من الكوبون
+                    </div>
+                </div>
+                <div className="flex w-full flex-col justify-between items-start mt-3 px-1">
+                    <span className="text-sm">
+                        تفاصيل الطلب
+                    </span>
+                    <span className="text-xs  w-full flex justify-between items-center mt-4">
+                        <span>
+                        عدد المنتجات
+                        </span>
+                        <span>
+                        12
+                        </span>
+                    </span>
+                    <span className="text-xs  w-full flex justify-between items-center mt-4">
+                        <span>
+                            السعر
+                        </span>
+                        <span>
+                            1500 ر.ع
+                        </span>
+                    </span>
+                    <span className="text-xs  w-full flex justify-between relative items-center mt-4" onMouseEnter={toggleShippings} onMouseLeave={toggleShippings}>
+                        <span>
+                            التغليف
+                            <div className={` absolute grid-cols-12 w-full border-2 shadow bg-white rounded arrowss z-20 ${ships?"grid":"hidden"}`}>
+                                        <div className="col-span-12 bg-gray-100 flex justify-start items-center p-2">
+                                            <span className="text-sm">خيارات التغليف</span>
+                                        </div>
+                                            <div className={` border-b-2 col-span-12`} >
+                                            <div className="grid grid-cols-12 w-full p-2">
+                                                    <div className="col-span-1">
+                                                        <input type="radio" name="shipping" id="" />
+                                                    </div>
+                                                    <div className="col-span-5">
+                                                      القدموس
+                                                    </div>
+                                                    <div className="col-span-4">
+                                                        5-12 يوم
+                                                    </div>
+                                                    <div className="col-span-2">
+                                                        22
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <div className="col-span-12 flex justify-center items-center">
+                                            <button className="bg-gray-700 text-white w-11/12 border-0 m-2 rounded text-center text-sm">
+                                                حفظ
+                                            </button>
+                                        </div>
+                                    </div>
+                        </span>
+                        <span>
+                            20 ر.ع
+                        </span>
+                    </span>
+                    <span className="text-xs w-full flex justify-between relative items-center mt-4" onMouseEnter={toggleShipping} onMouseLeave={toggleShipping}>
+                        <span>
+                            الشحن
+                            <div className={` absolute grid-cols-12 w-full border-2 shadow bg-white rounded arrowss z-20 ${ship?"grid":"hidden"}`}>
+                                        <div className="col-span-12 bg-gray-100 flex justify-start items-center p-2">
+                                            <span className="text-sm">خيارات الشحن</span>
+                                        </div>
+                                            <div className={` border-b-2 col-span-12`} >
+                                            <div className="grid grid-cols-12 w-full p-2">
+                                                    <div className="col-span-1">
+                                                        <input type="radio" name="shipping" id="" />
+                                                    </div>
+                                                    <div className="col-span-5">
+                                                      القدموس
+                                                    </div>
+                                                    <div className="col-span-4">
+                                                        5-12 يوم
+                                                    </div>
+                                                    <div className="col-span-2">
+                                                        22
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <div className="col-span-12 flex justify-center items-center">
+                                            <button className="bg-gray-700 text-white w-11/12 border-0 m-2 rounded text-center text-sm">
+                                                حفظ
+                                            </button>
+                                        </div>
+                                    </div>
+                        </span>
+                        <span>
+                            20 ر.ع
+                        </span>
+                    </span>
+                    <span className="text-xs  w-full flex justify-between items-center mt-4">
+                        <span>
+                            السعر الكلي
+                        </span>
+                        <span className="font-bold">
+                            1500 ر.ع
+                        </span>
+                    </span>
+
+                    </div>
+                    </div>
+                    
+
+                <div className="flex justify-around items-center mt-7 w-full border-t-2 pt-7">
+                    <span className="cursor-pointer text-sm text-white rounded bg-gray-700 w-24 text-center">
+                        تحديث السلة
+                    </span>
+                    <span className="cursor-pointer text-sm text-white rounded bg-gray-700 w-24 text-center">
+                        متابعة الشراء
+                    </span>
+                </div>
+               
+            </div>
+            <div className="col-span-5 p-5 flex flex-col items-start justify-between">
+                <span className="text-sm flex justify-around items-center">
+                    <svg className="w-4 ml-2" xmlns="http://www.w3.org/2000/svg" width="25" height="10" viewBox="0 0 171.496 114.128">
+                        <path id="Path_11855" data-name="Path 11855" d="M4315.651,220.493a6.588,6.588,0,0,0-4.963-2.256h-28.676a2.2,2.2,0,0,1-2.2-2.2v-10.4a6.6,6.6,0,0,0-6.6-6.6h-105.4a6.6,6.6,0,0,0-6.6,6.6v77.111a6.6,6.6,0,0,0,6.6,6.6h13.176a2.2,2.2,0,0,1,2.193,2.357c-.035.475-.051.954-.051,1.442a20.03,20.03,0,0,0,37.063,10.536,2.2,2.2,0,0,1,1.871-1.042h58.975a2.189,2.189,0,0,1,1.871,1.042,20.03,20.03,0,0,0,37.063-10.488,2.2,2.2,0,0,1,2.2-2.194h3.943a6.6,6.6,0,0,0,6.6-6.6V242.466a6.612,6.612,0,0,0-1.631-4.345Zm-112.492,88.276a15.63,15.63,0,1,1,15.629-15.628A15.646,15.646,0,0,1,4203.159,308.769Zm17.709-24.994a20.038,20.038,0,0,0-35.42,0,2.2,2.2,0,0,1-1.943,1.17h-15.691a2.2,2.2,0,0,1-2.2-2.2V205.634a2.2,2.2,0,0,1,2.2-2.2h105.4a2.2,2.2,0,0,1,2.2,2.2v77.111a2.2,2.2,0,0,1-2.2,2.2h-50.406A2.2,2.2,0,0,1,4220.868,283.774Zm58.691,13.715a2.2,2.2,0,0,1-1.65.747H4225.2a2.2,2.2,0,0,1-2.182-2.484,20.729,20.729,0,0,0,.168-2.612c0-.488-.018-.967-.051-1.442a2.2,2.2,0,0,1,2.191-2.357h52.289a2.377,2.377,0,0,1,1.688.7,2.287,2.287,0,0,1,.67,1.653c-.037.479-.055.959-.055,1.447a20.243,20.243,0,0,0,.172,2.616A2.2,2.2,0,0,1,4279.56,297.49Zm20.391,11.279a15.63,15.63,0,1,1,15.627-15.628A15.648,15.648,0,0,1,4299.95,308.769Zm28.365-24.37a2.2,2.2,0,0,1-2.2,2.2h-5.723a2.2,2.2,0,0,1-2.023-1.332,20.037,20.037,0,0,0-34.586-3.958,2.192,2.192,0,0,1-1.771.9,2.333,2.333,0,0,1-.687-.106,2.207,2.207,0,0,1-1.512-2.093V224.833a2.2,2.2,0,0,1,2.2-2.2h28.676a2.21,2.21,0,0,1,1.656.752l15.426,17.633a2.192,2.192,0,0,1,.545,1.447Z" transform="translate(-4161.218 -199.038)"/>
+                    </svg>
+                    توصيل إلى : 
+                </span>
+                <div className="grid w-full grid-cols-12 gap-2 mt-2">
+                    <div className="col-span-6 flex flex-col justify-between items-start rounded shadow p-2" style={{border:"1px solid #eee"}}>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                    </div>
+                    <div className="col-span-6 flex flex-col justify-between items-start rounded shadow p-2" style={{border:"1px solid #eee"}}>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                    </div>
+                    <div className="col-span-6 flex flex-col justify-between items-start rounded shadow p-2" style={{border:"1px solid #eee"}}>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                    </div>
+                    <div className="col-span-6 flex flex-col justify-between items-start rounded shadow p-2" style={{border:"1px solid #eee"}}>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                        <span className="text-xs m-1">
+                            2332 شارع بغداد رقم الشقة 4
+                        </span>
+                    </div>
+                    <div className="col-span-12 flex justify-start items-center mt-2">
+                        <span onClick={handleModal} className="bg-white cursor-pointer text-xs py-1 rounded px-2 shadow" style={{border:"1px solid #eee"}}>
+                            إضافة عنوان جديد
+                        </span>
+                    </div>
+                    <div className="col-span-12 pt-4 border-t-2 border-dashed mt-2 flex flex-col justify-between items-start">
+                        <span className="text-xs"> اترك رسالة للبائع</span>
+                        <textarea  className="text-xs mb-4  p-3 w-full h-28 border-2 mt-2" name="" id="" placeholder="اكتب رسالتك هنا" ></textarea>
+                    </div>
+                </div>
+            </div>
+            <div className="col-span-3 p-5 flex flex-col justify-start items-start">
+                <span className="text-sm">
+                    خيارات الدفع
+                </span>
+                <div className="flex w-full justify-start items-center mt-2">
+                    <input type="radio" name="payment" id="" />
+                    <span className="text-xs mr-2 text-gray-500">الدفع عند الاستلام</span>
+                </div>
+                <div className="flex w-full justify-start items-center mt-2">
+                    <input type="radio" name="payment" id="" />
+                    <span className="text-xs mr-2 text-gray-500">حوالة بنكية</span>
+                </div>
+                <span className="text-white cursor-pointer bg-red-400 px-2 mt-6 rounded w-full text-center py-2 flex justify-center">
+                    CHECKOUT
+                <svg className="mr-2" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 158.304 113.622">
+                    <g id="Group_5322" data-name="Group 5322" transform="translate(-848.104 -1769.811)">
+                        <path fill="#fff" id="Path_11811" data-name="Path 11811" d="M3820.027,409.1H3683.71a11,11,0,0,0-10.993,10.993v91.636a11.005,11.005,0,0,0,10.993,10.993h136.317a11.009,11.009,0,0,0,10.993-10.993V420.089A11.006,11.006,0,0,0,3820.027,409.1Zm6.6,102.629a6.6,6.6,0,0,1-6.6,6.6H3683.71a6.6,6.6,0,0,1-6.6-6.6V462.858a2.2,2.2,0,0,1,2.2-2.2h145.111a2.2,2.2,0,0,1,2.2,2.2Zm0-57.662a2.2,2.2,0,0,1-2.2,2.2H3679.313a2.2,2.2,0,0,1-2.2-2.2V440.515a2.2,2.2,0,0,1,2.2-2.2h145.111a2.2,2.2,0,0,1,2.2,2.2Zm0-22.343a2.2,2.2,0,0,1-2.2,2.2H3679.313a2.2,2.2,0,0,1-2.2-2.2V420.089a6.6,6.6,0,0,1,6.6-6.6h136.317a6.6,6.6,0,0,1,6.6,6.6Z" transform="translate(-2824.613 1360.715)"/>
+                        <rect fill="#fff" id="Rectangle_1723" data-name="Rectangle 1723" width="25.391" height="5.222" transform="translate(961.139 1858.211)"/>
+                        <path fill="#fff" id="Path_11812" data-name="Path 11812" d="M3688.566,450.111a12.13,12.13,0,1,0-12.128-12.128A12.143,12.143,0,0,0,3688.566,450.111Zm0-19.863a7.733,7.733,0,1,1-7.73,7.735A7.743,7.743,0,0,1,3688.566,430.248Z" transform="translate(-2811.973 1417.639)"/>
+                    </g>
+                </svg>
+                </span>
+            </div>
+            <div className={`${addaddress?"flex":"hidden"} fixed z-50 top-0 left-0 h-screen w-full flex flex-col  justify-center items-center bg-black bg-opacity-70`}>
+                        <div onClick={closeModal} className="rounded-full border-2 border-white w-8 h-6 mb-4 text-white text-center text-md cursor-pointer">
+                            x
+                        </div>
+                        <div className={`${addaddress?"slideUpss":"slideDownss"} relative p-5 w-1/2 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
+                    <div className="col-span-12">
+                        <span className="text-sm font-bold">
+                            إضافة عنوان جديد
+                        </span>
+                    </div>
+                    <div className="col-span-12 mt-5 flex flex-col justify-between items-start">
+                        <span className="text-sm">
+                            اختر نوع العنوان
+                        </span>
+                        <select name="" id="" onChange={(e) => {setAddressType(e.target.value)}} className="w-full border-2 rounded mt-3 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
+                            <option value="">نوع العنوان</option>
+                            {addinfo?Object.values(addinfo.address_types).map(ele=>
+                                    <option value={ele}>{ele}</option>
+                            ):""}
+                        </select>
+                        <span className="text-sm pb-1 mt-4 w-full">
+                            اسم العنوان
+                        </span>
+                        <select name="" id="" onChange={(e) => {setAddressTitle(e.target.value)}} className="w-full border-2 rounded mt-3 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
+                                    <option value={"المنزل"}>المنزل</option>
+                                    <option value={"العمل"}>العمل</option>
+                                    <option value={"مكان اخر"}>مكان اخر</option>
+                        </select>
+
+                        <span className="w-full text-sm mt-5">
+                            تفاصيل العنوان
+                        </span>
+                        <input type="text" name="" onChange={(e) => {setaddressdesc(e.target.value)}} className="w-full h-6 border-2 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent rounded mt-1" id="" />
+                        <div className="grid gap-4 grid-cols-12 mt-2">
+                            <div className="col-span-6">
+                                <span className="w-full text-sm ">
+                                    المدينة
+                                </span>
+                                <input type="text" name="" onChange={(e) => {setcity(e.target.value)}} className="w-full h-6 border-2 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent rounded mt-1" id="" />
+                            </div>
+                            <div className="col-span-6">
+                                <span className="w-full text-sm ">
+                                    الولاية
+                                </span>
+                                <select name="" onChange={(e) => {setstate(e.target.value)}} id="" className="w-full border-2 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
+                                    <option value="">اختر ولاية</option>
+                                    {addinfo?Object.entries(addinfo.states).map(([key, ele])=>
+                                            <option value={key}>{ele}</option>
+                                    ):""}
+                                </select>
+                            </div>
+                        </div>
+                        <span className="w-full text-sm mt-5">
+                            رقم الهاتف
+                        </span>
+                        <input type="text" name="" onChange={(e) => {setphone(e.target.value)}} className="w-full h-6 border-2 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent rounded mt-1" id="" />
+                        <span onClick={addAddress} className="text-sm text-white text-center w-56 cursor-pointer py-1 rounded bg-yellow-500 mt-4">
+                            حفظ العنوان
+                        </span>
+                    </div>
+            </div>
+                </div>
+        </div>
+    );
+}

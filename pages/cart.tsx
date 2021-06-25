@@ -13,9 +13,134 @@ import { Waypoint } from 'react-waypoint';
 import AllCatsSlider from '../components/allcatsSlider/allCatsSlider';
 import Discover from '../components/discover/discover';
 export default function Cart() {
+    interface Cart{
+        total_cart:""
+        shop:Shop
+        items:Item[]
+        id:""
+        packaging_options:Package[]
+        shipping_options:Shipping[]
+        discount:""
+        total:""
+        shipping_zones:Zone
+        ship_to_state_id:""
+        handling_cost:""
+        shipping_zone_id:""
+    }
+    interface Zone{
+        country_ids:""
+        id:""
+        tax_id:""
+    }
+    interface Shipping{
+        id:""
+        name:""
+        carrier:Carrier
+        carrier_id:""
+        created_at:""
+        delivery_takes:""
+        maximum:""
+        minimum:""
+        rate:""
+        updated_at:""
+    }
+    interface Carrier{
+        name:""
+    }
+    interface Package{
+
+    }
+    interface Item{
+        id:""
+        description:""
+        image:""
+        quantity:""
+        total:""
+        unit_price:""
+    }
+    interface Shop{
+        cover_image:""
+        image:""
+        member_since:""
+        name:""
+        rating:""
+        verified_text:""
+    }
     const [height,setHeight] = useState(0);
-    const [carts,setCart] = useState([]);
+    const [carts,setCart] = useState<Cart[]>([]);
     const [userId,setUserId] = useState();
+    const [ship,setShip] = useState(false);    
+    const [ships,setShips] = useState(false);    
+    const [shipping,setShipping] = useState<string>();
+    const [coupons,setCoupon] = useState<string>();
+    const [discount,setDiscound] = useState<string>()
+    const toggleShipping = () =>{
+        setShip(!ship);
+    }
+    const formData = new FormData();
+    const coupon = (id,zone) =>{
+        formData.append('coupon',coupons)
+        formData.append('zone',zone)
+        fetch(`https://amanacart.com/api/cart/${id}/applyCoupon`, {
+            method: 'POST',
+            headers: {
+            'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+            },
+            body: formData
+        })
+         .then(res => res.json())
+         .then(result =>{
+            console.log(result);
+            setDiscound(result.coupon_id)
+         })
+         .catch(e => {
+             setCoupon(null);
+           console.log(e);
+       });
+    }
+    const toggleShippings = () =>{
+        setShips(!ships);
+    }
+    const buy = (text_id,zone_id,ship_to_state_id,handling_cost,id) => {
+        const data = {
+            packaging_id:1,
+            tax_id:text_id,
+            ship_to:512,
+            zone_id:zone_id,
+            shipping_rate_id:shipping,
+            ship_to_country_id:512,
+            ship_to_state_id:ship_to_state_id,
+            discount_id:discount?discount:null,
+            coupon:coupons?coupons:"",
+            handling_cost:handling_cost,
+        }
+        postCart(data,id)
+        .then(res=>{
+            console.log('res')
+            console.log(res)
+            setDiscound(null)
+            setCoupon(null)
+            window.location.href="/checkout";
+        })
+        .catch(e=>{
+            console.log(e)
+        })
+        console.log('data data data')
+        console.log(data)
+
+    }
+    async function postCart(appealData,id) {
+        const response = await fetch(`https://amanacart.com/api/cart/${id}/create_checkout`, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+            'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+            },
+            body:appealData
+        });
+        return response.json(); // parses JSON response into native JavaScript objects
+     }
+    const [packages,setPackage] = useState()
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -26,8 +151,9 @@ export default function Cart() {
         })
         .then(res => res.json())
         .then(result =>{
-           setCart(result.data);
-           console.log(result.data)
+           setCart(result.carts);
+           console.log('result.data')
+           console.log(result)
         })
         .catch(e => {
           console.log(e);
@@ -52,7 +178,6 @@ export default function Cart() {
               // error handling code
             } 
           }
-        
           // call the async fetchData function
           fetchData()
         
@@ -64,14 +189,11 @@ export default function Cart() {
                 <span className="text-md text-right">السلة</span>
             </div>
             <div className="col-span-12 relative">
-                
                 {carts?carts.map(ele=>
                 {
-                    
                     var int = parseInt(ele.total_cart);
                     totals+= int
                     return (
-                     
                      <div className="w-full mt-2 bg-white shadow rounded p-3">
                      <div className="grid grid-cols-12">
                          <div className="col-span-12 flex flex-col justify-between items-center">
@@ -140,7 +262,6 @@ export default function Cart() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            
                                         )}
                                        
                                          </div>
@@ -151,35 +272,103 @@ export default function Cart() {
                                                  <span className="text-xs py-2  px-2">السعر الأولي</span>
                                                  <span className="text-xs py-1  px-2 numbers">932.00$</span>
                                              </div>
-                                             <div className="w-full bg-gray-50 text-xs flex justify-between items-center">
-                                                 <span className="text-xs py-1  px-2 flex flex-col justify-between items-start">
-                                                     التغليف
-                                                     <span className="text-xs text-gray-400">
-                                                         ملاحظة عن التغليف
-                                                     </span>    
-                                                 </span>
-                                                 <span className="text-xs py-1  px-2 numbers">{ele.packaging}</span>
-                                             </div>
-                                             <div className="w-full bg-gray-100 text-xs flex justify-between items-center">
-                                                 <span className="text-xs py-1  px-2 flex flex-col justify-between items-start">
-                                                     الحسم
-                                                     <span className="text-xs text-gray-400">
-                                                        ملاحظة عن الحسم
-                                                     </span>    
-                                                 </span>
-                                                <span className="text-xs py-1  px-2 numbers">
-                                                     {ele.discount}
+                                            {/* <div className="w-full bg-gray-50 text-xs flex justify-between items-center">
+                                                <span className="text-xs  w-full px-2 py-1 flex justify-between relative items-center " onMouseEnter={toggleShippings} onMouseLeave={toggleShippings}>
+                                                    <span>
+                                                        التغليف
+                                                        <div className={` absolute grid-cols-12 w-full border-2 shadow bg-white rounded arrowss z-20 ${ships?"grid":"hidden"}`}>
+                                                                    <div className="col-span-12 bg-gray-100 flex justify-start items-center p-2">
+                                                                        <span className="text-sm">خيارات التغليف</span>
+                                                                    </div>
+                                                                        <div className={` border-b-2 col-span-12`} >
+                                                                                {ele.packaging_options.map(ele=>
+                                                                                    <div className="grid grid-cols-12 w-full p-2">
+                                                                                        <div className="col-span-1">
+                                                                                                <input type="radio" name="shipping" id="" />
+                                                                                            </div>
+                                                                                            <div className="col-span-5">
+                                                                                            القدموس
+                                                                                            </div>
+                                                                                            <div className="col-span-4">
+                                                                                                5-12 يوم
+                                                                                            </div>
+                                                                                            <div className="col-span-2">
+                                                                                                22
+                                                                                            </div>
+                                                                                    </div>
+                                                                                )}
+                                                                        </div>
+                                                                    <div className="col-span-12 flex justify-center items-center">
+                                                                        <button className="bg-gray-700 text-white w-11/12 border-0 m-2 rounded text-center text-sm">
+                                                                            حفظ
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                    </span>
+                                                    <span>
+                                                        20 ر.ع
+                                                    </span>
+                                                    </span>
+                                            </div> */}
+                                            <div className="w-full bg-gray-100 text-xs flex justify-between items-center">
+
+                                                <span className="text-xs w-full flex justify-between relative items-center px-2 py-1" onMouseEnter={toggleShipping} onMouseLeave={toggleShipping}>
+                                                <span>
+                                                    الشحن
+                                                    <div className={` absolute grid-cols-12 w-full border-2 shadow bg-white rounded arrowss z-20 ${ship?"grid":"hidden"}`}>
+                                                                <div className="col-span-12 bg-gray-100 flex justify-start items-center p-2">
+                                                                    <span className="text-sm">خيارات الشحن</span>
+                                                                </div>
+                                                                    <div className={` border-b-2 col-span-12`} >
+                                                                        {ele?ele.shipping_options.map(eles=>
+                                                                                <div className="grid grid-cols-12 w-full p-2">
+                                                                                    <div className="col-span-1">
+                                                                                            <input type="radio" value={eles.id} onChange={(e)=>setShipping(e.target.value)} name="shipping" id="" />
+                                                                                        </div>
+                                                                                        <div className="col-span-5">
+                                                                                            {eles.name}
+                                                                                        </div>
+                                                                                        <div className="col-span-4">
+                                                                                            {eles.delivery_takes}
+                                                                                        </div>
+                                                                                        <div className="col-span-2">
+                                                                                            {eles.maximum!=null?eles.maximum.split('.000000'):""}
+                                                                                        </div>
+                                                                                </div>
+                                                                            ):""}
+                                                                    </div>
+                                                                <div className="col-span-12 flex justify-center items-center">
+                                                                    <button className="bg-gray-700 text-white w-11/12 border-0 m-2 rounded text-center text-sm">
+                                                                        حفظ
+                                                                    </button>
+                                                                </div>
+                                                            </div>
                                                 </span>
-                                             </div>
-                                             <div className="w-full bg-gray-50 text-xs flex justify-between items-center">
-                                                 <span className="text-xs py-1  px-2 flex flex-col justify-between items-start font-bold">
-                                                     المجمل
-                                                 </span>
-                                                <span className="text-xs py-1  px-2 numbers">
-                                                     {ele.total}
+                                                <span>
+                                                    20 ر.ع
                                                 </span>
-                                             </div>
-                                             <div className="rounded flex justify-between items-center bg-yellow-500 text-xs text-black px-12 py-1 shadow mb-1 mt-4">
+                                            </span>
+                                            </div>
+                                            <div className="w-full bg-gray-50 text-xs flex justify-between items-center">
+                                                <span className="text-xs py-1  px-2 flex flex-col justify-between items-start">
+                                                    الحسم
+                                                    <span className="text-xs text-gray-400">
+                                                    ملاحظة عن الحسم
+                                                    </span>    
+                                                </span>
+                                            <span className="text-xs py-1  px-2 numbers">
+                                                    {ele.discount}
+                                            </span>
+                                            </div>
+                                            <div className="w-full bg-gray-100 text-xs flex justify-between items-center">
+                                                <span className="text-xs py-1  px-2 flex flex-col justify-between items-start font-bold">
+                                                    المجمل
+                                                </span>
+                                            <span className="text-xs py-1  px-2 numbers">
+                                                    {ele.total}
+                                            </span>
+                                            </div>
+                                            <div onClick={()=>buy(ele.shipping_zones.tax_id,ele.shipping_zones.id,ele.ship_to_state_id,ele.handling_cost,ele.id)} className="rounded cursor-pointer flex justify-between items-center bg-yellow-500 text-xs text-black px-12 py-1 shadow mb-1 mt-4">
                                                  شراء من هذا البائع
                                                  <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 w-12" width="15.119" height="15.501" viewBox="0 0 21.119 21.501">
                                                      <g id="Group_5442" data-name="Group 5442" transform="translate(0 -0.001)">
@@ -190,6 +379,14 @@ export default function Cart() {
                                                  </svg>
                                              </div>
                                          </div>
+                                     </div>
+                                     <div className="col-span-12">
+                                        <div className="relative flex justify-center items-start mt-2">
+                                            <input type="text" onChange={(e)=>setCoupon(e.target.value)} name="" className="text-xs pr-2 py-1 border-2 w-full relative focus:outline-none focus:shadow -600 focus:ring-0  focus:border-0 rounded" id="" />
+                                            <div onClick={()=> coupon(ele.id,ele.shipping_zone_id)} className="absolute cursor-pointer text-xs flex py-1 items-center left-0 top-0 h-full px-2 rounded-l bg-white border-2" >
+                                                تحقق من الكوبون
+                                            </div>
+                                        </div>
                                      </div>
                                  </div>
                              </div>

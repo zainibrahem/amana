@@ -43,6 +43,7 @@ export default function Orders() {
         replies:Reply[]
     }
     const [data,setData] = useState<Data>()
+    
     useEffect(() => {
         console.log('asdasd');
         fetch(`https://amanacart.com/api/dashboard/messages/${pid}`)
@@ -56,9 +57,8 @@ export default function Orders() {
        });
      },[pid])
      let formData = new FormData(); 
-     async function postData(formData) 
-     {
-        
+
+     async function postData(formData) {
        const response = await fetch(`https://amanacart.com/api/dashboard/send_reply/${data?data.message.shop.id:""}`, {
            method: 'POST',
            headers: {

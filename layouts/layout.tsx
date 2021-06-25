@@ -113,7 +113,7 @@ interface ListItem {
                 all+= parseInt(result.data.carts[i].total_cart);
            }
            setAlls(all);
-          //  localStorage.setItem('token',localStorage.getItem('token'));
+           localStorage.setItem('token','dTvPoqzgand6mMZe4hYzR67GIsAjb51IJm7lXH2enA0Jg7EUlMnb0cUu97KL');
           // localStorage.removeItem('token')
            toggleLoader(elements);
           setEl2(wid) ;

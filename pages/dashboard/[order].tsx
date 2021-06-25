@@ -59,7 +59,7 @@ export default function Orders() {
         packaging:""
         order_status:string
         payment_method:Payment
-        payment_status:""
+        payment_status:string
         shipping:""
         shipping_address:""
         shipping_weight:""
@@ -113,7 +113,10 @@ export default function Orders() {
          .then(res => res.json())
          .then(result =>{
             setDispute(result.data);
-         })
+                console.log('dispute types')
+                console.log(result.data)
+                setDispute(result.data.dispute_type)
+            })
          .catch(e => {
            console.log(e);
        });
@@ -161,7 +164,7 @@ export default function Orders() {
         e.currentTarget.children[0].checked =true;
         if(number == 1) {
             data.map(ele=>{
-                if(ele.order_status == 'WAITING FOR PAYMENT'){
+                if(ele.order_status == 'في انتظار الدفع'){
                     array.push(ele);
                 }
             })
@@ -190,6 +193,7 @@ export default function Orders() {
          .then(result =>{
             setData(result.data);
             setOrders(result.data);
+            console.log(result.data)
          })
          .catch(e => {
            console.log(e);
@@ -211,12 +215,12 @@ export default function Orders() {
             
                 <div className="col-span-10 bg-white shadow rounded pt-1 px-2">
                     <div className="grid grid-cols-12 gap-2">
-                        <div className="col-span-4 pt-1 px-2">
+                        <div className="col-span-4 pt-2 px-2">
                             <div className="w-full">
-                                <span className="text-right text-lg">
+                                <span className="text-right  text-lg">
                                     طلباتك
                                 </span>
-                                <div className="w-full  relative">
+                                <div className="w-full pt-2  relative">
                                     <div className="absolute left-0 top-1/2 transform -translate-y-1/2">
                                         <svg xmlns="http://www.w3.org/2000/svg" className='mr-3 ml-3' width="18.179" height="18.179" viewBox="0 0 18.179 18.179">
                                             <path id="search_icon" d="M6.817,0a6.817,6.817,0,0,0,0,13.634,6.817,6.817,0,0,0,3.693-.994l5.4,5.539,2.272-2.272-5.539-5.4a6.817,6.817,0,0,0,.994-3.693A6.817,6.817,0,0,0,6.817,0m0,2.272A4.545,4.545,0,1,1,2.272,6.817,4.545,4.545,0,0,1,6.817,2.272" fill="rgba(107, 114, 128)"/>
@@ -304,7 +308,7 @@ export default function Orders() {
                                     </span>
 
                                 </div>
-                                <div className="w-full mt-2 scr pt-1 h-130 overflow-y-scroll">
+                                <div className="w-full mt-2 scr pt-1  overflow-y-scroll" style={{height:"27rem"}}>
                                     {orders?orders.map(ele=>
                                         <div className="w-full rounded mt-2  p-2 cursor-pointer shadow" onClick={()=>setOrder(ele)}  style={{border:"1px solid #eee"}}>
                                             
@@ -315,7 +319,7 @@ export default function Orders() {
                                             
                                         
                                             <span  className="text-xs text-green-500 ml-2">
-                                                قيد التوصيل
+                                                {ele?ele.payment_status:""}
                                             </span>
                                         </div>
                                         <div className="w-9/12  justify-between flex  items-center mt-2">
@@ -341,9 +345,8 @@ export default function Orders() {
                                             <span className="text-xs text-right   text-gray-500">
                                                 {ele.items.length} منتج
                                             </span>
-                                            <span style={{padding:"0.1rem .6rem"}} className="text-xs rounded text-white bg-gray-500">
-                                                {/* {ele.order_status} */}
-                                                بانتظار التأكيد
+                                            <span style={{padding:"0.1rem .6rem"}} className={`${ele.order_status=='تم التوصيل'?"bg-green-500":""} ${ele.order_status=='تم التأكيد'?"bg-green-500":""} ${ele.order_status=="خطأ في الدفع"?"bg-yellow-500":""} ${ele.payment_status=="غير مدفوع"?"bg-red-500":""} ${ele.payment_status=="إعادة الأموال"?"bg-blue-500":""} ${ele.payment_status=="متنازع عليه"?"bg-gray-700":""} ${ele.payment_status=="بانتظار التسليم"?"bg-yellow-500":""} ${ele.payment_status=="ملغى"?"bg-gray-500":""} ${ele.payment_status=="تم الدفع"?"bg-green-500":""} ${ele.order_status=="في انتظار الدفع"?"bg-yellow-500":""} ${ele.order_status=='إعادة الأموال'?"bg-gray-700":""}  text-xs rounded text-white`}>
+                                                {ele.order_status}
                                             </span>
                                         </div>
                                     </div>
@@ -353,14 +356,14 @@ export default function Orders() {
                             </div>
                         </div>
                         {order?
-                        <div className="col-span-8 " >
-                            <div className="w-full flex justify-start items-center pt-2 px-4 border-b-2">
-                                <span className="text-md font-bold pb-2">
+                        <div className="col-span-8">
+                            <div className="w-full flex justify-start items-center pt-2 px-4">
+                                <span className="text-md font-bold ">
                                     تفاصيل {order?order.order_number.split('#'):""}
                                 </span>
                             </div>
-                            <div className="w-full scr" style={{maxHeight:"30rem",overflowY:"scroll"}}>
-                                <div className="w-full flex justify-between items-center  py-2 mt-3 ">
+                            <div className="w-full scr " style={{maxHeight:"28rem",overflowY:"scroll"}}>
+                                <div className="w-full flex justify-between items-center   mt-3 ">
                                     
                                     <table className="w-full">
                                         <thead className="flex w-full justify-between">
@@ -406,9 +409,8 @@ export default function Orders() {
                                             <span className="text-gray-500 text-sm">
                                                 الحالة : 
                                             </span>
-                                            <span  style={{padding:"0.05rem .6rem"}} className="bg-gray-500 rounded text-white mr-2 text-xs">
-                                                {/* {order?order.order_status:""} */}
-                                                بانتظار الدفع
+                                            <span  style={{padding:"0.05rem .6rem"}} className="bg-yellow-500 rounded text-white mr-2 text-xs">
+                                                {order?order.order_status:""}
                                             </span>
                                         </div>
                                     </div>
@@ -428,7 +430,7 @@ export default function Orders() {
                                                         تكلفة الشحن:
                                                         </span>
                                                         <span className="text-md mr-4 text-right w-1/2 text-gray-600">
-                                                            {order?order.shipping:""}
+                                                             {order?order.shipping:""}
                                                         </span>
                                                     </div>
                                                     :""}
@@ -460,7 +462,7 @@ export default function Orders() {
                                                         <span className="text-gray-500 w-1/2 text-md">
                                                             طريقة الدفع:
                                                         </span>
-                                                        <span className="text-md mr-4 w-1/2 text-right text-gray-600">
+                                                        <span className="text-sm text-blue-600 mr-4 w-1/2 text-right">
                                                             {order?order.payment_method.name:""}
                                                         </span>
                                                     </div>
@@ -534,7 +536,7 @@ export default function Orders() {
                                 <div className="w-full rounded shadow mt-2 p-2" style={{border:"1px solid #eee"}}>
                                 <div className="w-full flex justify-between items-center">
                                     <span className="text-md">
-                                        التوصيل
+                                        الشحن
                                     </span>
                                 </div>
                                 <div className="w-full flex justify-start items-center mt-2">
@@ -545,33 +547,82 @@ export default function Orders() {
                                         {order?order.shipping_address:""}
                                     </span>
                                 </div>
-                                <div className="w-full mt-12 mb-6">
+                                
+                                
+                                
+                                {/* <div className="w-2/3 mt-12 mr-10 mb-6 pb-4">
                                     <div className="w-11/12 bg-yellow-500 rounded relative" style={{height:"2px"}}>
                                         <div className="flex justify-center items-center rounded-full w-8 h-6 bg-yellow-500 absolute right-0 top-1/2 transform -translate-y-1/2">
                                             <span className="text-white text-xs font-bold">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14.712" height="10.513" viewBox="0 0 14.712 10.513">
                                                     <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" stroke-width="2"/>
                                                 </svg>
+                                                <span className="text-xs text-black absolute w-36 transform text-right translate-x-1/4 mt-3 right-0">
+                                                    تم استلام الطلب
+                                                </span>
                                             </span>
                                         </div>
-                                        <div className="flex justify-center items-center rounded-full w-8 h-6 bg-yellow-500 absolute right-1/4 top-1/2 transform -translate-y-1/2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14.712" height="10.513" viewBox="0 0 14.712 10.513">
-                                                <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" stroke-width="2"/>
-                                            </svg>
+                                        <div className={`flex justify-center items-center rounded-full w-8 h-6 ${order&&order.order_status=='تم التأكيد'?"bg-yellow-500":"border-dashed border-2 border-yellow-500 bg-white"} absolute right-1/3 top-1/2 transform -translate-y-1/2`}>
+                                            {order&&order.order_status=='بانتظار التسليم'||order.order_status=='تم التأكيد'?
+                                                <>
+                                                   <span className="text-white text-xs font-bold">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14.712" height="10.513" viewBox="0 0 14.712 10.513">
+                                                        <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" stroke-width="2"/>
+                                                    </svg>
+                                                    <span className="text-xs text-black absolute w-36 transform translate-x-1/4 text-right -mr-2 mt-3 right-0">
+                                                        الطلب قيد التجهيز
+                                                    </span>
+                                                </span>
+                                                </>
+                                                :
+                                               <>
+                                                <span className="text-yellow-500 text-xs font-bold">
+                                                   2
+                                                </span>
+                                                <span className="text-xs text-black font-bold absolute w-36 transform text-right  mt-12 right-0" style={{transform:"translateX(25%)"}}>
+                                                    الطلب قيد التجهيز
+                                                </span>
+                                               </>
+                                            }
+                                          
                                         </div>
-                                        <div className="flex justify-center items-center rounded-full w-8 h-6 bg-yellow-500 absolute right-1/2 top-1/2 transform -translate-y-1/2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14.712" height="10.513" viewBox="0 0 14.712 10.513">
-                                                <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" stroke-width="2"/>
-                                            </svg>
+                                        <div className={`flex justify-center items-center rounded-full w-8 h-6 ${order&&order.order_status=='بانتظار التسليم'||order.order_status=='تم التأكيد'?"bg-yellow-500":"border-dashed border-2 border-yellow-500 bg-white"} absolute right-2/3 top-1/2 transform -translate-y-1/2`}>
+                                            {order&&order.order_status=='بانتظار التسليم'||order.order_status=='تم التأكيد'?
+                                                <>
+                                                   <span className="text-white text-xs font-bold">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14.712" height="10.513" viewBox="0 0 14.712 10.513">
+                                                        <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" stroke-width="2"/>
+                                                    </svg>
+                                                    <span className="text-xs text-black absolute w-36 transform translate-x-1/4 text-right -mr-2 mt-3 right-0">
+                                                        الطلب قيد التوصيل
+                                                    </span>
+                                                </span>
+                                                </>
+                                                :
+                                               <>
+                                                <span className="text-yellow-500 text-xs font-bold">
+                                                    3
+                                                </span>
+                                                <span className="text-xs text-black font-bold absolute w-36 transform text-right  mt-12 right-0" style={{transform:"translateX(25%)"}}>
+                                                    الطلب قيد التوصيل
+                                                </span>
+                                               </>
+                                            }
+                                          
                                         </div>
-                                        <div className="flex justify-center items-center rounded-full w-8 h-6 bg-yellow-500 absolute right-3/4 top-1/2 transform -translate-y-1/2">
-                                            <span className="text-white text-xs font-bold">4</span>
-                                        </div>
+                                       
                                         <div className="flex justify-center items-center rounded-full w-8 h-6 border-dashed border-2 border-yellow-500 absolute right-full top-1/2 transform -translate-y-1/2">
-                                            <span className="text-yellow-500 text-xs font-bold">5</span>
+                                            <span className="text-yellow-500 text-xs font-bold">
+                                                4
+                                            </span>
+                                            <span className="text-xs text-black font-bold absolute w-36 transform text-right  mt-12 right-0" style={{transform:"translateX(10%)"}}>
+                                                تم التوصيل
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
+                             */}
+                            
                             </div>
                             </div>
                         </div>
@@ -586,7 +637,7 @@ export default function Orders() {
                         {order?
                         <div className="col-span-12">
                             <div className="w-full flex justify-end items-center">
-                                <div className="w-1/2 p-2 shadow-md bg-white fixed bottom-7 flex justify-between items-center rounded">
+                                <div className="w-1/2 p-2 shadow  bg-white fixed bottom-7 flex justify-between items-center rounded" style={{border:"1px solid #eee"}}>
                                     <div className="flex flex-col justify-between-items-center">
                                         <span className="text-sm font-bold">الطلب {order?order.order_number.split('#'):""}</span>
                                         <span className="text-xs text-gray-500">
@@ -632,9 +683,9 @@ export default function Orders() {
                             </span>
                             <select name="" id="" className="w-full border-2 rounded mt-3 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
                                 <option value="">اختر سببا</option>
-                                {dispute?Object.values(dispute.dispute_type).map((ele, i)=>
+                                {/* {dispute?Object.values(dispute.dispute_type).map((ele, i)=>
                                     <option value={ele}>{ele}</option>
-                                ):""}
+                                ):""} */}
                             </select>
                             <span className="text-sm border-b-2 pb-1 mt-4 w-full">
                                 اختر منتجا
