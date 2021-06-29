@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect, useRef } from 'react';
 import { useAppState, useAppDispatch } from '../contexts/app/app.provider';
 import Slider from '../components/slider/slider';
 import SearchBar from '../components/seachbar/searchBar';
@@ -21,6 +21,7 @@ export default function Cart() {
         packaging_options:Package[]
         shipping_options:Shipping[]
         discount:""
+        coupon:Coupon
         total:""
         shipping_zones:Zone
         ship_to_state_id:""
@@ -48,7 +49,7 @@ export default function Cart() {
         name:""
     }
     interface Package{
-
+        id:""
     }
     interface Item{
         id:""
@@ -66,19 +67,84 @@ export default function Cart() {
         rating:""
         verified_text:""
     }
+    interface Coupon {
+        id:""
+    }
+    interface Package {
+        cost:""
+        name:""
+    }
     const [height,setHeight] = useState(0);
     const [carts,setCart] = useState<Cart[]>([]);
     const [userId,setUserId] = useState();
     const [ship,setShip] = useState(false);    
     const [ships,setShips] = useState(false);    
-    const [shipping,setShipping] = useState<string>();
+    const [packagins,setPackaging] = useState<Package>()
+    const [shipping ,setShipping] = useState([]);
+    const [addresss,setaddresss] = useState<string>()
+    const [shippingId,setShippingId] = useState<string>()
+    const [PackagingId,setPackagingId] = useState<string>()
     const [coupons,setCoupon] = useState<string>();
     const [discount,setDiscound] = useState<string>()
+    const [pack,setpack] = useState([])
+    const refInput = useRef();
     const toggleShipping = () =>{
         setShip(!ship);
     }
+    const quanmin = (e,id,cart_id,index,prod_indexx) => {
+        let quantity = parseInt(e.currentTarget.nextSibling.textContent);
+        let newquan = quantity - 1;
+            if(newquan>0){
+                fetch(`https://amanacart.com/api/cart/${cart_id}/update?item=${id}&quantity=${newquan}&shipping_option_id=1&packaging_id=2`, {
+                    method: 'PUT',
+                    headers: {
+                    'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+                    },
+                })
+                 .then(res => res.json())
+                 .then(result =>{
+                    console.log(result);
+                    // setDiscound(result.coupon_id)
+                    let carsCopy = [...carts];
+                    carsCopy[index].items[prod_indexx].quantity = result.cart.items[prod_indexx].quantity;
+                    carsCopy[index].items[prod_indexx].total = result.cart.items[prod_indexx].total;
+
+                    setCart(carsCopy);
+                    // setCart([index]:result.cart)
+                 })
+                 .catch(e => {
+                     setCoupon(null);
+                   console.log(e);
+               });
+            }
+    }
+    const quanplus = (e,id,cart_id,index,prod_indexx) => {
+        let quantity = parseInt(e.currentTarget.previousSibling.textContent);
+        let newquan = quantity + 1;
+        fetch(`https://amanacart.com/api/cart/${cart_id}/update?item=${id}&quantity=${newquan}&shipping_option_id=1&packaging_id=2`, {
+            method: 'PUT',
+            headers: {
+            'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+         .then(res => res.json())
+         .then(result =>{
+            console.log(result);
+            // setDiscound(result.coupon_id)
+            let carsCopy = [...carts];
+            carsCopy[index].items[prod_indexx].quantity = result.cart.items[prod_indexx].quantity;
+            carsCopy[index].items[prod_indexx].total = result.cart.items[prod_indexx].total;
+
+            setCart(carsCopy);
+            // setCart([index]:result.cart)
+         })
+         .catch(e => {
+             setCoupon(null);
+           console.log(e);
+       });
+    }
     const formData = new FormData();
-    const coupon = (id,zone) =>{
+    const coupon = (e,id,zone,index,refInput) =>{
         formData.append('coupon',coupons)
         formData.append('zone',zone)
         fetch(`https://amanacart.com/api/cart/${id}/applyCoupon`, {
@@ -92,6 +158,29 @@ export default function Cart() {
          .then(result =>{
             console.log(result);
             setDiscound(result.coupon_id)
+            let carsCopy = [...carts];
+            carsCopy[index] = result.cart;
+            refInput.current.value ='';
+            setCart(carsCopy);
+         })
+         .catch(e => {
+             setCoupon(null);
+           console.log(e);
+       });
+    }
+    const removeItem = (cart_id,pro_id,index) => {
+        fetch(`https://amanacart.com/api/cart/removeItem?cart=${cart_id}&item=${pro_id}`, {
+            method: 'DELETE',
+            headers: {
+            'Authorization' : `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+         .then(res => res.json())
+         .then(result =>{
+            console.log(result);
+            let carsCopy = [...carts];
+            carsCopy[index].items = result.cart.items;
+            setCart(carsCopy);
          })
          .catch(e => {
              setCoupon(null);
@@ -101,32 +190,55 @@ export default function Cart() {
     const toggleShippings = () =>{
         setShips(!ships);
     }
-    const buy = (text_id,zone_id,ship_to_state_id,handling_cost,id) => {
-        const data = {
-            packaging_id:1,
-            tax_id:text_id,
-            ship_to:512,
-            zone_id:zone_id,
-            shipping_rate_id:shipping,
-            ship_to_country_id:512,
-            ship_to_state_id:ship_to_state_id,
-            discount_id:discount?discount:null,
-            coupon:coupons?coupons:"",
-            handling_cost:handling_cost,
-        }
-        postCart(data,id)
+    const cartDatas = new FormData();
+    const handleShipping = (e,id,ids) => {
+        var array = shipping;
+        array[id] = e.target.value;
+        setShippingId(ids)
+        setShipping(array);
+    }
+    const handlePackaging = (id,e,ids) => {
+        var array = pack;
+        array[id] = e.target.value;
+        setPackagingId(ids)
+        setpack(array);
+    }
+    const buy = (text_id,zone_id,ship_to_state_id,handling_cost,id,carts,coupon) => {
+        cartDatas.append('packaging_id',PackagingId)
+        cartDatas.append('tax_id',text_id)
+        
+        localStorage.getItem('token')?
+        cartDatas.append('ship_to',addresss):
+        cartDatas.append('ship_to',null)
+
+        cartDatas.append('zone_id',zone_id)
+        cartDatas.append('shipping_rate_id',shippingId)
+        cartDatas.append('ship_to_country_id',"512")
+        cartDatas.append('ship_to_state_id',ship_to_state_id)
+        // cartDatas.append('discount_id',discount?discount:null)
+        // cartDatas.append('coupon',coupon?coupon:"")
+        // cartDatas.append('handling_cost',handling_cost)
+       
+        postCart(cartDatas,id)
         .then(res=>{
-            console.log('res')
-            console.log(res)
             setDiscound(null)
             setCoupon(null)
-            window.location.href="/checkout";
+            console.log(res)
+            localStorage.setItem('packaging_options',JSON.stringify(res.cart.packaging_options))
+            localStorage.setItem('shipping_options',JSON.stringify(res.cart.shipping_options))
+            localStorage.setItem('paymentMethods',JSON.stringify(res.paymentMethods))
+            localStorage.setItem('states',JSON.stringify(res.states))
+            localStorage.setItem('carts',JSON.stringify(res.cart))
+            localStorage.setItem('packagins',pack[res.cart.id])
+            localStorage.setItem('shipping ',shipping[res.cart.id])
+            
+ 
+            // console.log(res.cart.shipping_rate_id)
+            window.location.href=`/checkout?cart=${res.cart.id}&tax_id=${text_id}&taxrate=${res.cart.taxrate}&zone_id=${res.cart.shipping_zone_id}&handling_cost=${res.cart.handling}&shipping_rate_id=${shippingId}&shippings=${shipping[res.cart.id]}&pack=${pack[res.cart.id]}&coupons=${coupon}`;
         })
         .catch(e=>{
             console.log(e)
         })
-        console.log('data data data')
-        console.log(data)
 
     }
     async function postCart(appealData,id) {
@@ -153,6 +265,7 @@ export default function Cart() {
         .then(result =>{
            setCart(result.carts);
            console.log('result.data')
+           setPackaging(result.platform_default_packaging)
            console.log(result)
         })
         .catch(e => {
@@ -189,9 +302,13 @@ export default function Cart() {
                 <span className="text-md text-right">السلة</span>
             </div>
             <div className="col-span-12 relative">
-                {carts?carts.map(ele=>
+                {carts?carts.map((ele,index)=>
                 {
-                    var int = parseInt(ele.total_cart);
+                     
+                    var int = shipping[ele.id]?
+                        parseInt(ele.total) + parseInt(shipping[ele.id]) + parseInt(ele.handling_cost)
+                    :parseInt(ele.total)
+                     int =pack[ele.id]? int + parseInt(pack[ele.id]):int
                     totals+= int
                     return (
                      <div className="w-full mt-2 bg-white shadow rounded p-3">
@@ -205,17 +322,14 @@ export default function Cart() {
                                      </div>
                                  </span>
                                  <span className="text-xs text-yellow-500 flex justify-between items-center" dir="rtl">
-                                     توصيل إلى
-                                     <div className="span text-black mr-2">
-                                          عمان
-                                     </div>
+                                   
                                  </span>
                              </div>
                              <div className="w-full py-3 px-3 flex flex-col justify-end items-end">
                                  <span className="text-sm text-black">رقم السلة :{ele.id}</span>
                                  <div className="grid grid-cols-12 gap-4 w-full py-3" dir="rtl">
                                      <div className="col-span-12 lg:col-span-8">
-                                         {ele.items.map(item=>
+                                         {ele.items.map((item,indexx)=>
                                                 <div className="rounded shadow mt-3 py-2 px-2 flex justify-between items-center">
                                                 <div className="grid grid-cols-12 w-full">
                                                     <div className="col-span-1 flex justify-center items-center">
@@ -239,9 +353,9 @@ export default function Cart() {
                                                             الكمية
                                                         </span>
                                                         <div className="rounded border-2 borer-gray-300 flex mt-2  justify-between items-center">
-                                                            <span className="text-xs 2xl:text-sm 2xl:py-1 px-1 lg:px-2 2xl:px-3">-</span>
+                                                            <span onClick={(e)=>quanmin(e,item.id,ele.id,index,indexx)} className="cursor-pointer text-xs 2xl:text-sm 2xl:py-1 px-1 lg:px-2 2xl:px-3">-</span>
                                                             <span className="text-xs 2xl:text-sm 2xl:py-1 px-1 lg:px-2 2xl:px-3">{item.quantity}</span>
-                                                            <span className="text-xs 2xl:text-sm 2xl:py-1 px-1 lg:px-2 2xl:px-3">+</span>
+                                                            <span onClick={(e)=>quanplus(e,item.id,ele.id,index,indexx)} className="cursor-pointer text-xs 2xl:text-sm 2xl:py-1 px-1 lg:px-2 2xl:px-3">+</span>
                                                         </div>
                                                     </div>
                                                     <div className="col-span-2 lg:col-span-1 flex flex-col justify-start items-center">
@@ -256,7 +370,7 @@ export default function Cart() {
                                                         <svg xmlns="http://www.w3.org/2000/svg" className="mr-1 2xl:mr-0" width="25.837" height="22.067" viewBox="0 0 25.837 22.067">
                                                             <path id="Path_1" data-name="Path 1" d="M28.9,81.5a7.7,7.7,0,0,0-5.982,3,7.7,7.7,0,0,0-5.974-2.99A6.927,6.927,0,0,0,10,88.719c0,4.819,4.274,8.184,7.4,10.641,1.181.933,2.049,1.592,2.755,2.13a21.634,21.634,0,0,1,2.278,1.875.7.7,0,0,0,.986,0,32.262,32.262,0,0,1,3.462-2.813l1.561-1.184c2.584-1.969,7.4-5.629,7.4-10.7A6.9,6.9,0,0,0,28.9,81.5ZM16.944,82.9a6.563,6.563,0,0,1,5.394,3.156.743.743,0,0,0,1.16,0A6.576,6.576,0,0,1,28.9,82.9a5.538,5.538,0,0,1,5.542,5.774c0,4.036-3.538,7.066-6.855,9.586L26.03,99.438c-1.621,1.229-2.41,1.827-3.114,2.468-.514-.459-1.086-.894-1.922-1.529-.675-.514-1.545-1.176-2.742-2.122-2.895-2.275-6.857-5.394-6.857-9.536A5.563,5.563,0,0,1,16.944,82.9Z" transform="translate(-10 -81.5)" fill="#5c5c5c"/>
                                                         </svg>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" className="mr-1 2xl:mr-0" width="22.659" height="22.659" viewBox="0 0 22.659 22.659">
+                                                        <svg onClick={()=> removeItem(ele.id,item.id,index)} xmlns="http://www.w3.org/2000/svg" className="mr-1 cursor-pointer 2xl:mr-0" width="22.659" height="22.659" viewBox="0 0 22.659 22.659">
                                                             <path id="Icon_ionic-md-close-circle" data-name="Icon ionic-md-close-circle" d="M14.7,3.375A11.33,11.33,0,1,0,26.034,14.7,11.29,11.29,0,0,0,14.7,3.375Zm5.665,15.408-1.586,1.586L14.7,16.291l-4.079,4.079L9.04,18.783,13.118,14.7,9.04,10.626,10.626,9.04,14.7,13.119,18.783,9.04l1.586,1.586L16.291,14.7Z" transform="translate(-3.375 -3.375)" fill="#ff5c60"/>
                                                         </svg>
                                                     </div>
@@ -270,9 +384,9 @@ export default function Cart() {
                                              <span className="text-sm">مجمل السلة</span>
                                              <div className="w-full bg-gray-100 text-xs mt-2 flex justify-between items-center">
                                                  <span className="text-xs py-2  px-2">السعر الأولي</span>
-                                                 <span className="text-xs py-1  px-2 numbers">932.00$</span>
+                                                 <span className="text-xs py-1  px-2 numbers">{ele.total}</span>
                                              </div>
-                                            {/* <div className="w-full bg-gray-50 text-xs flex justify-between items-center">
+                                            <div className="w-full bg-gray-50 text-xs flex justify-between items-center">
                                                 <span className="text-xs  w-full px-2 py-1 flex justify-between relative items-center " onMouseEnter={toggleShippings} onMouseLeave={toggleShippings}>
                                                     <span>
                                                         التغليف
@@ -281,74 +395,80 @@ export default function Cart() {
                                                                         <span className="text-sm">خيارات التغليف</span>
                                                                     </div>
                                                                         <div className={` border-b-2 col-span-12`} >
-                                                                                {ele.packaging_options.map(ele=>
                                                                                     <div className="grid grid-cols-12 w-full p-2">
                                                                                         <div className="col-span-1">
-                                                                                                <input type="radio" name="shipping" id="" />
+                                                                                                <input type="radio" name="packaging" id="" />
                                                                                             </div>
                                                                                             <div className="col-span-5">
-                                                                                            القدموس
+                                                                                              {packagins?packagins.name:""}
                                                                                             </div>
                                                                                             <div className="col-span-4">
-                                                                                                5-12 يوم
+                                                                                                {packagins?packagins.cost:""}
                                                                                             </div>
                                                                                             <div className="col-span-2">
-                                                                                                22
+                                                                                                
+                                                                                            </div>
+                                                                                    </div>
+                                                                                {ele.packaging_options.map(eles=>
+                                                                                    <div className="grid grid-cols-12 w-full p-2">
+                                                                                        <div className="col-span-1">
+                                                                                                <input onChange={(e) => handlePackaging(ele.id,e,eles.id)} value={eles.cost} type="radio" name="shipping" id="" />
+                                                                                            </div>
+                                                                                            <div className="col-span-5">
+                                                                                                {eles.name}
+                                                                                            </div>
+                                                                                            <div className="col-span-4">
+                                                                                                {eles.cost}
+                                                                                            </div>
+                                                                                            <div className="col-span-2">
                                                                                             </div>
                                                                                     </div>
                                                                                 )}
                                                                         </div>
-                                                                    <div className="col-span-12 flex justify-center items-center">
-                                                                        <button className="bg-gray-700 text-white w-11/12 border-0 m-2 rounded text-center text-sm">
-                                                                            حفظ
-                                                                        </button>
-                                                                    </div>
+                                                                    
                                                                 </div>
                                                     </span>
                                                     <span>
-                                                        20 ر.ع
+                                                        {pack[ele.id]?pack[ele.id]:0} ر.ع
                                                     </span>
                                                     </span>
-                                            </div> */}
-                                            <div className="w-full bg-gray-100 text-xs flex justify-between items-center">
-
-                                                <span className="text-xs w-full flex justify-between relative items-center px-2 py-1" onMouseEnter={toggleShipping} onMouseLeave={toggleShipping}>
-                                                <span>
-                                                    الشحن
-                                                    <div className={` absolute grid-cols-12 w-full border-2 shadow bg-white rounded arrowss z-20 ${ship?"grid":"hidden"}`}>
-                                                                <div className="col-span-12 bg-gray-100 flex justify-start items-center p-2">
-                                                                    <span className="text-sm">خيارات الشحن</span>
-                                                                </div>
-                                                                    <div className={` border-b-2 col-span-12`} >
-                                                                        {ele?ele.shipping_options.map(eles=>
-                                                                                <div className="grid grid-cols-12 w-full p-2">
-                                                                                    <div className="col-span-1">
-                                                                                            <input type="radio" value={eles.id} onChange={(e)=>setShipping(e.target.value)} name="shipping" id="" />
-                                                                                        </div>
-                                                                                        <div className="col-span-5">
-                                                                                            {eles.name}
-                                                                                        </div>
-                                                                                        <div className="col-span-4">
-                                                                                            {eles.delivery_takes}
-                                                                                        </div>
-                                                                                        <div className="col-span-2">
-                                                                                            {eles.maximum!=null?eles.maximum.split('.000000'):""}
-                                                                                        </div>
-                                                                                </div>
-                                                                            ):""}
-                                                                    </div>
-                                                                <div className="col-span-12 flex justify-center items-center">
-                                                                    <button className="bg-gray-700 text-white w-11/12 border-0 m-2 rounded text-center text-sm">
-                                                                        حفظ
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                </span>
-                                                <span>
-                                                    20 ر.ع
-                                                </span>
-                                            </span>
                                             </div>
+                                            {ele&&ele.shipping_options&&Array.isArray(ele.shipping_options)?
+                                                <div className="w-full bg-gray-100 text-xs flex justify-between items-center">
+                                                    <span className="text-xs w-full flex justify-between relative items-center px-2 py-1" onMouseEnter={toggleShipping} onMouseLeave={toggleShipping}>
+                                                    <span>
+                                                        الشحن
+                                                        <div className={` absolute grid-cols-12 w-full border-2 shadow bg-white rounded arrowss z-20 ${ship?"grid":"hidden"}`}>
+                                                                    <div className="col-span-12 bg-gray-100 flex justify-start items-center p-2">
+                                                                        <span className="text-sm">خيارات الشحن</span>
+                                                                    </div>
+                                                                        <div className={` border-b-2 col-span-12`} >
+                                                                            {ele?ele.shipping_options.map(eles=>
+                                                                                    <div className="grid grid-cols-12 w-full p-2">
+                                                                                        <div className="col-span-1">
+                                                                                                <input type="radio" value={eles.rate} onChange={(e)=> handleShipping(e,ele.id,eles.id)} name="shipping" id="" />
+                                                                                            </div>
+                                                                                            <div className="col-span-5">
+                                                                                                {eles.name}
+                                                                                            </div>
+                                                                                            <div className="col-span-4">
+                                                                                                {eles.delivery_takes}
+                                                                                            </div>
+                                                                                            <div className="col-span-2 ">
+                                                                                                {parseInt(eles.rate)+parseInt(ele.handling_cost)}
+                                                                                            </div>
+                                                                                    </div>
+                                                                                ):""}
+                                                                        </div>
+                                                                </div>
+                                                    </span>
+                                                    <span className="numbers">
+                                                        {`${shipping[ele.id]?parseInt(shipping[ele.id])+parseInt(ele.handling_cost)+" ر.ع" :" 0 ر.ع"}`}
+                                                    </span>
+                                                </span>
+                                                </div>
+                                            :""}
+                                           
                                             <div className="w-full bg-gray-50 text-xs flex justify-between items-center">
                                                 <span className="text-xs py-1  px-2 flex flex-col justify-between items-start">
                                                     الحسم
@@ -365,10 +485,19 @@ export default function Cart() {
                                                     المجمل
                                                 </span>
                                             <span className="text-xs py-1  px-2 numbers">
-                                                    {ele.total}
+                                                    {shipping[ele.id]?
+                                                    pack[ele.id]?
+                                                    parseInt(ele.total) + parseInt(shipping[ele.id]) + parseInt(pack[ele.id]) + parseInt(ele.handling_cost) - parseInt(ele.discount)
+                                                    :
+                                                    parseInt(ele.total) + parseInt(shipping[ele.id])  + parseInt(ele.handling_cost) - parseInt(ele.discount)
+                                                :pack[ele.id]?
+                                                parseInt(ele.total)  + parseInt(pack[ele.id]) - parseInt(ele.discount)
+                                                :
+                                                parseInt(ele.total)   - parseInt(ele.discount)
+                                                } ر.ع
                                             </span>
                                             </div>
-                                            <div onClick={()=>buy(ele.shipping_zones.tax_id,ele.shipping_zones.id,ele.ship_to_state_id,ele.handling_cost,ele.id)} className="rounded cursor-pointer flex justify-between items-center bg-yellow-500 text-xs text-black px-12 py-1 shadow mb-1 mt-4">
+                                            <div onClick={()=>buy(ele.shipping_zones?ele.shipping_zones.tax_id:"0",ele.shipping_zones?ele.shipping_zones.id:"",ele.ship_to_state_id,ele.handling_cost,ele.id,ele,ele.coupon.id)} className="rounded cursor-pointer flex justify-between items-center bg-yellow-500 text-xs text-black px-12 py-1 shadow mb-1 mt-4">
                                                  شراء من هذا البائع
                                                  <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 w-12" width="15.119" height="15.501" viewBox="0 0 21.119 21.501">
                                                      <g id="Group_5442" data-name="Group 5442" transform="translate(0 -0.001)">
@@ -382,8 +511,8 @@ export default function Cart() {
                                      </div>
                                      <div className="col-span-12">
                                         <div className="relative flex justify-center items-start mt-2">
-                                            <input type="text" onChange={(e)=>setCoupon(e.target.value)} name="" className="text-xs pr-2 py-1 border-2 w-full relative focus:outline-none focus:shadow -600 focus:ring-0  focus:border-0 rounded" id="" />
-                                            <div onClick={()=> coupon(ele.id,ele.shipping_zone_id)} className="absolute cursor-pointer text-xs flex py-1 items-center left-0 top-0 h-full px-2 rounded-l bg-white border-2" >
+                                            <input type="text" onChange={(e)=>setCoupon(e.target.value)} ref={refInput}  name="" className="text-xs pr-2 py-1 border-2 w-full relative focus:outline-none focus:shadow -600 focus:ring-0  focus:border-0 rounded" id="" />
+                                            <div onClick={(e)=> coupon(e,ele.id,ele.shipping_zone_id,index,refInput)} className="absolute cursor-pointer text-xs flex py-1 items-center left-0 top-0 h-full px-2 rounded-l bg-white border-2" >
                                                 تحقق من الكوبون
                                             </div>
                                         </div>
@@ -417,3 +546,5 @@ export default function Cart() {
         </div>
     );
 }
+
+

@@ -50,7 +50,7 @@ export default function CardSlider (props) {
         spaceBetween={3}
         slidesPerView={5}
         breakpoints={breakpoints}
-        loop={true}
+        loop={false}
         navigation={{
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
@@ -126,7 +126,7 @@ export default function CardSlider (props) {
         centeredSlidesBounds={true}
         observeParents={true}
         breakpoints={breakpoints}
-        loop={true}
+        loop={false}
         navigation={{
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',

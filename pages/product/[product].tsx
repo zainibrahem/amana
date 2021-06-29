@@ -121,6 +121,7 @@ export default function Product(props) {
         fetch(`https://amanacart.com/api/item/${pids}`)
          .then(res => res.json())
          .then(result =>{
+             console.log(result.data);
            setDatas(result.data);
            setAttributes(result.attributes);
            setShipping(result.shipping_options);

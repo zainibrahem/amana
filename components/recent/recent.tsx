@@ -4,11 +4,13 @@ import {CardTitle} from '../cardTitle/cardTitle';
 import CardSlider from '../cardSlider/cardSlider';
 import React from "react";
 import { useAppState } from '../../contexts/app/app.provider';
+import { useEffect } from 'react';
 
 // import Slide1 from '../../public/images/slider/maher.png';
 export default function Recent (props) {
     const [openTab, setOpenTab] = React.useState(1);
     const Loading = useAppState("Loading");
+  
 return (
   props.data?
     !Loading?

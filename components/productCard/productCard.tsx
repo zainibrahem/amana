@@ -204,7 +204,7 @@ export default function ProductCard (props) {
                                 {props.card.description}
                             </span>
                         </p> */}
-                        <p  className={counter?`text-right opacity-0 transition-all self-end lg:self-end text-xs  overflow-hidden text-gray-500 mt-2  ${Loading?"skeleton-box":""}`:`text-right opacity-1 transition-all self-end lg:self-end text-xs  overflow-hidden text-gray-500 mt-2 before-hover ${Loading?"skeleton-box":""}`}>
+                        <p  className={`text-right opacity-1 transition-all self-end lg:self-end text-xs  overflow-hidden text-gray-500 mt-2  ${Loading?"skeleton-box":""}`}>
                             <span style={Loading?{opacity:"0"}:{}}>
                                         تصلك &nbsp;
                                 <span className="font-bold">
@@ -212,14 +212,14 @@ export default function ProductCard (props) {
                                 </span>
                             </span>
                         </p>
-                        <div onClick={()=>toggleCounter(props.card.slug)} id={props.card.slug} className={!counter?"card-mobile z-20 transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-10 h-7 bg-gray-100 left-0 bottom-0":"z-20  transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-full h-7 bg-gray-100 left-0  bottom-0 card-mobile"}>
+                        {/* <div onClick={()=>toggleCounter(props.card.slug)} id={props.card.slug} className={!counter?"card-mobile z-20 transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-10 h-7 bg-gray-100 left-0 bottom-0":"z-20  transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-full h-7 bg-gray-100 left-0  bottom-0 card-mobile"}>
                             <span className={!counter?"hidden rounded  h-full  justify-center items-center text-2xl font-bold px-3":"text-2xl rounded-l font-bold px-3 bg-gray-200 h-full flex justify-center items-center"}>-</span>
                             <span className={!counter?"hidden rounded text-xl font-bold":"block rounded text-xl font-bold"}>1</span>
                             <span className={!counter?"text-2xl bg-gray-200 font-bold rounded h-full flex justify-center items-center w-full":"text-2xl font-bold  rounded-r h-full flex justify-center items-center px-3 bg-gray-200"}>+</span>
-                        </div>
-                        <div className={counter?"opacity-0 mt-2 transition-all flex flex-row-reverse justify-between w-full items-center before-hover":"opacity-1 mt-2 transition-all flex flex-row-reverse justify-between w-full items-center before-hover"}>
+                        </div> */}
+                        <div className={"opacity-1 mt-2 transition-all flex flex-row-reverse justify-between w-full items-center "}>
                                 <div className={`${Loading?"w-14 h-2 skeleton-box":"hidden"}`}></div>
-                                <img className={counter?` ${Loading?"hidden":""} opacity-0 transition-all w-14 h-2 ml-1`:`${Loading?"hidden":""} w-14 2xl:w-16 h-2 ml-1 `} src="../images/SPEED AR.svg" alt="" />
+                                <img className={`${Loading?"hidden":""} w-14 2xl:w-16 h-2 ml-1 `} src="../images/SPEED AR.svg" alt="" />
 
                             <p className={`hidden lg:flex text-xs  flex-row w-1/3 sm:w-1/2 justify-start lg:justify-between items-center ${Loading?"w-14 h-2 skeleton-box":""}`}>
                                 <span className="hidden lg:block text-green-600 font-bold" style={Loading?{opacity:"0"}:{}}>
@@ -229,12 +229,12 @@ export default function ProductCard (props) {
                                 </span>
                             </p>
                         </div>
-                        <div onClick={()=>toggleCounter(props.card.slug)} id={props.card.slug} className={`btn ${Loading?"skeleton-box":""} absolute left-1/2 transform -translate-x-2/4 w-full bottom-0.5 rounded hidden lg:flex flex-row justify-center items-center h-6 bg-yellow-500 text-white`}>
+                        {/* <div onClick={()=>toggleCounter(props.card.slug)} id={props.card.slug} className={`btn ${Loading?"skeleton-box":""} absolute left-1/2 transform -translate-x-2/4 w-full bottom-0.5 rounded hidden lg:flex flex-row justify-center items-center h-6 bg-yellow-500 text-white`}>
                             <div style={Loading?{opacity:"0"}:{}}>
                                 إضافة للسلة 
                                 <span className="text-lg ml-1 font-bold">+</span>
                             </div>
-                        </div>
+                        </div> */}
                         {/* <div onClick={toggleCounter} id={props.card.slug} className={!counter?"opacity-0 z-20 transition-all  flex flex-row justify-between  items-center  absolute rounded-md w-full h-7 bg-gray-100 left-0 bottom-0":"z-20  transition-all flex flex-row justify-between  items-center  absolute rounded-md w-full h-7 bg-gray-100 left-0 opacity-100  bottom-0  delay-500 "} >
                             <span className={!counter?"rounded  h-full  justify-center items-center text-2xl font-bold px-3 bg-gray-200":"rounded  h-full  justify-center items-center text-2xl font-bold px-3 bg-gray-200"}>-</span>
                             <span className={!counter?"rounded text-xl font-bold":"block rounded text-xl font-bold"}>1</span>

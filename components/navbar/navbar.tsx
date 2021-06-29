@@ -198,7 +198,9 @@ export const NavBar = (props) => {
                         <div ref={cartRef} id="cart" className={cart?`cart hidden md:block w-80 shadow-2xl bg-white rounded absolute ${localStorage.getItem('token')?"left-44":"left-16" }  -bottom-2 transform translate-y-full `:`cart overflow-hidden hidden w-96 shadow-2xl bg-white rounded absolute  ${localStorage.getItem('token')?"left-60":"left-16" }  bottom-0 transform translate-y-full`}>
                         <div className="grid grid-cols-12 shadow-md 2xl:shadow-lg">
                                 <div className="col-span-12 flex justify-between items-center  py-2">
-                                    <span className="px-5">السلة</span>
+                                    <span className="px-5">
+                                        <a href="/cart">السلة</a>
+                                    </span>
                                     <span className="mx-4 rounded bg-red-400 px-2 text-sm text-white">{Cart} منتجات</span>
                                 </div>
                             </div>
@@ -645,7 +647,7 @@ export const NavBar = (props) => {
                          
                         </div>
                         {localStorage.getItem('token')?
-                            <div onClick={toggleprofile} className={`hidden ml-3 cursor-pointer w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center ${Loading?"skeleton-box":""}`}  style={Loading?{}:{background:`url(${localStorage.getItem('avatar')?localStorage.getItem('avatar'):""})`,backgroundSize:"cover",backgroundPosition:"center"}}>
+                            <div onClick={toggleprofile} className={`hidden ml-3 cursor-pointer w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center ${Loading?"skeleton-box":""}`}  style={Loading?{}:{background:`url(${localStorage.getItem('avatar')!=null?localStorage.getItem('avatar'):""})`,backgroundSize:"cover",backgroundPosition:"center"}}>
                             </div>
                             :
                             <span className="text-xs block bg-yellow-500 text-white py-1 px-3 rounded cursor-pointer " onClick={toggleModal}>
