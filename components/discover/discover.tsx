@@ -39,7 +39,7 @@ export default function Discover (props) {
         <div className="mt-4">
             <Title title="اكتشف كل التصنيفات"></Title>
             <div className="grid grid-cols-12 mt-5">
-                <div className="col-span-11">
+                <div className="col-span-12 lg:col-span-11">
                     <div className="grid grid-cols-12 w-full">
                         <div className="col-span-12 order-1 mt-2 md:mt-0 justify-between md:order-0 md:col-span-6 flex flex-row-reverse md:justify-around items-center relative">
                             <span className="text-sm px-2 py-1 bg-gray-300 font-bold cursor-pointer " onClick={props.all()}>عرض الكل</span>
@@ -97,10 +97,14 @@ export default function Discover (props) {
                                     </div>
                                         <div className={`transition-all h-auto pb-5 duration-500 overflow-hidden flex flex-row-reverse justify-between items-center flex-wrap w-full  border-b-2`}>
                                         {ele.sub_groups?ele.sub_groups.map(ele1=>
-                                            <span className="w-1/3 text-right mt-1 text-black" >{ele1.name}
+                                            <span className="w-1/2 lg:w-1/3 text-right mt-1 text-black" >  <a href={`/subGroup/subGroup?pids=${ele1.id}`}>{ele1.name}</a>
                                                 <div className={`w-full  flex flex-col justify-between items-center `}>
                                                     {ele1.categories?ele1.categories.map(ele2=>{
-                                                        <span className="w-full text-right text-xs text-black p-2">{ele2.name}</span>
+                                                        <span className="w-full text-right text-xs text-black p-2">
+                                                          
+                                                                {ele2.name}
+                                                            
+                                                        </span>
                                                     }) :""}
                                                 </div>
                                             </span>

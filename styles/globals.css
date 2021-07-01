@@ -843,3 +843,8 @@ background-color: rgb(78, 78, 78);
   overflow: hidden;
   max-height:100px !important;
 }
+@media (max-width:1000px){
+  .conversation{
+    min-width: 80rem !important;
+  }
+}

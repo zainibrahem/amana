@@ -105,17 +105,17 @@ export default function Category(props) {
                 </div>
             </div>
         </div>
-        <div className="grid grid-cols-12 w-full">
-            <div className="col-span-4">
+        <div className="grid grid-cols-12 w-full mt-6 lg:mt0">
+            <div className="col-span-6 lg:col-span-4">
                 <span dir="rtl" className="text-sm text-right text-gray-500">
                      عدد المنتجات  
                     <span className="text-black numbers mx-1" style={{fontWeight:"bold"}}>{pros?pros.length:0}</span>
                      منتج
                 </span>
             </div>
-            <div className="col-span-2"></div>
-            <div className="col-span-4"></div>
-            <div dir="rtl" className="col-span-2  mb-2 flex justify-between items-center relative">
+            <div className="hidden lg:col-span-2"></div>
+            <div className="lg:col-span-4 col-span-2"></div>
+            <div dir="rtl" className="col-span-4 lg:col-span-2  mb-2 flex justify-between items-center relative">
                 <span className="text-sm sort">ترتيب حسب</span>
                 <ul className="w-auto bg-white shadow py-0 shows overflow-hidden transition-all duration-500 absolute z-20 bottom-0 transform translate-y-full">
                     <li onClick={()=>toggleSort('newest')} className="text-xs cursor-pointer my-1 py-2 px-4 hover:bg-gray-300" >الأحدث للأقدم</li>
@@ -123,7 +123,7 @@ export default function Category(props) {
                     <li onClick={()=>toggleSort('price_acs')} className="text-xs cursor-pointer my-1 py-2 px-4 hover:bg-gray-300" >الأعلى سعرا للأقل سعرا</li>
                     <li onClick={()=>toggleSort('price_desc')} className="text-xs cursor-pointer my-1 py-2 px-4 hover:bg-gray-300" >الأقل سعرا للأعلى سعرا</li>
                 </ul>
-                <div className="flex justify-between items-center">
+                <div className=" hidden lg:flex justify-between items-center">
                     <span className="text-sm mr-3">العرض</span>
                     {/* <div onClick={()=>toggleView(1)} className="w-4 h-4 bg-gray-300"></div> */}
                     <img onClick={()=>toggleView(1)} className="w-5 cursor-pointer" src={`${Route}/images/icons/dayview.svg`} alt="" />

@@ -374,7 +374,7 @@ export default function Orders() {
      },[pidss])
     return (
         <div className="grid grid-cols-12 gap-2 mt-6" dir="rtl">
-            <div className="col-span-4 bg-white shadow rounded flex flex-col justify-between items-start ">
+            <div className="col-span-12 lg:col-span-4 bg-white shadow rounded flex flex-col justify-between items-start ">
                 <img src="/images/brands/Capture.png" className="w-full" alt="" />
                 <span className="text-md font-bold p-4">
                     كيف يمكنك فتح بطاقة نزاع
@@ -403,7 +403,7 @@ export default function Orders() {
                     </span>
                 </div>
             </div>
-            <div className="col-span-8 bg-white shadow rounded p-4 overflow-x-hidden overflow-y-scroll scr" style={{maxHeight:"35rem"}}>
+            <div className="col-span-12 lg:col-span-8 bg-white shadow rounded p-4 overflow-x-hidden overflow-y-scroll scr" style={{maxHeight:"35rem"}}>
                 <span className="text-lg w-full">
                     تفاصيل النزاع
                 </span>
@@ -665,11 +665,11 @@ export default function Orders() {
                
                
                 
-                <div className={`${modals?"flex":"hidden"} fixed z-50 top-0 left-0 h-screen w-full flex flex-col  justify-center items-center bg-black bg-opacity-70`}>
+                <div className={`${modals?"flex":"hidden"} fixed z-50 -top-7 lg:top-0 px-3 left-0 h-screen w-full flex flex-col  justify-center items-center bg-black bg-opacity-70`}>
                     <div onClick={closeModals} className="rounded-full border-2 border-white w-8 h-6 mb-4 text-white text-center text-md cursor-pointer">
                         x
                     </div>
-                    <div className={`${modals?"slideUpss":"slideDownss"} relative p-5 w-1/2 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
+                    <div className={`${modals?"slideUpss":"slideDownss"} relative p-5 w-full lg:w-1/2 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
                         <div className="col-span-12">
                             <span className="text-md font-bold">
                                 فتح نزاع
@@ -732,18 +732,18 @@ export default function Orders() {
                             <span className="text-xs w-full mt-2">
                                 ملاحظة : الإرجاع غير مضمون   !
                             </span>
-                            <span onClick={StoreDis} className="text-sm text-white text-center w-56 cursor-pointer py-1 rounded bg-yellow-500 mt-4">
+                            <span onClick={StoreDis} className="text-sm self-center text-white text-center w-56 cursor-pointer py-1 rounded bg-yellow-500 mt-4">
                                 إرسال الطلب
                             </span>
                         </div>
                     </div>
                 </div>
             
-                <div className={`${modalmessage?"flex":"hidden"} fixed z-50 top-0 left-0 h-screen w-full flex flex-col  justify-center items-center bg-black bg-opacity-70`}>
+                <div className={`${modalmessage?"flex":"hidden"} fixed z-50 top-0 px-3 left-0 h-screen w-full flex flex-col  justify-center items-center bg-black bg-opacity-70`}>
                         <div onClick={closeModalsMessgae} className="rounded-full border-2 border-white w-8 h-6 mb-4 text-white text-center text-md cursor-pointer">
                             x
                         </div>
-                        <div className={`${modalmessage?"slideUpss":"slideDownss"} relative p-5 w-1/3 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
+                        <div className={`${modalmessage?"slideUpss":"slideDownss"} relative  p-5 w-full lg:w-1/3 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
                             <div className="col-span-12">
                                 <span className="text-md font-bold">
                                     تواصل مع البائع
@@ -770,7 +770,7 @@ export default function Orders() {
                                     </aside>
                                 </section>  
                               
-                                <span onClick={handleReply} className="text-sm text-white text-center w-56 cursor-pointer py-1 rounded bg-yellow-500 mt-4">
+                                <span onClick={handleReply} className="text-sm self-center text-white text-center w-56 cursor-pointer py-1 rounded bg-yellow-500 mt-4">
                                     إرسال الرسالة
                                 </span>
                             </div>

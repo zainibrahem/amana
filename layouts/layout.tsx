@@ -142,8 +142,33 @@ interface ListItem {
         //     height: 'auto',
         //   },
         // });
-     
- 
+        const toggleModal = React.useCallback(() => {
+          dispatch({
+            type: 'TOGGLE_Modal',
+          });
+        }, [dispatch]
+        );
+        const handlelogout = () =>{
+          console.log('asdasd');
+          fetch('https://amanacart.com/api/auth/logout', {
+              method: 'post',
+              headers: {
+                  'Content-Type':'application/json',
+                  'Authorization':`Bearer ${localStorage.getItem('token')}`
+              }
+          })
+          .then( async response => {
+              const isJson = response.headers.get('content-type')?.includes('application/json');
+              const data = isJson && await response.json();
+              if (!response.ok) {
+                  const error = (data && data.message) || response.status;
+                  return Promise.reject(error);
+              }
+              
+              localStorage.removeItem('token');
+              window.location.href="/";
+          })
+      }
   useEffect(() => {
     const wid = document.querySelector('#col').clientWidth;
     setEl2(wid) ;
@@ -207,9 +232,9 @@ interface ListItem {
           
           <div className="block md:hidden col-span-12 z-50">
               <div className="w-full fixed bottom-0 h-16">
-                <div className="grid grid-cols-11 h-full bg-white shadow py-2">
+                <div className="grid grid-cols-11 h-full bg-white shadow pb-2">
                   <div className="col-span-12 animation ">
-                  <svg className={`${display?"block":"hidden"}`} viewBox="-50 -50 100 100" width="250" >
+                    <svg className={`${display?"block":"hidden"}`} viewBox="-50 -50 100 100" width="250" >
                     <defs>
                         <path id="sectorpath" d="M0,0 L38.97114317029974,-22.499999999999996 A45,45 0 0 1 38.97114317029974,22.499999999999996 L0,0 A0,0 0 0 0 0,0">
                         </path>
@@ -236,49 +261,82 @@ interface ListItem {
                     <use xlinkHref="#sectorpath2" id="sector2" style={{mask:"url(#themask2)"}}></use>
                     </defs>
 
-                            <a className={opens?"second":"hidden "}>
+                              <a href="/stores" className={opens?"second":"hidden "}>
                                 
-                              <g>
+                              <g className="relative">
                                 <use xlinkHref="#sector" transform="rotate(-90)" >
                                 </use>
-                                <text className="animation-text animation-text-3" x="0" y="-22.5">
-                                  حسابي
+                                <text className="absolute left-1/2 transform -translate-x-1/2 animation-text animation-text-3" x="0" y="-22.5">
+                                  المتاجر
                                 </text>
                               </g>  
                             </a>
                             
-                            <a className={opens?"first":"hidden "}>
+                            <a href="/brands" className={opens?"first":"hidden "}>
                               <g>
                                 <use xlinkHref="#sector1" transform="rotate(-30)"></use>
                                 <text className="animation-text animation-text-2" x="19.48557158514987" y="-11.25">
-                                  حسابي
+                                    البراندات
                                 </text>
                               </g>
                             </a>
                         
-                            <a className={opens?"third":"hidden "}>
+                            {localStorage.getItem('token')?
+                              <a href="/dashboard/coupon" className={opens?"third":"hidden "}>
+                                    
+                                <g className="relative">
+                                  <use xlinkHref="#sector" transform="rotate(210)" >
+                                  </use>
+                                  <text className="animation-text animation-text-1" x="-45" y="-15">
+                                    الكوبونات
+                                  </text>
+                                </g>  
+                              </a>
+                            :
+                            <a href="/offers" className={opens?"third":"hidden "}>
                               <g>
                                 <use xlinkHref="#sector" transform="rotate(210)"></use>
                                 <text  className="animation-text animation-text-1" x="-45" y="-15">
-                                  الصفقات
+                                    العروض
                                 </text>
                               </g>
                             </a>
+                            }
                     </svg>
                   </div>
-                  <div className="col-span-2 h-full flex flex-col justify-around items-center">
-                    {/* <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div> */}
-                    {/* <img className="w-5 " src="https://img.icons8.com/ios/50/000000/administrator-male--v1.png"/> */}
-                    <img className="w-5 " src={`${Route}/images/icons/user (1).svg`}/>
-                    <span className="text-xs mt-1">حسابي</span>
-                  </div>
-                  <div className="col-span-2 h-full flex flex-col justify-around items-center">
+                 
                   {/* <div className="w-8 h-2" style={{background:`url(${Route}/images/shopping-cart.svg)`,backgroundSize:"contain !important",backgroundPosition:"center !important",backgroundRepeat:"no-repeat !important"}}></div> */}
                     {/* <img className="w-8 h-2" src={`${Route}/images/shopping-cart.svg`} alt="" /> */}
                     {/* <img className="w-5" src="https://img.icons8.com/ios/50/000000/shopping-cart-loaded--v1.png"/> */}
-                    <img className="w-5" src={`${Route}/images/icons/shopping-cart-empty-side-view.svg`}/>
-                    <span className="text-xs mt-1">السلة</span>
+                  {localStorage.getItem('token')?
+                      <div className="col-span-2 h-full flex flex-col justify-center items-center">
+                        <img className="w-5 " src={`${Route}/images/logout.svg`}/>
+                        <span  onClick={handlelogout} className="text-xs ">خروج</span>
+                      </div>
+                    :
+                      <div className="col-span-2 h-full flex flex-col justify-center items-center">
+                        <img className="w-5" src={`${Route}/images/logout.svg`}/>
+                        <span className="text-xs mt-1">استكشاف</span>  
+                      </div>
+                    }
+                  
+                  {!localStorage.getItem('token')?
+                    <div className="col-span-2 h-full flex flex-col justify-center items-center">
+                      {/* <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div> */}
+                      {/* <img className="w-5 " src="https://img.icons8.com/ios/50/000000/administrator-male--v1.png"/> */}
+                      <img className="w-5 " src={`${Route}/images/icons/user (1).svg`}/>
+                      <span onClick={toggleModal} className="text-xs">حسابي</span>
+                    </div>
+                    :
+                    <div className="col-span-2 h-full flex flex-col justify-center items-center">
+                    {/* <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div> */}
+                    {/* <img className="w-5 " src="https://img.icons8.com/ios/50/000000/administrator-male--v1.png"/> */}
+                    <a href="/dashboard/profile" className="flex flex-col justify-center items-center">
+                      <img className="w-5 " src={`${Route}/images/icons/user (1).svg`}/>
+                      <span className="text-xs mt-1">حسابي</span>
+                    </a>
                   </div>
+                  }
                   <div className="col-span-3 h-full flex flex-col justify-center items-center">
                     <svg onClick={toggleopens} xmlns="http://www.w3.org/2000/svg" className="block bar-logo sm:hidden" width="38.07" height="43" viewBox="0 0 38.07 43">
                         <path id="Path_11" data-name="Path 11" d="M-4353.608,780.454l-15.933-9.2a3.1,3.1,0,0,0-3.1,0l-15.933,9.2a3.1,3.1,0,0,0-1.551,2.686v18.4a3.1,3.1,0,0,0,1.551,2.686l15.933,9.2a3.1,3.1,0,0,0,3.1,0l15.933-9.2a3.1,3.1,0,0,0,1.551-2.686v-18.4A3.1,3.1,0,0,0-4353.608,780.454Zm-6.419,22.938a3.981,3.981,0,0,1-3.981-3.98V792.4a8.009,8.009,0,0,0-1.956-5.611,6.559,6.559,0,0,0-5.083-2.148,6.672,6.672,0,0,0-5.094,2.125,7.691,7.691,0,0,0-1.99,5.475,7.856,7.856,0,0,0,2.046,5.6,6.839,6.839,0,0,0,5.218,2.182,8.139,8.139,0,0,0,2.8-.495,10.57,10.57,0,0,0,2.732-1.529V799.7a3.769,3.769,0,0,1-2.815,3.672l-.03.008a12.983,12.983,0,0,1-3.136.371,10.451,10.451,0,0,1-3.126-.484,10.192,10.192,0,0,1-2.811-1.36,11.041,11.041,0,0,1-3.644-4.1,11.851,11.851,0,0,1-1.259-5.476,11.272,11.272,0,0,1,3.125-8.174,10.58,10.58,0,0,1,7.939-3.227,10.97,10.97,0,0,1,5.8,1.6,10.687,10.687,0,0,1,4.048,4.385,9.962,9.962,0,0,1,.933,2.755,26.191,26.191,0,0,1,.281,4.464Z" transform="translate(4390.127 -770.839)" fill="#ffbc00"/>
@@ -289,15 +347,32 @@ interface ListItem {
                   {/* <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div> */}
                   {/* <img className="w-8 h-2" src={`${Route}/images/icons/profile.svg`} alt="" /> */}
                   {/* <img className="w-5" src="https://img.icons8.com/material-outlined/48/000000/sorting-answers.png"/> */}
-                  <img className="w-5" src={`${Route}/images/icons/list.svg`}/>
-                    <span className="text-xs mt-1">تصنيفات</span>
+                  {localStorage.getItem('token')?
+                    <a href="/dashboard/order" className="flex flex-col justify-around items-center">
+                      <img src={`${Route}/images/icons/ordersblack.svg`} className="w-5 " alt="" />
+                      <span className="text-xs mt-1">طلباتك</span>
+                    </a>
+                    :
+                    <a href="/allcats" className="flex flex-col justify-around items-center">
+                      <img className="w-5" src={`${Route}/images/icons/list.svg`}/>
+                      <span className="text-xs mt-1">تصنيفات</span>
+                    </a>
+                  }
                   </div>
                   <div className="col-span-2 h-full flex flex-col justify-around items-center">
-                  {/* <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div> */}
-                  <img className="w-5" src={`${Route}/images/icons/home.svg`}/>
-                  <a href="/">
-                    <span className="text-xs mt-1">الرئيسية</span>
-                  </a>
+                    {/* <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div> */}
+                    {localStorage.getItem('token')?
+                    
+                      <a href="/dashboard" className="flex flex-col justify-around items-center">
+                      <img className="w-5" src={`${Route}/images/icons/home.svg`}/>
+                        <span className="text-xs mt-1">الرئيسية</span>
+                      </a>
+                    :
+                      <a href="/" className="flex flex-col justify-around items-center">
+                        <img className="w-5" src={`${Route}/images/icons/home.svg`}/>
+                        <span className="text-xs mt-1">الرئيسية</span>
+                      </a>
+                    }
                   </div>
                 </div>
               </div>

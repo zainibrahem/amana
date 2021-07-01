@@ -11,11 +11,9 @@ export default function Brands (props) {
   useEffect(() => {
     // Handler to call on window resize
     function handleResize() {
-      const eleWidth = document.querySelector('#element').clientWidth;
-        
-      
-      // Set window width/height to state
-      setHeight(eleWidth);
+      const eleWidth = document.querySelector('#element')?document.querySelector('#element').clientWidth:"";
+      eleWidth?
+      setHeight(eleWidth):""
     }
     // Add event listener
     window.addEventListener("resize", handleResize);
@@ -115,7 +113,7 @@ export default function Brands (props) {
           >
             {props.data?props.data.map(ele => 
                   <SwiperSlide key={ele.id}>
-                    <Link href={`/subGroup/subGroup?pids=${ele.id}`}>
+                    <Link href={`/category/category?pid=${ele.id}`}>
                       <div className="cursor-pointer">
                               <img id="element" className={`rounded-full bg-white elements left-2/4 relative transform -translate-x-1/2 w-11/12 ${Loading?"element skeleton-box":""}`} src={props.type?ele.cover_image:ele.image} alt="" />
                               <h4 className={`text-center mt-2 ${Loading?"skeleton-box w-full h-6":""}`}>{Loading?"":props.type=="categories"?ele.name:ele.title}</h4>

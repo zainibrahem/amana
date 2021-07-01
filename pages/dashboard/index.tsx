@@ -283,7 +283,7 @@ export default function Index() {
                         النزاعات   
                     </span>
                 </div>
-                <div className="w-full flex justify-between overflow-x-scroll max-h-72 overflow-y-scroll scr lg:overflow-visible items-center  pb-2  ">
+                <div className="w-full flex justify-between overflow-x-scroll max-h-80 overflow-y-scroll scr lg:overflow-visible items-center  pb-2  ">
                     <table className="w-full">
                         <thead className="">
                             <tr className="bg-gray-200">

@@ -99,7 +99,7 @@ export default function Offer(props) {
                 <div className="grid grid-cols-12">
                     <div className="col-span-12">
                         <div className="flex flex-row-reverse justify-between w-full items-center flex-wrap">
-                            <div className="flex flex-row-reverse py-2 px-3 justify-start items-center">
+                            {/* <div className="flex flex-row-reverse py-2 px-3 justify-start items-center">
                                 <span className="text-xs">ترتيب</span>
                                 <div className="flex flex-row-reverse justify-between items-center mr-4">
                                     <input type="checkbox" className="checkbox" name="checkbox" id="checkbox" />
@@ -113,24 +113,24 @@ export default function Offer(props) {
                                     <input type="checkbox" className="checkbox" name="checkbox" id="checkbox" />
                                     <label className="text-xs mr-2" htmlFor="">اختر نوعا</label>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="flex flex-row-reverse justify-between items-center px-3 text-gray-500">
                                 <div className="flex flex-row-reverse justify-between items-center mr-4">
-                                    <span className="text-xs">عرض</span>
+                                    <span className="hidden lg:block text-xs">عرض</span>
                                 </div>
                                 <div className="flex flex-row-reverse justify-between items-center mr-4">
-                                    <span className="text-xs">عدد المنتجات ضمن هذا التصنيف  <span className="text-xs numbers text-black" style={{fontWeight:"bold"}}>{items?items.length:0}</span> منتج</span>
+                                    <span className="text-xs mt-2 lg:mt-0">عدد المنتجات ضمن هذا التصنيف  <span className="text-xs numbers text-black" style={{fontWeight:"bold"}}>{items?items.length:0}</span> منتج</span>
                                 </div>
                             </div>
                         </div>
                         <div className="w-full flex justify-between items-center px-2">
-                        <div className="grid grid-cols-12 gap-2 lg:grid-cols-10 mt-6">
-                            {items&&items.length>0?items.map(ele=>
-                            <div className="col-span-6 lg:col-span-2 flex justify-center items-center">
-                                <ProductCard card={ele} type={"proposals"}></ProductCard>
+                            <div className="grid grid-cols-12 lg:grid-cols-10 gap-2  mt-6 w-full">
+                                {items&&items.length>0?items.map(ele=>
+                                <div className="col-span-6 lg:col-span-2 flex justify-center items-center">
+                                    <ProductCard card={ele} type={"proposals"}></ProductCard>
+                                </div>
+                                ):""}
                             </div>
-                            ):""}
-                        </div>
                         </div>
                     </div>
                 </div>

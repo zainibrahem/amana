@@ -131,9 +131,11 @@ export const NavBar = (props) => {
                                 </g>
                             </svg>
                         </a>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="block  pr-3 mr-3 sm:hidden" width="38.07" height="43" viewBox="0 0 38.07 43">
-                            <path id="Path_11" data-name="Path 11" d="M-4353.608,780.454l-15.933-9.2a3.1,3.1,0,0,0-3.1,0l-15.933,9.2a3.1,3.1,0,0,0-1.551,2.686v18.4a3.1,3.1,0,0,0,1.551,2.686l15.933,9.2a3.1,3.1,0,0,0,3.1,0l15.933-9.2a3.1,3.1,0,0,0,1.551-2.686v-18.4A3.1,3.1,0,0,0-4353.608,780.454Zm-6.419,22.938a3.981,3.981,0,0,1-3.981-3.98V792.4a8.009,8.009,0,0,0-1.956-5.611,6.559,6.559,0,0,0-5.083-2.148,6.672,6.672,0,0,0-5.094,2.125,7.691,7.691,0,0,0-1.99,5.475,7.856,7.856,0,0,0,2.046,5.6,6.839,6.839,0,0,0,5.218,2.182,8.139,8.139,0,0,0,2.8-.495,10.57,10.57,0,0,0,2.732-1.529V799.7a3.769,3.769,0,0,1-2.815,3.672l-.03.008a12.983,12.983,0,0,1-3.136.371,10.451,10.451,0,0,1-3.126-.484,10.192,10.192,0,0,1-2.811-1.36,11.041,11.041,0,0,1-3.644-4.1,11.851,11.851,0,0,1-1.259-5.476,11.272,11.272,0,0,1,3.125-8.174,10.58,10.58,0,0,1,7.939-3.227,10.97,10.97,0,0,1,5.8,1.6,10.687,10.687,0,0,1,4.048,4.385,9.962,9.962,0,0,1,.933,2.755,26.191,26.191,0,0,1,.281,4.464Z" transform="translate(4390.127 -770.839)" fill="#ffbc00"/>
-                        </svg>
+                        <a href="/">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="block  pr-3 mr-3 sm:hidden" width="38.07" height="43" viewBox="0 0 38.07 43">
+                                <path id="Path_11" data-name="Path 11" d="M-4353.608,780.454l-15.933-9.2a3.1,3.1,0,0,0-3.1,0l-15.933,9.2a3.1,3.1,0,0,0-1.551,2.686v18.4a3.1,3.1,0,0,0,1.551,2.686l15.933,9.2a3.1,3.1,0,0,0,3.1,0l15.933-9.2a3.1,3.1,0,0,0,1.551-2.686v-18.4A3.1,3.1,0,0,0-4353.608,780.454Zm-6.419,22.938a3.981,3.981,0,0,1-3.981-3.98V792.4a8.009,8.009,0,0,0-1.956-5.611,6.559,6.559,0,0,0-5.083-2.148,6.672,6.672,0,0,0-5.094,2.125,7.691,7.691,0,0,0-1.99,5.475,7.856,7.856,0,0,0,2.046,5.6,6.839,6.839,0,0,0,5.218,2.182,8.139,8.139,0,0,0,2.8-.495,10.57,10.57,0,0,0,2.732-1.529V799.7a3.769,3.769,0,0,1-2.815,3.672l-.03.008a12.983,12.983,0,0,1-3.136.371,10.451,10.451,0,0,1-3.126-.484,10.192,10.192,0,0,1-2.811-1.36,11.041,11.041,0,0,1-3.644-4.1,11.851,11.851,0,0,1-1.259-5.476,11.272,11.272,0,0,1,3.125-8.174,10.58,10.58,0,0,1,7.939-3.227,10.97,10.97,0,0,1,5.8,1.6,10.687,10.687,0,0,1,4.048,4.385,9.962,9.962,0,0,1,.933,2.755,26.191,26.191,0,0,1,.281,4.464Z" transform="translate(4390.127 -770.839)" fill="#ffbc00"/>
+                            </svg>
+                        </a>
                         <div className="relative mx-3" x-data="{dropdown : false}">
                         </div>
                         </div>
@@ -241,14 +243,23 @@ export const NavBar = (props) => {
                                 </div>
                             </div>
                         </div>
-                        
-                        <button onClick={togglecart} className={`ml-3 w-8 md:w-10  h-6  md:h-8 lg:h-10 lg:w-10  focus:outline-none rounded-full  flex items-center justify-center ${Loading?"skeleton-box":""}`}>
-                                        <div className="relative " style={Loading?{opacity:"0"}:{}}>
-                                            <div className="absolute -right-1 w-4 h-4 -top-1 rounded-full text-xs text-white bg-red-400 flex justify-center items-center">{Cart}</div>
-                                            <img src={`${Route}/images/shopping-cart.svg`} className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current " alt="" />
-                                            
-                                        </div>
+                        <a href="/cart" className="lg:hidden">
+                            <button onClick={togglecart} className={`ml-3 w-8 md:w-10  h-6  md:h-8 lg:h-10 lg:w-10  focus:outline-none rounded-full  flex items-center justify-center ${Loading?"skeleton-box":""}`}>
+                                <div className="relative " style={Loading?{opacity:"0"}:{}}>
+                                    <div className="absolute -right-1 w-4 h-4 -top-1 rounded-full text-xs text-white bg-red-400 flex justify-center items-center">{Cart}</div>
+                                    <img src={`${Route}/images/shopping-cart.svg`} className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current " alt="" />
+                                    
+                                </div>
                             </button>
+                        </a>
+                        <button onClick={togglecart} className={`ml-3 w-8 md:w-10 hidden h-6  md:h-8 lg:h-10 lg:w-10  focus:outline-none rounded-full  lg:flex items-center justify-center ${Loading?"skeleton-box":""}`}>
+                            <div className="relative " style={Loading?{opacity:"0"}:{}}>
+                                <div className="absolute -right-1 w-4 h-4 -top-1 rounded-full text-xs text-white bg-red-400 flex justify-center items-center">{Cart}</div>
+                                <img src={`${Route}/images/shopping-cart.svg`} className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current " alt="" />
+                                
+                            </div>
+                        </button>
+                        
                             {/* <button className={`hidden ${Loading?"skeleton-box":""} ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center`}>
                                 <div style={Loading?{opacity:"0"}:{}}>
                                     <svg className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current "  xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="3" strokeLinecap="square" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
@@ -304,7 +315,8 @@ export const NavBar = (props) => {
                             </div>
                         </div>
                         {localStorage.getItem('token')?
-                        <button onClick={togglemessages} className={`ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10  focus:outline-none  rounded-full flex items-center justify-center ${Loading?"skeleton-box":""}`}>
+                        <>
+                        <button onClick={togglemessages} className={`ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10  focus:outline-none  rounded-full hidden lg:flex items-center justify-center ${Loading?"skeleton-box":""}`}>
                             <div style={Loading?{opacity:"0"}:{}}>
                                 <svg id="Group_5411" className="w-4 h-4 lg:w-6 lg:h-6 stroke-current" data-name="Group 5411" xmlns="http://www.w3.org/2000/svg" width="700.033" height="613.995" viewBox="0 0 700.033 613.995">
                                     <rect id="Rectangle_1740" data-name="Rectangle 1740" width="333.821" height="21.213" transform="translate(183.105 182.522)"/>
@@ -314,8 +326,21 @@ export const NavBar = (props) => {
                                 </svg>
                             </div>
                         </button>
+                        <a href="/dashboard/conversations" className={`ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10  focus:outline-none  rounded-full flex lg:hidden items-center justify-center ${Loading?"skeleton-box":""}`}>
+                            <div style={Loading?{opacity:"0"}:{}}>
+                                <svg id="Group_5411" className="w-4 h-4 lg:w-6 lg:h-6 stroke-current" data-name="Group 5411" xmlns="http://www.w3.org/2000/svg" width="700.033" height="613.995" viewBox="0 0 700.033 613.995">
+                                    <rect id="Rectangle_1740" data-name="Rectangle 1740" width="333.821" height="21.213" transform="translate(183.105 182.522)"/>
+                                    <rect id="Rectangle_1741" data-name="Rectangle 1741" width="67.545" height="21.213" transform="translate(449.383 280.785)"/>
+                                    <rect id="Rectangle_1742" data-name="Rectangle 1742" width="200.681" height="21.213" transform="translate(183.105 280.785)"/>
+                                    <path id="Path_11864" data-name="Path 11864" d="M4049.672,616.224h17a10.587,10.587,0,0,1,10.43,12.495l-16.649,91.662-3.985,21.935L4076,731.582,4283.36,617.519a10.632,10.632,0,0,1,5.116-1.294H4558.8a95.576,95.576,0,0,0,95.455-95.459V223.78a95.563,95.563,0,0,0-95.455-95.459H4049.672a95.545,95.545,0,0,0-95.455,95.459V520.765A95.559,95.559,0,0,0,4049.672,616.224ZM3975.427,223.78a74.328,74.328,0,0,1,74.245-74.246H4558.8a74.329,74.329,0,0,1,74.246,74.246V520.765a74.329,74.329,0,0,1-74.246,74.246H4280.278l-2.365,1.294-173.054,95.2a10.839,10.839,0,0,1-5.126,1.294A10.578,10.578,0,0,1,4089.3,680.31l13.238-72.8,2.271-12.495h-55.138a74.328,74.328,0,0,1-74.245-74.246Z" transform="translate(-3954.217 -128.321)"/>
+                                </svg>
+                            </div>
+                        </a>
+                        </>
                         :
-                        <></>
+                        <>
+                        
+                        </>
                         }
                         {localStorage.getItem('token')?
                         <>

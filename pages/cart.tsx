@@ -547,7 +547,7 @@ export default function Cart() {
               
                 
                 <div className="flex justify-center items-center z-20">
-                    <div className="fixed w-11/12 lg:w-2/4 border-2  bg-white rounded z-20 bottom-28 lg:bottom-3 shadow-lg drop-shadow-md px-4 py-3 flex flex-row-reverse justify-between items-center">
+                    <div className="fixed w-11/12 lg:w-2/4 border-2  bg-white rounded z-20 bottom-24 lg:bottom-3 shadow-lg drop-shadow-md px-4 py-3 flex flex-row-reverse justify-between items-center">
                         <span className="text-sm">
                             كل السلة رقم 9
                         </span>

@@ -58,6 +58,7 @@ export default function Orders() {
         order_number:""
         packaging:""
         order_status:string
+        total:""
         payment_method:Payment
         payment_status:string
         shipping:""
@@ -106,6 +107,7 @@ export default function Orders() {
     const [dispute,setDispute] = useState<Dispute>()
     const handlModals = () =>{
         setModal(!modal)
+        setInfo(false)
         fetch(`https://amanacart.com/api/order/${order?order.id:""}/dispute`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`
@@ -124,6 +126,9 @@ export default function Orders() {
     const closeModal = () => {
         setModal(false)
     }
+    const closeModalss = () =>{
+        setInfo(false)
+    }
     const orderAgain = (id) => {
         fetch(`https://amanacart.com/api/order/again/${id}`,{
             headers:{
@@ -132,6 +137,7 @@ export default function Orders() {
             .then(res => res.json())
             .then(result =>{
                 // setDispute(result.data);
+                setInfo(false)
                 console.log(result);
                 // window.location.reload(false)
             })
@@ -141,6 +147,7 @@ export default function Orders() {
     }
     const handlModalss = () =>{
         setModals(!modals)
+        setInfo(false)
     //     fetch(`https://amanacart.com/api/order/${order?order.id:""}/dispute`,{
     //         headers:{
     //             'Authorization' : `Bearer ${localStorage.getItem('token')}`
@@ -171,6 +178,15 @@ export default function Orders() {
             setOrders(array);
         }
     }
+    const [modalInfo,setModalInfo] = useState<Data>();
+    const [info,setInfo] = useState<boolean>(false)
+
+    const toggleInfo = (ele) => {
+        setInfo(true)
+        setModalInfo(ele)
+        setOrder(ele)
+    } 
+
     const allOrders = () =>{
         setOrders(data)
         setDelivery(false)
@@ -211,7 +227,7 @@ export default function Orders() {
      }
     return (
         <div className="">
-            <div className="grid grid-cols-10 gap-2 mt-7" dir="rtl">
+            <div className="hidden lg:grid grid-cols-10 gap-2 mt-7" dir="rtl">
             
                 <div className="col-span-10 bg-white shadow rounded pt-1 px-2">
                     <div className="grid grid-cols-12 gap-2">
@@ -580,7 +596,7 @@ export default function Orders() {
                                                     <div className="flex justify-between items-center">
                                                         <span onClick={handlModals} className=" w-28 text-center cursor-pointer rounded border-2 mr-2 border-gray-500 px-2 text-gray-600 flex justify-between items-center">
                                                             {/* cancelation */}
-                                                            <img className="w-4" src={`${Route}/images/icons/cancel.svg`} alt="" />
+                                                            {/* <img className="w-4" src={`${Route}/images/icons/cancel.svg`} alt="" /> */}
                                                             الغاء عناصر
                                                         </span>
                                                         <span onClick={()=>orderAgain(order?order.id:"")} className="cursor-pointer w-28 text-center rounded border-2 mr-2 border-gray-500 px-2 text-gray-600">
@@ -601,11 +617,205 @@ export default function Orders() {
                     </div>
                 </div>
             </div>
-            <div className={`${modal?"flex":"hidden"} fixed z-50 top-0 left-0 h-screen w-full flex flex-col  justify-center items-center bg-black bg-opacity-70`}>
+            
+            
+            <div className="grid lg:hidden grid-cols-10 gap-2 mt-7" dir="rtl">
+                <div className="col-span-10">
+                    <div className="col-span-4 pt-2 px-2">
+                                <div className="w-full ">
+                                    <span className="text-right  text-lg">
+                                        طلباتك
+                                    </span>
+                                    <div className="w-full pt-2  relative">
+                                        <div className="absolute left-0 top-1/2 transform -translate-y-1/2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className='mr-3 ml-3' width="18.179" height="18.179" viewBox="0 0 18.179 18.179">
+                                                <path id="search_icon" d="M6.817,0a6.817,6.817,0,0,0,0,13.634,6.817,6.817,0,0,0,3.693-.994l5.4,5.539,2.272-2.272-5.539-5.4a6.817,6.817,0,0,0,.994-3.693A6.817,6.817,0,0,0,6.817,0m0,2.272A4.545,4.545,0,1,1,2.272,6.817,4.545,4.545,0,0,1,6.817,2.272" fill="rgba(107, 114, 128)"/>
+                                            </svg>
+                                        </div>
+                                        <input type="text" onChange={(e) => handlesearch(e)} className="bg-white w-full rounded px-2 pr-6 py-1 border-2  focus:outline-none focus:shadow  focus:border-0" placeholder="ابحث في منتجاتك" />
+                                    </div>
+                                    <div className="w-full mt-2 flex justify-between items-center border-b-2 pb-2">
+                                        <span className="text-sm cursor-pointer hover-black text-gray-500" onClick={allOrders}>الكل</span>
+                                        
+                                        <span className="text-md  relative">
+                                            <span onClick={toggleDelivery} className="text-sm cursor-pointer text-gray-500 hover-black">
+                                                حالة التوصيل&#9662;
+                                            </span>
+
+                                            <div className={`${delivery?"block":"hidden"} absolute  flex flex-col justify-between items-center  mt-2 bg-white  rounded`} style={{boxShadow:"0px 0px 2px #000"}}>
+                                                <span onClick={(e)=>changeDeliver(1,e)} className="text-right filters cursor-pointer py-2 px-1 flex w-36 justify-between items-center text-gray-700 text-xs">
+                                                    تم التوصيل
+                                                <input type="radio" className="mr-2 radios" name="delivery" id="delivery" /> 
+                                                <span className="radioImg"></span>
+                                                </span>
+
+                                                <span onClick={(e)=>changeDeliver(1,e)} className="text-right filters  cursor-pointer py-2 px-1 flex w-36 justify-between items-center text-gray-700 text-xs">
+                                                    تم التوصيل
+                                                <input type="radio" className="mr-2 radios" name="delivery" id="delivery" /> 
+                                                <span className="radioImg"></span>
+                                                </span>
+
+                                                <span onClick={(e)=>changeDeliver(1,e)} className="text-right filters  cursor-pointer py-2 px-1 flex w-36 justify-between items-center text-gray-700 text-xs">
+                                                    تم التوصيل
+                                                <input type="radio" className="mr-2 radios" name="delivery" id="delivery" /> 
+                                                <span className="radioImg"></span>
+                                                </span>
+                                            </div>
+                                        </span>
+                                        <span className="text-md  relative">
+                                            <span onClick={togglePayment} className="text-sm cursor-pointer text-gray-500 hover-black">
+                                                حالة الدفع&#9662;
+                                            </span>
+
+                                            <div className={`${payment?"block":"hidden"} absolute  flex flex-col justify-between items-center  mt-2 bg-white  rounded`} style={{boxShadow:"0px 0px 2px #000"}}>
+                                                <span onClick={(e)=>changeDeliver(1,e)} className="text-right filters cursor-pointer py-2 px-1 flex w-36 justify-between items-center text-gray-700 text-xs">
+                                                    تم التوصيل
+                                                <input type="radio" className="mr-2 radios" name="delivery" id="delivery" /> 
+                                                <span className="radioImg"></span>
+                                                </span>
+
+                                                <span onClick={(e)=>changeDeliver(1,e)} className="text-right filters  cursor-pointer py-2 px-1 flex w-36 justify-between items-center text-gray-700 text-xs">
+                                                    تم التوصيل
+                                                <input type="radio" className="mr-2 radios" name="delivery" id="delivery" /> 
+                                                <span className="radioImg"></span>
+                                                </span>
+
+                                                <span onClick={(e)=>changeDeliver(1,e)} className="text-right filters  cursor-pointer py-2 px-1 flex w-36 justify-between items-center text-gray-700 text-xs">
+                                                    تم التوصيل
+                                                <input type="radio" className="mr-2 radios" name="delivery" id="delivery" /> 
+                                                <span className="radioImg"></span>
+                                                </span>
+                                            </div>
+                                        </span>
+                                        <span className="text-md  relative">
+                                            <span onClick={toggleSort} className="text-sm cursor-pointer text-gray-500 hover-black">
+                                                ترتيب&#8645;
+                                            </span>
+
+                                            <div className={`${sort?"block":"hidden"} absolute  flex flex-col justify-between items-center  mt-2 bg-white  rounded`} style={{boxShadow:"0px 0px 2px #000"}}>
+                                                <span onClick={(e)=>changeDeliver(1,e)} className="text-right filters cursor-pointer py-2 px-1 flex w-36 justify-between items-center text-gray-700 text-xs">
+                                                    تم التوصيل
+                                                <input type="radio" className="mr-2 radios" name="delivery" id="delivery" /> 
+                                                <span className="radioImg"></span>
+                                                </span>
+
+                                                <span onClick={(e)=>changeDeliver(1,e)} className="text-right filters  cursor-pointer py-2 px-1 flex w-36 justify-between items-center text-gray-700 text-xs">
+                                                    تم التوصيل
+                                                <input type="radio" className="mr-2 radios" name="delivery" id="delivery" /> 
+                                                <span className="radioImg"></span>
+                                                </span>
+
+                                                <span onClick={(e)=>changeDeliver(1,e)} className="text-right filters  cursor-pointer py-2 px-1 flex w-36 justify-between items-center text-gray-700 text-xs">
+                                                    تم التوصيل
+                                                <input type="radio" className="mr-2 radios" name="delivery" id="delivery" /> 
+                                                <span className="radioImg"></span>
+                                                </span>
+                                            </div>
+                                        </span>
+
+                                    </div>
+                                    <div className="w-full mt-2 scr bg-white px-2 pt-1  overflow-y-scroll" style={{height:"27rem"}}>
+                                        {orders?orders.map(ele=>
+                                            <div onClick={()=>toggleInfo(ele)} className="w-full rounded mt-2  p-2 cursor-pointer shadow"   style={{border:"1px solid #eee"}}>
+                                                
+                                                <div className="w-full  flex justify-between items-center mt-3" >
+                                                    <span className="text-sm font-bold">
+                                                        رقم الطلب {ele.order_number.split('#')}
+                                                    </span>
+                                                    
+                                                
+                                                    <span  className="text-xs text-green-500 ml-2">
+                                                        {ele?ele.payment_status:""}
+                                                    </span>
+                                                </div>
+                                                <div className="w-9/12  justify-between flex  items-center mt-2">
+                                                    <span className="text-sm  text-gray-500">
+                                                        تاريخ الطلب :
+                                                    </span>
+                                                    
+                                                    <span className="text-xs text-right w-1/3 mr-7 text-gray-500">
+                                                        {ele.order_date}
+                                                    </span>
+                                                </div>
+                                                <div className="w-9/12  flex justify-between  items-center mt-2">
+                                                    <span className="text-sm  ">
+                                                        السعر الكلي :
+                                                    </span>
+                                                    
+                                                    <span className="text-xs text-right w-1/3 mr-7 font-bold">
+                                                        {ele.grand_total}
+                                                    </span>
+                                                </div>
+                                            
+                                                <div className="w-full flex justify-between mt-2">
+                                                    <span className="text-xs text-right   text-gray-500">
+                                                        {ele.items.length} منتج
+                                                    </span>
+                                                    <span style={{padding:"0.1rem .6rem"}} className={`${ele.order_status=='تم التوصيل'?"bg-green-500":""} ${ele.order_status=='تم التأكيد'?"bg-green-500":""} ${ele.order_status=="خطأ في الدفع"?"bg-yellow-500":""} ${ele.payment_status=="غير مدفوع"?"bg-red-500":""} ${ele.payment_status=="إعادة الأموال"?"bg-blue-500":""} ${ele.payment_status=="متنازع عليه"?"bg-gray-700":""} ${ele.payment_status=="بانتظار التسليم"?"bg-yellow-500":""} ${ele.payment_status=="ملغى"?"bg-gray-500":""} ${ele.payment_status=="تم الدفع"?"bg-green-500":""} ${ele.order_status=="في انتظار الدفع"?"bg-yellow-500":""} ${ele.order_status=='إعادة الأموال'?"bg-gray-700":""}  text-xs rounded text-white`}>
+                                                        {ele.order_status}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                    
+                                        ):""}
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+                <div className="col-span-10 bg-white shadow rounded pt-1 px-2">
+                        {orders?orders.map(ele=>
+                                        <div className="w-full  rounded mt-2  p-2 cursor-pointer shadow" onClick={()=>setOrder(ele)}  style={{border:"1px solid #eee"}}>
+                                            
+                                        <div className="w-full  flex justify-between items-center mt-3" >
+                                            <span className="text-sm font-bold">
+                                                رقم الطلب {ele.order_number.split('#')}
+                                            </span>
+                                            
+                                        
+                                            <span  className="text-xs text-green-500 ml-2">
+                                                {ele?ele.payment_status:""}
+                                            </span>
+                                        </div>
+                                        <div className="w-9/12  justify-between flex  items-center mt-2">
+                                            <span className="text-sm  text-gray-500">
+                                                تاريخ الطلب :
+                                            </span>
+                                            
+                                            <span className="text-xs text-right w-1/3 mr-7 text-gray-500">
+                                                {ele.order_date}
+                                            </span>
+                                        </div>
+                                        <div className="w-9/12  flex justify-between  items-center mt-2">
+                                            <span className="text-sm  ">
+                                                السعر الكلي :
+                                            </span>
+                                            
+                                            <span className="text-xs text-right w-1/3 mr-7 font-bold">
+                                                {ele.grand_total}
+                                            </span>
+                                        </div>
+                                    
+                                        <div className="w-full flex justify-between mt-2">
+                                            <span className="text-xs text-right   text-gray-500">
+                                                {ele.items.length} منتج
+                                            </span>
+                                            <span style={{padding:"0.1rem .6rem"}} className={`${ele.order_status=='تم التوصيل'?"bg-green-500":""} ${ele.order_status=='تم التأكيد'?"bg-green-500":""} ${ele.order_status=="خطأ في الدفع"?"bg-yellow-500":""} ${ele.payment_status=="غير مدفوع"?"bg-red-500":""} ${ele.payment_status=="إعادة الأموال"?"bg-blue-500":""} ${ele.payment_status=="متنازع عليه"?"bg-gray-700":""} ${ele.payment_status=="بانتظار التسليم"?"bg-yellow-500":""} ${ele.payment_status=="ملغى"?"bg-gray-500":""} ${ele.payment_status=="تم الدفع"?"bg-green-500":""} ${ele.order_status=="في انتظار الدفع"?"bg-yellow-500":""} ${ele.order_status=='إعادة الأموال'?"bg-gray-700":""}  text-xs rounded text-white`}>
+                                                {ele.order_status}
+                                            </span>
+                                        </div>
+                                    </div>
+                                
+                                    ):""}
+                </div>
+            </div>
+            
+            
+            
+            <div className={`${modal?"flex":"hidden"} fixed z-50 px-3 top-0 left-0 h-screen w-full flex flex-col  justify-center items-center bg-black bg-opacity-70`}>
                 <div onClick={closeModal} className="rounded-full border-2 border-white w-8 h-6 mb-4 text-white text-center text-md cursor-pointer">
                     x
                 </div>
-                <div className={`${modal?"slideUpss":"slideDownss"} relative p-5 w-1/2 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
+                <div className={`${modal?"slideUpss":"slideDownss"} relative p-5 w-full lg:w-1/2 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
                         <div className="col-span-12">
                             <span className="text-sm font-bold">
                                 الغاء العناصر
@@ -652,7 +862,7 @@ export default function Orders() {
                             <span className="text-xs w-full mt-2">
                                 ملاحظة : الإرجاع غير مضمون   !
                             </span>
-                            <span className="text-sm text-white text-center w-56 cursor-pointer py-1 rounded bg-yellow-500 mt-4">
+                            <span className="text-sm text-white self-center text-center w-56 cursor-pointer py-1 rounded bg-yellow-500 mt-4">
                                 إرسال الطلب
                             </span>
                         </div>
@@ -663,7 +873,7 @@ export default function Orders() {
             <div onClick={closeModals} className="rounded-full border-2 border-white w-8 h-6 mb-4 text-white text-center text-md cursor-pointer">
                     x
                 </div>
-                <div className={`${modals?"slideUpss":"slideDownss"} relative p-5 w-1/4 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
+                <div className={`${modals?"slideUpss":"slideDownss"} relative p-5 w-2/3 lg:w-1/4 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
                     <div className="col-span-12">
                         <span className="text-md font-bold">
                             تأكيد
@@ -689,8 +899,142 @@ export default function Orders() {
                 </div>
             </div>
         
-                                
-            </div>
+                <div className={`${info?"flex":"hidden"} px-3 fixed z-50 top-0 left-0 h-screen w-full flex flex-col  justify-center items-center bg-black bg-opacity-70`}>
+                    <div onClick={closeModalss} className="rounded-full border-2 border-white w-8 h-6 mb-4 text-white text-center text-md cursor-pointer">
+                        x
+                    </div>
+                    <div className={`${info?"slideUpss":"slideDownss"} relative p-5 w-full bg-white rounded shadow gap-2 grid grid.cols-12 overflow-y-scroll overflow-x-hidden `} style={{maxHeight:"70vh"}} dir="rtl">
+                        <div className="col-span-12">
+                            <span className="text-xs lg:text-sm font-bold">
+                                تفاصيل الطلب <span className="text-yellow-500">{modalInfo?modalInfo.order_number.split('#'):""}</span>
+                            </span>
+                        </div>     
+                        <div className="col-span-6 flex justify-between pl-2 mt-2 items-center">
+                            <span className="text-xs text-gray-500">
+                                تاريخ الطلب
+                            </span>
+                            <span className="text-xs text-gray-500 text-right">
+                                {modalInfo?modalInfo.order_date:""}
+                            </span>
+                        </div>
+                        <div className="col-span-6 flex justify-between  mt-2 items-center">
+                            <span className="text-xs text-gray-500">
+                                السعر
+                            </span>
+                            <span className="text-xs text-gray-500 text-right">
+                                {modalInfo?modalInfo.total:""}
+                            </span>
+                        </div>
+                        <div className="col-span-6 flex justify-between pl-2 mt-2 items-center">
+                            <span className="text-xs text-gray-500">
+                                تكلفة الشحن
+                            </span>
+                            <span className="text-xs text-gray-500 text-right">
+                                {modalInfo&&modalInfo.shipping?modalInfo.shipping:'0 ر.ع'}
+                            </span>
+                        </div>
+                        <div className="col-span-6 flex justify-between  mt-2 items-center">
+                            <span className="text-xs text-gray-500">
+                                تكلفة التغليف
+                            </span>
+                            <span className="text-xs text-gray-500 text-right">
+                                {modalInfo&&modalInfo.packaging?modalInfo.packaging:"0 ر.ع"}
+                            </span>
+                        </div>
+                        <div className="col-span-6 flex justify-between pl-2 mt-2 items-center">
+                            <span className="text-xs text-gray-500">
+                                طريقة الدفع
+                            </span>
+                            <span className="text-xs text-green-500 text-right" style={{fontSize:"10px"}}>
+                                {modalInfo?modalInfo.payment_method.name:""}
+                            </span>
+                        </div>
+                        <div className="col-span-6 flex justify-between mt-2 items-center">
+                            <span className="text-xs text-gray-500">
+                                الضرائب
+                            </span>
+                            <span className="text-xs text-gray-500 text-right" style={{fontSize:"10px"}}>
+                                {modalInfo&&modalInfo.taxes?modalInfo.taxes:"0 ر.ع"}
+                            </span>
+                        </div>
+                        <div className="col-span-6 flex justify-between pl-2 mt-2 items-center">
+                            <span className="text-xs text-gray-500">
+                                السعر الكلي
+                            </span>
+                            <span className="text-xs text-gray-500 text-right">
+                                {modalInfo?modalInfo.grand_total:""}
+                            </span>
+                        </div>
+                        <div className="col-span-6 flex justify-between  mt-2 items-center">
+                            <span className="text-xs text-gray-500">
+                                الحالة
+                            </span>
+                            <span  style={{padding:"0.05rem .6rem",fontSize:"10px"}} className="bg-yellow-500 rounded text-white mr-2 text-xs">
+                                {modalInfo?modalInfo.order_status:""}
+                            </span>
+                        </div>
+                           
+                            <div className="col-span-12">
+                                <span className="text-xs lg:text-sm font-bold">
+                                    تفاصيل الإرجاع 
+                                </span>
+                            </div> 
+                            <div className="col-span-6 flex justify-between  mt-2 items-center">
+                                <span className="text-xs text-gray-500">
+                                    الكمية
+                                </span>
+                                <span  style={{padding:"0.05rem .6rem",fontSize:"10px"}} className=" text-gray-500 mr-2 text-xs">
+                                    1400$
+                                </span>
+                            </div>
+                            <div className="col-span-6 flex justify-between  mt-2 items-center">
+                                <span className="text-xs text-gray-500">
+                                    الحالة
+                                </span>
+                                <span  style={{padding:"0.05rem .6rem",fontSize:"10px"}} className="bg-green-500 rounded text-white mr-2 text-xs">
+                                    تم الإرجاع
+                                </span>
+                            </div>
+
+                            
+
+
+                        <div className="col-span-3 flex justify-between  mt-2 items-center">
+                          
+                          <span onClick={handlModals} style={{fontSize:"10px"}} className=" text-center cursor-pointer rounded border-2 mr-2 border-gray-500 px-2 text-gray-600 flex justify-between items-center">
+                              {/* cancelation */}
+                              {/* <img className="w-4" src={`${Route}/images/icons/cancel.svg`} alt="" /> */}
+                              الغاء عناصر
+                          </span>
+                          </div>
+                          <div className="col-span-3 flex justify-between mt-2 items-center">
+
+                          <span onClick={()=>orderAgain(order?order.id:"")} style={{fontSize:"10px"}} className=" text-center cursor-pointer rounded border-2 mr-2 border-gray-500 px-1 text-gray-600 flex justify-between items-center">
+                              {/* cancelation */}
+                              {/* <img className="w-4" src={`${Route}/images/icons/cancel.svg`} alt="" /> */}
+                              إعادة الطلب
+                          </span>
+                          </div>
+
+                          <div className="cancelation col-span-3 flex justify-between mt-2 items-center">
+                              <span onClick={()=>orderAgain(order?order.id:"")} style={{fontSize:"10px"}} className=" text-center cursor-pointer rounded border-2 mr-2 border-gray-500 px-1 text-gray-600 flex justify-between items-center">
+                                  {/* cancelation */}
+                                  {/* <img className="w-4" src={`${Route}/images/icons/cancel.svg`} alt="" /> */}
+                                  الفاتورة
+                              </span>
+                          </div>
+                          <div className=" col-span-3 flex justify-between mt-2 items-center">
+                              <span onClick={handlModalss} style={{fontSize:"10px"}} className=" text-center cursor-pointer rounded border-2 mr-2 border-gray-500 px-1 text-gray-600 flex justify-between items-center">
+                                  {/* cancelation */}
+                                  {/* <img className="w-4" src={`${Route}/images/icons/cancel.svg`} alt="" /> */}
+                                  فتح نزاع
+                              </span>
+                          </div>
+                                                                                     
+                        </div>
+                    </div>                
+                </div>                
+            
      
       
    

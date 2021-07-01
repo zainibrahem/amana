@@ -227,7 +227,7 @@ export default function Orders() {
     }
     return (
         <div className="grid grid-cols-12 gap-2 bg-white rounded shadow p-4 mt-12" style={{border:"1px solid #eee"}} dir="rtl">
-            <div className="col-span-4  p-2 flex flex-col justify-start items-start" >
+            <div className="col-span-12 lg:col-span-4  p-2 flex flex-col justify-start items-start" >
                 <div className="rounded bg-gray-50  p-2 flex flex-col w-full justify-between items-start" style={{border:"1px solid #eee"}}>
                 <span className="text-xs flex justify-between items-center">
                     <svg className="w-4 ml-2" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 145.254 136.317">
@@ -337,7 +337,7 @@ shipping  */}
                 {/* </div> */}
                
             </div>
-            <div className="col-span-8 p-5 flex flex-col items-start justify-start">
+            <div className="col-span-12 lg:col-span-8 p-5 flex flex-col items-start justify-start">
                 {localStorage.getItem('token')? 
                     <>
                         <span className="text-sm flex justify-around items-center">

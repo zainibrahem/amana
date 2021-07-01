@@ -36,10 +36,11 @@ export default function subGroup(props) {
     const { pids } = router.query;
 
     useEffect(() => {
-        fetch(`http://amanacart.com/api/category_sub_group/1${pids}`)
+        fetch(`http://amanacart.com/api/category_sub_group/${pids}`)
          .then(res => res.json())
          .then(result =>{
            setData(result.data);
+           console.log(result.data)
          })
          .catch(e => {
            console.log(e);

@@ -82,7 +82,7 @@ export default function Offer(props) {
             <div className="col-span-12">
             <div className="col-span-12 mt-6">
                         <div className="flex flex-row-reverse justify-between w-full items-center flex-wrap">
-                            <div className="flex flex-row-reverse py-2 px-3 justify-start items-center">
+                            {/* <div className="flex flex-row-reverse py-2 px-3 justify-start items-center">
                                 <span className="text-xs">ترتيب</span>
                                 
                                 <div className="flex flex-row-reverse justify-between items-center mr-4">
@@ -97,7 +97,7 @@ export default function Offer(props) {
                                     <input type="checkbox" className="checkbox" name="checkbox" id="checkbox" />
                                     <label className="text-xs mr-2" htmlFor="">اختر نوعا</label>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="flex flex-row-reverse justify-between items-center pr-3 text-gray-500 w-full lg:w-1/2 ">
                                 <div className="flex flex-row-reverse justify-between items-center mr-4 w-full">
                                     <div className='w-full relative'>

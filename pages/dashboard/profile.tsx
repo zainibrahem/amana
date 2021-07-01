@@ -405,7 +405,7 @@ export default function Orders() {
             <div onClick={closeModal} className="rounded-full border-2 border-white w-8 h-6 mb-4 text-white text-center text-md cursor-pointer">
                 x
             </div>
-            <div className={`${modal?"slideUpss":"slideDownss"} relative p-5 w-1/2 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
+            <div className={`${modal?"slideUpss":"slideDownss"} relative p-5 w-11/12 lg:w-1/2 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
                     <div className="col-span-12">
                         <span className="text-sm font-bold">
                             إضافة عنوان جديد
@@ -530,7 +530,7 @@ export default function Orders() {
                         <div className="grid grid-cols-12 w-full gap-4" dir="rtl">
                         {adderss?adderss.map(ele=>
                             <>
-                              <div  className={`col-span-3 flex justify-center items-center`} >
+                              <div  className={`col-span-6 lg:col-span-3 flex justify-center items-center`} >
                                   <div className="border-2 h-full border-gray-100 w-full mt-1 flex cursor-pointer  flex-col justify-between items-start rounded  p-2">
 
                                         <span className="text-xs  font-bold flex justify-start">
@@ -564,10 +564,10 @@ export default function Orders() {
                                         
                             </>
                         ):""}
-                          <div onClick={handlModals} className={`col-span-3 flex justify-start items-center`} >
-                              <div className="w-9/12 h-full border-dashed border-2 flex cursor-pointer  flex-col justify-center items-center rounded  p-2">
+                          <div onClick={handlModals} className={`col-span-6 lg:col-span-3 flex justify-start items-center`} >
+                              <div className="w-full lg:w-9/12 h-full border-dashed border-2 flex cursor-pointer  flex-col justify-center items-center rounded  p-2">
                                         <span className="text-xs m-1 text-yellow-500 font-bold flex flex-col justify-center items-center">
-                                            <span className="text-4xl ">+</span> <span className="mt-1">إضافة عنوان جديد</span>
+                                            <span className="text-4xl ">+</span> <span className="mt-1  text-center">إضافة عنوان جديد</span>
                                         </span>
                             </div>
                            
@@ -595,15 +595,15 @@ export default function Orders() {
                                     <label htmlFor="" className=" text-sm text-right ">
                                         الجنس
                                     </label>
-                                    <div className="w-1/3 flex justify-between items-center mt-4 ml-16">
-                                        <label className="mr-4 lg:mr-2" htmlFor="male">
+                                    <div className="w-1/3 flex justify-between items-center mr-8 lg:mr-0 mt-4 ml-16">
+                                        <label className=" lg:mr-2" htmlFor="male">
                                             ذكر
                                         </label>
-                                        <input  onChange={(e)=>{setMale(true),setFemale(false),setSex('app.male')}}  checked={male?true:false}   type="radio" name="sex" />
-                                        <label className="mr-4 lg:mr-2 ml-2 lg:ml-4" htmlFor="male">
+                                        <input className="ml-2"  onChange={(e)=>{setMale(true),setFemale(false),setSex('app.male')}}  checked={male?true:false}   type="radio" name="sex" />
+                                        <label className=" lg:mr-2 ml-2 lg:ml-4" htmlFor="male">
                                             أنثى
                                         </label>
-                                        <input onChange={(e)=>{setMale(false),setFemale(true),setSex('app.female')}} checked={female?true:false}    type="radio" name="sex" />
+                                        <input className="ml-2" onChange={(e)=>{setMale(false),setFemale(true),setSex('app.female')}} checked={female?true:false}    type="radio" name="sex" />
                                     </div>
                                    
                                 </div>

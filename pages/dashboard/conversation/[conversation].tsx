@@ -93,29 +93,47 @@ export default function Orders() {
                     {data?data.message.time:""}
                 </div>
             </div>
-            <div className="col-span-12 border-b-2 flex justify-between items-center py-2">
-                <img className="w-16 rounded-full" src={`https://amanacart.com/image/${data?data.message.shop.image.path:""}`} alt="" />
-                <span className="text-xs text-gray-700">
-                    {data?data.message.shop.name:""}
-                </span>
-                <p className="text-xs font-bold w-6/12">
-                    {data?data.message.message:""}
-                </p>
-                <span className="text-white bg-red-600 px-1  rounded">
-                    {data?data.message.replies_count:""}
-                </span>
-                <span className="text-white bg-red-600 px-1  rounded">
-                    {data?data.message.status:""}
-                </span>
-                <span className="text-xs font-bold">
-                    الطلب رقم : <span className="text-blue-500"> {data?data.message.order.order_number:""}</span>
-                </span>
-                <span className="text-xs">
-                    {data?data.message.time:""}
-                </span>
-                <span>
-                <img src={`${Route}/images/shopping-cart.svg`} className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current " alt="" />
-                </span>
+            <div className="col-span-12 overflow-x-scroll border-b-2 flex justify-between items-center py-2">
+                <table className="conversation lg:w-full">
+                    <td>
+                        <img className="w-16 rounded-full" src={`https://amanacart.com/image/${data?data.message.shop.image.path:""}`} alt="" />
+                    </td>
+                    <td>
+                        <span className="text-xs text-gray-700">
+                            {data?data.message.shop.name:""}
+                        </span>
+                    </td>
+                    <td>
+                        <p className="text-xs font-bold w-6/12">
+                            {data?data.message.message:""}
+                        </p>
+                    </td>
+                    <td>
+                        <span className="text-white bg-red-600 px-1  rounded">
+                            {data?data.message.replies_count:""}
+                        </span>
+                    </td>
+                    <td>
+                        <span className="text-white bg-red-600 px-1  rounded">
+                            {data?data.message.status:""}
+                        </span>
+                    </td>
+                    <td>
+                        <span className="text-xs font-bold">
+                            الطلب رقم : <span className="text-blue-500"> {data?data.message.order.order_number:""}</span>
+                        </span>
+                    </td>
+                    <td>
+                        <span className="text-xs">
+                            {data?data.message.time:""}
+                        </span>
+                    </td>
+                    <td>
+                        <span>
+                            <img src={`${Route}/images/shopping-cart.svg`} className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current " alt="" />
+                        </span>
+                    </td>
+                </table>
             </div>
         
         
@@ -137,19 +155,19 @@ export default function Orders() {
                     </div>
                 </div>
             ):""}
-            <div className="col-span-3"></div>
-            <div className="col-span-6">
+            <div className="col-span-1 lg:col-span-3"></div>
+            <div className="col-span-10 lg:col-span-6">
                 <span className="text-xs font-bold">
                     الرد:
                 </span>
                 <textarea onChange={(e)=>setReply(e.target.value)} className="text-xs  p-3 w-full h-28 border-2 mt-2" name="" id="" placeholder="اكتب رسالتك هنا" ></textarea>
             </div>
-            <div className="col-span-3">
+            <div className="col-span-1 lg:col-span-3">
             </div>
 
             <div className="col-span-3"></div>
             <div className="col-span-6 flex justify-end items-center">
-                <span onClick={handleReply} className="cursor-pointer bg-blue-500 mt-3 text-white px-2 rounded w-24 text-center">
+                <span onClick={handleReply} className="self-center cursor-pointer bg-blue-500 mt-3 text-white px-2 rounded w-24 text-center">
                     إرسال
                 </span>
             </div>

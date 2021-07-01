@@ -53,8 +53,8 @@ export default function Orders() {
                     10-1 من 12 محادثة
                 </span>
             </div>
-            <div className="col-span-12  border-b-2 flex justify-between items-center py-2">
-                <table className="lg:w-full overflow-x-scroll">
+            <div className="col-span-12 overflow-x-scroll  border-b-2 flex justify-between items-center py-2">
+                <table className="conversation lgw-full " >
                     {data?data.map(ele=>
                         <a href={`/dashboard/conversation/conversation?pid=${ele.id}`}>
                             <tr className="w-full">

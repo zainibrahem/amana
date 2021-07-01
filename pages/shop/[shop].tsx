@@ -163,22 +163,10 @@ export default function Brand(props) {
                             <div className="flex flex-row-reverse py-2 px-3 justify-start items-center">
                                 <span className="text-xs">ترتيب</span>
                                 
-                                <div className="flex flex-row-reverse justify-between items-center mr-4">
-                                    <input type="checkbox" className="checkbox" name="checkbox" id="checkbox" />
-                                    <label className="text-xs mr-2" htmlFor="">اختر نوعا</label>
-                                </div>
-                                <div className="flex flex-row-reverse justify-between items-center mr-4">
-                                    <input type="checkbox" className="checkbox" name="checkbox" id="checkbox" />
-                                    <label className="text-xs mr-2" htmlFor="">اختر نوعا</label>
-                                </div>
-                                <div className="flex flex-row-reverse justify-between items-center mr-4">
-                                    <input type="checkbox" className="checkbox" name="checkbox" id="checkbox" />
-                                    <label className="text-xs mr-2" htmlFor="">اختر نوعا</label>
-                                </div>
                             </div>
                             <div className="flex flex-row-reverse justify-between items-center px-3 text-gray-500">
                                 <div className="flex flex-row-reverse justify-between items-center mr-4">
-                                    <span className="text-xs">عرض</span>
+                                    <span className="hidden lg:block text-xs">عرض</span>
                                 </div>
                                 <div className="flex flex-row-reverse justify-between items-center mr-4">
                                     <span className="text-xs">عدد المنتجات ضمن هذا التصنيف  <span className="text-xs numbers text-black" style={{fontWeight:"bold"}}>{items?items.length:0}</span> منتج</span>
@@ -191,12 +179,17 @@ export default function Brand(props) {
                     </div>
                 </div>
             
-                <div className="grid grid-cols-12 mt-4 lg:mt-5`  items-center gap-2 lg:grid-cols-10">
-                    <div className="col-span-12 flex justify-between items-center flex-wrap px-2">
+                <div className="grid grid-cols-12 mt-4 lg:mt-5  items-center gap-2 lg:grid-cols-10">
+                    <div className="hidden lg:flex col-span-12  justify-between items-center flex-wrap px-2">
                         {items&&items.length>0?items.map(ele=>
                             <ProductCard card={ele} type={"proposals"}></ProductCard>
                             ):""}
                     </div>
+                        {items&&items.length>0?items.map(ele=>
+                        <div className="col-span-6 flex lg:hidden justify-between items-center flex-wrap px-2">
+                                <ProductCard card={ele} type={"proposals"}></ProductCard>
+                        </div>
+                        ):""}
                 </div>
             </div>
         </div>

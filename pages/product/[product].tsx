@@ -271,7 +271,7 @@ export default function Product(props) {
                                 )  </span>
                                 
                                 <span className="text-xs relative" onMouseEnter={toggleShipping} onMouseLeave={toggleShipping}> عبر {shipping&&shipping.length>0?shipping[0].name:""}  
-                                    <div className={` absolute grid-cols-12 w-96 border-2 shadow bg-white rounded arrowss z-20 ${ship?"grid":"hidden"}`}>
+                                    <div className={` absolute grid-cols-12 transform translate-x-1/2 lg:translate-x-0 w-72 lg:w-96 border-2 shadow bg-white rounded arrowss z-20 ${ship?"grid":"hidden"}`}>
                                         <div className="col-span-12 bg-gray-100 flex justify-start items-center p-2">
                                             <span className="text-sm">خيارات الشحن</span>
                                         </div>
