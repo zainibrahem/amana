@@ -282,7 +282,7 @@ interface ListItem {
                             </a>
                         
                             {localStorage.getItem('token')?
-                              <a href="/dashboard/coupon" className={opens?"third":"hidden "}>
+                              <a href="/dashboard/coupons" className={opens?"third":"hidden "}>
                                     
                                 <g className="relative">
                                   <use xlinkHref="#sector" transform="rotate(210)" >

@@ -484,7 +484,7 @@ export default function Orders() {
                 </div>
                 <div className="w-full bg-gray-100 p-5 mt-16 shadow">
                     <div className="grid grid-cols-12">
-                        <div className="col-span-5 flex flex-col justify-start items-start">
+                        <div className="col-span-12 lg:col-span-5 flex flex-col justify-start items-start">
                             <div className="text-sm font-bold flex justify-between text-gray-700 w-full">
                                 <span className="w-1/2">
                                     رقم الطلب : 

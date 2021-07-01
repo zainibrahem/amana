@@ -762,7 +762,7 @@ export default function Orders() {
                                 </div>
                             </div>
                 </div>
-                <div className="col-span-10 bg-white shadow rounded pt-1 px-2">
+                {/* <div className="col-span-10 bg-white shadow rounded pt-1 px-2">
                         {orders?orders.map(ele=>
                                         <div className="w-full  rounded mt-2  p-2 cursor-pointer shadow" onClick={()=>setOrder(ele)}  style={{border:"1px solid #eee"}}>
                                             
@@ -806,7 +806,7 @@ export default function Orders() {
                                     </div>
                                 
                                     ):""}
-                </div>
+                </div> */}
             </div>
             
             
