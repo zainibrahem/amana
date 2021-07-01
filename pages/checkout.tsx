@@ -228,7 +228,7 @@ export default function Orders() {
     return (
         <div className="grid grid-cols-12 gap-2 bg-white rounded shadow p-4 mt-12" style={{border:"1px solid #eee"}} dir="rtl">
             <div className="col-span-4  p-2 flex flex-col justify-start items-start" >
-                <div className="rounded bg-gray-100 shadow p-2 flex flex-col w-full justify-between items-start" style={{border:"1px solid #eee"}}>
+                <div className="rounded bg-gray-50  p-2 flex flex-col w-full justify-between items-start" style={{border:"1px solid #eee"}}>
                 <span className="text-xs flex justify-between items-center">
                     <svg className="w-4 ml-2" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 145.254 136.317">
                         <path id="Path_11710" data-name="Path 11710" d="M4241.016,542.33v63.906a6.6,6.6,0,0,0,6.6,6.6h118.434a6.6,6.6,0,0,0,6.6-6.6V542.33a2.2,2.2,0,0,1,2.2-2.2h.219a4.4,4.4,0,0,0,4.4-4.4v-16.89a15.375,15.375,0,0,0-2.166-7.876l-17.332-29.084a11.034,11.034,0,0,0-9.439-5.369h-87.373a11.05,11.05,0,0,0-9.447,5.369l-17.33,29.084a15.413,15.413,0,0,0-2.166,7.876v16.89a4.4,4.4,0,0,0,4.4,4.4A2.4,2.4,0,0,1,4241.016,542.33Zm51.611,65.388a2.268,2.268,0,0,1-1.557.717h-25.285a2.2,2.2,0,0,1-2.2-2.2v-48a2.2,2.2,0,0,1,2.2-2.2h25.285a2.195,2.195,0,0,1,2.2,2.2v47.856A2.358,2.358,0,0,1,4292.627,607.718Zm75.617-1.482a2.2,2.2,0,0,1-2.2,2.2h-66.182a2.2,2.2,0,0,1-2.2-2.2v-48a2.2,2.2,0,0,1,2.2-2.2h48.006a2.2,2.2,0,0,1,2.2,2.2v45.657h4.4V556.036a4.4,4.4,0,0,0-4.4-4.4h-86.482a4.4,4.4,0,0,0-4.4,4.4v50.2a2.2,2.2,0,0,1-2.2,2.2h-9.379a2.2,2.2,0,0,1-2.2-2.2V542.33a2.2,2.2,0,0,1,2.2-2.2h118.434a2.2,2.2,0,0,1,2.2,2.2Zm-95.566-72.7V519.609a2.2,2.2,0,0,1,2.2-2.2h63.906a2.2,2.2,0,0,1,2.2,2.2v13.926a2.2,2.2,0,0,1-2.2,2.2h-63.906A2.2,2.2,0,0,1,4272.678,533.535Zm-34.08,0V518.844a11.009,11.009,0,0,1,1.547-5.624l17.33-29.084a6.629,6.629,0,0,1,5.67-3.223h87.373a6.635,6.635,0,0,1,5.664,3.219l17.328,29.088a10.973,10.973,0,0,1,1.549,5.624v14.691a2.2,2.2,0,0,1-2.2,2.2h-25.283a2.2,2.2,0,0,1-2.2-2.2V519.609a6.6,6.6,0,0,0-6.6-6.6h-63.906a6.6,6.6,0,0,0-6.6,6.6v13.926a2.2,2.2,0,0,1-2.2,2.2H4240.8A2.2,2.2,0,0,1,4238.6,533.535Z" transform="translate(-4234.201 -476.515)"/>
@@ -295,18 +295,49 @@ shipping  */}
                     </div>
                     </div>
                     
-
-                <div className="flex justify-around items-center mt-7 w-full border-t-2 pt-7">
+                <span className="text-sm mt-6 flex justify-start items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 ml-2" width="25" height="25" viewBox="0 0 145.111 145.111">
+                    <g id="Group_5344" data-name="Group 5344" transform="translate(-546.886 -2369.691)">
+                        <rect id="Rectangle_1724" data-name="Rectangle 1724" width="9.22" height="4.681" transform="translate(637.527 2440.342)"/>
+                        <path id="Path_11834" data-name="Path 11834" d="M3738.336,595.446H3656.2a2.2,2.2,0,0,1-2.2-2.2v-4.824a2.2,2.2,0,0,1,2.2-2.2h9.361a6.6,6.6,0,0,0,6.6-6.6V552.111a6.6,6.6,0,0,0-6.6-6.6h-54.751a6.6,6.6,0,0,0-6.6,6.6V579.63a6.6,6.6,0,0,0,6.6,6.6h9.361a2.2,2.2,0,0,1,2.2,2.2v4.824a2.2,2.2,0,0,1-2.2,2.2h-4.964a11.005,11.005,0,0,0-10.993,10.993v77.591a6.6,6.6,0,0,0,6.6,6.6h131.92a6.6,6.6,0,0,0,6.6-6.6V606.44A11.009,11.009,0,0,0,3738.336,595.446Zm-127.522-13.618a2.2,2.2,0,0,1-2.2-2.2V552.111a2.2,2.2,0,0,1,2.2-2.2h54.751a2.2,2.2,0,0,1,2.2,2.2V579.63a2.2,2.2,0,0,1-2.2,2.2Zm38.793,6.6v4.824a2.2,2.2,0,0,1-2.2,2.2H3628.97a2.2,2.2,0,0,1-2.2-2.2v-4.824a2.2,2.2,0,0,1,2.2-2.2h18.438A2.2,2.2,0,0,1,3649.606,588.424Zm95.325,95.607a2.2,2.2,0,0,1-2.2,2.2h-131.92a2.2,2.2,0,0,1-2.2-2.2V661.054a2.2,2.2,0,0,1,2.2-2.2h131.92a2.2,2.2,0,0,1,2.2,2.2Zm0-31.771a2.2,2.2,0,0,1-2.2,2.2h-131.92a2.2,2.2,0,0,1-2.2-2.2V606.44a6.6,6.6,0,0,1,6.6-6.6h123.125a6.6,6.6,0,0,1,6.6,6.6Z" transform="translate(-3057.332 1824.176)"/>
+                        <rect id="Rectangle_1725" data-name="Rectangle 1725" width="9.22" height="4.681" transform="translate(614.832 2440.342)"/>
+                        <rect id="Rectangle_1726" data-name="Rectangle 1726" width="9.22" height="4.681" transform="translate(660.223 2440.342)"/>
+                        <path id="Path_11835" data-name="Path 11835" d="M3621.182,582.353h22.693a4.621,4.621,0,0,0,4.613-4.613v-4.608H3643.8v2.339a2.2,2.2,0,0,1-2.2,2.2H3623.45a2.2,2.2,0,0,1-2.2-2.2v-2.339h-4.679v4.608A4.617,4.617,0,0,0,3621.182,582.353Z" transform="translate(-3015.357 1917.998)"/>
+                        <rect id="Rectangle_1727" data-name="Rectangle 1727" width="9.22" height="4.681" transform="translate(660.223 2456.156)"/>
+                        <rect id="Rectangle_1728" data-name="Rectangle 1728" width="31.916" height="4.681" transform="translate(564.9 2387.707)"/>
+                        <rect id="Rectangle_1729" data-name="Rectangle 1729" width="9.22" height="4.681" transform="translate(614.832 2456.156)"/>
+                        <rect id="Rectangle_1730" data-name="Rectangle 1730" width="9.22" height="4.681" transform="translate(637.527 2456.156)"/>
+                    </g>
+                    </svg>
+                    خيارات الدفع
+                </span>
+                {localStorage.getItem('paymentMethods')?JSON.parse(localStorage.getItem("paymentMethods")).map(ele=>
+                    <div className="flex w-full justify-start items-center mt-2">
+                        <input onChange={(e)=>setPayments(e.target.value)} type="radio" value={ele.code} name="payment" id="" />
+                        <span className="text-xs mr-2 text-gray-500">{ele.company_name}</span>
+                    </div>
+                ):""}
+                <span onClick={handleCheckout} className="text-white cursor-pointer bg-green-500 px-2 mt-6 rounded w-full text-center py-2 flex justify-center">
+                    CHECKOUT
+                <svg className="mr-2" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 158.304 113.622">
+                    <g id="Group_5322" data-name="Group 5322" transform="translate(-848.104 -1769.811)">
+                        <path fill="#fff" id="Path_11811" data-name="Path 11811" d="M3820.027,409.1H3683.71a11,11,0,0,0-10.993,10.993v91.636a11.005,11.005,0,0,0,10.993,10.993h136.317a11.009,11.009,0,0,0,10.993-10.993V420.089A11.006,11.006,0,0,0,3820.027,409.1Zm6.6,102.629a6.6,6.6,0,0,1-6.6,6.6H3683.71a6.6,6.6,0,0,1-6.6-6.6V462.858a2.2,2.2,0,0,1,2.2-2.2h145.111a2.2,2.2,0,0,1,2.2,2.2Zm0-57.662a2.2,2.2,0,0,1-2.2,2.2H3679.313a2.2,2.2,0,0,1-2.2-2.2V440.515a2.2,2.2,0,0,1,2.2-2.2h145.111a2.2,2.2,0,0,1,2.2,2.2Zm0-22.343a2.2,2.2,0,0,1-2.2,2.2H3679.313a2.2,2.2,0,0,1-2.2-2.2V420.089a6.6,6.6,0,0,1,6.6-6.6h136.317a6.6,6.6,0,0,1,6.6,6.6Z" transform="translate(-2824.613 1360.715)"/>
+                        <rect fill="#fff" id="Rectangle_1723" data-name="Rectangle 1723" width="25.391" height="5.222" transform="translate(961.139 1858.211)"/>
+                        <path fill="#fff" id="Path_11812" data-name="Path 11812" d="M3688.566,450.111a12.13,12.13,0,1,0-12.128-12.128A12.143,12.143,0,0,0,3688.566,450.111Zm0-19.863a7.733,7.733,0,1,1-7.73,7.735A7.743,7.743,0,0,1,3688.566,430.248Z" transform="translate(-2811.973 1417.639)"/>
+                    </g>
+                </svg>
+                </span>
+                {/* <div className="flex justify-around items-center mt-7 w-full border-t-2 pt-7"> */}
                     {/* <span className="cursor-pointer text-sm text-white rounded bg-gray-700 w-24 text-center">
                         تحديث السلة
                     </span> */}
-                    <span className="cursor-pointer text-sm text-white rounded bg-gray-700 w-24 text-center">
+                    {/* <span className="cursor-pointer text-sm text-white rounded bg-gray-700 w-24 text-center">
                         متابعة الشراء
-                    </span>
-                </div>
+                    </span> */}
+                {/* </div> */}
                
             </div>
-            <div className="col-span-5 p-5 flex flex-col items-start justify-between">
+            <div className="col-span-8 p-5 flex flex-col items-start justify-start">
                 {localStorage.getItem('token')? 
                     <>
                         <span className="text-sm flex justify-around items-center">
@@ -315,33 +346,52 @@ shipping  */}
                             </svg>
                             توصيل إلى : 
                         </span>
-                            <div className="grid w-full grid-cols-12 gap-2 mt-2">
+                            <div className="grid w-full grid-cols-12 gap-2 mt-2 overflow-y-scroll overflow-x-hidden scr" style={{maxHeight:"28rem"}}>
                                 {address?address.map((ele,index)=>
-                                    <div onClick={()=>setActive(parseInt(ele.id))} className={`${active == parseInt(ele.id)?"border-2 border-yellow-500":""} col-span-6 flex cursor-pointer  flex-col justify-between items-start rounded shadow p-2`} >
-                                    <span className="text-xs m-1">
-                                        {ele.address_title}
-                                    </span>
-                                    <span className="text-xs m-1">
-                                        {ele.address_type}
-                                    </span>
-                                    <span className="text-xs m-1">
-                                        {ele.address_line_1}
-                                    </span>
-                                    <span className="text-xs m-1">
-                                        {ele.city}
-                                    </span>
-                                    <span className="text-xs m-1">
-                                        {ele.phone}
-                                    </span>
-                                </div>
+                                    <div onClick={()=>setActive(parseInt(ele.id))} className={`${active == parseInt(ele.id)?"border-2 border-yellow-500":"border-2 border-gray-100"} col-span-4 flex cursor-pointer  flex-col justify-between items-start rounded  p-2`} >
+                                        <span className="text-xs  font-bold flex justify-start">
+                                            <img className="w-4 ml-1" src="./images/icons/ssdasdasdasd.svg" alt="" />
+                                            {ele.address_type}
+                                        </span>
+
+                                        <span className="text-xs mt-2 m-1">
+                                            {ele.address_title}
+                                        </span>
+                                        
+                                        <span className="text-xs m-1">
+                                            {ele.address_line_1}
+                                        </span>
+                                        <span className="text-xs m-1">
+                                            {ele.city}
+                                        </span>
+                                        <span className="text-xs m-1">
+                                            {ele.phone}
+                                        </span>
+                                    </div>
                                 ):""}
-                                <div className="col-span-12 flex justify-start items-center mt-2">
+
+                                    <div onClick={handleModal} className={`border-dashed border-2 col-span-4 flex cursor-pointer  flex-col justify-between items-start rounded  p-2`} >
+                                        <span className="text-xs m-1 text-yellow-500 font-bold">
+                                        <span className="text-lg ">+</span> إضافة عنوان جديد
+                                        </span>
+                                    </div>
+                                {/* <div className="col-span-4 flex justify-start items-center mt-2">
                                     <span onClick={handleModal} className="bg-white cursor-pointer text-xs py-1 rounded px-2 shadow" style={{border:"1px solid #eee"}}>
                                         إضافة عنوان جديد
                                     </span>
-                                </div>
-                                <div className="col-span-12 pt-4 border-t-2 border-dashed mt-2 flex flex-col justify-between items-start">
-                                    <span className="text-xs"> اترك رسالة للبائع</span>
+                                </div> */}
+                                <div className="col-span-12 pt-4 border-t-2 border-dashed mt-2 flex flex-col justify-start items-start">
+                                    <span className="text-xs flex justify-center items-center">  
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 ml-2" width="25" height="25" viewBox="0 0 145.111 127.276">
+                                        <g id="Group_5279" data-name="Group 5279" transform="translate(-2085.948 -535.155)">
+                                            <rect id="Rectangle_1740" data-name="Rectangle 1740" width="69.198" height="4.397" transform="translate(2123.904 572.99)"/>
+                                            <rect id="Rectangle_1741" data-name="Rectangle 1741" width="14.001" height="4.397" transform="translate(2179.102 593.359)"/>
+                                            <rect id="Rectangle_1742" data-name="Rectangle 1742" width="41.6" height="4.397" transform="translate(2123.904 593.359)"/>
+                                            <path id="Path_11864" data-name="Path 11864" d="M3974,229.459h3.523a2.194,2.194,0,0,1,2.162,2.59l-3.451,19-.826,4.547,4.049-2.225,42.984-23.644a2.2,2.2,0,0,1,1.061-.268h56.035a19.812,19.812,0,0,0,19.787-19.788V148.109a19.81,19.81,0,0,0-19.787-19.788H3974a19.806,19.806,0,0,0-19.787,19.788v61.563A19.809,19.809,0,0,0,3974,229.459Zm-15.391-81.35A15.408,15.408,0,0,1,3974,132.718h105.537a15.408,15.408,0,0,1,15.391,15.391v61.563a15.408,15.408,0,0,1-15.391,15.391h-57.734l-.49.268-35.873,19.735a2.245,2.245,0,0,1-1.062.268,2.193,2.193,0,0,1-2.162-2.59l2.744-15.092.471-2.59H3974a15.408,15.408,0,0,1-15.391-15.391Z" transform="translate(-1868.27 406.834)"/>
+                                        </g>
+                                    </svg>
+
+                                    اترك رسالة للبائع</span>
                                     <textarea  onChange={(e)=>setMessage(e.target.value)} className="text-xs mb-4  p-3 w-full h-28 border-2 mt-2" name="" id="" placeholder="اكتب رسالتك هنا" ></textarea>
                                 </div>
                             </div>
@@ -423,6 +473,21 @@ shipping  */}
                             <span className="w-full mr-2 text-sm ">
                                 اشتراك باخر الاخبار
                             </span>
+
+                            <div className="col-span-12 pt-4 border-t-2 border-dashed mt-2 flex flex-col justify-start items-start">
+                                    <span className="text-xs flex justify-center items-center">  
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 ml-2" width="25" height="25" viewBox="0 0 145.111 127.276">
+                                        <g id="Group_5279" data-name="Group 5279" transform="translate(-2085.948 -535.155)">
+                                            <rect id="Rectangle_1740" data-name="Rectangle 1740" width="69.198" height="4.397" transform="translate(2123.904 572.99)"/>
+                                            <rect id="Rectangle_1741" data-name="Rectangle 1741" width="14.001" height="4.397" transform="translate(2179.102 593.359)"/>
+                                            <rect id="Rectangle_1742" data-name="Rectangle 1742" width="41.6" height="4.397" transform="translate(2123.904 593.359)"/>
+                                            <path id="Path_11864" data-name="Path 11864" d="M3974,229.459h3.523a2.194,2.194,0,0,1,2.162,2.59l-3.451,19-.826,4.547,4.049-2.225,42.984-23.644a2.2,2.2,0,0,1,1.061-.268h56.035a19.812,19.812,0,0,0,19.787-19.788V148.109a19.81,19.81,0,0,0-19.787-19.788H3974a19.806,19.806,0,0,0-19.787,19.788v61.563A19.809,19.809,0,0,0,3974,229.459Zm-15.391-81.35A15.408,15.408,0,0,1,3974,132.718h105.537a15.408,15.408,0,0,1,15.391,15.391v61.563a15.408,15.408,0,0,1-15.391,15.391h-57.734l-.49.268-35.873,19.735a2.245,2.245,0,0,1-1.062.268,2.193,2.193,0,0,1-2.162-2.59l2.744-15.092.471-2.59H3974a15.408,15.408,0,0,1-15.391-15.391Z" transform="translate(-1868.27 406.834)"/>
+                                        </g>
+                                    </svg>
+
+                                    اترك رسالة للبائع</span>
+                                    <textarea  onChange={(e)=>setMessage(e.target.value)} className="text-xs mb-4  p-3 w-full h-28 border-2 mt-2" name="" id="" placeholder="اكتب رسالتك هنا" ></textarea>
+                            </div>
                         </div>
                         </>
                         :""
@@ -437,27 +502,7 @@ shipping  */}
                 </>}
               
             </div>
-            <div className="col-span-3 p-5 flex flex-col justify-start items-start">
-                <span className="text-sm">
-                    خيارات الدفع
-                </span>
-                {localStorage.getItem('paymentMethods')?JSON.parse(localStorage.getItem("paymentMethods")).map(ele=>
-                    <div className="flex w-full justify-start items-center mt-2">
-                        <input onChange={(e)=>setPayments(e.target.value)} type="radio" value={ele.code} name="payment" id="" />
-                        <span className="text-xs mr-2 text-gray-500">{ele.company_name}</span>
-                    </div>
-                ):""}
-                <span onClick={handleCheckout} className="text-white cursor-pointer bg-red-400 px-2 mt-6 rounded w-full text-center py-2 flex justify-center">
-                    CHECKOUT
-                <svg className="mr-2" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 158.304 113.622">
-                    <g id="Group_5322" data-name="Group 5322" transform="translate(-848.104 -1769.811)">
-                        <path fill="#fff" id="Path_11811" data-name="Path 11811" d="M3820.027,409.1H3683.71a11,11,0,0,0-10.993,10.993v91.636a11.005,11.005,0,0,0,10.993,10.993h136.317a11.009,11.009,0,0,0,10.993-10.993V420.089A11.006,11.006,0,0,0,3820.027,409.1Zm6.6,102.629a6.6,6.6,0,0,1-6.6,6.6H3683.71a6.6,6.6,0,0,1-6.6-6.6V462.858a2.2,2.2,0,0,1,2.2-2.2h145.111a2.2,2.2,0,0,1,2.2,2.2Zm0-57.662a2.2,2.2,0,0,1-2.2,2.2H3679.313a2.2,2.2,0,0,1-2.2-2.2V440.515a2.2,2.2,0,0,1,2.2-2.2h145.111a2.2,2.2,0,0,1,2.2,2.2Zm0-22.343a2.2,2.2,0,0,1-2.2,2.2H3679.313a2.2,2.2,0,0,1-2.2-2.2V420.089a6.6,6.6,0,0,1,6.6-6.6h136.317a6.6,6.6,0,0,1,6.6,6.6Z" transform="translate(-2824.613 1360.715)"/>
-                        <rect fill="#fff" id="Rectangle_1723" data-name="Rectangle 1723" width="25.391" height="5.222" transform="translate(961.139 1858.211)"/>
-                        <path fill="#fff" id="Path_11812" data-name="Path 11812" d="M3688.566,450.111a12.13,12.13,0,1,0-12.128-12.128A12.143,12.143,0,0,0,3688.566,450.111Zm0-19.863a7.733,7.733,0,1,1-7.73,7.735A7.743,7.743,0,0,1,3688.566,430.248Z" transform="translate(-2811.973 1417.639)"/>
-                    </g>
-                </svg>
-                </span>
-            </div>
+         
             <div className={`${addaddress?"flex":"hidden"} fixed z-50 top-0 left-0 h-screen w-full flex flex-col  justify-center items-center bg-black bg-opacity-70`}>
                         <div onClick={closeModal} className="rounded-full border-2 border-white w-8 h-6 mb-4 text-white text-center text-md cursor-pointer">
                             x

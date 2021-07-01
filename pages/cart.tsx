@@ -91,6 +91,23 @@ export default function Cart() {
     const toggleShipping = () =>{
         setShip(!ship);
     }
+    const dispatch = useAppDispatch();
+
+    const addCart = React.useCallback(() => {
+        dispatch({
+          type: 'AddToCart',
+        });
+      
+        }
+        ,[dispatch]
+      );
+       const changeCart = React.useCallback(() => {
+        dispatch({
+          type: 'CartChange'
+        });
+        }
+        ,[dispatch]
+      );
     const quanmin = (e,id,cart_id,index,prod_indexx) => {
         let quantity = parseInt(e.currentTarget.nextSibling.textContent);
         let newquan = quantity - 1;
@@ -108,7 +125,7 @@ export default function Cart() {
                     let carsCopy = [...carts];
                     carsCopy[index].items[prod_indexx].quantity = result.cart.items[prod_indexx].quantity;
                     carsCopy[index].items[prod_indexx].total = result.cart.items[prod_indexx].total;
-
+                    changeCart();
                     setCart(carsCopy);
                     // setCart([index]:result.cart)
                  })
@@ -134,7 +151,7 @@ export default function Cart() {
             let carsCopy = [...carts];
             carsCopy[index].items[prod_indexx].quantity = result.cart.items[prod_indexx].quantity;
             carsCopy[index].items[prod_indexx].total = result.cart.items[prod_indexx].total;
-
+            changeCart();
             setCart(carsCopy);
             // setCart([index]:result.cart)
          })
@@ -377,7 +394,7 @@ export default function Cart() {
                                                 </div>
                                             </div>
                                         )}
-                                       
+                                        
                                          </div>
                                      <div className="col-span-12 lg:col-span-4">
                                          <div className="bg-white mt-2 w-full shadow rounded p-3 flex flex-col justify-between items-center">
@@ -389,7 +406,7 @@ export default function Cart() {
                                             <div className="w-full bg-gray-50 text-xs flex justify-between items-center">
                                                 <span className="text-xs  w-full px-2 py-1 flex justify-between relative items-center " onMouseEnter={toggleShippings} onMouseLeave={toggleShippings}>
                                                     <span>
-                                                        التغليف
+                                                        التغليف <span className="text-yellow-500">(تغيير)</span>
                                                         <div className={` absolute grid-cols-12 w-full border-2 shadow bg-white rounded arrowss z-20 ${ships?"grid":"hidden"}`}>
                                                                     <div className="col-span-12 bg-gray-100 flex justify-start items-center p-2">
                                                                         <span className="text-sm">خيارات التغليف</span>
@@ -497,7 +514,7 @@ export default function Cart() {
                                                 } ر.ع
                                             </span>
                                             </div>
-                                            <div onClick={()=>buy(ele.shipping_zones?ele.shipping_zones.tax_id:"0",ele.shipping_zones?ele.shipping_zones.id:"",ele.ship_to_state_id,ele.handling_cost,ele.id,ele,ele.coupon.id)} className="rounded cursor-pointer flex justify-between items-center bg-yellow-500 text-xs text-black px-12 py-1 shadow mb-1 mt-4">
+                                            <div onClick={()=>buy(ele.shipping_zones?ele.shipping_zones.tax_id:"0",ele.shipping_zones?ele.shipping_zones.id:"",ele.ship_to_state_id,ele.handling_cost,ele.id,ele,ele.coupon?ele.coupon.id:0)} className="rounded cursor-pointer flex justify-between items-center bg-yellow-500 text-xs text-black px-12 py-1 shadow mb-1 mt-4">
                                                  شراء من هذا البائع
                                                  <svg xmlns="http://www.w3.org/2000/svg" className="mr-2 w-12" width="15.119" height="15.501" viewBox="0 0 21.119 21.501">
                                                      <g id="Group_5442" data-name="Group 5442" transform="translate(0 -0.001)">

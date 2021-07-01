@@ -50,11 +50,14 @@ export default function Offer(props) {
         }); 
     } 
     useEffect(() => {
-        fetch(`https://amanacart.com/api/shops`)
+        
+
+        fetch(`https://amanacart.com/api/brands`)
          .then(res => res.json())
          .then(result =>{
             setData(result.data);
-            console.log(result);
+            console.log('result.data');
+            console.log(result.data);
          })
          .catch(e => {
            console.log(e);
@@ -66,7 +69,7 @@ export default function Offer(props) {
                 <ul className="list-none flex flex-row-reverse justify-between items-center">
                     <li className="px-2 text-xs">الرئيسية</li>
                     |
-                    <li className="px-2 text-xs">المتاجر</li>
+                    <li className="px-2 text-xs">العلامات التجارية</li>
                 </ul>
             </div>
             <div className="col-span-12 mt-2 lg:mt-3">
@@ -83,7 +86,7 @@ export default function Offer(props) {
             <div className="col-span-12 mt-6">
                         <div className="flex flex-row-reverse justify-between w-full items-center flex-wrap">
                             <div className="flex flex-row-reverse py-2 px-3 justify-start items-center">
-                                <span className="text-xs">ترتيب</span>
+                                {/* <span className="text-xs">ترتيب</span>
                                 
                                 <div className="flex flex-row-reverse justify-between items-center mr-4">
                                     <input type="checkbox" className="checkbox" name="checkbox" id="checkbox" />
@@ -96,7 +99,7 @@ export default function Offer(props) {
                                 <div className="flex flex-row-reverse justify-between items-center mr-4">
                                     <input type="checkbox" className="checkbox" name="checkbox" id="checkbox" />
                                     <label className="text-xs mr-2" htmlFor="">اختر نوعا</label>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="flex flex-row-reverse justify-between items-center pr-3 text-gray-500 w-full lg:w-1/2 ">
                                 <div className="flex flex-row-reverse justify-between items-center mr-4 w-full">

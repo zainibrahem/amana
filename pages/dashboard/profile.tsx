@@ -25,7 +25,7 @@ const thumbsContainer = {
   
   const thumb = {
     display: 'inline-flex',
-    borderRadius: 2,
+    borderRadius: "100%",
     border: '1px solid #eaeaea',
     marginBottom: 8,
     marginRight: 8,
@@ -37,6 +37,7 @@ const thumbsContainer = {
   
   const thumbInner = {
     display: 'flex',
+    borderRadius: "100%",
     minWidth: 0,
     overflow: 'hidden'
   };
@@ -90,6 +91,7 @@ export default function Orders() {
     const openModal = () => {
         setModal(true)
     }
+    const Route = useAppState('Route');    
     const [addressType,setAddressType] = useState<string>()
     const [addresstitle,setAddressTitle] = useState<string>()
     const [addressdesc,setaddressdesc] = useState<string>()
@@ -98,12 +100,15 @@ export default function Orders() {
     const [state,setstate] = useState<string>()
     const [phone,setphone] = useState<string>()
     const [avatar,setAvatar] = useState([])
+    const [change,setChange] = useState<boolean>(false)
+    
     const {getRootProps, getInputProps} = useDropzone({
         accept: 'image/*',
         onDrop: acceptedFiles => {
             setAvatar(acceptedFiles.map(file => Object.assign(file, {
             preview: URL.createObjectURL(file)
           })));
+          setChange(true)
         }
       });
       const thumbs = avatar.map(file => (
@@ -326,7 +331,7 @@ export default function Orders() {
         <div className="col-span-12">
             <div className="grid grid-cols-12">
                 <div className="hidden lg:block col-span-4"></div>
-                <div className="col-span-12 lg:col-span-8">
+                <div className="col-span-12 lg:col-span-12">
                 <ul
                 className="flex mb-0 border-b-2 list-none  flex-row lg:mb-2"
                 role="tablist"
@@ -517,108 +522,137 @@ export default function Orders() {
             </div>
         </div>
      
-        <div className="col-span-12 order-3 md:order-3 mt-12">
+        <div className="col-span-12 order-3 md:order-3 mt-12" style={{minHeight:"28rem"}}>
             <div className="order-0 relative flex flex-col min-w-0 break-words w-full ">
                 <div className="sm:px-4 lg:px-0  flex-auto">
                 <div className="tab-content tab-space" >
                     <div  className={`${openTab == 4?"block":"hidden"} text-right flex flex-col justify-between items-end p-2`} id={`link3`}>
-                        <div className="grid grid-cols-12 w-full" dir="rtl">
+                        <div className="grid grid-cols-12 w-full gap-4" dir="rtl">
                         {adderss?adderss.map(ele=>
-                            <div className="col-span-12 flex justify-start items-center border-b-2 pb-5 pt-3">
-                                <div className="flex w-1/3 flex-col items-center justify-between">
-                                    <span className="text-sm mt-2">
-                                        {ele.address_line_1}
-                                    </span>
-                                    <span className="text-sm mt-2">
-                                        {ele.address_line_2}
-                                    </span>
-                                    <span className="text-sm mt-2">
-                                        {ele.address_title}
-                                    </span>
-                                    <span className="text-sm mt-2">
-                                        {ele.city}
-                                    </span>
-                                    <span className="text-sm mt-2">
-                                        {ele.country.name}
-                                    </span>
-                                    <span className="text-sm mt-2">
-                                        {ele.phone}
-                                    </span>
-                                </div>
-                                <div className="flex flex-col justify-start items-center h-full mr-20">
-                                    <span className="text-sm font-bold">
-                                        {ele.address_type}
-                                    </span>
-                                    <div className="flex justify-between items-center mt-5">
-                                        <span onClick={()=>handleEdit(ele.id)} className="cursor-pointer text-xs border-2 rounded  px-2">
-                                            تعديل
+                            <>
+                              <div  className={`col-span-3 flex justify-center items-center`} >
+                                  <div className="border-2 h-full border-gray-100 w-full mt-1 flex cursor-pointer  flex-col justify-between items-start rounded  p-2">
+
+                                        <span className="text-xs  font-bold flex justify-start">
+                                            <img className="w-4 ml-1" src={`${Route}/images/icons/ssdasdasdasd.svg`} alt="" />
+                                            {ele.address_type}
                                         </span>
-                                        <span onClick={()=>deleteAddress(ele.id)} className="cursor-pointer text-xs border-2 rounded mr-2 px-2">
-                                            حذف
+
+                                        <span className="text-xs mt-2 m-1">
+                                            {ele.address_title}
                                         </span>
+                                        
+                                        <span className="text-xs m-1">
+                                            {ele.address_line_1}
+                                        </span>
+                                        <span className="text-xs m-1">
+                                            {ele.city}
+                                        </span>
+                                        <span className="text-xs m-1">
+                                            {ele.phone}
+                                        </span>
+                                        <div className="flex justify-between items-center mt-1">
+                                            <span onClick={()=>handleEdit(ele.id)} className="cursor-pointer text-xs border-2 rounded  px-2">
+                                                تعديل
+                                            </span>
+                                            <span onClick={()=>deleteAddress(ele.id)} className="cursor-pointer text-xs border-2 rounded mr-2 px-2">
+                                                حذف
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                  </div>
+                                        
+                            </>
                         ):""}
-                            <div className="col-span-12 flex justify-center items-center">
-                                <span onClick={handlModals} className="cursor-pointer text-sm bg-gray-700 text-white px-3 py-1 mt-5 rounded">
-                                    إضافة عنوان جديد
-                                </span>
+                          <div onClick={handlModals} className={`col-span-3 flex justify-start items-center`} >
+                              <div className="w-9/12 h-full border-dashed border-2 flex cursor-pointer  flex-col justify-center items-center rounded  p-2">
+                                        <span className="text-xs m-1 text-yellow-500 font-bold flex flex-col justify-center items-center">
+                                            <span className="text-4xl ">+</span> <span className="mt-1">إضافة عنوان جديد</span>
+                                        </span>
                             </div>
+                           
+                        </div>
                         </div>
                     </div>
                     <div  className={`${openTab == 2?"block":"hidden"} text-right flex flex-col justify-between items-end p-2`} id={`link2`}>
-                        <div className="grid grid-cols-12 w-full">
-                            <div className="hidden lg:block col-span-4"></div>
-                            <div className="col-span-12 lg:col-span-4 flex flex-col justify-between items-end">
+                        <div className="grid gap-4 grid-cols-12 w-full">
+                            
+                            <div className="col-span-12 lg:col-span-6 flex flex-col justify-between items-end">
+                                <label htmlFor=""  className="w-full text-sm text-right">
+                                    * الاسم الأخير 
+                                </label>
+                                <input type="text" onChange={(e)=>setNickname(e.target.value)} value={nickname?nickname:""} placeholder="ابراهيم" className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded  mt-2 py-1" />
+                            </div>
+                            <div className="col-span-12 lg:col-span-6 flex flex-col justify-between items-end">
                                 <label htmlFor="" className="w-full text-sm text-right">
                                     * الاسم الأول 
                                 </label>
                                 <input type="text" onChange={(e)=>setName(e.target.value)} value={name?name:""} placeholder="زين" className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded  mt-2 py-1" />
-                                <label htmlFor=""  className="w-full text-sm text-right mt-4">
-                                    * الاسم الأخير 
+                            </div>
+                            <div className="hidden lg:block lg:col-span-2"></div>
+                            <div className="col-span-12 lg:col-span-4 flex flex-col justify-between items-end">
+                                <div className="flex w-full flex-col justify-between items-end">
+                                    <label htmlFor="" className=" text-sm text-right ">
+                                        الجنس
+                                    </label>
+                                    <div className="w-1/3 flex justify-between items-center mt-4 ml-16">
+                                        <label className="mr-4 lg:mr-2" htmlFor="male">
+                                            ذكر
+                                        </label>
+                                        <input  onChange={(e)=>{setMale(true),setFemale(false),setSex('app.male')}}  checked={male?true:false}   type="radio" name="sex" />
+                                        <label className="mr-4 lg:mr-2 ml-2 lg:ml-4" htmlFor="male">
+                                            أنثى
+                                        </label>
+                                        <input onChange={(e)=>{setMale(false),setFemale(true),setSex('app.female')}} checked={female?true:false}    type="radio" name="sex" />
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            <div className="col-span-12 lg:col-span-6 flex flex-col justify-between items-end">
+                                <label htmlFor="" className="w-full text-sm text-right">
+                                    * تاريخ الولادة 
                                 </label>
-                                <input type="text" onChange={(e)=>setNickname(e.target.value)} value={nickname?nickname:""} placeholder="ابراهيم" className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded  mt-2 py-1" />
+                                <input type="date" onChange={(e)=>setDob(e.target.value)} value={dob?dob:""} placeholder="example@gmail.com" className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded mt-2 py-1" />
+                            </div>
+                            <div className="col-span-12 lg:col-span-6 flex flex-col justify-end items-end">
+                                <span onClick={()=> setOpenTab(3)} className="cursor-pointer text-xs text-blue-500 mb-2">
+                                    تغيير كلمة السر
+                                </span>
+                            </div>
+                            <div className="col-span-12 lg:col-span-6 flex flex-col justify-between items-end">
                                 <label htmlFor="" className="w-full text-sm text-right mt-4">
                                     * البريد الالكتروني 
                                 </label>
                                 <input type="email" onChange={(e)=>setEmail(e.target.value)} value={email?email:""} placeholder="example@gmail.com" className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded  mt-2 py-1" />
-                                <label htmlFor="" className="w-full text-sm text-right mt-4">
-                                    * تاريخ الولادة 
-                                </label>
-                                <input type="date" onChange={(e)=>setDob(e.target.value)} value={dob?dob:""} placeholder="example@gmail.com" className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded  mt-2 py-1" />
+                            </div>
+                            <div className="col-span-12 flex flex-col justify-between items-end">
                                 <label htmlFor="" className="w-full text-sm text-right mt-4">
                                     الصورة الشخصية
                                 </label>
                                 <section className="container border-dashed border-2 flex flex-col justify-center items-center py-5">
                                     <div {...getRootProps({className: 'dropzone'})}>
                                         <input {...getInputProps()} />
-                                        <p className="cursor-pointer">قم بتحميل الملفات</p>
+                                        <p className="cursor-pointer">تحميل الصورة الشخصية</p>
                                     </div>
                                     <aside style={thumbsContainer}>
                                         {thumbs}
                                     </aside>
-                                </section>                                
-                                <div className="flex w-full justify-between items-center">
-                                    <div className="w-1/3 flex justify-between items-center mt-4 ml-16">
-                                        <label className="mr-4 lg:mr-2" htmlFor="male">
-                                            ذكر
-                                        </label>
-                                        <input  onChange={(e)=>{setMale(true),setFemale(false),setSex('app.male')}}  checked={male?true:false}   type="radio" name="sex" />
-                                        <label className="mr-4 lg:mr-2 ml-2 lg:ml-0" htmlFor="male">
-                                            أنثى
-                                        </label>
-                                        <input onChange={(e)=>{setMale(false),setFemale(true),setSex('app.female')}} checked={female?true:false}    type="radio" name="sex" />
-                                    </div>
-                                    <label htmlFor="" className=" text-sm text-right mt-4">
-                                        الجنس
-                                    </label>
-                                </div>
+                                    {change?
+                                        <div {...getRootProps({className: 'dropzone'})}>
+                                            <input {...getInputProps()} />
+                                            <p className="cursor-pointer">تغيير الصورة الشخصية</p>
+                                        </div>                            
+                                    :""
+                                    }
+                                </section>   
+                             </div>
+                             <div className="col-span-4 flex flex-col justify-between items-end"></div>
+                             <div className="col-span-4 flex flex-col justify-between items-end">
                                 <span onClick={()=> handleSubmit()} className="cursor-pointer w-full px-2 text-white bg-yellow-500 text-center mt-4 rounded">
                                     حفظ
                                 </span>
-                                
                             </div>
+                            
                             <div className="col-span-4"></div>
                         </div>
                     </div>

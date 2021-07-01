@@ -3,6 +3,7 @@ import { NavBar } from '../components/navbar/navbar';
 import Modal from '../components/modal/modal';
 import SideBar from '../components/sidebar/sidebar';
 import ProfileSide from '../components/sidebar/profileSidebar';
+import FilterSide from '../components/sidebar/FilterSide';
 import { useAppState, useAppDispatch } from '../contexts/app/app.provider';
 import Footer from '../components/footer/footer';
 import { AuthContext } from '../contexts/auth/auth.context';
@@ -98,6 +99,7 @@ interface ListItem {
       }
       const [alls,setAlls] = useState(0);
       const [route,setRoute] = useState<string>();
+      
       useEffect(() => {
         setRoute(window.location.href);
         fetch("https://amanacart.com/api/navbar")
@@ -146,6 +148,7 @@ interface ListItem {
     const wid = document.querySelector('#col').clientWidth;
     setEl2(wid) ;
     setWidths(window.innerWidth);
+  
   },[])
   const noti = useAppState('notification');
   const notiType = useAppState('notificationType');
@@ -153,8 +156,8 @@ interface ListItem {
     return (
         <>
         
-          <div className={`fixed top-20 right-0 ${notiType=="error"?"bg-red-400":"bg-green-400"} transition-all duration-500 ${noti?"opacity-100":"opacity-0 hidden"} z-50 bg-op-50 w-72 py-4 px-5`} >
-              <span className="w-24 text-white text-md py-2">{notiType=="error"?"Error : ":"Success : " } {noti}</span>
+          <div className={`fixed bottom-3 left-3 ${notiType=="error"?"bg-red-400":"bg-green-400"} transition-all text-white text-center rounded duration-500 ${noti?"opacity-100":"opacity-0 hidden"} z-50 bg-op-50 w-72 py-4 px-5`} >
+            {noti}
           </div>
         
         <div className="grid grid-cols-12 gap-4">
@@ -167,7 +170,7 @@ interface ListItem {
                {data?
                <>
                 {props.children}
-                {route.indexOf('dashboard')==-1?
+                {route.indexOf('dashboard')==-1 && route.indexOf('checkout') ==-1?
                 <Footer></Footer>
                 :""
                 }
@@ -178,11 +181,18 @@ interface ListItem {
             </div>
             <div id="col" className={isDrawerOpen?"hidden relative sm:col-span-4 md:col-span-3 lg:block lg:col-span-3 xl:col-span-2 overflow-x-hidden":"hidden overflow-x-hidden md:block md:col-span-1 lg:col-span-1 xl:col-span-1 relative"}>
             {data?
-            route.indexOf('dashboard')==-1?
+            route.indexOf('dashboard')==-1&&route.indexOf('categories')==-1?
                 <SideBar cats={data} width={el2}></SideBar>
                 :
               <>
+              {route.indexOf('categories')!=-1?
+              <>
+              <FilterSide width={el2}></FilterSide>
+              </>
+              :
               <ProfileSide width={el2}></ProfileSide>
+              }
+              
               </>
               :
               <>
@@ -257,11 +267,16 @@ interface ListItem {
                     </svg>
                   </div>
                   <div className="col-span-2 h-full flex flex-col justify-around items-center">
-                    <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
+                    {/* <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div> */}
+                    {/* <img className="w-5 " src="https://img.icons8.com/ios/50/000000/administrator-male--v1.png"/> */}
+                    <img className="w-5 " src={`${Route}/images/icons/user (1).svg`}/>
                     <span className="text-xs mt-1">حسابي</span>
                   </div>
                   <div className="col-span-2 h-full flex flex-col justify-around items-center">
-                  <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
+                  {/* <div className="w-8 h-2" style={{background:`url(${Route}/images/shopping-cart.svg)`,backgroundSize:"contain !important",backgroundPosition:"center !important",backgroundRepeat:"no-repeat !important"}}></div> */}
+                    {/* <img className="w-8 h-2" src={`${Route}/images/shopping-cart.svg`} alt="" /> */}
+                    {/* <img className="w-5" src="https://img.icons8.com/ios/50/000000/shopping-cart-loaded--v1.png"/> */}
+                    <img className="w-5" src={`${Route}/images/icons/shopping-cart-empty-side-view.svg`}/>
                     <span className="text-xs mt-1">السلة</span>
                   </div>
                   <div className="col-span-3 h-full flex flex-col justify-center items-center">
@@ -271,11 +286,15 @@ interface ListItem {
                     <div className="w-full h-0.7 rounded shadow mt-4  border-bottom"></div>
                   </div>
                   <div className="col-span-2 h-full flex flex-col justify-around items-center">
-                  <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
+                  {/* <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div> */}
+                  {/* <img className="w-8 h-2" src={`${Route}/images/icons/profile.svg`} alt="" /> */}
+                  {/* <img className="w-5" src="https://img.icons8.com/material-outlined/48/000000/sorting-answers.png"/> */}
+                  <img className="w-5" src={`${Route}/images/icons/list.svg`}/>
                     <span className="text-xs mt-1">تصنيفات</span>
                   </div>
                   <div className="col-span-2 h-full flex flex-col justify-around items-center">
-                  <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div>
+                  {/* <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div> */}
+                  <img className="w-5" src={`${Route}/images/icons/home.svg`}/>
                   <a href="/">
                     <span className="text-xs mt-1">الرئيسية</span>
                   </a>

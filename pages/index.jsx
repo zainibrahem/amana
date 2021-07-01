@@ -53,7 +53,6 @@ export default function Home() {
       .then(res => res.json())
       .then(result =>{
         setData(result.data);
-      
       })
       .catch(e => {
         console.log(e);

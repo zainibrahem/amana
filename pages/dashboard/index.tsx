@@ -79,7 +79,7 @@ export default function Index() {
                     </div>
                     <div className="flex flex-col justify-between items-start ">
                         <span className="text-sm lg:text-lg text-white">
-                         الطلبات
+                            الطلبات
                         </span>
                         <span className="text-lg lg:text-4xl text-white numbers" style={{fontWeight:"bold"}}>
                             {data?data.orders_count:""}

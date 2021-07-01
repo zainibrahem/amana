@@ -133,7 +133,7 @@ export default function Orders() {
             .then(result =>{
                 // setDispute(result.data);
                 console.log(result);
-                window.location.reload(false)
+                // window.location.reload(false)
             })
             .catch(e => {
             console.log(e);
@@ -534,97 +534,27 @@ export default function Orders() {
                                 </div>
                                 :""}
                                 <div className="w-full rounded shadow mt-2 p-2" style={{border:"1px solid #eee"}}>
-                                <div className="w-full flex justify-between items-center">
-                                    <span className="text-md">
-                                        الشحن
-                                    </span>
-                                </div>
-                                <div className="w-full flex justify-start items-center mt-2">
-                                    <span className="text-sm">
-                                        التوصيل إلى
-                                    </span>
-                                    <span className="text-xs font-bold mr-2">
-                                        {order?order.shipping_address:""}
-                                    </span>
-                                </div>
-                                
-                                
-                                
-                                {/* <div className="w-2/3 mt-12 mr-10 mb-6 pb-4">
-                                    <div className="w-11/12 bg-yellow-500 rounded relative" style={{height:"2px"}}>
-                                        <div className="flex justify-center items-center rounded-full w-8 h-6 bg-yellow-500 absolute right-0 top-1/2 transform -translate-y-1/2">
-                                            <span className="text-white text-xs font-bold">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="14.712" height="10.513" viewBox="0 0 14.712 10.513">
-                                                    <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" stroke-width="2"/>
-                                                </svg>
-                                                <span className="text-xs text-black absolute w-36 transform text-right translate-x-1/4 mt-3 right-0">
-                                                    تم استلام الطلب
-                                                </span>
-                                            </span>
-                                        </div>
-                                        <div className={`flex justify-center items-center rounded-full w-8 h-6 ${order&&order.order_status=='تم التأكيد'?"bg-yellow-500":"border-dashed border-2 border-yellow-500 bg-white"} absolute right-1/3 top-1/2 transform -translate-y-1/2`}>
-                                            {order&&order.order_status=='بانتظار التسليم'||order.order_status=='تم التأكيد'?
-                                                <>
-                                                   <span className="text-white text-xs font-bold">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14.712" height="10.513" viewBox="0 0 14.712 10.513">
-                                                        <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" stroke-width="2"/>
-                                                    </svg>
-                                                    <span className="text-xs text-black absolute w-36 transform translate-x-1/4 text-right -mr-2 mt-3 right-0">
-                                                        الطلب قيد التجهيز
-                                                    </span>
-                                                </span>
-                                                </>
-                                                :
-                                               <>
-                                                <span className="text-yellow-500 text-xs font-bold">
-                                                   2
-                                                </span>
-                                                <span className="text-xs text-black font-bold absolute w-36 transform text-right  mt-12 right-0" style={{transform:"translateX(25%)"}}>
-                                                    الطلب قيد التجهيز
-                                                </span>
-                                               </>
-                                            }
-                                          
-                                        </div>
-                                        <div className={`flex justify-center items-center rounded-full w-8 h-6 ${order&&order.order_status=='بانتظار التسليم'||order.order_status=='تم التأكيد'?"bg-yellow-500":"border-dashed border-2 border-yellow-500 bg-white"} absolute right-2/3 top-1/2 transform -translate-y-1/2`}>
-                                            {order&&order.order_status=='بانتظار التسليم'||order.order_status=='تم التأكيد'?
-                                                <>
-                                                   <span className="text-white text-xs font-bold">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14.712" height="10.513" viewBox="0 0 14.712 10.513">
-                                                        <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" stroke-width="2"/>
-                                                    </svg>
-                                                    <span className="text-xs text-black absolute w-36 transform translate-x-1/4 text-right -mr-2 mt-3 right-0">
-                                                        الطلب قيد التوصيل
-                                                    </span>
-                                                </span>
-                                                </>
-                                                :
-                                               <>
-                                                <span className="text-yellow-500 text-xs font-bold">
-                                                    3
-                                                </span>
-                                                <span className="text-xs text-black font-bold absolute w-36 transform text-right  mt-12 right-0" style={{transform:"translateX(25%)"}}>
-                                                    الطلب قيد التوصيل
-                                                </span>
-                                               </>
-                                            }
-                                          
-                                        </div>
-                                       
-                                        <div className="flex justify-center items-center rounded-full w-8 h-6 border-dashed border-2 border-yellow-500 absolute right-full top-1/2 transform -translate-y-1/2">
-                                            <span className="text-yellow-500 text-xs font-bold">
-                                                4
-                                            </span>
-                                            <span className="text-xs text-black font-bold absolute w-36 transform text-right  mt-12 right-0" style={{transform:"translateX(10%)"}}>
-                                                تم التوصيل
-                                            </span>
-                                        </div>
+                                    <div className="w-full flex justify-between items-center">
+                                        <span className="text-md">
+                                            الشحن
+                                        </span>
                                     </div>
+                                    <div className="w-full flex justify-start items-center mt-2">
+                                        <span className="text-sm">
+                                            التوصيل إلى
+                                        </span>
+                                        <span className="text-xs font-bold mr-2">
+                                            {order?order.shipping_address:""}
+                                        </span>
+                                    </div>
+                                  
+                                    
+                                    
+                                
+                                
                                 </div>
-                             */}
+                            </div>
                             
-                            </div>
-                            </div>
                         </div>
                         :
                             <div className="col-span-8 flex flex-col justify-center items-center">
@@ -634,36 +564,40 @@ export default function Orders() {
                                 </span>
                             </div>
                         }
+                        <div className="col-span-4"></div>
+                        <div className="col-span-8">
+                            
                         {order?
-                        <div className="col-span-12">
-                            <div className="w-full flex justify-end items-center">
-                                <div className="w-1/2 p-2 shadow  bg-white fixed bottom-7 flex justify-between items-center rounded" style={{border:"1px solid #eee"}}>
-                                    <div className="flex flex-col justify-between-items-center">
-                                        <span className="text-sm font-bold">الطلب {order?order.order_number.split('#'):""}</span>
-                                        <span className="text-xs text-gray-500">
-                                            {order?order.items.length:""} عنصر 
-                                        </span>
-                                    </div>
-                                    <div className="flex justify-between items-center">
-                                        <span onClick={handlModals} className=" w-28 text-center cursor-pointer rounded border-2 mr-2 border-gray-500 px-2 text-gray-600 flex justify-between items-center">
-                                            {/* cancelation */}
-                                            <img className="w-4" src={`${Route}/images/icons/cancel.svg`} alt="" />
-                                            الغاء عناصر
-                                        </span>
-                                        <span onClick={()=>orderAgain(order?order.id:"")} className="cursor-pointer w-28 text-center rounded border-2 mr-2 border-gray-500 px-2 text-gray-600">
-                                            إعادة الطلب
-                                        </span>
-                                        <span className="cancelation w-28 text-center rounded border-2 mr-2 border-gray-500 px-2 text-gray-600">
-                                            الفاتورة
-                                        </span>
-                                        <span onClick={handlModalss} className="cursor-pointer cancelation w-28 text-center rounded border-2 mr-2 border-gray-500 px-2 text-gray-600">
-                                            فتح نزاع
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                                        <div className="col-span-12">
+                                            <div className="w-full flex relative justify-end items-center">
+                                                <div className="w-full p-2 shadow  bg-white absolute bottom-2 flex justify-between items-center rounded" style={{border:"1px solid #eee"}}>
+                                                    <div className="flex flex-col justify-between-items-center">
+                                                        <span className="text-sm font-bold">الطلب {order?order.order_number.split('#'):""}</span>
+                                                        <span className="text-xs text-gray-500">
+                                                            {order?order.items.length:""} عنصر 
+                                                        </span>
+                                                    </div>
+                                                    <div className="flex justify-between items-center">
+                                                        <span onClick={handlModals} className=" w-28 text-center cursor-pointer rounded border-2 mr-2 border-gray-500 px-2 text-gray-600 flex justify-between items-center">
+                                                            {/* cancelation */}
+                                                            <img className="w-4" src={`${Route}/images/icons/cancel.svg`} alt="" />
+                                                            الغاء عناصر
+                                                        </span>
+                                                        <span onClick={()=>orderAgain(order?order.id:"")} className="cursor-pointer w-28 text-center rounded border-2 mr-2 border-gray-500 px-2 text-gray-600">
+                                                            إعادة الطلب
+                                                        </span>
+                                                        <span className="cancelation w-28 text-center rounded border-2 mr-2 border-gray-500 px-2 text-gray-600">
+                                                            الفاتورة
+                                                        </span>
+                                                        <span onClick={handlModalss} className="cursor-pointer cancelation w-28 text-center rounded border-2 mr-2 border-gray-500 px-2 text-gray-600">
+                                                            فتح نزاع
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    :""}
                         </div>
-                        :""}
                     </div>
                 </div>
             </div>

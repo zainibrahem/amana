@@ -8,6 +8,8 @@ export default function SearchBar (props) {
         const loaded = useAppState("loaded");
         const [brands,setBrands] = useState([]);
         const [data,setData] = useState(null);
+        const [advanced,setAdvanced] = useState<boolean>(false);
+        
         var brandss =[];
         const toggleSearch = (r) =>{
             if(r.target.value.length > 3){
@@ -37,7 +39,7 @@ export default function SearchBar (props) {
 
     return (
       <div>
-        <div className={data&&data.products.length>0?"transition-all duration-300 overflow-hidden	 ease-in-out delay-300 rounded w-full hidden md:flex flex-col justify-start items-center content-between  h-36 sm:h-80 bg-white shadow-md mt-7 mb-5 sm:mb-7":"transition-all overflow-hidden   delay-300 ease-in-out rounded w-full hidden md:flex flex-col justify-start items-center content-between h-16 bg-white shadow-md mt-7 mb-5 sm:mb-7 duration-300"}>
+        <div className={data&&data.products.length >0|| Filter?"transition-all duration-300 overflow-hidden	 ease-in-out delay-300 rounded w-full hidden md:flex flex-col justify-start items-center content-between  h-36 sm:h-80 bg-white shadow-md mt-7 mb-5 sm:mb-7":"transition-all overflow-hidden   delay-300 ease-in-out rounded w-full hidden md:flex flex-col justify-start items-center content-between h-16 bg-white shadow-md mt-7 mb-5 sm:mb-7 duration-300"}>
         <div className="w-full flex justify-around items-center pt-3">
             <div className='w-9/12 relative'>
                 <input type="text" onChange={toggleSearch} className={`rounded w-full border-2 focus:outline-none text-right text-sm py-1 ${Loading?"skeleton-box":""}`}/>
@@ -60,7 +62,7 @@ export default function SearchBar (props) {
                 </div>
             </span>
         </div>
-        <div className={data&&data.products.length>0?"mt-6 sm:mt-8 w-full":"mt-6 sm:mt-8 w-full"}>
+        <div className={data&&data.products.length>0&&!Filter?"mt-6 sm:mt-8 w-full":"mt-6 hidden sm:mt-8 w-full"}>
             <div className="grid grid-cols-12 gap-4">
                 <div className="hidden sm:flex col-span-3  flex-col justify-around items-end pr-5">
                 <span className="text-xs sm:text-xs text-md text-gray-400">العلامات التجارية المطابقة</span>
@@ -114,6 +116,11 @@ export default function SearchBar (props) {
                 </div>
             </div>
         </div>
+    
+        <div className={Filter?"mt-6 sm:mt-8 w-full":"mt-6 hidden sm:mt-8 w-full"}>
+                    
+        </div>
+
     </div>
         
         

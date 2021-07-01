@@ -177,7 +177,7 @@ export default function Product(props) {
             setImages(result.data.images);
         })
      }
-
+     const [quan,setquan] = useState<number>(1)
      const dispatch = useAppDispatch();
 
 
@@ -205,11 +205,14 @@ export default function Product(props) {
         }
         ,[dispatch]
       );
-
+    
+      const formss = new FormData();
      const AddToCart = (ele) =>{
-         fetch(`https://amanacart.com/api/addToCart/${ele}`, {
+        formss.append('quantity',quan.toString())
+         fetch(`https://amanacart.com/api/addToCart/${ele}?quantity=${quan}`, {
              method: 'post',
              headers: {'Content-Type':'application/json'},
+             body:formss
          })
          .then( async response => {
              const isJson = response.headers.get('content-type')?.includes('application/json');
@@ -250,7 +253,7 @@ export default function Product(props) {
      const prices = (number) =>{
         setPricess(number);
      }
-
+   
     return(
         <>
             <ShopModal shop={datas?datas.shop:""} handleModal={closeModal} modal={modal}></ShopModal>
@@ -408,9 +411,9 @@ export default function Product(props) {
                         <div className="flex flex-row-reverse  justify-between items-center w-full">
                             <div onClick={()=>AddToCart(datas?datas.slug:"")} className="cursor-pointer mt-2 rounded flex justify-center items-center bg-yellow-500 text-white px-3 lg:px-24  lg:py-1">إضافة للسلة</div>
                             <span className="border-2 flex flex-row-reverse mt-2 rounded">
-                                <span className="px-2 py-1 flex justify-center border-r-2 items-center">+</span>
-                                <span className="px-3 py-1 text-xs flex justify-center items-center">1</span>
-                                <span className="px-2 py-1 flex justify-center border-l-2 items-center">-</span>
+                                <span onClick={()=>setquan(quan+1)} className="cursor-pointer px-2 py-1 flex justify-center border-r-2 items-center">+</span>
+                                <span className="px-3 py-1 text-xs flex justify-center items-center">{quan}</span>
+                                <span onClick={()=> {if(quan>1) setquan(quan-1) }} className="cursor-pointer px-2 py-1 flex justify-center border-l-2 items-center">-</span>
                             </span>
                         </div>
                                     {datas&&datas.linked_items.length>0?
