@@ -66,32 +66,32 @@ export default function Orders() {
                                         {ele.shop.name}
                                     </span>
                                 </td>
-                                <td className="lg:w-1/2">
-                                    <p className="text-xs font-bold ">
+                                <td className="w-80 lg:w-1/2 px-2">
+                                    <p className="text-xs font-bold">
                                         {ele.message}
                                     </p>
                                 </td>
-                                <td>
-                                    <span className="text-white bg-red-600 px-1  rounded">
+                                <td className="w-20">
+                                    <span className="text-white bg-red-600 px-1   rounded">
                                         {ele.replies_count}
                                     </span>
                                 </td>
-                                <td>
-                                    <span className="text-white bg-red-600 px-1  rounded">
+                                <td className="w-40">
+                                    <span className="text-white bg-red-600 px-1   rounded">
                                         {ele.status=="ddd"?ele.status:"New"}
                                     </span>
                                 </td>
-                                <td>
+                                <td className="w-40">
                                     <span className="text-xs font-bold">
                                         الطلب رقم : <span className="text-blue-500"> {ele.order.order_number}</span>
                                     </span>
                                 </td>
-                                <td>
+                                <td  className="w-40">
                                     <span className="text-xs">
                                         {ele.time}
                                     </span>
                                 </td>
-                                <td>
+                                <td className="w-20">
                                     <span>
                                         <img src={`${Route}/images/shopping-cart.svg`} className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current " alt="" />
                                     </span>

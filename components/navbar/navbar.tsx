@@ -175,9 +175,9 @@ export const NavBar = (props) => {
                         </div>
                         <div className="w-full  h-full flex justify-end  items-center px-3">
                         
-                        <svg onClick={togglesearch} xmlns="http://www.w3.org/2000/svg" className='mr-3 ml-3 block md:hidden' width="18.179" height="18.179" viewBox="0 0 18.179 18.179">
+                        {/* <svg onClick={togglesearch} xmlns="http://www.w3.org/2000/svg" className='mr-3 ml-3 block md:hidden' width="18.179" height="18.179" viewBox="0 0 18.179 18.179">
                             <path id="search_icon" d="M6.817,0a6.817,6.817,0,0,0,0,13.634,6.817,6.817,0,0,0,3.693-.994l5.4,5.539,2.272-2.272-5.539-5.4a6.817,6.817,0,0,0,.994-3.693A6.817,6.817,0,0,0,6.817,0m0,2.272A4.545,4.545,0,1,1,2.272,6.817,4.545,4.545,0,0,1,6.817,2.272" fill="#000"/>
-                        </svg>
+                        </svg> */}
 
                         <div ref={cartRef} id="cart" className={cart?`cart hidden md:block w-80 shadow-2xl bg-white rounded absolute ${localStorage.getItem('token')?"left-44":"left-16" }  -bottom-2 transform translate-y-full `:`cart overflow-hidden hidden w-96 shadow-2xl bg-white rounded absolute  ${localStorage.getItem('token')?"left-60":"left-16" }  bottom-0 transform translate-y-full`}>
                         <div className="grid grid-cols-12 shadow-md 2xl:shadow-lg">
