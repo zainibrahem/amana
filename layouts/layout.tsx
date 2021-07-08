@@ -99,9 +99,23 @@ interface ListItem {
       }
       const [alls,setAlls] = useState(0);
       const [route,setRoute] = useState<string>();
-      
+      useEffect(()=>{
+        function handleResize() {
+          const eleWidth = document.querySelector('#col')?document.querySelector('#col').clientWidth:"";
+          eleWidth?
+          setEl2(eleWidth):""
+        }
+        // Add event listener
+        window.addEventListener("resize", handleResize);
+    
+        // Call handler right away so state gets updated with initial window size
+        handleResize();
+        // Remove event listener on cleanup
+        return () => window.removeEventListener("resize", handleResize);
+      })
       useEffect(() => {
         setRoute(window.location.href);
+        
         fetch("https://amanacart.com/api/navbar")
          .then(res => res.json())
          .then(result =>{
@@ -173,6 +187,7 @@ interface ListItem {
     const wid = document.querySelector('#col').clientWidth;
     setEl2(wid) ;
     setWidths(window.innerWidth);
+   
   
   },[])
   const noti = useAppState('notification');

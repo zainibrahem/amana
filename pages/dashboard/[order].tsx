@@ -620,7 +620,7 @@ export default function Orders() {
             
             
             <div className="grid lg:hidden grid-cols-10 gap-2 mt-7" dir="rtl">
-                <div className="col-span-10">
+                {/* <div className="col-span-10">
                     <div className="col-span-4 pt-2 px-2">
                                 <div className="w-full ">
                                     <span className="text-right  text-lg">
@@ -761,8 +761,8 @@ export default function Orders() {
                                     </div>
                                 </div>
                             </div>
-                </div>
-                {/* <div className="col-span-10 bg-white shadow rounded pt-1 px-2">
+                </div> */}
+                <div className="col-span-10 bg-white shadow rounded pt-1 px-2">
                         {orders?orders.map(ele=>
                                         <div className="w-full  rounded mt-2  p-2 cursor-pointer shadow" onClick={()=>setOrder(ele)}  style={{border:"1px solid #eee"}}>
                                             
@@ -806,7 +806,7 @@ export default function Orders() {
                                     </div>
                                 
                                     ):""}
-                </div> */}
+                </div>
             </div>
             
             
