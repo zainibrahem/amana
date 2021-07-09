@@ -154,27 +154,13 @@ export default function Orders() {
         form.append('payment_method',payment)
         postCart(form)
         .then(res=>{
-            console.log(res)
+            (res)
         })
         .catch(e=>{
-            console.log(e)
         })
 
     }
-    // useEffect(()=>{
-    //         console.log(cart)
-    //         console.log(tax_id)
-    //         console.log(taxrate)
-    //         console.log(zone_id)
-    //         console.log(handling_cost)
-    //         console.log(shipping_rate_id)
-    //         // {localStorage.getItem("packaging_options")?JSON.parse(localStorage.getItem("packaging_options")).map(ele=>
-    //         //   {
-    //         //       console.log(ele)
-    //         //   }
-    //         // ):""}
-    //     }
-    // )
+   
    
    
     var formBodys = [];
@@ -186,13 +172,10 @@ export default function Orders() {
     const addAddress = () =>{
         addAddresss()
         .then(data => {
-          console.log('address'); // JSON data parsed by `data.json()` call
-          console.log(data); // JSON data parsed by `data.json()` call
           window.location.reload(false)
         });
     }
     async function addAddresss() {
-        console.log(datass)
        const response = await fetch('https://amanacart.com/api/address/store', {
            method: 'post', // *GET, POST, PUT, DELETE, etc.
            headers: {
@@ -213,10 +196,8 @@ export default function Orders() {
          .then(res => res.json())
          .then(result =>{
             setaddinfo(result.data)
-            console.log(result.data)
          })
          .catch(e => {
-           console.log(e);
        });
     }
     const toggleShipping = () =>{
@@ -312,7 +293,7 @@ shipping  */}
                     خيارات الدفع
                 </span>
                 {localStorage.getItem('paymentMethods')?JSON.parse(localStorage.getItem("paymentMethods")).map(ele=>
-                    <div className="flex w-full justify-start items-center mt-2">
+                    <div key={ele.id} className="flex w-full justify-start items-center mt-2">
                         <input onChange={(e)=>setPayments(e.target.value)} type="radio" value={ele.code} name="payment" id="" />
                         <span className="text-xs mr-2 text-gray-500">{ele.company_name}</span>
                     </div>
@@ -348,7 +329,7 @@ shipping  */}
                         </span>
                             <div className="grid w-full grid-cols-12 gap-2 mt-2 overflow-y-scroll overflow-x-hidden scr" style={{maxHeight:"28rem"}}>
                                 {address?address.map((ele,index)=>
-                                    <div onClick={()=>setActive(parseInt(ele.id))} className={`${active == parseInt(ele.id)?"border-2 border-yellow-500":"border-2 border-gray-100"} col-span-4 flex cursor-pointer  flex-col justify-between items-start rounded  p-2`} >
+                                    <div key={index} onClick={()=>setActive(parseInt(ele.id))} className={`${active == parseInt(ele.id)?"border-2 border-yellow-500":"border-2 border-gray-100"} col-span-4 flex cursor-pointer  flex-col justify-between items-start rounded  p-2`} >
                                         <span className="text-xs  font-bold flex justify-start">
                                             <img className="w-4 ml-1" src="./images/icons/ssdasdasdasd.svg" alt="" />
                                             {ele.address_type}
@@ -430,8 +411,7 @@ shipping  */}
                                 </span>
                                 <select name="" onChange={(e) => {setstate(e.target.value)}} id="" className="w-full border-2 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
                                  {localStorage.getItem("states").length>0?JSON.parse(localStorage.getItem("states")).map(ele=>{
-                                        console.log(ele.name)
-                                     return (<option value={ele.id}>{ele.name}</option>)   
+                                     return (<option key={ele.id} value={ele.id}>{ele.name}</option>)   
                                     }
                                     ):""}
                                 </select>
@@ -520,7 +500,7 @@ shipping  */}
                         <select name="" id="" onChange={(e) => {setAddressType(e.target.value)}} className="w-full border-2 rounded mt-3 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
                             <option value="">نوع العنوان</option>
                             {addinfo?Object.values(addinfo.address_types).map(ele=>
-                                    <option value={ele}>{ele}</option>
+                                    <option key={ele} value={ele}>{ele}</option>
                             ):""}
                         </select>
                         
@@ -547,8 +527,7 @@ shipping  */}
                                 <select name="" onChange={(e) => {setstate(e.target.value)}} id="" className="w-full border-2 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
                                     <option value="">اختر ولاية</option>
                                     {localStorage.getItem("states").length>0?JSON.parse(localStorage.getItem("states")).map(ele=>{
-                                        console.log(ele.name)
-                                     return (<option value={ele.id}>{ele.name}</option>)   
+                                     return (<option key={ele.id} value={ele.id}>{ele.name}</option>)   
                                     }
                                     ):""}
                                 </select>

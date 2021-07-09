@@ -140,7 +140,6 @@ export default function Orders() {
     }
     
     async function editAddress(id) {
-        console.log(datass)
        const response = await fetch(`https://amanacart.com/api/address/${id}`, {
            method: 'put', // *GET, POST, PUT, DELETE, etc.
            headers: {
@@ -152,7 +151,6 @@ export default function Orders() {
        return response.json(); // parses JSON response into native JavaScript objects
     }
     async function addAddresss() {
-        console.log(datass)
        const response = await fetch('https://amanacart.com/api/address/store', {
            method: 'post', // *GET, POST, PUT, DELETE, etc.
            headers: {
@@ -178,11 +176,9 @@ export default function Orders() {
          .then(res => res.json())
          .then(result =>{
             setAddressInfo(result.data);
-            console.log(result.data)
             window.location.reload(false)
          })
          .catch(e => {
-           console.log(e);
        });
     }
     const handleEdit = (id) =>{
@@ -194,7 +190,6 @@ export default function Orders() {
          .then(res => res.json())
          .then(result =>{
             setAddressInfo(result.data);
-            console.log(result.data)
             seteditadd(result.data.address)
             setAddressType(result.data.address.address_type)
             setAddressTitle(result.data.address.address_title)
@@ -204,15 +199,12 @@ export default function Orders() {
             setphone(result.data.address.phone)
          })
          .catch(e => {
-           console.log(e);
        });
     }
 
     const addAddress = () =>{
         addAddresss()
         .then(data => {
-          console.log('address'); // JSON data parsed by `data.json()` call
-          console.log(data); // JSON data parsed by `data.json()` call
           window.location.reload(false)
         });
     }
@@ -229,10 +221,8 @@ export default function Orders() {
          .then(res => res.json())
          .then(result =>{
             setAddressInfo(result.data);
-            console.log(result.data)
          })
          .catch(e => {
-           console.log(e);
        });
     }
     const [openTab,setOpenTab] = useState(2);
@@ -247,7 +237,6 @@ export default function Orders() {
     const [sex,setSex] = useState<string>('app.male');
 
     useEffect(() => {
-        console.log(localStorage.getItem('token'));
         fetch(`https://amanacart.com/api/account/update`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`
@@ -262,7 +251,6 @@ export default function Orders() {
             setSex(`app.${result.data.sex}`)
          })
          .catch(e => {
-           console.log(e);
        });
      },[])
      useEffect(()=>{
@@ -314,14 +302,12 @@ export default function Orders() {
          
         postData(datas)
         .then(data => {
-            console.log(data);
             localStorage.setItem('name',data.data.name);
             localStorage.setItem('nice_name',data.data.nice_name);
             localStorage.setItem('avatar',data.data.avatar);
             localStorage.setItem('email',data.data.email);
             window.location.href="/dashboard"
         }).catch(e=>{
-            console.log(e)
         });
         
         
@@ -418,7 +404,7 @@ export default function Orders() {
                         <select name="" id="" onChange={(e) => {setAddressType(e.target.value)}} className="w-full border-2 rounded mt-3 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
                             <option value="">نوع العنوان</option>
                             {addinfo?Object.values(addinfo.address_types).map(ele=>
-                                    <option value={ele}>{ele}</option>
+                                    <option key={ele} value={ele}>{ele}</option>
                             ):""}
                         </select>
                         <span className="text-sm pb-1 mt-4 w-full">
@@ -448,7 +434,7 @@ export default function Orders() {
                                 <select name="" onChange={(e) => {setstate(e.target.value)}} id="" className="w-full border-2 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
                                     <option value="">اختر ولاية</option>
                                     {addinfo?Object.entries(addinfo.states).map(([key, ele])=>
-                                            <option value={key}>{ele}</option>
+                                            <option key={key} value={key}>{ele}</option>
                                     ):""}
                                 </select>
                             </div>
@@ -480,7 +466,7 @@ export default function Orders() {
                         <select name="" id="" onChange={(e) => {setAddressType(e.target.value)}} className="w-full border-2 rounded mt-3 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
                             <option  value="">نوع العنوان</option>
                             {addinfo?Object.values(addinfo.address_types).map(ele=>
-                                    <option selected={editadd&&editadd.address_type == ele?true:false} value={ele}>{ele}</option>
+                                    <option key={ele} selected={editadd&&editadd.address_type == ele?true:false} value={ele}>{ele}</option>
                             ):""}
                         </select>
                         <span className="text-sm pb-1 mt-4 w-full">
@@ -506,7 +492,7 @@ export default function Orders() {
                                 <select name="" onChange={(e) => {setstate(e.target.value)}} id="" className="w-full border-2 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
                                     <option value="">اختر ولاية</option>
                                     {addinfo?Object.entries(addinfo.states).map(([key, ele])=>
-                                            <option selected={editadd&&editadd.state.id == key? true:false} value={key}>{ele}</option>
+                                            <option key={key} selected={editadd&&editadd.state.id == key? true:false} value={key}>{ele}</option>
                                     ):""}
                                 </select>
                             </div>
@@ -530,7 +516,7 @@ export default function Orders() {
                         <div className="grid grid-cols-12 w-full gap-4" dir="rtl">
                         {adderss?adderss.map(ele=>
                             <>
-                              <div  className={`col-span-6 lg:col-span-3 flex justify-center items-center`} >
+                              <div key={ele.id} className={`col-span-6 lg:col-span-3 flex justify-center items-center`} >
                                   <div className="border-2 h-full border-gray-100 w-full mt-1 flex cursor-pointer  flex-col justify-between items-start rounded  p-2">
 
                                         <span className="text-xs  font-bold flex justify-start">

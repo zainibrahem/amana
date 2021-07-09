@@ -116,7 +116,6 @@ export default function AllOffers() {
                   })
               }, 5000)
           
-            console.log(data);
         })
     }
     useEffect(() => {
@@ -126,7 +125,6 @@ export default function AllOffers() {
              setData(result.data)
          })
          .catch(e => {
-           console.log(e);
        });  
      },[pids])
     return (

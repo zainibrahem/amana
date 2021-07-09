@@ -14,7 +14,6 @@ export default function Specials (props) {
     const brands = "العلامات التجارية";
     const Loading = useAppState('Loading');
 return (
-    console.log(props.brands),
    props.brands?
     <>
         <Title title={title}></Title>

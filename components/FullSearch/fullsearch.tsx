@@ -19,12 +19,8 @@ export default function FullSearchBar (props) {
                         brandss.push(result.data.products[i].brand)
                     }
                     setBrands(brandss);
-                    console.log(result.data);
-                    console.log("brands");
-                    console.log(brands);
                 })
                 .catch(e => {
-                    console.log(e);
                     setData(null);
                 }); 
             }

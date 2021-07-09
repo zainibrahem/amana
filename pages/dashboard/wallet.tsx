@@ -61,10 +61,8 @@ import Link from 'next/link'
              .then(res => res.json())
              .then(result =>{
                 setData(result)
-                console.log(result);
              })
              .catch(e => {
-               console.log(e);
            });
         },[])
         let datass = {};
@@ -102,13 +100,10 @@ import Link from 'next/link'
            return response.json(); // parses JSON response into native JavaScript objects
         }
         const handletransfer = () =>{
-            console.log(datass)
             Transfer()
             .then(data => {
-                console.log(data)
                 window.location.reload(false)
             }).catch(e => {
-                console.log(e)
             });
         }
      
@@ -282,7 +277,7 @@ import Link from 'next/link'
                         </thead>
                         <tbody>
                             {data?data.transactions.map(ele=>
-                                  <tr>
+                                  <tr key={ele.id}>
                                   <td className="text-center text-xs py-3 numbers" >
                                       {ele.updated_at}
                                   </td>
@@ -308,7 +303,7 @@ import Link from 'next/link'
                                   </td>
                                   <td className="text-center text-xs py-3">
                                       <span className="cursor-pointer text-xs flex justify-center  px-2 rounded">
-                                        <svg  width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#8899a4" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"></path></svg>
+                                        <svg  width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#8899a4" strokeWidth="2" ><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"></path></svg>
                                       </span>
                                   </td>
                               </tr>

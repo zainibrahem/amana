@@ -34,6 +34,7 @@ export default function Category(props) {
         suggested_products:[];
         suggested_categories:[];
         deals:[]
+        name:""
       }
     const [data,setData] = useState<Data>(); 
 
@@ -52,10 +53,8 @@ export default function Category(props) {
          .then(res => res.json())
          .then(result =>{
             setPros(result.data.products);
-            console.log(result.data);
          })
          .catch(e => {
-           console.log(e);
        });
      },[sort])
     useEffect(() => {
@@ -64,10 +63,8 @@ export default function Category(props) {
          .then(result =>{
            setData(result.data);
            setPros(result.data.products);
-            console.log(result.data);
          })
          .catch(e => {
-           console.log(e);
        });
      },[pid])
      const toggleSearch = (r) =>{
@@ -76,10 +73,8 @@ export default function Category(props) {
             .then(res => res.json())
             .then(result =>{
                 setPros(result.data.products);
-                console.log(result.data);
             })
             .catch(e => {
-                console.log(e);
             }); 
         }
         else{

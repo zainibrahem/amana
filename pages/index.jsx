@@ -55,7 +55,6 @@ export default function Home() {
         setData(result.data);
       })
       .catch(e => {
-        console.log(e);
     });
   },[userId])
   const loaded = useAppState('loaded');

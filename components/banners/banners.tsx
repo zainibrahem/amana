@@ -16,7 +16,6 @@ export default function Banners (props) {
         
         setTimeout(() => {
             setLoading1(false)
-            console.log('after 10')
         }, 1000);
     }
     const setsLoading2 = () =>{

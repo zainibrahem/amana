@@ -40,11 +40,8 @@ export default function subGroup(props) {
          .then(res => res.json())
          .then(result =>{
            setData(result.data);
-           console.log(result.data)
          })
          .catch(e => {
-           console.log(e);
-           console.log('didnt work');
        });
      },[pids])
      const loaded = useAppState('loaded');

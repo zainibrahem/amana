@@ -16,6 +16,7 @@ export default function Modal (props) {
     const [name,setName] = useState(null);
     const [subscribe,setSubscibe] = useState(false);
     const [agree,setAgree] = useState(false);
+    const Route = useAppState('Route')
     const handleemail = (e) =>{
         setEmail(e.target.value)
     }
@@ -86,7 +87,6 @@ export default function Modal (props) {
                 setError(error);
                 return Promise.reject(error);
             }
-            console.log(data);
             localStorage.setItem('token', data.data.api_token)
             // toggleNotification('تم بنجاح تسجيل حسابك','success');
             handleLogin();
@@ -96,8 +96,6 @@ export default function Modal (props) {
     useEffect(()=>{
         if(password != confirmation){
             setError('كلمتا السر غير متطابقتين');
-            console.log(password);
-            console.log(confirmation);
         }
         else{
             setError(null);
@@ -193,7 +191,6 @@ export default function Modal (props) {
                 setError(error);
                 return Promise.reject(error);
             }
-            console.log(data);
             localStorage.setItem('token', data.data.api_token)
             localStorage.setItem('nice_name', data.data.nice_name)
             localStorage.setItem('name', data.data.name)
@@ -227,11 +224,11 @@ export default function Modal (props) {
       useOutsideAlerters(modalRed);
     return(
         <div id="overlay"  className={` ${Modal?"block":"hidden"}  fixed w-screen h-screen bg-black bg-opacity-80  z-50`}>
-            <div ref={modalRed} className={`positionTopmobile ${Modal?"slideUps":"slideDowns"}  overflow-hidden modal rounded grid grid-cols-12 w-3/4 md:w-2/3  bg-white relative left-1/2 top-1/2 transform -translate-y-2/4 -translate-x-2/4`} style={{minHeight:"32.1rem"}}>
-            <div className="hidden md:block col-span-6 rounded  relative" style={{background:"url('./images/secondback.png')",backgroundSize:"cover",backgroundPosition:"right",backgroundRepeat:"no-repeat"}}>
-                <div className="bg-black rounded bg-opacity-90 w-full h-full absolute top-0 left-0"></div>
-                <div className="absolute rounded top-0 -right-1 w-full h-full" style={{background:"url('./images/signinback.png')",backgroundSize:"cover",backgroundPosition:"center right",backgroundRepeat:"no-repeat"}}></div>
-                <div className="relative z-10 w-full h-full flex flex-col py-2 justify-between items-center">
+            <div ref={modalRed} className={`positionTopmobile ${Modal?"slideUps":"slideDowns"}   overflow-hidden modal rounded grid grid-cols-12 w-3/4 md:w-2/3 h-v-12/12 lg:h-v-11/12  relative left-1/2 top-1/2 transform -translate-y-2/4 -translate-x-2/4`}>
+                <div className="hidden md:block col-span-6 rounded h-v-12/12 lg:h-v-11/12 relative" style={{background:"url('./images/secondback.png')",backgroundSize:"cover",backgroundPosition:"right",backgroundRepeat:"no-repeat"}}>
+                <div className="bg-black rounded bg-opacity-90 w-full h-v-12/12 lg:h-v-11/12 absolute top-0 left-0"></div>
+                <div className="absolute rounded top-0 -right-1 w-full h-v-12/12 lg:h-v-11/12"></div>
+                <div className="relative z-10 w-full h-v-12/12 lg:h-v-11/12 flex flex-col py-2 justify-between items-center">
                     <svg className="w-40 mt-12" xmlns="http://www.w3.org/2000/svg" width="210.35" height="50.178" viewBox="0 0 210.35 50.178">
                         <g id="Group_10" data-name="Group 10" transform="translate(53.943 12.936)">
                             <g id="Group_9" data-name="Group 9" transform="translate(0 0)">
@@ -257,10 +254,10 @@ export default function Modal (props) {
                     </svg>
                     
                     <div className="flex flex-col justify-between items-end">
-                        <span className="text-xl text-white text-right">
-                            لراحتك الشخصية
+                        <span className="text-2xl text-white text-right">
+                            أكبر منصة بيع بالتجزئة في سلطنة عمان
                         </span>
-                        <span className="text-xs text-white text-right">
+                        <span className="text-md text-white text-right mt-2">
                             كل ما تحتاجه لدينا
                         </span>
                     </div>
@@ -269,17 +266,17 @@ export default function Modal (props) {
                             <div className="col-span-3"></div>
                             <div className="col-span-6">
                                 <div className="flex w-full flex-col justify-start items-center text-white">
-                                    <span className="text-xs">حمل التطبيق</span>
+                                    <span className="text-xs mb-4">حمل التطبيق</span>
                                     <div className="flex justify-between items-center mt-2">
-                                        <img className="w-24" src="./images/google.png" alt="" />
-                                        <img className="w-24 ml-2" src="./images/appstore.png" alt="" />
+                                        <img className="w-24 2xl:w-36" src={`${Route}/images/google.png`} alt="" />
+                                        <img className="w-24 2xl:w-36 ml-2" src={`${Route}/images/appstore.png`} alt="" />
                                     </div>
                                 
                                 </div>
                             </div>
                             <div className="col-span-3"></div>
                         </div>
-                        <span className="mt-4 text-white" style={{fontSize:"12px"}}>
+                        <span className="mt-10 text-white" style={{fontSize:"12px"}}>
                             جميع الحقوق محفوظة لـ شركة أمانة
                             &copy;    
                             2021
@@ -291,235 +288,247 @@ export default function Modal (props) {
                 </div>
             </div>
 
-                <div  className={`${modalType==0? "centered" :"slideLeft" } col-span-12 md:col-span-6 rounded relative flex flex-col justify-between items-center pt-0 md:pt-12 p-3 md:p-12`}>
+                <div className="col-span-12 h-full md:col-span-6 bg-white">
+                    <div className={`${modalType==0? "centered" :"slideLeft" } h-full col-span-12 md:col-span-6 rounded relative flex flex-col justify-start items-center pt-0 md:pt-0 md:pb-0 p-3 md:p-12`}>
+                            <div className="flex flex-col w-full 2xl:justify-center justify-between items-center ">
+                                <div className="w-full h-20 flex justify-center items-center" style={{background:"url(./images/border.png)",backgroundPosition:"center bottom",backgroundRepeat:"no-repeat"}}>
+                                    <span className="text-sm cursor-pointer md:text-md">تسجيل الدخول</span>
+                                </div>
+                            </div>
+                            <div className="flex justify-between 2xl:justify-center items-center w-full ">
+                                <div className="w-1/2 2xl:w-1/3 flex justify-between rounded items-center p-3 shadow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18.305" height="18.674" viewBox="0 0 18.305 18.674">
+                                        <g id="Group_5195" data-name="Group 5195" transform="translate(0 0)">
+                                            <path id="Path_2" data-name="Path 2" d="M281.068,225a10.979,10.979,0,0,0-.161-1.9H272.1v3.6h5.043a4.322,4.322,0,0,1-1.866,2.837v2.333h3.009A9.118,9.118,0,0,0,281.068,225Z" transform="translate(-262.763 -215.445)" fill="#4285f4"/>
+                                            <path id="Path_3" data-name="Path 3" d="M37.243,331.847a8.937,8.937,0,0,0,6.189-2.254l-3.009-2.333A5.663,5.663,0,0,1,32,324.3H28.9v2.4A9.338,9.338,0,0,0,37.243,331.847Z" transform="translate(-27.907 -313.174)" fill="#34a853"/>
+                                            <path id="Path_4" data-name="Path 4" d="M4.045,155.98a5.592,5.592,0,0,1,0-3.575V150H.943a9.345,9.345,0,0,0,0,8.385Z" transform="translate(0.05 -144.853)" fill="#fbbc04"/>
+                                            <path id="Path_5" data-name="Path 5" d="M37.243,3.677a5.074,5.074,0,0,1,3.582,1.4h0l2.666-2.666A8.973,8.973,0,0,0,37.243-.018,9.335,9.335,0,0,0,28.9,5.128l3.1,2.4A5.585,5.585,0,0,1,37.243,3.677Z" transform="translate(-27.907 0.018)" fill="#ea4335"/>
+                                        </g>
+                                    </svg>
+
+                                    <span className="text-xs md:text-md cursor-pointer">تسجيل غوغل</span>
+                                </div>
+                                <div className="w-1/2 2xl:w-1/3 flex justify-between rounded items-center p-3 shadow  ml-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14.344" height="18.674" viewBox="0 0 14.344 26.782">
+                                        <path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f" d="M13.4,15.065l.744-4.847H9.5V7.073A2.423,2.423,0,0,1,12.23,4.454h2.114V.327A25.784,25.784,0,0,0,10.591,0C6.761,0,4.257,2.321,4.257,6.524v3.694H0v4.847H4.257V26.782H9.5V15.065Z" fill="#2359a3"/>
+                                    </svg>
+                                    <span className="text-xs md:text-md cursor-pointer text-right">تسجيل فيسبوك</span>
+                                </div>
+                            </div>
+                            <div className="w-full flex justify-between items-center mt-9">
+                                <hr className="w-5/12" />
+                                <span className="text-xs text-gray-300">أو</span>
+                                <hr className="w-5/12" />
+                            </div>
+                            
+                            <div className="form w-full grid grid-cols-12 mt-6">
+                                <div className="hidden lg:block  col-span-1 2xl:col-span-2"></div>
+                                <div className="col-span-12 lg:col-span-10 2xl:col-span-8 flex flex-col justify-center items-center">
+                                    {error?
+                                    <span className="error text-right text-xs w-full text-red-500">
+                                        {error}
+                                    </span>:<></>
+                                    }
+                                    {/* <label htmlFor="" className="self-end text-xs">البريد الالكتروني</label> */}
+                                    <input type="text" onChange={handleemail} className="w-full 2xl:h-14 rounded h-13 text-xs py-4 px-2 2xl:mt-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="البريد الالكتروني"  style={{border:"1px solid #dddfe2",color:"#1d2129"}}/>
+                                    {/* <label htmlFor="" className="self-end text-xs mt-4">كلمة السر</label> */}
+                                    <input type="password" onChange={handlepassword} className="w-full 2xl:h-14 mt-6 rounded h-13 py-4 2xl:mt-9 text-xs  border-2  px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="كلمة المرور" style={{border:"1px solid #dddfe2",color:"#1d2129"}}/>
+                                    <button onClick={handleLogin} className="cursor-pointer text-md mt-6 2xl:mt-9 w-full text-white py-4 flex justify-center 2xl:h-14 items-center rounded bg-yellow-500  h-13">
+                                        تسجيل دخول
+                                    </button>
+                                    <div className="w-full flex flex-col justify-between items-center mt-3">
+                                        <div className="w-full flex justify-center items-center">
+                                            {/* <div className="flex justify-between items-center">
+                                                <label htmlFor="" className="text-xs mr-2">تذكرني</label>
+                                                <input type="checkbox" className="rounded-full bg-white border-2 w-4 h-4 checked:bg-yellow-500 checked:border-transparent appearance-none" name="" id="" />
+                                            </div> */}
+                                            <span onClick={()=>toggleReset(1)} className="text-xs self-center flex cursor-pointer 2xl:mt-6">نسيت كلمة المرور؟</span>
+                                        </div>
+                                            <hr className="w-full mt-3" />
+                                            <button onClick={()=>toggleReset(5)} className="cursor-pointer 2xl:h-14 text-xs lg:text-md  mt-4 w-1/2 text-white py-4 flex justify-center items-center rounded bg-gray-700  h-13">
+                                                إنشاء حساب جديد
+                                            </button>
+                                        {/* <span className="text-xs self-end mt-2">
+                                            ليس لديك حساب؟ <span onClick={()=>toggleReset(5)} className="text-xs text-yellow-500 cursor-pointer">قم بالتسجيل الان</span>
+                                        </span> */}
+                                        <div className="flex flex-row-reverse justify-start items-center mt-3 2xl:mt-6 w-full">
+                                            <span className="text-xs font-bold ml-1 mobiletext">إنشاء حساب بائع</span>
+                                            <span className="text-xs mobiletext">لتنمية نشاطك التجاري عبر منصة أمانة</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="hidden lg:block col-span-1 2xl:col-span-2"></div>
+                            </div>
+                            <div className="hidden md:grid grid-cols-12 w-full mt-8">
+                                    <div className="hidden md:block col-span-3"></div>
+                                    <div className="col-span-12 md:col-span-6">
+                                        <div className="flex w-full flex-col justify-start items-center text-white">
+                                            <span className="text-xs mb-4">حمل التطبيق</span>
+                                            <div className="flex justify-between items-center mt-2">
+                                                <img className="w-24 2xl:w-36" src={`${Route}/images/google.png`} alt="" />
+                                                <img className="w-24 2xl:w-36 ml-2" src={`${Route}/images/appstore.png`} alt="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="hidden md:block col-span-3"></div>
+                                </div>
+                    </div>
+                    
+                    <div  className={`${modalType==1? "centered" :"slidesleft" } col-span-12 md:col-span-6 rounded relative flex flex-col justify-between items-center pt-0 md:pt-0 md:pb-0 p-3 md:p-12`}>
                         <div className="flex flex-col w-full justify-center items-center ">
                             <div className="w-full h-20 flex justify-center items-center" style={{background:"url(./images/border.png)",backgroundPosition:"center bottom",backgroundRepeat:"no-repeat"}}>
-                                <span className="text-sm cursor-pointer md:text-md">تسجيل الدخول</span>
+                                <span className="text-sm md:text-md">إعادة ضبط كلمة المرور</span>
                             </div>
-                        </div>
-                        <div className="w-full flex justify-between rounded items-center p-3 shadow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18.305" height="18.674" viewBox="0 0 18.305 18.674">
-                                <g id="Group_5195" data-name="Group 5195" transform="translate(0 0)">
-                                    <path id="Path_2" data-name="Path 2" d="M281.068,225a10.979,10.979,0,0,0-.161-1.9H272.1v3.6h5.043a4.322,4.322,0,0,1-1.866,2.837v2.333h3.009A9.118,9.118,0,0,0,281.068,225Z" transform="translate(-262.763 -215.445)" fill="#4285f4"/>
-                                    <path id="Path_3" data-name="Path 3" d="M37.243,331.847a8.937,8.937,0,0,0,6.189-2.254l-3.009-2.333A5.663,5.663,0,0,1,32,324.3H28.9v2.4A9.338,9.338,0,0,0,37.243,331.847Z" transform="translate(-27.907 -313.174)" fill="#34a853"/>
-                                    <path id="Path_4" data-name="Path 4" d="M4.045,155.98a5.592,5.592,0,0,1,0-3.575V150H.943a9.345,9.345,0,0,0,0,8.385Z" transform="translate(0.05 -144.853)" fill="#fbbc04"/>
-                                    <path id="Path_5" data-name="Path 5" d="M37.243,3.677a5.074,5.074,0,0,1,3.582,1.4h0l2.666-2.666A8.973,8.973,0,0,0,37.243-.018,9.335,9.335,0,0,0,28.9,5.128l3.1,2.4A5.585,5.585,0,0,1,37.243,3.677Z" transform="translate(-27.907 0.018)" fill="#ea4335"/>
-                                </g>
-                            </svg>
-
-                            <span className="text-sm md:text-md cursor-pointer">تسجيل دخول عن طريق غوغل</span>
-                        </div>
-                        <div className="w-full flex justify-between rounded items-center p-3 shadow mt-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14.344" height="26.782" viewBox="0 0 14.344 26.782">
-                                <path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f" d="M13.4,15.065l.744-4.847H9.5V7.073A2.423,2.423,0,0,1,12.23,4.454h2.114V.327A25.784,25.784,0,0,0,10.591,0C6.761,0,4.257,2.321,4.257,6.524v3.694H0v4.847H4.257V26.782H9.5V15.065Z" fill="#2359a3"/>
-                            </svg>
-                            <span className="text-sm md:text-md cursor-pointer">تسجيل دخول عن طريق فيسبوك</span>
-                        </div>
-                        <div className="w-full flex justify-between items-center mt-3">
-                            <hr className="w-5/12" />
-                            <span className="text-xs text-gray-300">أو</span>
-                            <hr className="w-5/12" />
                         </div>
                         
                         <div className="form w-full grid grid-cols-12">
-                            <div className="col-span-1 2xl:col-span-2"></div>
-                            <div className="col-span-10 2xl:col-span-8 flex flex-col justify-center items-center">
+                            <div className="hidden lg:block col-span-1 2xl:col-span-2"></div>
+                            <div className="col-span-12 lg:col-span-10 2xl:col-span-8 flex flex-col justify-center items-center">
                                 {error?
                                 <span className="error text-right text-xs w-full text-red-500">
                                     {error}
                                 </span>:<></>
                                 }
-                                <label htmlFor="" className="self-end text-xs">البريد الالكتروني</label>
-                                <input type="text" onChange={handleemail}    className="w-full mt-2 rounded h-13  bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="email@example.com" />
-                                <label htmlFor="" className="self-end text-xs mt-2">كلمة السر</label>
-                                <input type="password" onChange={handlepassword} className="w-full mt-2 rounded h-13   bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="***" />
-                                <button onClick={handleLogin} className="cursor-pointer w-full text-white flex justify-center items-center rounded bg-yellow-500 mt-2 h-13">
-                                    تسجيل دخول
+                                <span className="text-xs text-right mt-12">
+                                    لا تقلق , سنرسل لك رابط إعادة تعيين كلمة المرور 
+                                </span>
+                                {/* <label htmlFor="" className="self-end text-xs">البريد الالكتروني</label> */}
+                                <input type="text" onChange={handleemail}    className=" w-full mt-4 2xl:h-14 py-4 rounded h-13 text-xs px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="البريد الالكتروني"  style={{border:"1px solid #dddfe2",color:"#1d2129"}} />
+                                
+                                <button onClick={handleForget} className="w-full mt-4 2xl:h-14 text-white flex justify-center items-center rounded bg-yellow-500  h-13">
+                                    إرسال
                                 </button>
-                                <div className="w-full flex flex-col justify-between items-center mt-2">
-                                    <div className="w-full flex justify-between items-center">
-                                        <div className="flex justify-between items-center">
-                                            <label htmlFor="" className="text-xs mr-2">تذكرني</label>
-                                            <input type="checkbox" className="rounded-full bg-white border-2 w-4 h-4 checked:bg-yellow-500 checked:border-transparent appearance-none" name="" id="" />
-                                        </div>
-                                        <span onClick={()=>toggleReset(1)} className="text-xs self-end flex cursor-pointer ">نسيت كلمة السر؟</span>
+                                    <div className="w-full flex justify-between items-center mt-6">
+                                        <hr className="w-5/12" />
+                                        <span className="text-xs text-gray-300">أو</span>
+                                        <hr className="w-5/12" />
                                     </div>
-                                    <span className="text-xs self-end mt-2">
-                                        ليس لديك حساب؟ <span onClick={()=>toggleReset(5)} className="text-xs text-yellow-500 cursor-pointer">قم بالتسجيل الان</span>
+                                    <div className="w-full flex flex-col justify-between items-center mt-2">
+                                            <button onClick={()=>toggleReset(0)} className="cursor-pointer text-md mt-4 2xl:h-14  w-1/2 text-white py-4 flex justify-center items-center rounded bg-gray-700  h-13">
+                                                تسجيل الدخول
+                                            </button>
+                                    <span className="text-xs self-end mt-4">
+                                        <span onClick={()=>toggleReset(5)} className="text-xs  font-bold cursor-pointer">إنشاء حساب جديد</span> إن لم تكن مسجلا مسبقا
                                     </span>
                                 </div>
+                            
                             </div>
-                            <div className="col-span-1 2xl:col-span-2"></div>
+                            <div className="hidden lg:block col-span-1 2xl:col-span-2"></div>
                         </div>
-                        <div className="hidden md:blockgrid grid-cols-12 w-full">
+                        
+                        
+                        <div className="hidden md:grid grid-cols-12 w-full">
                                 <div className="hidden md:block col-span-3"></div>
                                 <div className="col-span-12 md:col-span-6">
                                     <div className="flex w-full flex-col justify-start items-center text-white">
-                                        <span className="text-xs">حمل التطبيق</span>
+                                        <span className="text-xs mb-4">حمل التطبيق</span>
                                         <div className="flex justify-between items-center mt-2">
-                                            <img className="w-24" src="./images/google.png" alt="" />
-                                            <img className="w-24 ml-2" src="./images/appstore.png" alt="" />
+                                            <img className="w-24 2xl:w-36" src={`${Route}/images/google.png`} alt="" />
+                                            <img className="w-24 2xl:w-36 ml-2" src={`${Route}/images/appstore.png`} alt="" />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="hidden md:block col-span-3"></div>
                             </div>
-                    </div>
-                
-                <div  className={`${modalType==1? "centered" :"slidesleft" } col-span-12 md:col-span-6 rounded relative flex flex-col justify-between items-center pt-0 md:pt-12 p-3 md:p-12`}>
-                    <div className="flex flex-col w-full justify-center items-center ">
-                        <div className="w-full h-20 flex justify-center items-center" style={{background:"url(./images/border.png)",backgroundPosition:"center bottom",backgroundRepeat:"no-repeat"}}>
-                            <span className="text-sm md:text-md">إعادة ضبط كلمة السر</span>
-                        </div>
-                    </div>
-                    
-                    <div className="form w-full grid grid-cols-12">
-                        <div className="col-span-1 2xl:col-span-2"></div>
-                        <div className="col-span-10 2xl:col-span-8 flex flex-col justify-center items-center">
-                            {error?
-                            <span className="error text-right text-xs w-full text-red-500">
-                                {error}
-                            </span>:<></>
-                            }
-                            <label htmlFor="" className="self-end text-xs">البريد الالكتروني</label>
-                            <input type="text" onChange={handleemail}    className=" w-full mt-4 rounded h-13  bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="email@example.com" />
+                        
+                        <div className="grid grid-cols-12">
                             
-                            <button onClick={handleForget} className="w-full mt-4 text-white flex justify-center items-center rounded bg-yellow-500  h-13">
-                                إرسال
-                            </button>
-
-                            <div className="w-full flex flex-col justify-between items-center mt-2">
-                                <div className="w-full flex justify-end items-center">
-                                
-                                    <span onClick={()=>toggleReset(0)} className="text-xs self-end flex cursor-pointer">تسجيل الدخول</span>
-                                </div>
-                                <span className="text-xs self-end mt-2">
-                                    ليس لديك حساب؟ <span onClick={()=>toggleReset(5)} className="text-xs text-yellow-500 cursor-pointer">قم بالتسجيل الان</span>
-                                </span>
-                            </div>
+                            <div className="col-span-1 2xl:col-span-2  mt-6"></div>
                           
+                            <div className="col-span-1 2xl:col-span-2 mt-6"></div>
                         </div>
-                        <div className="col-span-1 2xl:col-span-2"></div>
+                    
                     </div>
-                    
-                    
-                    <div className="hidden md:blockgrid grid-cols-12 w-full">
-                            <div className="hidden md:block col-span-3"></div>
-                            <div className="col-span-12 md:col-span-6">
-                                <div className="flex w-full flex-col justify-start items-center text-white">
-                                    <span className="text-xs">حمل التطبيق</span>
-                                    <div className="flex justify-between items-center mt-2">
-                                        <img className="w-24" src="./images/google.png" alt="" />
-                                        <img className="w-24 ml-2" src="./images/appstore.png" alt="" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="hidden md:block col-span-3"></div>
-                        </div>
-                    
-                    <div className="grid grid-cols-12">
-                        
-                        <div className="col-span-1 2xl:col-span-2  mt-6"></div>
-                        <div className="col-span-10 2xl:col-span-8 mt-6">
-                            <span className="w-full text-xs  text-right">
-                                عند الإتمام فإنك توافق على الشروط والخصوصية الخاصة بشركة أمانة
-                                <span className="text-yellow-500 mr-2">الشروط والخصوصية</span>
-                            </span>
-                        </div>
-                        <div className="col-span-1 2xl:col-span-2 mt-6"></div>
-                    </div>
-                  
-                </div>
-            
 
-                <div  className={`${modalType==4? "centered" :"slidesleft" } col-span-12 md:col-span-6 rounded relative flex flex-col justify-between items-center pt-0 md:pt-12 p-3 md:p-12`}>
-                    <div className="flex flex-col w-full justify-center items-center ">
-                        <div className="w-full h-20 flex justify-center items-center" style={{background:"url(./images/border.png)",backgroundPosition:"center bottom",backgroundRepeat:"no-repeat"}}>
-                            <span className="text-sm md:text-md">إعادة ضبط كلمة السر</span>
-                        </div>
-                    </div>
-                    
-                    <div className="form w-full grid grid-cols-12">
-                        <div className="col-span-1 2xl:col-span-2"></div>
-                        <div className="col-span-10 2xl:col-span-8 flex flex-col justify-center items-center">
-                            {error?
-                            <span className="error text-right text-xs w-full text-red-500">
-                                {error}
-                            </span>:<></>
-                            }
-                           
-                            <span>سيتم التحقق من تواجد بريدك الالكتروني في بياناتنا ثم نرسل لك بريد بخطوات إعادة ضبط كلمة السر</span>
-
-                            <div className="w-full flex flex-col justify-between items-center mt-2">
-                                <div className="w-full flex justify-end items-center">
-                                
-                                <a href="/">
-                                    <span className="text-xs self-end flex ">العودة للصفحة الرئيسية</span>
-                                </a> 
-                                </div>
-                                <span className="text-xs self-end mt-2">
-                                    ليس لديك حساب؟ <span onClick={()=>toggleReset(5)} className="text-xs text-yellow-500 cursor-pointer">قم بالتسجيل الان</span>
-                                </span>
-                            </div>
-                          
-                        </div>
-                        <div className="col-span-1 2xl:col-span-2"></div>
-                    </div>
-                    
-                    
-                    <div className="hidden md:blockgrid grid-cols-12 w-full">
-                            <div className="hidden md:block col-span-3"></div>
-                            <div className="col-span-12 md:col-span-6">
-                                <div className="flex w-full flex-col justify-start items-center text-white">
-                                    <span className="text-xs">حمل التطبيق</span>
-                                    <div className="flex justify-between items-center mt-2">
-                                        <img className="w-24" src="./images/google.png" alt="" />
-                                        <img className="w-24 ml-2" src="./images/appstore.png" alt="" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="hidden md:block col-span-3"></div>
-                        </div>
-                    
-                    <div className="grid grid-cols-12">
-                        
-                        <div className="col-span-1 2xl:col-span-2  mt-6"></div>
-                        <div className="col-span-10 2xl:col-span-8 mt-6">
-                            <span className="w-full text-xs  text-right">
-                                عند الإتمام فإنك توافق على الشروط والخصوصية الخاصة بشركة أمانة
-                                <span className="text-yellow-500 mr-2">الشروط والخصوصية</span>
-                            </span>
-                        </div>
-                        <div className="col-span-1 2xl:col-span-2 mt-6"></div>
-                    </div>
-                  
-                </div>
-            
-                <div  className={`${modalType==5? "centered" :"slideLeft" } col-span-12 md:col-span-6 rounded relative flex flex-col justify-between items-center pt-0 md:pt-3 p-3 md:p-12`}>
+                    <div  className={`${modalType==4? "centered" :"slidesleft" } col-span-12 md:col-span-6 rounded relative flex flex-col justify-between items-center pt-0 md:pt-0 md:pb-0 p-3 md:p-12`}>
                         <div className="flex flex-col w-full justify-center items-center ">
                             <div className="w-full h-20 flex justify-center items-center" style={{background:"url(./images/border.png)",backgroundPosition:"center bottom",backgroundRepeat:"no-repeat"}}>
-                                <span className="text-sm md:text-md cursor-pointer">تسجيل جديد</span>
+                                <span className="text-sm md:text-md">إعادة ضبط كلمة المرور</span>
                             </div>
                         </div>
-                        <div className="w-full flex justify-between rounded items-center p-3 shadow">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18.305" height="18.674" viewBox="0 0 18.305 18.674">
-                                <g id="Group_5195" data-name="Group 5195" transform="translate(0 0)">
-                                    <path id="Path_2" data-name="Path 2" d="M281.068,225a10.979,10.979,0,0,0-.161-1.9H272.1v3.6h5.043a4.322,4.322,0,0,1-1.866,2.837v2.333h3.009A9.118,9.118,0,0,0,281.068,225Z" transform="translate(-262.763 -215.445)" fill="#4285f4"/>
-                                    <path id="Path_3" data-name="Path 3" d="M37.243,331.847a8.937,8.937,0,0,0,6.189-2.254l-3.009-2.333A5.663,5.663,0,0,1,32,324.3H28.9v2.4A9.338,9.338,0,0,0,37.243,331.847Z" transform="translate(-27.907 -313.174)" fill="#34a853"/>
-                                    <path id="Path_4" data-name="Path 4" d="M4.045,155.98a5.592,5.592,0,0,1,0-3.575V150H.943a9.345,9.345,0,0,0,0,8.385Z" transform="translate(0.05 -144.853)" fill="#fbbc04"/>
-                                    <path id="Path_5" data-name="Path 5" d="M37.243,3.677a5.074,5.074,0,0,1,3.582,1.4h0l2.666-2.666A8.973,8.973,0,0,0,37.243-.018,9.335,9.335,0,0,0,28.9,5.128l3.1,2.4A5.585,5.585,0,0,1,37.243,3.677Z" transform="translate(-27.907 0.018)" fill="#ea4335"/>
-                                </g>
-                            </svg>
+                        
+                        <div className="form w-full grid grid-cols-12">
+                            <div className="col-span-1 2xl:col-span-2"></div>
+                            <div className="col-span-10 2xl:col-span-8 flex flex-col justify-center items-center">
+                                {error?
+                                <span className="error text-right text-xs w-full text-red-500">
+                                    {error}
+                                </span>:<></>
+                                }
+                            
+                                <span className="text-right text-xs mt-12 text-green-600 leading-6" >لقد أرسلنا لك رابط إعادة تعيين كلمة المرور إلى بريدك الالكتروني, تحقق من الصندوق الوارد </span>
 
-                            <span className="text-sm md:text-md cursor-pointer">تسجيل دخول عن طريق غوغل</span>
+                                <hr className="w-full mt-4" />
+                                <span className="text-xs text-right mt-4">
+                                    في حال واجهتك مشكلة ما قم بالاتصال بـ <span className="text-xs font-bold"><a href="">الدعم الفني</a></span>
+                                </span>
+                                <div className="w-full flex flex-col justify-between items-center mt-2">
+                                    <div className="w-full flex justify-center items-center">
+                                    <a href="/">
+                                        <button className="cursor-pointer text-xs mt-4 px-2  text-white py-4 flex justify-center items-center rounded bg-yellow-500 2xl:h-14  h-13">
+                                                العودة للصفحة الرئيسية
+                                            </button>
+                                        {/* <span className="text-xs self-end flex ">العودة للصفحة الرئيسية</span> */}
+                                    </a> 
+                                    </div>
+                                </div>
+                            
+                            </div>
+                            <div className="col-span-1 2xl:col-span-2"></div>
                         </div>
-                        <div className="w-full flex justify-between rounded items-center p-3 shadow mt-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14.344" height="26.782" viewBox="0 0 14.344 26.782">
-                                <path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f" d="M13.4,15.065l.744-4.847H9.5V7.073A2.423,2.423,0,0,1,12.23,4.454h2.114V.327A25.784,25.784,0,0,0,10.591,0C6.761,0,4.257,2.321,4.257,6.524v3.694H0v4.847H4.257V26.782H9.5V15.065Z" fill="#2359a3"/>
-                            </svg>
-                            <span className="text-sm md:text-md cursor-pointer">تسجيل دخول عن طريق فيسبوك</span>
+                        
+                        
+                        <div className="hidden md:grid grid-cols-12 w-full">
+                                <div className="hidden md:block col-span-3"></div>
+                                <div className="col-span-12 md:col-span-6">
+                                    <div className="flex w-full flex-col justify-start items-center text-white">
+                                        <span className="text-xs mb-4">حمل التطبيق</span>
+                                        <div className="flex justify-between items-center mt-2">
+                                            <img className="w-24 2xl:w-36" src={`${Route}/images/google.png`} alt="" />
+                                            <img className="w-24 2xl:w-36 ml-2" src={`${Route}/images/appstore.png`} alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="hidden md:block col-span-3"></div>
+                            </div>
+                        
+                        <div className="grid grid-cols-12">
+                            
+                            <div className="col-span-1 2xl:col-span-2  mt-6"></div>
+                            <div className="col-span-10 2xl:col-span-8 mt-6">
+                            </div>
+                            <div className="col-span-1 2xl:col-span-2 mt-6"></div>
                         </div>
-                        <div className="w-full flex justify-between items-center mt-3">
+                    
+                    </div>
+                
+                    <div  className={`${modalType==5? "centered" :"slideLeft" } col-span-12 md:col-span-6 rounded relative flex flex-col justify-between items-center pt-0 md:pt-0 md:pb-0 p-3 md:p-12`}>
+                            <div className="flex flex-col w-full justify-center items-center ">
+                                <div className="w-full h-20 flex justify-center items-center" style={{background:"url(./images/border.png)",backgroundPosition:"center bottom",backgroundRepeat:"no-repeat"}}>
+                                    <span className="text-sm cursor-pointer md:text-md">تسجيل جديد</span>
+                                </div>
+                            </div>
+                            <div className="flex 2xl:justify-center justify-between items-center w-full ">
+                                <div className="w-1/2 2xl:w-1/3 flex justify-between rounded items-center p-3 shadow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18.305" height="18.674" viewBox="0 0 18.305 18.674">
+                                        <g id="Group_5195" data-name="Group 5195" transform="translate(0 0)">
+                                            <path id="Path_2" data-name="Path 2" d="M281.068,225a10.979,10.979,0,0,0-.161-1.9H272.1v3.6h5.043a4.322,4.322,0,0,1-1.866,2.837v2.333h3.009A9.118,9.118,0,0,0,281.068,225Z" transform="translate(-262.763 -215.445)" fill="#4285f4"/>
+                                            <path id="Path_3" data-name="Path 3" d="M37.243,331.847a8.937,8.937,0,0,0,6.189-2.254l-3.009-2.333A5.663,5.663,0,0,1,32,324.3H28.9v2.4A9.338,9.338,0,0,0,37.243,331.847Z" transform="translate(-27.907 -313.174)" fill="#34a853"/>
+                                            <path id="Path_4" data-name="Path 4" d="M4.045,155.98a5.592,5.592,0,0,1,0-3.575V150H.943a9.345,9.345,0,0,0,0,8.385Z" transform="translate(0.05 -144.853)" fill="#fbbc04"/>
+                                            <path id="Path_5" data-name="Path 5" d="M37.243,3.677a5.074,5.074,0,0,1,3.582,1.4h0l2.666-2.666A8.973,8.973,0,0,0,37.243-.018,9.335,9.335,0,0,0,28.9,5.128l3.1,2.4A5.585,5.585,0,0,1,37.243,3.677Z" transform="translate(-27.907 0.018)" fill="#ea4335"/>
+                                        </g>
+                                    </svg>
+
+                                    <span className="text-xs md:text-md cursor-pointer">تسجيل غوغل</span>
+                                </div>
+                                <div className="w-1/2 2xl:w-1/3 flex justify-between 2xl:justify-around rounded items-center p-3 shadow  ml-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14.344" height="18.674" viewBox="0 0 14.344 26.782">
+                                        <path id="Icon_awesome-facebook-f" data-name="Icon awesome-facebook-f" d="M13.4,15.065l.744-4.847H9.5V7.073A2.423,2.423,0,0,1,12.23,4.454h2.114V.327A25.784,25.784,0,0,0,10.591,0C6.761,0,4.257,2.321,4.257,6.524v3.694H0v4.847H4.257V26.782H9.5V15.065Z" fill="#2359a3"/>
+                                    </svg>
+                                    <span className="text-xs md:text-md cursor-pointer text-right">تسجيل فيسبوك</span>
+                                </div>
+                            </div>
+                        <div className="w-full flex justify-between items-center mt-3 2xl:mt-5">
                             <hr className="w-5/12" />
                             <span className="text-xs text-gray-300">أو</span>
                             <hr className="w-5/12" />
@@ -534,31 +543,26 @@ export default function Modal (props) {
                                 </span>:<></>
                                 }
 
-                                <label htmlFor="" className="self-end text-xs">الاسم الكامل</label>
-                                <input type="text" onChange={handlename}    className="w-full mt-2 rounded h-13  bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="اسمك بالكامل" />
-                                <label htmlFor="" className="self-end text-xs">البريد الالكتروني</label>
-                                <input type="text" onChange={handleemail}    className="w-full mt-2 rounded h-13  bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="email@example.com" />
-                                <label htmlFor="" className="self-end text-xs mt-2">كلمة السر</label>
-                                <input type="password" onChange={handlepassword} className="w-full mt-2 rounded h-13   bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="***" />
-                                <label htmlFor="" className="self-end text-xs mt-2">تأكيد كلمة السر</label>
-                                <input type="password" onChange={handleconfirmation} className="w-full mt-2 rounded h-13   bg-gray-100 px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="***" />
-                                <button onClick={handleRegister} className="w-full cursor-pointer  text-white flex justify-center items-center rounded bg-yellow-500 mt-2 h-13">
+                                {/* <label htmlFor="" className="self-end text-xs">الاسم الكامل</label> */}
+                                <input type="text" onChange={handlename}    className="w-full mt-4 2xl:h-14 2xl:mt-8  py-4 text-xs rounded h-13   px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="اسمك بالكامل" style={{border:"1px solid #dddfe2",color:"#1d2129"}} />
+                                {/* <label htmlFor="" className="self-end text-xs">البريد الالكتروني</label> */}
+                                <input type="text" onChange={handleemail}    className="w-full mt-4 2xl:h-14 2xl:mt-8  py-4 text-xs rounded h-13   px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="البريد الالكتروني" style={{border:"1px solid #dddfe2",color:"#1d2129"}} />
+                                {/* <label htmlFor="" className="self-end text-xs mt-2">كلمة السر</label> */}
+                                <input type="password" onChange={handlepassword} className="w-full mt-4 2xl:h-14 2xl:mt-8  py-4 text-xs rounded h-13    px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="كلمة المرور" style={{border:"1px solid #dddfe2",color:"#1d2129"}} />
+                                {/* <label htmlFor="" className="self-end text-xs mt-2">تأكيد كلمة السر</label> */}
+                                <input type="password" onChange={handleconfirmation} className="w-full mt-4 2xl:mt-8  2xl:h-14 py-4 text-xs rounded h-13    px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="تأكيد كلمة المرور" style={{border:"1px solid #dddfe2",color:"#1d2129"}} />
+
+                                <span className="text-xs text-right mt-2 self-end">
+                                    عند تسجيلك فإنك توافق على <a href="">
+                                        شروط الاستخدام
+                                    </a>
+                                </span>
+                                <button onClick={handleRegister} className="w-full cursor-pointer  text-white flex justify-center items-center rounded bg-yellow-500 mt-4 2xl:h-14 h-13">
                                     تسجيل 
                                 </button>
                                 <div className="w-full flex flex-col justify-between items-center mt-2">
-                                    <div className="w-full flex justify-between items-center">
-                                        <span onClick={()=>toggleReset(1)} className="text-xs self-end flex cursor-pointer">نسيت كلمة السر؟</span>
-                                        <div className="flex justify-between items-center">
-                                            <label htmlFor="" className="text-xs mr-2">أنا أوافق على الشروط</label>
-                                            <input type="checkbox" onChange={toggleagree} className="rounded-full bg-white border-2 w-4 h-4 checked:bg-yellow-500 checked:border-transparent appearance-none" name="" id="" />
-                                        </div>
-                                    </div>
-                                    <div className="w-full flex justify-end mt-2 items-center">
-                                        <label htmlFor="" className="text-xs mr-2 self-end">شتراك بصحيفتنا اليومية</label>
-                                        <input type="checkbox" onChange={togglesubscibe} className="rounded-full self-end bg-white border-2 w-4 h-4 checked:bg-yellow-500 checked:border-transparent appearance-none" name="" id="" />
-                                    </div>
                                     <span className="text-xs self-end mt-2">
-                                        مسجل مسبقا؟ <span onClick={()=>toggleReset(0)} className="text-xs text-yellow-500 cursor-pointer">قم بتسجيل الدخول</span>
+                                        مسجل مسبقا؟ <span onClick={()=>toggleReset(0)} className="text-xs font-bold cursor-pointer">قم بتسجيل الدخول</span>
                                     </span>
                                 </div>
                             </div>
@@ -568,17 +572,17 @@ export default function Modal (props) {
                                 <div className="hidden md:block col-span-3"></div>
                                 <div className="col-span-12 md:col-span-6">
                                     <div className="flex w-full flex-col justify-start items-center text-white">
-                                        <span className="text-xs">حمل التطبيق</span>
+                                        <span className="text-xs 2xl:mb-4">حمل التطبيق</span>
                                         <div className="flex justify-between items-center mt-2">
-                                            <img className="w-24" src="./images/google.png" alt="" />
-                                            <img className="w-24 ml-2" src="./images/appstore.png" alt="" />
+                                            <img className="2xl:w-36 w-24" src={`${Route}/images/google.png`} alt="" />
+                                            <img className="2xl:w-36 w-24 ml-2" src={`${Route}/images/appstore.png`} alt="" />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="hidden md:block col-span-3"></div>
                             </div>
                     </div>
-                
+                </div>
             </div>
         </div>
     );

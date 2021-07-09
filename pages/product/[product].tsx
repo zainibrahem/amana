@@ -111,7 +111,6 @@ export default function Product(props) {
     const setAttr = (value,names) => {
         var obj = [value,names];
         setActive(obj)
-        console.log(active);
     }
     const [ship,setShip] = useState(false);    
     const toggleShipping = () =>{
@@ -121,7 +120,6 @@ export default function Product(props) {
         fetch(`https://amanacart.com/api/item/${pids}`)
          .then(res => res.json())
          .then(result =>{
-             console.log(result.data);
            setDatas(result.data);
            setAttributes(result.attributes);
            setShipping(result.shipping_options);
@@ -139,7 +137,6 @@ export default function Product(props) {
            setTitle(result.data.title);
          })
          .catch(e => {
-           console.log(e);
        });
      },[pids])
      const changeData = (e,attrid,attrvalue,pids,type) =>{
@@ -169,7 +166,6 @@ export default function Product(props) {
         fetch(`https://amanacart.com/api/inventory?attribute_id=${attrid}&attribute_value=${attrvalue}&id=${id}`)
         .then(res => res.json())
         .then(result =>{
-            console.log(result.data);
             setDatas(result.data);
             setId(result.data.id);
             setAttributes(result.attributes);
@@ -241,9 +237,33 @@ export default function Product(props) {
                    })
                }, 5000)
            
-             console.log(data);
          })
      }
+     const AddToFav = (ele) =>{
+        
+         fetch(`https://amanacart.com/api/wishlist/${ele}/add`,{
+            headers:{
+                'Authorization' : `Bearer ${localStorage.getItem('token')}`
+            }})
+         .then(res => res.json())
+         .then(result =>{
+            toggleNotification(result.message,'success');
+            setTimeout(() => {
+                dispatch({
+                    type: 'Nonotification',
+                  })
+              }, 5000)
+         })
+         .catch(e => {
+            toggleNotification(e.message,'error');
+            setTimeout(() => {
+                dispatch({
+                    type: 'Nonotification',
+                  })
+              }, 5000)
+       });
+     }
+    //  
      const handleModal = ()=>{
         setModal(!modal);
      }
@@ -410,6 +430,12 @@ export default function Product(props) {
                         </div>
                         <div className="flex flex-row-reverse  justify-between items-center w-full">
                             <div onClick={()=>AddToCart(datas?datas.slug:"")} className="cursor-pointer mt-2 rounded flex justify-center items-center bg-yellow-500 text-white px-3 lg:px-24  lg:py-1">إضافة للسلة</div>
+                            {localStorage.getItem('token')?
+                            <div onClick={()=>AddToFav(datas?datas.slug:"")} className="cursor-pointer mt-2 rounded flex justify-center items-center bg-red-500 text-white px-3 lg:px-3  lg:py-1">
+                                    &#9825;
+                            </div>
+                            :""
+                            }
                             <span className="border-2 flex flex-row-reverse mt-2 rounded">
                                 <span onClick={()=>setquan(quan+1)} className="cursor-pointer px-2 py-1 flex justify-center border-r-2 items-center">+</span>
                                 <span className="px-3 py-1 text-xs flex justify-center items-center">{quan}</span>

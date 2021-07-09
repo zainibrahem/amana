@@ -58,6 +58,7 @@ export default function Orders() {
         unit_price:""
         total:""
         image:""
+        id:""
     }
     interface Payment{
         code:""
@@ -131,7 +132,6 @@ export default function Orders() {
     formBody.push(encodedKey + "=" + encodedValue);
   }
   async function postData(datas) {
-      console.log(datas)
    const response = await fetch(`https://amanacart.com/api/dispute/${data?data.dispute_id:""}/response`, {
        method: 'POST', // *GET, POST, PUT, DELETE, etc.
        headers: {
@@ -147,12 +147,8 @@ const sendMessage = () =>{
     formData.append('attachments',files[0]);
     postData(formData)
     .then(data => {
-      console.log('data'); 
-      console.log(data); 
     })
     .catch(e=>{
-        console.log('e')
-        console.log(e)
     });
 }
   useEffect(() => () => {
@@ -168,10 +164,8 @@ const sendMessage = () =>{
          .then(res => res.json())
          .then(result =>{
             setData(result.data);
-            console.log(result.data);
          })
          .catch(e => {
-           console.log(e);
        });
      },[pid])
     return (
@@ -245,7 +239,7 @@ const sendMessage = () =>{
                         </span>
                        
                         {data?data.shipping_address.split(', ,').map(ele=>
-                             <span className=" font-bold text-xs mt-3 text-gray-700">
+                             <span key={ele} className=" font-bold text-xs mt-3 text-gray-700">
                              {ele}
                          </span>
                         ):""}
@@ -256,7 +250,7 @@ const sendMessage = () =>{
                         </span>
 
                         {data?data.billing_address.split(', ,').map(ele=>
-                             <span className=" font-bold text-xs mt-3 text-gray-700">
+                             <span key={ele} className=" font-bold text-xs mt-3 text-gray-700">
                              {ele}
                          </span>
                         ):""}
@@ -321,7 +315,7 @@ const sendMessage = () =>{
                 <div className="w-full p-4 flex justify-between items-start">
                     <div className="flex flex-col justify-between items-center">
                         {data?data.items.map(ele=>
-                            <div className="flex justify-between items-center mt-4">
+                            <div key={ele.id} className="flex justify-between items-center mt-4">
                                 <div className="w-12 h-14 rounded-full border-2 border-yellow-500" style={{background:`url(${ele.image})`,backgroundPosition:"center center",backgroundRepeat:"no-repeat",backgroundSize:"contain"}}></div>
                                 <div className="flex flex-col justify-between items-start">
                                     <span className="text-sm font-bold mr-2">

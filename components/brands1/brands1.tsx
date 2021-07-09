@@ -63,8 +63,6 @@ export default function Brands1 (props) {
                       prevEl: '.swiper-button-prev',
                     }}
                     breakpoints={breakpoints}
-                    // onSlideChange={() => console.log('slide change')}
-                    // onSwiper={(swiper) => console.log(swiper)}
                     >
                       {props.data?
                         props.data.map(ele=>

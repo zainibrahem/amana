@@ -49,8 +49,6 @@ const handleForget = () =>{
             return Promise.reject(error);
         }
         else{
-            console.log(data);
-            console.log(token);
             // window.location.href="/";
         }
         // localStorage.setItem('token', data.data.api_token)
@@ -77,7 +75,7 @@ return (
                     </svg>
                 </div>
                 <div className="flex flex-col w-full justify-center items-center ">
-                    <div className="w-full h-20 flex justify-center items-center" style={{background:"url(./images/border.png)",backgroundPosition:"center bottom",backgroundRepeat:"no-repeat"}}>
+                    <div className="w-full h-20 flex justify-center items-center" style={{background:"url(/images/border.png)",backgroundPosition:"center bottom",backgroundRepeat:"no-repeat"}}>
                         <span className="text-sm md:text-md">إعادة ضبط كلمة السر</span>
                     </div>
                 </div>
@@ -108,8 +106,8 @@ return (
                             <div className="flex w-full flex-col justify-start items-center text-white">
                                 <span className="text-xs">حمل التطبيق</span>
                                 <div className="flex justify-between items-center mt-2">
-                                    <img className="w-24" src="./images/google.png" alt="" />
-                                    <img className="w-24 ml-2" src="./images/appstore.png" alt="" />
+                                    <img className="w-24" src={`${Route}/images/google.png`} alt="" />
+                                    <img className="w-24 ml-2" src={`${Route}/images/appstore.png`} alt="" />
                                 </div>
                             </div>
                         </div>

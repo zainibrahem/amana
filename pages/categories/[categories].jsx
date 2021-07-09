@@ -30,7 +30,6 @@ export default function categories(props) {
            setData(result.data);
          })
          .catch(e => {
-           console.log(e);
        });
      },[pids])
      const loaded = useAppState('loaded');

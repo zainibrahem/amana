@@ -120,7 +120,6 @@ export default function Cart() {
                 })
                  .then(res => res.json())
                  .then(result =>{
-                    console.log(result);
                     // setDiscound(result.coupon_id)
                     let carsCopy = [...carts];
                     carsCopy[index].items[prod_indexx].quantity = result.cart.items[prod_indexx].quantity;
@@ -131,7 +130,6 @@ export default function Cart() {
                  })
                  .catch(e => {
                      setCoupon(null);
-                   console.log(e);
                });
             }
     }
@@ -146,7 +144,6 @@ export default function Cart() {
         })
          .then(res => res.json())
          .then(result =>{
-            console.log(result);
             // setDiscound(result.coupon_id)
             let carsCopy = [...carts];
             carsCopy[index].items[prod_indexx].quantity = result.cart.items[prod_indexx].quantity;
@@ -157,7 +154,6 @@ export default function Cart() {
          })
          .catch(e => {
              setCoupon(null);
-           console.log(e);
        });
     }
     const formData = new FormData();
@@ -173,7 +169,6 @@ export default function Cart() {
         })
          .then(res => res.json())
          .then(result =>{
-            console.log(result);
             setDiscound(result.coupon_id)
             let carsCopy = [...carts];
             carsCopy[index] = result.cart;
@@ -182,7 +177,6 @@ export default function Cart() {
          })
          .catch(e => {
              setCoupon(null);
-           console.log(e);
        });
     }
     const removeItem = (cart_id,pro_id,index) => {
@@ -194,14 +188,12 @@ export default function Cart() {
         })
          .then(res => res.json())
          .then(result =>{
-            console.log(result);
             let carsCopy = [...carts];
             carsCopy[index].items = result.cart.items;
             setCart(carsCopy);
          })
          .catch(e => {
              setCoupon(null);
-           console.log(e);
        });
     }
     const toggleShippings = () =>{
@@ -240,7 +232,6 @@ export default function Cart() {
         .then(res=>{
             setDiscound(null)
             setCoupon(null)
-            console.log(res)
             localStorage.setItem('packaging_options',JSON.stringify(res.cart.packaging_options))
             localStorage.setItem('shipping_options',JSON.stringify(res.cart.shipping_options))
             localStorage.setItem('paymentMethods',JSON.stringify(res.paymentMethods))
@@ -250,11 +241,9 @@ export default function Cart() {
             localStorage.setItem('shipping ',shipping[res.cart.id])
             
  
-            // console.log(res.cart.shipping_rate_id)
             window.location.href=`/checkout?cart=${res.cart.id}&tax_id=${text_id}&taxrate=${res.cart.taxrate}&zone_id=${res.cart.shipping_zone_id}&handling_cost=${res.cart.handling}&shipping_rate_id=${shippingId}&shippings=${shipping[res.cart.id]}&pack=${pack[res.cart.id]}&coupons=${coupon}`;
         })
         .catch(e=>{
-            console.log(e)
         })
 
     }
@@ -281,12 +270,9 @@ export default function Cart() {
         .then(res => res.json())
         .then(result =>{
            setCart(result.carts);
-           console.log('result.data')
            setPackaging(result.platform_default_packaging)
-           console.log(result)
         })
         .catch(e => {
-          console.log(e);
       });
         if(carts.length>0){
           var element = document.querySelector('#width').clientWidth;

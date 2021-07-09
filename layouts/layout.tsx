@@ -51,13 +51,9 @@ interface ListItem {
 
 
       const toggleLoader = React.useCallback((number) => {
-        setTimeout(()=>{
           dispatch({
             type: 'Loaded',
           });
-          console.log('ssssssssssssss')
-        }
-        ,4000);
 
        
         dispatch({
@@ -70,7 +66,6 @@ interface ListItem {
     
 
       const addtocart = (item) =>{
-        console.log(item.target.id);
         fetch(`https://amanacart.com/api/addToCart/${item.target.id}`, {
             method: 'post',
             headers: {'Content-Type':'application/json'},
@@ -86,7 +81,6 @@ interface ListItem {
                 return Promise.reject(error);
             }
             // setMessgae(data.message);
-            console.log(data);
         })
       }
       const updateCart = (number) => {
@@ -113,6 +107,9 @@ interface ListItem {
         // Remove event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
       })
+      useEffect(()=>
+        setRoute(window.location.href)
+      )
       useEffect(() => {
         setRoute(window.location.href);
         
@@ -120,7 +117,6 @@ interface ListItem {
          .then(res => res.json())
          .then(result =>{
            setData(result.data);
-           console.log(result.data);
            const wid = document.querySelector('#col').clientWidth;
            var elements = 0;
            var all = 0;
@@ -135,7 +131,6 @@ interface ListItem {
           setEl2(wid) ;
          })
          .catch(e => {
-           console.log(e);
        });
      },[CartChange])
       const [el2, setEl2] = useState(0);
@@ -163,7 +158,6 @@ interface ListItem {
         }, [dispatch]
         );
         const handlelogout = () =>{
-          console.log('asdasd');
           fetch('https://amanacart.com/api/auth/logout', {
               method: 'post',
               headers: {

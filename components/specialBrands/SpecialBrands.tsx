@@ -6,7 +6,6 @@ export default function SpecialBrands (props) {
   SwiperCore.use([Navigation,Autoplay, Pagination, Scrollbar]);
 
     return (
-      console.log(props.specs['featured_brands1']),
       props.specs?
       <div className="slider">
 
@@ -19,9 +18,6 @@ export default function SpecialBrands (props) {
         //   pauseOnMouseEnter:true,
         //   delay:4000
         // }}
-        // speed={500}
-        // onSlideChange={() => console.log('slide change')}
-        // onSwiper={(swiper) => console.log(swiper)}
       >
         
         {props.specs['featured_brands1']&&props.specs['featured_brands1'].length>0?

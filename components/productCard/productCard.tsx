@@ -35,7 +35,6 @@ export default function ProductCard (props) {
     const toggleCounter = (slug) => {
         setCounter(!counter);
 
-        console.log(slug);
         fetch(`https://amanacart.com/api/addToCart/${slug}`, {
             method: 'post',
             headers: {'Content-Type':'application/json'},
@@ -67,7 +66,6 @@ export default function ProductCard (props) {
                   })
               }, 5000)
           
-            console.log(data);
         })
     }
     return (

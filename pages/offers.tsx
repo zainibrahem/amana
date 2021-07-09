@@ -48,10 +48,8 @@ export default function Offer(props) {
          .then(result =>{
             setData(result);
             setItems(result[0].items);
-            console.log(result);
          })
          .catch(e => {
-           console.log(e);
        });
      },[])
     return (
@@ -60,7 +58,7 @@ export default function Offer(props) {
                 <div className="offers rounded h-28 px-2 flex justify-around items-center mt-8">
                         <div className="w-11/12 flex justify-between items-center">
                             {data?data.map((ele,index)=>
-                                <div onClick={()=>setac(index)} key={index} className={`cursor-pointer flex flex-col py-6 px-2 justify-between items-center ${actives==index? "shadow-md w-24 active-offer":""}`}>
+                                <div key={ele.id} onClick={()=>setac(index)}  className={`cursor-pointer flex flex-col py-6 px-2 justify-between items-center ${actives==index? "shadow-md w-40 active-offer":""}`}>
                                     <img className="w-11" src={ele.icon_image} alt="" />
                                     <span className="span text-gray-700 font-bold text-xs text-center mt-2">
                                         {ele.name}
@@ -81,7 +79,7 @@ export default function Offer(props) {
                 loop={true}
             >
                 {data?data.map((ele,index)=>
-                <SwiperSlide key={index}>
+                <SwiperSlide key={ele.id}>
                     <div onClick={()=>setac(index)} key={index} className={`cursor-pointer w-full flex flex-col py-6 px-2 justify-between items-center ${actives==index? "shadow-md w-full active-offer":""}`}>
                         <img className="w-11" src={ele.icon_image} alt="" />
                         <span className="span text-gray-700 font-bold text-xs text-center mt-2">
@@ -99,21 +97,6 @@ export default function Offer(props) {
                 <div className="grid grid-cols-12">
                     <div className="col-span-12">
                         <div className="flex flex-row-reverse justify-between w-full items-center flex-wrap">
-                            {/* <div className="flex flex-row-reverse py-2 px-3 justify-start items-center">
-                                <span className="text-xs">ترتيب</span>
-                                <div className="flex flex-row-reverse justify-between items-center mr-4">
-                                    <input type="checkbox" className="checkbox" name="checkbox" id="checkbox" />
-                                    <label className="text-xs mr-2" htmlFor="">اختر نوعا</label>
-                                </div>
-                                <div className="flex flex-row-reverse justify-between items-center mr-4">
-                                    <input type="checkbox" className="checkbox" name="checkbox" id="checkbox" />
-                                    <label className="text-xs mr-2" htmlFor="">اختر نوعا</label>
-                                </div>
-                                <div className="flex flex-row-reverse justify-between items-center mr-4">
-                                    <input type="checkbox" className="checkbox" name="checkbox" id="checkbox" />
-                                    <label className="text-xs mr-2" htmlFor="">اختر نوعا</label>
-                                </div>
-                            </div> */}
                             <div className="flex flex-row-reverse justify-between items-center px-3 text-gray-500">
                                 <div className="flex flex-row-reverse justify-between items-center mr-4">
                                     <span className="hidden lg:block text-xs">عرض</span>
@@ -126,7 +109,7 @@ export default function Offer(props) {
                         <div className="w-full flex justify-between items-center px-2">
                             <div className="grid grid-cols-12 lg:grid-cols-10 gap-2  mt-6 w-full">
                                 {items&&items.length>0?items.map(ele=>
-                                <div className="col-span-6 lg:col-span-2 flex justify-center items-center">
+                                <div key={ele.id} className="col-span-6 lg:col-span-2 flex justify-center items-center">
                                     <ProductCard card={ele} type={"proposals"}></ProductCard>
                                 </div>
                                 ):""}

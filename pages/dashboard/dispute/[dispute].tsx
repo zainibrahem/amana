@@ -106,6 +106,7 @@ export default function Orders() {
         user:User
         customer:Customer
         reply:""
+        id:""
     }
 
     const {getRootProps, getInputProps} = useDropzone({
@@ -212,10 +213,8 @@ export default function Orders() {
         postAppeal(appealData)
         .then(result =>{
             setStep(3);
-            console.log(result.data)
         })
         .catch(e => {
-          console.log(e);
         });
      }
     const handlAppealModal = (appealData) =>{
@@ -243,7 +242,6 @@ export default function Orders() {
      }
 
      async function postReply(data) {
-         console.log(pid)
         const response = await fetch(`https://amanacart.com/api/dashboard/send_reply/${messages[0].id}`, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
@@ -254,14 +252,11 @@ export default function Orders() {
         return response.json(); // parses JSON response into native JavaScript objects
      }
      const handleReply = () => {
-        console.log(reply);
         formData.append('message',reply);
         formData.append('attachment',avatar[0]);
         postDatas()
         
         .then(data => {
-            console.log('data'); // JSON data parsed by `data.json()` call
-            console.log(data);
             closeModalsMessgae();
             setMessageSection(true)
             setPidess(pidss + 1)
@@ -278,10 +273,8 @@ export default function Orders() {
          .then(result =>{
             setDispute(result.data);
             setOrders(result.data.order)
-            console.log(result.data)
          })
          .catch(e => {
-           console.log(e);
        });
     }
     const handlModalssMessage = () =>{
@@ -311,8 +304,6 @@ export default function Orders() {
     const solved = () => {
         postData()
         .then(data => {
-          console.log('data'); // JSON data parsed by `data.json()` call
-          console.log(data); // JSON data parsed by `data.json()` call
           window.location.reload();
         });
     }
@@ -343,8 +334,6 @@ export default function Orders() {
         DisForm.append('return_goods','1')
         postDis(DisForm)
         .then(data => {
-            console.log('data'); // JSON data parsed by `data.json()` call
-            console.log(data);
             window.location.reload() 
           });
     }
@@ -356,7 +345,6 @@ export default function Orders() {
             }})
          .then(res => res.json())
          .then(result =>{
-            console.log(result.data);
             setData(result.data.order);
             setDisputes(result.data.dispute)
             setMessages(result.data.messages)
@@ -369,7 +357,6 @@ export default function Orders() {
            
          })
          .catch(e => {
-           console.log(e);
        });
      },[pidss])
     return (
@@ -412,7 +399,7 @@ export default function Orders() {
                         <div className="flex justify-center items-center rounded-full w-8 h-6 bg-yellow-500 absolute right-0 top-1/2 transform -translate-y-1/2">
                             <span className="text-white text-xs font-bold">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14.712" height="10.513" viewBox="0 0 14.712 10.513">
-                                    <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" stroke-width="2"/>
+                                    <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" strokeWidth="2"/>
                                 </svg>
                             </span>
                             <span className="text-xs absolute w-24 transform text-center translate-y-full mt-7">
@@ -423,7 +410,7 @@ export default function Orders() {
                             <div className="flex justify-center items-center rounded-full w-8 h-6 bg-yellow-500 absolute right-1/3 top-1/2 transform -translate-y-1/2">
                                 <span className="text-white text-xs font-bold">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="14.712" height="10.513" viewBox="0 0 14.712 10.513">
-                                        <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" stroke-width="2"/>
+                                        <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" strokeWidth="2"/>
                                     </svg>
                                 </span>
                                 <span className="text-xs absolute w-24 transform text-center translate-y-full mt-7">
@@ -443,7 +430,7 @@ export default function Orders() {
                             <div className="flex justify-center items-center rounded-full w-8 h-6 bg-yellow-500 absolute right-2/3 top-1/2 transform -translate-y-1/2">
                                 <span className="text-white text-xs font-bold">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="14.712" height="10.513" viewBox="0 0 14.712 10.513">
-                                        <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" stroke-width="2"/>
+                                        <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" strokeWidth="2"/>
                                     </svg>
                                 </span>
                                 <span className="text-xs absolute w-24 transform text-center translate-y-full mt-7">
@@ -463,7 +450,7 @@ export default function Orders() {
                             <div className="flex justify-center items-center rounded-full w-8 h-6 bg-yellow-500 absolute right-full  top-1/2 transform -translate-y-1/2">
                                 <span className="text-white text-xs font-bold">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="14.712" height="10.513" viewBox="0 0 14.712 10.513">
-                                        <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" stroke-width="2"/>
+                                        <path id="Path_293" data-name="Path 293" d="M1187.471,717.879l4.9,4.833,8.407-8.4" transform="translate(-1186.769 -713.608)" fill="none" stroke="#fff" strokeWidth="2"/>
                                     </svg>
                                 </span>
                                 <span className="text-xs absolute w-24 transform text-center translate-y-full mt-7">
@@ -592,7 +579,7 @@ export default function Orders() {
                     {messages&&messages[0].replies.length>0?
                         messages[0].replies.map(ele=>
                             ele.customer?
-                                <div className="col-span-6 flex flex-row justify-start items-center mt-4">
+                                <div key={ele.id} className="col-span-6 flex flex-row justify-start items-center mt-4">
                                     <span className="text-xs text-gray-700 ml-6">
                                         {ele.customer.name}
                                     </span>
@@ -602,7 +589,7 @@ export default function Orders() {
                                     </span>
                                 </div>    
                             :
-                                <div className="col-span-6 flex flex-row-reverse justify-start items-center mt-4">
+                                <div key={ele.id} className="col-span-6 flex flex-row-reverse justify-start items-center mt-4">
                                     <span className="text-xs text-gray-700 mr-6">
                                         {ele.user.name}
                                     </span>
@@ -682,7 +669,7 @@ export default function Orders() {
                             <select name="" id="" onChange={(e) => setType(e.target.value)} className="w-full border-2 rounded mt-3 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
                                 <option value="">اختر سببا</option>
                                 {dispute?Object.entries(dispute.dispute_types).map(([ele, i])=>
-                                    <option value={ele}>{i.detail}</option>
+                                    <option key={ele} value={ele}>{i.detail}</option>
                                 ):
                                     ""
                                 }
@@ -709,7 +696,7 @@ export default function Orders() {
                                     <select name="" id=""  onChange={(e)=>setPro(e.target.value)} className="w-full border-2 rounded mt-3 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
                                         <option value="all">كل المنتجات</option>
                                         {orders?orders.items.map(ele=>
-                                            <option value={ele.id}>{ele.description}</option>
+                                            <option key={ele.id} value={ele.id}>{ele.description}</option>
                                         ):""}
                                     </select>
                                 </div>

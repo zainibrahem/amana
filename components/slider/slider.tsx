@@ -16,9 +16,10 @@ export default function Slider (props) {
     dispatch({
       type: 'Draggable',
     });
-    console.log('dragging');
   }, [dispatch]
   );
+  useEffect(()=>{
+  })
   const LoadingFalse = () =>{
     setTimeout(function(){
       setLoading(false)
@@ -26,7 +27,7 @@ export default function Slider (props) {
   }
   
     return (
-      <div className="slider rounded" onClick={()=>console.log('asdasd')}>
+      <div className="slider rounded" >
         <Swiper
         spaceBetween={20}
         onClick={toggleDrag}
@@ -40,15 +41,14 @@ export default function Slider (props) {
           delay:5000
         }}
         speed={400}
-        // onSlideChange={() => console.log('slide change')}
-        // onSwiper={(swiper) => console.log(swiper)}
       >
 
         {props.sliders?props.sliders.map(ele => 
           <SwiperSlide key={ele.id}>
             <div className="w-full">
               <div className={`w-full h-41 skeleton-box ${Loading?"block":"hidden"}`}></div>
-              <img onLoad={() => LoadingFalse()} src={ele.image?ele.image.path:""} className={`img rounded w-full ${Loading?"hidden":"block"}`} alt="" />
+              <img onLoad={() => LoadingFalse()} src={ele.image?ele.image.path:""} className={`img hidden lg:block rounded w-full ${Loading?"hidden":"block"}`} alt="" />
+              <img onLoad={() => LoadingFalse()} src={ele.image_mobile?ele.image_mobile.path:""} className={`img block lg:hidden rounded w-full ${Loading?"hidden":"block"}`} alt="" />
             </div>
           </SwiperSlide>
         ):""}

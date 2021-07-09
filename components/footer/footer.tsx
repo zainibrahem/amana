@@ -36,9 +36,9 @@ export default function Proposals () {
                 </p>
             </div>
             <div className="col-span-12 md:col-span-3 lg:col-span-4 pb-4 flex justify-center md:justify-start items-center order-0 md:order-2 mb-10 md:mb-0">
-                <img className="mx-1 w-4" src="./images/insta.svg" alt="" />
-                <img className="mx-1 w-4" src="./images/face.svg" alt="" />
-                <img className="mx-1 w-4" src="./images/twit.svg" alt="" />
+                <img className="mx-1 w-4" src="/images/insta.svg" alt="" />
+                <img className="mx-1 w-4" src="/images/face.svg" alt="" />
+                <img className="mx-1 w-4" src="/images/twit.svg" alt="" />
             </div>
             <div className="col-span-1 md:hidden order-1"></div>
             <div className="col-span-12 padding-mobile-0 md:col-span-6 lg:col-span-4 pb-4 flex justify-around px-3 md:px-0 items-center order-2 md:order-3">

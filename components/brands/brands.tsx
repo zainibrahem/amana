@@ -108,8 +108,6 @@ export default function Brands (props) {
             }}
             breakpoints={breakpoints}
             speed={500}
-            // onSlideChange={() => console.log('slide change')}
-            // onSwiper={(swiper) => console.log(swiper)}
           >
             {props.data?props.data.map(ele => 
                   <SwiperSlide key={ele.id}>

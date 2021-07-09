@@ -51,8 +51,6 @@ export default function Price () {
                     spaceBetween={2}
                     slidesPerView={6}
                     breakpoints={breakpoints}
-                    // onSlideChange={() => console.log('slide change')}
-                    // onSwiper={(swiper) => console.log(swiper)}
                     >
                         <SwiperSlide>
                             <img className="w-full" src="./images/capture.png" alt="" />

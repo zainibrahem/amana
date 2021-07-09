@@ -41,12 +41,20 @@ export default function Index() {
         order_number:""
         reason:""
     }
+    interface Wishlist {
+        id:""
+        image:""
+        slug:""
+        title:""
+    }
+    const dispatch = useAppDispatch();
+
     interface Data {
         orders:Order[]
         messages:Message[]
         disputes:Dispute[]
         orders_count:""
-       
+        wishlist:Wishlist[]
         wishlists_count:number
         disputes_count:""
         messages_count:""
@@ -54,8 +62,44 @@ export default function Index() {
     }
     const [data,setData] = useState<Data>();
     const Route = useAppState('Route');
+    const toggleNotification = React.useCallback((info,errortypes) => {
+        dispatch({
+          type: 'notification',payload:info,types:errortypes
+        });
+        }
+        ,[dispatch]
+      );
+    const removeFav = (ele,e) =>{
+        
+        fetch(`https://amanacart.com/api/wishlist/${ele}/remove`,{
+            method: 'DELETE', 
+           headers:{
+               'Authorization' : `Bearer ${localStorage.getItem('token')}`
+           }})
+        .then(res => res.json())
+        .then(result =>{
+            console.log(e.target.parentNode.parentNode)
+            e.target.parentNode.parentNode.remove();
+           toggleNotification(result.message,'success');
+           console.log(result)
+           
+           setTimeout(() => {
+               dispatch({
+                   type: 'Nonotification',
+                 })
+             }, 5000)
+        })
+        .catch(e => {
+           toggleNotification(e.message,'error');
+           setTimeout(() => {
+               dispatch({
+                   type: 'Nonotification',
+                 })
+             }, 5000)
+      });
+    }
+    // removeFav
     useEffect(() => {
-        console.log(localStorage.getItem('token'));
         fetch(`https://amanacart.com/api/dashboard/index`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`
@@ -63,10 +107,9 @@ export default function Index() {
          .then(res => res.json())
          .then(result =>{
             setData(result.data)
-            console.log(result);
+            console.log(result.data)
          })
          .catch(e => {
-           console.log(e);
        });
      },[])
 
@@ -104,7 +147,6 @@ export default function Index() {
                         </span>
                     </div>
                     <div className="flex flex-col justify-between items-end lg:ml-2">
-                       
                     </div>
                 </div>
             </div>
@@ -122,7 +164,6 @@ export default function Index() {
                         </span>
                     </div>
                     <div className="flex flex-col justify-between items-end lg:ml-2">
-                      
                     </div>
                 </div>
             </div>
@@ -140,74 +181,31 @@ export default function Index() {
                         </span>
                     </div>
                     <div className="flex flex-col justify-between items-end ml-2">
-                      
                     </div>
                 </div>
             </div>
-       
-        
-
-
-
             <div className={`col-span-12 lg:col-span-4 rounded bg-white shadow  `}>
                 <div className="w-full flex justify-start items-center py-3 px-4 " style={{border:"1px solid #eee"}}>
                     <span className="text-sm font-bold">
                         المفضلة
                     </span>
                 </div>
-                <div className="w-full flex flex-col justify-between items-center mt-2 mb-2 scr overflow-y-scroll">
+                {data?data.wishlist.map(ele=>
+                <div key={ele.id} className="w-full flex flex-col justify-between items-center mt-2 mb-2 scr overflow-y-scroll">
                     <div className="w-full flex justify-between items-center px-2">
                         
-                        <div className="w-12 h-14 rounded-full bg-gray-300"></div>
-                        <div className="flex w-3/4 flex-col items-start px-2">
-                            <span className="text-sm h-8 overflow-hidden text-right">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, obcaecati?</span>
+                        <div className="w-12 h-14 rounded-full" style={{background:`url(${ele.image})`,backgroundPosition:"center center",backgroundSize:"cover",backgroundRepeat:"no-repeat"}}></div>
+                        <div className="flex w-3/4 justify-center items-center px-2">
+                            <span className="text-sm overflow-hidden text-right" style={{maxHeight:"1.5rem"}}>
+                                {ele.title}
+                            </span>
                         </div>
                       
-                        <div className="w-4 h-4 rounded-full bg-gray-300"></div>
+                        <div onClick={(e)=>removeFav(ele.id,e)} className="w-4 h-4 cursor-pointer rounded-full flex justify-center items-center">x</div>
                     </div>
                    
                 </div>
-                <div className="w-full flex flex-col justify-between items-center mt-2 mb-2">
-                    <div className="w-full flex justify-between items-center px-2">
-                        
-                        <div className="w-12 h-14 rounded-full bg-gray-300"></div>
-                        <div className="flex w-3/4 flex-col items-start px-2">
-                            <span className="text-sm  h-8 overflow-hidden text-right">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, obcaecati?</span>
-                        </div>
-                      
-                        <div className="w-4 h-4 rounded-full bg-gray-300"></div>
-                    </div>
-                   
-                </div>
-                <div className="w-full flex flex-col justify-between items-center mt-2 mb-2">
-                    <div className="w-full flex justify-between items-center px-2">
-                        
-                        <div className="w-12 h-14 rounded-full bg-gray-300"></div>
-                        <div className="flex w-3/4 flex-col items-start px-2">
-                            <span className="text-sm  h-8 overflow-hidden text-right">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, obcaecati?</span>
-                        </div>
-                      
-                        <div className="w-4 h-4 rounded-full bg-gray-300"></div>
-                    </div>
-                   
-                </div>
-                <div className="w-full flex flex-col justify-between items-center mt-2 mb-2">
-                    <div className="w-full flex justify-between items-center px-2">
-                        
-                        <div className="w-12 h-14 rounded-full bg-gray-300"></div>
-                        <div className="flex w-3/4 flex-col items-start px-2">
-                            <span className="text-sm  h-8 overflow-hidden text-right">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et, obcaecati?</span>
-                        </div>
-                      
-                        <div className="w-4 h-4 rounded-full bg-gray-300"></div>
-                    </div>
-                   
-                </div>
-                {/* <div className="w-full flex flex-col justify-center items-center mt-2 self-end ">
-                    <span className="w-full text-gray-700 flex cursor-pointer flex-col justify-center items-center py-2 border-t-2">
-                        عرض المفضلة
-                    </span>
-                </div> */}
+                ):""}
             </div>
             <div className={` lg:col-span-8 col-span-12   rounded bg-white shadow `}>
                 <div className="w-full flex justify-start items-center py-3 px-5 ">
@@ -229,7 +227,7 @@ export default function Index() {
                         </thead>
                         <tbody>
                             {data?data.orders.map((ele,index)=>
-                                <tr className="hover-gray-200" style={data.orders.length==index+1?{}:{borderBottom:"1px solid rgb(224 225 225)"}}>
+                                <tr key={index} className="hover-gray-200" style={data.orders.length==index+1?{}:{borderBottom:"1px solid rgb(224 225 225)"}}>
                                     <td className="text-center " style={{padding:".4rem 0rem"}}>
                                         <a className="w-full" href={`dashboard/payment/payment?pid=${ele.id}`}>
                                         <div className="flex justify-center items-center">
@@ -244,7 +242,6 @@ export default function Index() {
                                         12-4-2020
                                     </a>
                                 </td>
-                              
                                 <td className="text-center " style={{padding:".4rem 0rem"}}>
                                     <a className="w-full" href={`dashboard/payment/payment?pid=${ele.id}`}>
                                     <span style={{padding:"0.1rem .6rem"}}  className={`text-xs text-white inline-block    px-2 ${ele.order_status=="CONFIRMED"?"bg-green-500":"bg-yellow-500"} text-white rounded-full text-amber-600 bg-amber-200 uppercase last:mr-0 mr-1`}>
@@ -265,18 +262,14 @@ export default function Index() {
                                     </a>
                                 </td>
                                 <td className="text-center flex justify-center items-center" style={{padding:".4rem 0rem"}}>
-                                    <svg  width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#8899a4" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"></path></svg>
+                                    <svg  width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#8899a4" strokeWidth="2" strokeLinecap="square" ><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"></path></svg>
                                 </td>
                             </tr>
-                            ):""}
-                            
-                           
+                            ):<></>}
                         </tbody>
                     </table>
                 </div>
             </div>
-        
-
             <div className="col-span-12 lg:col-span-6  rounded bg-white shadow ">
                 <div className="w-full flex justify-start items-center py-3 px-5">
                     <span className="text-sm font-bold">
@@ -295,7 +288,7 @@ export default function Index() {
                         </thead>
                         <tbody>
                            {data?data.disputes.map((ele,index)=>
-                                 <tr className="hover-gray-200" style={data.orders.length==index+1?{}:{borderBottom:"1px solid rgb(224 225 225)"}}>
+                                 <tr key={index} className="hover-gray-200" style={data.orders.length==index+1?{}:{borderBottom:"1px solid rgb(224 225 225)"}}>
                                 
                                  <td className="text-center py-2">
                                      <div className="flex justify-center items-center">
@@ -315,12 +308,11 @@ export default function Index() {
                                      <span className="text-gray-600">{ele.reason}</span>
                                  </td>
                              </tr>
-                           ):""}
+                           ):<></>}
                         </tbody>
                     </table>
                 </div>
             </div>
-        
             <div className={` col-span-12 lg:col-span-6 rounded bg-white shadow `}>
             <div className="w-full flex justify-start items-center pt-3 pb-3 px-4" style={{border:"1px #eee solid"}}>
                     <span className="text-sm font-bold">
@@ -329,7 +321,7 @@ export default function Index() {
                 </div>
             <div className="w-full flex flex-col justify-between items-center max-h-72 overflow-y-scroll scr mt-3   pb-2 ">
                     {data?data.messages.map((ele,index)=>
-                        <a className="w-full hover-gray-200" href={`/dashboard/conversation/conversation?pid=${ele.id}`}>
+                        <a key={index} className="w-full hover-gray-200" href={`/dashboard/conversation/conversation?pid=${ele.id}`}>
                             <div className="w-full flex justify-between items-center px-2 pb-2" style={data.orders.length==index+1?{}:{borderBottom:"1px solid rgb(224 225 225)"}}>
                                 <div className="w-24 lg:w-12 h-14 rounded-full  shadow " style={{border:"1px solid #eee",background:`url(https://amanacart.com/image/${ele.shop.image.path})`,backgroundSize:"contain",backgroundRepeat:"no-repeat",backgroundPosition:"center center"}}></div>
                                 <div className="flex  flex-col items-start px-2 w-11/12">

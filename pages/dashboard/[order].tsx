@@ -44,6 +44,7 @@ export default function Orders() {
         unit_price:""
         total:""
         image:""
+        id:""
     }
     interface Payment{
         code:""
@@ -115,12 +116,9 @@ export default function Orders() {
          .then(res => res.json())
          .then(result =>{
             setDispute(result.data);
-                console.log('dispute types')
-                console.log(result.data)
                 setDispute(result.data.dispute_type)
             })
          .catch(e => {
-           console.log(e);
        });
     }
     const closeModal = () => {
@@ -138,27 +136,15 @@ export default function Orders() {
             .then(result =>{
                 // setDispute(result.data);
                 setInfo(false)
-                console.log(result);
                 // window.location.reload(false)
             })
             .catch(e => {
-            console.log(e);
             });
     }
     const handlModalss = () =>{
         setModals(!modals)
         setInfo(false)
-    //     fetch(`https://amanacart.com/api/order/${order?order.id:""}/dispute`,{
-    //         headers:{
-    //             'Authorization' : `Bearer ${localStorage.getItem('token')}`
-    //         }})
-    //      .then(res => res.json())
-    //      .then(result =>{
-    //         setDispute(result.data);
-    //      })
-    //      .catch(e => {
-    //        console.log(e);
-    //    });
+   
     }
     const closeModals = () => {
         setModals(false)
@@ -200,7 +186,6 @@ export default function Orders() {
         
     }
     useEffect(() => {
-        console.log('asdasd');
         fetch(`https://amanacart.com/api/dashboard/orders`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`
@@ -209,10 +194,8 @@ export default function Orders() {
          .then(result =>{
             setData(result.data);
             setOrders(result.data);
-            console.log(result.data)
          })
          .catch(e => {
-           console.log(e);
        });
      },[pid])
      const handlesearch = (e) =>{
@@ -326,7 +309,7 @@ export default function Orders() {
                                 </div>
                                 <div className="w-full mt-2 scr pt-1  overflow-y-scroll" style={{height:"27rem"}}>
                                     {orders?orders.map(ele=>
-                                        <div className="w-full rounded mt-2  p-2 cursor-pointer shadow" onClick={()=>setOrder(ele)}  style={{border:"1px solid #eee"}}>
+                                        <div key={ele.id} className="w-full rounded mt-2  p-2 cursor-pointer shadow" onClick={()=>setOrder(ele)}  style={{border:"1px solid #eee"}}>
                                             
                                         <div className="w-full  flex justify-between items-center mt-3" >
                                             <span className="text-sm font-bold">
@@ -392,7 +375,7 @@ export default function Orders() {
                                         </thead>
                                         <tbody  className="flex scr flex-col  items-center justify-between overflow-y-scroll w-full" style={{maxHeight:"8rem"}}>
                                             {order.items.map(ele1=>
-                                                <tr className="flex w-full justify-between px-12">
+                                                <tr key={ele1.id} className="flex w-full justify-between px-12">
                                                     <td className="w-1/12 text-center py-2">
                                                         <div className="flex justify-center items-center">
                                                             <div className="w-12 h-14 border-2 border-yellow-500 rounded-full" style={{background:`url(${ele1.image})`,backgroundSize:"contain",backgroundPosition:"center center"}}></div>
@@ -764,7 +747,7 @@ export default function Orders() {
                 </div> */}
                 <div className="col-span-10 bg-white shadow rounded pt-1 px-2">
                         {orders?orders.map(ele=>
-                                        <div className="w-full  rounded mt-2  p-2 cursor-pointer shadow" onClick={()=>setOrder(ele)}  style={{border:"1px solid #eee"}}>
+                                        <div key={ele.id} className="w-full  rounded mt-2  p-2 cursor-pointer shadow" onClick={()=>setOrder(ele)}  style={{border:"1px solid #eee"}}>
                                             
                                         <div className="w-full  flex justify-between items-center mt-3" >
                                             <span className="text-sm font-bold">
@@ -835,7 +818,7 @@ export default function Orders() {
                                 اختر منتجا
                             </span>
                             {order?order.items.map(ele=>
-                                <div className="w-full flex justify-between items-center py-2 mt-2 border-b-2">
+                                <div key={ele.id} className="w-full flex justify-between items-center py-2 mt-2 border-b-2">
                                     <div className="w-10/12 flex justify-between items-center">
                                         <input type="checkbox" name="" id="" />
                                         <div className="w-12 h-14 mr-2 rounded-full border-2 border-yellow-500" style={{background:`url(${ele.image})`,backgroundRepeat:"no-repeat",backgroundPosition:"center center",backgroundSize:"contain"}}></div>

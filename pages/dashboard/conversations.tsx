@@ -29,18 +29,15 @@ export default function Orders() {
     }
     const [data,setData] = useState<Data[]>();
     useEffect(() => {
-        console.log('asdasd');
         fetch(`https://amanacart.com/api/dashboard/messages`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`
             }})
          .then(res => res.json())
          .then(result =>{
-            console.log(result);
             setData(result.data);
          })
          .catch(e => {
-           console.log(e);
        });
      },[])
     return (
@@ -56,7 +53,7 @@ export default function Orders() {
             <div className="col-span-12 overflow-x-scroll  border-b-2 flex justify-between items-center py-2">
                 <table className="conversation lgw-full " >
                     {data?data.map(ele=>
-                        <a href={`/dashboard/conversation/conversation?pid=${ele.id}`}>
+                        <a key={ele.id} href={`/dashboard/conversation/conversation?pid=${ele.id}`}>
                             <tr className="w-full">
                                 <td className="py-3 w-1/12">
                                     <img className="w-full rounded-full" src={`https://amanacart.com/image/${ele.shop.image.path}`} alt="" />
@@ -83,7 +80,7 @@ export default function Orders() {
                                 </td>
                                 <td className="w-40">
                                     <span className="text-xs font-bold">
-                                        الطلب رقم : <span className="text-blue-500"> {ele.order.order_number}</span>
+                                        الطلب رقم : <span className="text-blue-500"> {ele.order?ele.order.order_number:""}</span>
                                     </span>
                                 </td>
                                 <td  className="w-40">

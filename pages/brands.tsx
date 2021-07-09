@@ -29,7 +29,6 @@ export default function Offer(props) {
     const [searchs,setSearchs] = useState([]);
     const handleSearch = (e) =>{
         setSearchs(e.target.value);
-        console.log(e.target.value);
     } 
     const search = () => {
         var sss ;
@@ -45,7 +44,6 @@ export default function Offer(props) {
             setData(result.data);
         })
         .catch(e => {
-            console.log(e);
             setData(null);
         }); 
     } 
@@ -56,11 +54,8 @@ export default function Offer(props) {
          .then(res => res.json())
          .then(result =>{
             setData(result.data);
-            console.log('result.data');
-            console.log(result.data);
          })
          .catch(e => {
-           console.log(e);
        });
      },[])
     return (
@@ -118,7 +113,7 @@ export default function Offer(props) {
                         <div className="w-full flex justify-between items-center mt-6">
                             <div className="grid grid-cols-12 gap-4 lg:grid-cols-10">
                                 {data&&data.length>0?data.map(ele=>
-                                <div className="col-span-6 lg:col-span-2 flex justify-center items-center">
+                                <div key={ele.id} className="col-span-6 lg:col-span-2 flex justify-center items-center">
                                     {/* <ProductCard card={ele} type={"proposals"}></ProductCard> */}
                                     <StoreCard data={ele}></StoreCard>
                                 </div>

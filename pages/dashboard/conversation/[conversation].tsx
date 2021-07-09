@@ -45,15 +45,12 @@ export default function Orders() {
     const [data,setData] = useState<Data>()
     
     useEffect(() => {
-        console.log('asdasd');
         fetch(`https://amanacart.com/api/dashboard/messages/${pid}`)
          .then(res => res.json())
          .then(result =>{
-            console.log(result);
             setData(result.data);
          })
          .catch(e => {
-           console.log(e);
        });
      },[pid])
      let formData = new FormData(); 
@@ -69,12 +66,9 @@ export default function Orders() {
        return response.json(); // parses JSON response into native JavaScript objects
     }
      const handleReply = () => {
-        console.log(reply);
         formData.append('reply',reply);
         postData(formData)
         .then(data => {
-            console.log('data'); // JSON data parsed by `data.json()` call
-            console.log(data);
             // window.location.reload() // JSON data parsed by `data.json()` call
           });
      }
@@ -93,7 +87,7 @@ export default function Orders() {
                     {data?data.message.time:""}
                 </div>
             </div>
-            <div className="col-span-12 overflow-x-scroll border-b-2 flex justify-between items-center py-2">
+            <div className="col-span-12 overflow-x-scroll lg:overflow-x-hidden border-b-2 flex justify-between items-center py-2">
                 <table className="conversation lg:w-full">
                     <td>
                         <img className="w-16 rounded-full" src={`https://amanacart.com/image/${data?data.message.shop.image.path:""}`} alt="" />
@@ -120,7 +114,7 @@ export default function Orders() {
                     </td>
                     <td>
                         <span className="text-xs font-bold">
-                            الطلب رقم : <span className="text-blue-500"> {data?data.message.order.order_number:""}</span>
+                            الطلب رقم : <span className="text-blue-500"> {data&&data.message&&data.message.order?data.message.order.order_number:""}</span>
                         </span>
                     </td>
                     <td>
@@ -139,7 +133,7 @@ export default function Orders() {
         
          
             {data?data.replies.map(ele=>
-                <div className="col-span-12 my-4">
+                <div key={ele.id} className="col-span-12 my-4">
                     <div className="flex justify-start items-center">
                         <div className="flex flex-col justify-between items-start">
                             <span className="text-xs font-bold">

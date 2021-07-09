@@ -59,7 +59,6 @@ export default function CardSlider (props) {
         // on={{
         //   touchMove: function(){
         //     document.querySelector('.swiper-scrollbar').style.opacity="1";
-        //     console.log('asdads');
         //   },
         //   touchEnd: function(){
         //     document.querySelector('.swiper-scrollbar').style.opacity="0";
@@ -72,8 +71,6 @@ export default function CardSlider (props) {
         //   delay:4000
         // }}
         // speed={500}
-        // onSlideChange={() => console.log('slide change')}
-        // onSwiper={(swiper) => console.log(swiper)}
       >
         <SwiperSlide>
             <ProductCard></ProductCard>

@@ -7,7 +7,6 @@ return (
    
     <div className="px-2 py-2 ">
     <div className="hidden col-span-12 border-t-2 px-2 py-3  justify-between relative items-center">
-        <img className="w-14" src="./images/med-3.jpg" alt="" />
         <div className="flex  flex-col justify-between items-start">
             <span className="text-sm text-gray-700">المنتج الأول</span>
             <span className="text-xs text-gray-300">من غوغل</span>

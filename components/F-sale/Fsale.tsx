@@ -43,7 +43,6 @@ export default function FSlide(props) {
     if(checkss.includes(id)){
       const newList = checkss.filter((item) => item !== id);
       setCheckss(newList);
-      console.log('removed');
     }
     else{
       setCheckss(checkss => [...checkss,id]);
@@ -57,7 +56,6 @@ export default function FSlide(props) {
         setPrice(prices)
       });
         props.price(price);
-        console.log(price);
     
   }
   return (
@@ -86,7 +84,7 @@ export default function FSlide(props) {
           <SwiperSlide>
             <div className="flex text-2xl text-gray-500 justify-center items-center w-full" style={{height:height}}>
                 {/* <img src="../images/icons/plus.svg" className="w-1/3 imgs" alt="" /> */}
-                <div className="w-1/3 h-full" onClick={()=>{console.log(checkss)}} style={{background:"url(../images/icons/plus.svg)",backgroundSize:"contain",backgroundRepeat:"no-repeat",backgroundPosition:"center center"}}></div>
+                <div className="w-1/3 h-full" style={{background:"url(../images/icons/plus.svg)",backgroundSize:"contain",backgroundRepeat:"no-repeat",backgroundPosition:"center center"}}></div>
             </div>
         </SwiperSlide>
       

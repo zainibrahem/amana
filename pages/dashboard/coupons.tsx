@@ -27,8 +27,6 @@ export default function Orders() {
     const [data,setData] = useState<Data[]>();
     const ref = useRef()
     const Copy = (e) => {
-        console.log('e.target.children[2]')
-        console.log(e.currentTarget.children[2].children[0].textContent)
         navigator.clipboard.writeText(e.currentTarget.children[2].children[0].textContent)
         toggleNotification('تم نسخ الكود','success')
         setTimeout(() => {
@@ -45,10 +43,8 @@ export default function Orders() {
          .then(res => res.json())
          .then(result =>{
             setData(result.data)
-            console.log(result.data);
          })
          .catch(e => {
-           console.log(e);
        });
     },[])
 
@@ -72,7 +68,7 @@ export default function Orders() {
                         </thead>
                         <tbody >
                         {data?data.map((ele,index)=>
-                                <tr className={`cursor-pointer ${index+1 != data.length?"border-b-2":""}`} onClick={(e) => Copy(e)}>
+                                <tr key={index} className={`cursor-pointer ${index+1 != data.length?"border-b-2":""}`} onClick={(e) => Copy(e)}>
                                     <td className="flex justify-center  text-center py-5">
                                         <span className="hidden lg:block text-sm  lg:text-xl text-white rounded bg-yellow-500 py-1 px-2 w-2/3">
                                             خصم {ele.amount}

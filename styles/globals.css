@@ -206,7 +206,7 @@ body::-webkit-scrollbar-thumb {
   }
   100%{
     opacity: 1;
-    transform: translateY(-50%,-50%);
+    transform: translate(-50%,-50%);
   }
 }
 @keyframes slideUpss {
@@ -312,6 +312,9 @@ body::-webkit-scrollbar-thumb {
   /* .card-responsive{
     width:19.2rem;
   } */
+  .height-2xl{
+    height: 40rem;
+  }
 }
 .cardTitle:after{
   content:"";
@@ -847,4 +850,15 @@ background-color: rgb(78, 78, 78);
   .conversation{
     min-width: 80rem !important;
   }
+  
+  .mobiletext{
+    font-size: 10px;
+  }
+}
+span{
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
