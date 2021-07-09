@@ -12,6 +12,7 @@ import Proposals from '../components/proposals/proposals';
 import { Waypoint } from 'react-waypoint';
 import AllCatsSlider from '../components/allcatsSlider/allCatsSlider';
 import Discover from '../components/discover/discover';
+import Link from 'next/link';
 export default function Cart() {
     interface Cart{
         total_cart:""
@@ -305,7 +306,7 @@ export default function Cart() {
                 <span className="text-md text-right">السلة</span>
             </div>
             <div className="col-span-12 relative">
-                {carts?carts.map((ele,index)=>
+                {carts&&carts.length>0?carts.map((ele,index)=>
                 {
                      
                     var int = shipping[ele.id]?
@@ -525,7 +526,14 @@ export default function Cart() {
                          </div>
                      </div>
                  </div>
-              ) } ):""}
+              ) } ):
+                <div className="flex flex-col justify-center items-center" style={{minHeight:"23rem"}}>
+                    <img src="/images/icons/empty-cart.svg" className="w-96" alt="" />
+                    <h2 className="mt-10 text-center">
+                         لا يوجد منتجات في السلة
+                    </h2>
+                </div>
+              }
                
 
                 
@@ -535,14 +543,16 @@ export default function Cart() {
                 <div className="flex justify-center items-center z-20">
                     <div className="fixed w-11/12 lg:w-2/4 border-2  bg-white rounded z-20 bottom-24 lg:bottom-3 shadow-lg drop-shadow-md px-4 py-3 flex flex-row-reverse justify-between items-center">
                         <span className="text-sm">
-                            كل السلة رقم 9
+                            كل السلة
                         </span>
                         <span className="text-sm" dir="rtl">
                             مجمل السعر : {totals} ر.ع
                         </span>
-                        <span className="px-3 py-1 bg-gray-300 text-xs text-black flex justify-center items-center rounded">
+                        <Link href="/">
+                        <span className="px-3 cursor-pointer py-1 bg-gray-300 text-xs text-black flex justify-center items-center rounded">
                             متابعة الشراء
                         </span>
+                        </Link>
                     </div>
                 </div>
             </div>

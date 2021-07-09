@@ -109,7 +109,7 @@ import Link from 'next/link'
                                 {/* <li className="w-full flex flex-row justify-end items-center">
                                     <input type="text"  className="w-full bg-gray-300 rounded" name="" id="" />
                                 </li>    */}
-                                {isDrawerOpen?
+                                {/* {isDrawerOpen?
                                 "":(
                                 <li className={isDrawerOpen?`pt-2 cursor-pointer pb-2  w-full flex flex-row justify-end items-center ${Loading?"skeleton-box mt-1":""}`:`pt-2 cursor-pointer text-xs small-hover pb-2 w-full flex flex-col-reverse justify-center items-center ${Loading?"skeleton-box mt-1":""}`}>
                                     <div style={Loading?{opacity:"0"}:{}} className={`w-full text-right flex ${isDrawerOpen?"flex-row justify-end items-center":"flex-col-reverse justify-center items-center"}  `}>
@@ -120,8 +120,8 @@ import Link from 'next/link'
                                     </div>
                                 </li>
                                 )
-                                }
-                                    {isDrawerOpen?
+                                } */}
+                                    {/* {isDrawerOpen?
                                 "":(
                                 <li className={isDrawerOpen?`pt-2 cursor-pointer pb-2  w-full flex flex-row justify-end items-center ${Loading?"skeleton-box mt-1":""}`:`pt-2 cursor-pointer text-xs small-hover pb-2 w-full flex flex-col-reverse justify-center items-center ${Loading?"skeleton-box mt-1":""}`}>
                                     <div style={Loading?{opacity:"0"}:{}} className={`w-full text-right flex ${isDrawerOpen?"flex-row justify-end items-center":"flex-col-reverse justify-center items-center"}  `}>
@@ -132,7 +132,7 @@ import Link from 'next/link'
                                     </div>
                                 </li>
                                 )
-                                }
+                                } */}
                             </ul>
                         <div className={isDrawerOpen?`${Loading?"overflows":""} scroll w-full h-9/12  overflow-x-hidden ${Loading?"overflow-y-hidden":"overflow-y-scroll"}`:`hidden scroll ${Loading?"overflow-y-hidden":"overflow-y-scroll"} overflow-x-hidden w-full h-9/12 `}>
                             <div className="ul  mt-2 ltr  border-b-2 pb-2 w-11/12">
@@ -165,10 +165,10 @@ import Link from 'next/link'
                                      {ele.sub_groups.map(sub =>
                                      <li key={sub.id} onClick={toggleAccordoin} className="overflow-hidden text-right  duration-1000 transition-all cursor-pointer w-full flex flex-col pt-2 pb-2 px-3 justify-start items-center text-sm hover-side items">
                                         <div className="flex justify-end items-center w-full">
-                                                {sub.name}
-                                            <svg className="ml-3 w-5" xmlns="http://www.w3.org/2000/svg" width="30.259" height="23.53" viewBox="0 0 30.259 23.53">
+                                                {sub.name}  <div className="rounded-full border-2 border-gray-200  ml-2" style={{width:".6rem",height:".6rem"}}></div>
+                                            {/* <svg className="ml-3 w-5" xmlns="http://www.w3.org/2000/svg" width="30.259" height="23.53" viewBox="0 0 30.259 23.53">
                                                 <path id="Icon_awesome-home" data-name="Icon awesome-home" d="M14.727,8.358,5.042,16.334v8.609a.84.84,0,0,0,.84.84l5.886-.015a.84.84,0,0,0,.836-.84V19.9a.84.84,0,0,1,.84-.84h3.362a.84.84,0,0,1,.84.84v5.024a.84.84,0,0,0,.84.843l5.884.016a.84.84,0,0,0,.84-.84V16.328L15.531,8.358A.64.64,0,0,0,14.727,8.358Zm15.3,5.421-4.391-3.62V2.884a.63.63,0,0,0-.63-.63H22.062a.63.63,0,0,0-.63.63V6.7l-4.7-3.869a2.521,2.521,0,0,0-3.2,0L.228,13.779a.63.63,0,0,0-.084.888L1.483,16.3a.63.63,0,0,0,.888.086L14.727,6.2a.64.64,0,0,1,.8,0L27.887,16.381a.63.63,0,0,0,.888-.084l1.339-1.628a.63.63,0,0,0-.089-.889Z" transform="translate(0.001 -2.254)" fill="#2c2c2c"/>
-                                            </svg>
+                                            </svg> */}
                                         </div>
                                         <div className="content w-full hidden">
                                             <ul className="flex h-full flex-col justify-between items-center">
@@ -187,7 +187,6 @@ import Link from 'next/link'
                             )}
                             </div>
                             {/* catss */}
-                            {catss.visited_categories.length>0?
                             
                             <div className="ul  mt-2 ltr">
                                 <ul className="flex h-full flex-col justify-between items-center">
@@ -196,7 +195,7 @@ import Link from 'next/link'
                                             اخر زياراتك
                                         </div>
                                 </li>
-                                {catss.visited_categories[0].map(ele => 
+                                {catss.visited_categories.length>0?catss.visited_categories[0].map(ele => 
                                     ele.name!=null?
                                     <li key={ele.id} className="text-gray-600 w-full flex flex-row pb-2 justify-end items-center text-sm text-right">
                                         <Link href={`/category/category?pid=${ele.id}`}>
@@ -206,11 +205,12 @@ import Link from 'next/link'
                                         </Link>
                                     </li>
                             :""
-                            )}
+                            ):
+                                    <span className="text-xs">هنا يتم عرض اخر زياراتك</span>
+                            }
                                 </ul>
                             </div>
-                            :""
-                            }
+                           
                         
                         </div>
                     </nav>

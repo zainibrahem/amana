@@ -307,7 +307,7 @@ export const NavBar = (props) => {
                                 </div>
                                 <div className="col-span-12" style={{borderTop:"1px solid #dcdcdc"}}>
                                     <div className="col-span-12">
-                                        {props.carts?props.carts.carts.map(ele=>
+                                        {props.carts&&props.carts.length>0?props.carts.carts.map(ele=>
                                             <div className="grid grid-cols-12 w-full">
                                             <div className="col-span-12 bg-gray-100 flex flex-row-reverse px-5 py-2 items-center justify-end">
                                                 <span className="text-yellow-500 text-xs">
@@ -332,7 +332,11 @@ export const NavBar = (props) => {
                                             )}
                                             
                                             </div>
-                                        ):""}
+                                        ):
+                                        <div className="flex justify-center items-center h-80">
+                                            <img src="/images/icons/empty-cart.svg" className="w-64" alt="" />
+                                        </div>
+                                        }
                                     </div>
                                     {/* <img className="w-6 h-2 rounded-full" src="./images/med-1.jpg" alt="" /> */}
                                 </div>
@@ -404,7 +408,10 @@ export const NavBar = (props) => {
                                             {/* <img src="./images/x.svg" className="w-2" alt="" /> */}
                                         </div>
                                     </div>
-                                ):""}
+                                ):
+                                <div className="flex justify-center items-center h-80">
+                                <img src="/images/icons/empty-mas.svg" className="w-64" alt="" />
+                            </div>}
                                 
                             </div>
                             <div className="col-span-12 py-2  border-t-2 flex flex-col justify-between items-center">

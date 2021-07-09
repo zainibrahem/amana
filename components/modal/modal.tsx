@@ -131,11 +131,14 @@ export default function Modal (props) {
         setModalType(e);
     }
     const handleForget = () =>{
-        fetch('https://amanacart.com/api/auth/forgot', {
-            method: 'post',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({
-                email: email,
+        if(email != "" && email != null){
+
+            fetch('https://amanacart.com/api/auth/forgot', {
+                method: 'post',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({
+                    email: email,
+                
             })
         })
         .then( async response => {
@@ -152,6 +155,10 @@ export default function Modal (props) {
             setMessgae(data.message);
             setModalType(4);
         })
+    }
+    else{
+        setError('يجب إدخال البريد الالكتروني')
+    }
     }
     const  handleLogin = ()=>{
         var details = {
@@ -224,11 +231,11 @@ export default function Modal (props) {
       useOutsideAlerters(modalRed);
     return(
         <div id="overlay"  className={` ${Modal?"block":"hidden"}  fixed w-screen h-screen bg-black bg-opacity-80  z-50`}>
-            <div ref={modalRed} className={`positionTopmobile ${Modal?"slideUps":"slideDowns"}   overflow-hidden modal rounded grid grid-cols-12 w-3/4 md:w-2/3 h-v-12/12 lg:h-v-11/12  relative left-1/2 top-1/2 transform -translate-y-2/4 -translate-x-2/4`}>
-                <div className="hidden md:block col-span-6 rounded h-v-12/12 lg:h-v-11/12 relative" style={{background:"url('./images/secondback.png')",backgroundSize:"cover",backgroundPosition:"right",backgroundRepeat:"no-repeat"}}>
-                <div className="bg-black rounded bg-opacity-90 w-full h-v-12/12 lg:h-v-11/12 absolute top-0 left-0"></div>
-                <div className="absolute rounded top-0 -right-1 w-full h-v-12/12 lg:h-v-11/12"></div>
-                <div className="relative z-10 w-full h-v-12/12 lg:h-v-11/12 flex flex-col py-2 justify-between items-center">
+            <div ref={modalRed} className={`positionTopmobile ${Modal?"slideUps":"slideDowns"}   overflow-hidden modal rounded grid grid-cols-12 w-3/4 md:w-2/3 h-v-12/12 lg:h-v-10/12 2xl:h-v-11/12  relative left-1/2 top-1/2 transform -translate-y-2/4 -translate-x-2/4`}>
+                <div className="hidden md:block col-span-6 rounded h-v-12/12 lg:h-v-10/12 2xl:h-v-11/12 relative" style={{background:"url('./images/secondback.png')",backgroundSize:"cover",backgroundPosition:"right",backgroundRepeat:"no-repeat"}}>
+                <div className="bg-black rounded bg-opacity-90 w-full h-v-12/12 lg:h-v-10/12 2xl:h-v-11/12 absolute top-0 left-0"></div>
+                <div className="absolute rounded top-0 -right-1 w-full h-v-12/12 lg:h-v-10/12 2xl:h-v-11/12"></div>
+                <div className="relative z-10 w-full h-v-12/12 lg:h-v-10/12 2xl:h-v-11/12 flex flex-col py-2 justify-between items-center">
                     <svg className="w-40 mt-12" xmlns="http://www.w3.org/2000/svg" width="210.35" height="50.178" viewBox="0 0 210.35 50.178">
                         <g id="Group_10" data-name="Group 10" transform="translate(53.943 12.936)">
                             <g id="Group_9" data-name="Group 9" transform="translate(0 0)">
@@ -359,19 +366,19 @@ export default function Modal (props) {
                                 </div>
                                 <div className="hidden lg:block col-span-1 2xl:col-span-2"></div>
                             </div>
-                            <div className="hidden md:grid grid-cols-12 w-full mt-8">
-                                    <div className="hidden md:block col-span-3"></div>
-                                    <div className="col-span-12 md:col-span-6">
-                                        <div className="flex w-full flex-col justify-start items-center text-white">
-                                            <span className="text-xs mb-4">حمل التطبيق</span>
-                                            <div className="flex justify-between items-center mt-2">
-                                                <img className="w-24 2xl:w-36" src={`${Route}/images/google.png`} alt="" />
-                                                <img className="w-24 2xl:w-36 ml-2" src={`${Route}/images/appstore.png`} alt="" />
-                                            </div>
+                            <div className="grid lg:hidden grid-cols-12 w-full mt-8">
+                                <div className="hidden md:block col-span-3"></div>
+                                <div className="col-span-12 md:col-span-6">
+                                    <div className="flex w-full flex-col justify-start items-center text-white">
+                                        <span className="text-xs mb-4">حمل التطبيق</span>
+                                        <div className="flex justify-between items-center mt-2">
+                                            <img className="w-24 2xl:w-36" src={`${Route}/images/google.png`} alt="" />
+                                            <img className="w-24 2xl:w-36 ml-2" src={`${Route}/images/appstore.png`} alt="" />
                                         </div>
                                     </div>
-                                    <div className="hidden md:block col-span-3"></div>
                                 </div>
+                                <div className="hidden md:block col-span-3"></div>
+                            </div>
                     </div>
                     
                     <div  className={`${modalType==1? "centered" :"slidesleft" } col-span-12 md:col-span-6 rounded relative flex flex-col justify-between items-center pt-0 md:pt-0 md:pb-0 p-3 md:p-12`}>
@@ -417,7 +424,7 @@ export default function Modal (props) {
                         </div>
                         
                         
-                        <div className="hidden md:grid grid-cols-12 w-full">
+                        <div className="grid lg:hidden grid-cols-12 w-full">
                                 <div className="hidden md:block col-span-3"></div>
                                 <div className="col-span-12 md:col-span-6">
                                     <div className="flex w-full flex-col justify-start items-center text-white">
@@ -478,7 +485,7 @@ export default function Modal (props) {
                         </div>
                         
                         
-                        <div className="hidden md:grid grid-cols-12 w-full">
+                        <div className="grid lg:hidden grid-cols-12 w-full">
                                 <div className="hidden md:block col-span-3"></div>
                                 <div className="col-span-12 md:col-span-6">
                                     <div className="flex w-full flex-col justify-start items-center text-white">
@@ -568,7 +575,7 @@ export default function Modal (props) {
                             </div>
                             <div className="col-span-1 2xl:col-span-2"></div>
                         </div>
-                        <div className="hidden md:blockgrid grid-cols-12 w-full">
+                        <div className="grid lg:hidden grid-cols-12 w-full">
                                 <div className="hidden md:block col-span-3"></div>
                                 <div className="col-span-12 md:col-span-6">
                                     <div className="flex w-full flex-col justify-start items-center text-white">

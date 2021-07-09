@@ -101,7 +101,10 @@ export default function Orders() {
     const [phone,setphone] = useState<string>()
     const [avatar,setAvatar] = useState([])
     const [change,setChange] = useState<boolean>(false)
-    
+    const list  = []
+    const days = () =>{
+      
+    }
     const {getRootProps, getInputProps} = useDropzone({
         accept: 'image/*',
         onDrop: acceptedFiles => {
@@ -235,8 +238,20 @@ export default function Orders() {
     const [dob,setDob] = useState<string>();
     const [adderss,setAddress] = useState<Address[]>();
     const [sex,setSex] = useState<string>('app.male');
-
+    const [newlist,setnewlist] = useState([]);
+    const [year,setyears] = useState([]);
+    const month = []
+    const yearss = []
     useEffect(() => {
+        for(var i = 0 ; i < 30 ; i++){
+            list.push(i)            
+        }
+        
+        for(var j = 2021 ; j > 1900 ; j-- ){
+            yearss.push(j)            
+        }
+        setyears(yearss)
+        setnewlist(list)
         fetch(`https://amanacart.com/api/account/update`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`
@@ -248,6 +263,8 @@ export default function Orders() {
             setNickname(result.data.nice_name)
             setEmail(result.data.email)
             setDob(result.data.dob)
+            console.log('result.data.dob')
+            console.log(result.data.dob)
             setSex(`app.${result.data.sex}`)
          })
          .catch(e => {
@@ -265,7 +282,9 @@ export default function Orders() {
             
          })
      },[])
-     
+     const checked = (e) => {
+         console.log(e.target.nextSibling)
+     }
      const datas = {
          name : name,
          dob:dob,
@@ -565,7 +584,7 @@ export default function Orders() {
                             
                             <div className="col-span-12 lg:col-span-6 flex flex-col justify-between items-end">
                                 <label htmlFor=""  className="w-full text-sm text-right">
-                                    * الاسم الأخير 
+                                    * اسم المستخدم 
                                 </label>
                                 <input type="text" onChange={(e)=>setNickname(e.target.value)} value={nickname?nickname:""} placeholder="ابراهيم" className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded  mt-2 py-1" />
                             </div>
@@ -581,15 +600,19 @@ export default function Orders() {
                                     <label htmlFor="" className=" text-sm text-right ">
                                         الجنس
                                     </label>
-                                    <div className="w-1/3 flex justify-between items-center mr-8 lg:mr-0 mt-4 ml-16">
-                                        <label className=" lg:mr-2" htmlFor="male">
-                                            ذكر
-                                        </label>
-                                        <input className="ml-2"  onChange={(e)=>{setMale(true),setFemale(false),setSex('app.male')}}  checked={male?true:false}   type="radio" name="sex" />
-                                        <label className=" lg:mr-2 ml-2 lg:ml-4" htmlFor="male">
-                                            أنثى
-                                        </label>
-                                        <input className="ml-2" onChange={(e)=>{setMale(false),setFemale(true),setSex('app.female')}} checked={female?true:false}    type="radio" name="sex" />
+                                    <div className="flex justify-between items-center mr-8 lg:mr-0 mt-4 ">
+                                        <div onClick={(e)=>{setMale(true),setFemale(false),setSex('app.male')}} className="border-2 cursor-pointer px-3 p-2  flex justify-between items-center rounded mr-2">
+                                            <label className="cursor-pointer lg:mr-2" htmlFor="male">
+                                                ذكر
+                                            </label>
+                                            <input className="ml-2"  onChange={(e)=>{setMale(true),setFemale(false),setSex('app.male')}}  checked={male?true:false}   type="radio" name="sex" />
+                                        </div>
+                                        <div onClick={(e)=>{setMale(false),setFemale(true),setSex('app.female')}} className="border-2 cursor-pointer px-3 p-2  flex justify-between items-center rounded">
+                                            <label className="cursor-pointer lg:mr-2 ml-2 " htmlFor="male">
+                                                أنثى 
+                                            </label>
+                                            <input className="ml-2" onChange={(e)=>{setMale(false),setFemale(true),setSex('app.female')}} checked={female?true:false}    type="radio" name="sex" />
+                                        </div>
                                     </div>
                                    
                                 </div>
@@ -598,7 +621,34 @@ export default function Orders() {
                                 <label htmlFor="" className="w-full text-sm text-right">
                                     * تاريخ الولادة 
                                 </label>
-                                <input type="date" onChange={(e)=>setDob(e.target.value)} value={dob?dob:""} placeholder="example@gmail.com" className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded mt-2 py-1" />
+                                {/* <input type="date" onChange={(e)=>{setDob(e.target.value),console.log(e.target.value)}} value={"2021-07-14"}  className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded mt-2 py-1" /> */}
+                             <div className="flex justify-between items-center">
+                                <select className="focus:outline-none mr-2 focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded ">
+                                    {year.map(ele=>
+                                        <option value={ele}>{ele}</option>    
+                                    )}
+                                </select>
+                                <select className="focus:outline-none mr-2 focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded ">
+                                        <option value="01">كانون الثاني</option>
+                                        <option value="02">شباط</option>
+                                        <option value="03">اذار</option>
+                                        <option value="04">نيسان</option>
+                                        <option value="05">ايار</option>
+                                        <option value="06">حزيران</option>
+                                        <option value="07">تموز</option>
+                                        <option value="08">اب</option>
+                                        <option value="09">ايلول</option>
+                                        <option value="10">تشرين الأول</option>
+                                        <option value="11">تشرين الثاني</option>
+                                        <option value="12">كانون الأول</option>
+                                </select>
+                                <select className="focus:outline-none  focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded ">
+                                    {newlist.map((ele,index)=>
+                                        <option value={ele+1}>{ele+1}</option>
+                                        )}
+                                </select>
+                            </div>
+                              
                             </div>
                             <div className="col-span-12 lg:col-span-6 flex flex-col justify-end items-end">
                                 <span onClick={()=> setOpenTab(3)} className="cursor-pointer text-xs text-blue-500 mb-2">
