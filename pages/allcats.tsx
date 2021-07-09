@@ -19,7 +19,7 @@ export default function Home() {
     }
     const [data,setData] = useState<Data>();
     useEffect(() => {
-        
+        document.title = "التصنيفات | أمانة"
         fetch(`https://amanacart.com/api/all_categories`)
          .then(res => res.json())
          .then(result =>{

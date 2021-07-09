@@ -43,6 +43,7 @@ export default function Offer(props) {
         setItems(data[e].items);
     }
     useEffect(() => {
+        document.title = "العروض | أمانة";
         fetch(`https://amanacart.com/api/offers`)
          .then(res => res.json())
          .then(result =>{

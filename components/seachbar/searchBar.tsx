@@ -46,7 +46,7 @@ export default function SearchBar (props) {
                         بحث
                 </button>
             </div>
-            <span onClick={ ()=> {setFilter(!Filter)} } className={`advanced cursor-pointer text-xs flex justify-between items-center ${Loading?"skeleton-box":""}`}>
+            <span className={`advanced cursor-pointer text-xs flex justify-between items-center ${Loading?"skeleton-box":""}`}>
                 <div style={Loading?{opacity:"0"}:{}} className="flex justify-between items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" className='mr-1 sm:mr-3' width="8.631" height="10.33" viewBox="0 0 8.631 10.33">
                         <g id="Group_4846" data-name="Group 4846" transform="translate(-410.485 -239.835)">

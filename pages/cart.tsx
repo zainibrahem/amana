@@ -261,6 +261,7 @@ export default function Cart() {
     const [packages,setPackage] = useState()
     
     useEffect(() => {
+        document.title = "سلة المشتريات | أمانة"
         const fetchData = async () => {
             try {
                 fetch(`https://amanacart.com/api/carts`,{

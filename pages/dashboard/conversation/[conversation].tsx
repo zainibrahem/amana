@@ -45,6 +45,7 @@ export default function Orders() {
     const [data,setData] = useState<Data>()
     
     useEffect(() => {
+        document.title = "الرسائل | أمانة"
         fetch(`https://amanacart.com/api/dashboard/messages/${pid}`)
          .then(res => res.json())
          .then(result =>{

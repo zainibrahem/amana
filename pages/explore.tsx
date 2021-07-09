@@ -13,6 +13,9 @@ import { Waypoint } from 'react-waypoint';
 import AllCatsSlider from '../components/allcatsSlider/allCatsSlider';
 import Discover from '../components/discover/discover';
 export default function Home() {
+    useEffect(()=> 
+        {document.title = "استكشاف | أمانة";}
+    ,[])
     return (
       <div className="flex flex-col justify-center items-center h-140 height-2xl">
           <img src="/images/123123.png" className="w-96" alt="" />

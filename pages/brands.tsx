@@ -48,7 +48,7 @@ export default function Offer(props) {
         }); 
     } 
     useEffect(() => {
-        
+        document.title = "العلامات التجارية | أمانة"
 
         fetch(`https://amanacart.com/api/brands`)
          .then(res => res.json())

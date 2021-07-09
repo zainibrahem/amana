@@ -119,6 +119,7 @@ export default function AllOffers() {
         })
     }
     useEffect(() => {
+        document.title = "كل العروض | أمانة"
         fetch(`https://amanacart.com/api/product/${pids}`)
          .then(res => res.json())
          .then(result =>{

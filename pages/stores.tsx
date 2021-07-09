@@ -48,6 +48,8 @@ export default function Offer(props) {
         }); 
     } 
     useEffect(() => {
+        document.title = "المتاجر | أمانة";
+
         fetch(`https://amanacart.com/api/shops`)
          .then(res => res.json())
          .then(result =>{

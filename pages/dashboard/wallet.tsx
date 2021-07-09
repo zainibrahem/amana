@@ -54,6 +54,7 @@ import Link from 'next/link'
             setModals(false)
         }
         useEffect(()=>{
+            document.title = "المحفظة | أمانة"
             fetch(`https://amanacart.com/api/dashboard/wallet`,{
                 headers:{
                     'Authorization' : `Bearer ${localStorage.getItem('token')}`

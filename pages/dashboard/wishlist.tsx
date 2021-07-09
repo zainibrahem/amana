@@ -66,6 +66,7 @@ export default function Orders() {
       });
     }
     useEffect(()=>{
+        document.title = "المفضلة | أمانة"
         fetch(`https://amanacart.com/api/dashboard/wishlist`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`

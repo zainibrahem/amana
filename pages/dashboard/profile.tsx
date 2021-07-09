@@ -102,9 +102,7 @@ export default function Orders() {
     const [avatar,setAvatar] = useState([])
     const [change,setChange] = useState<boolean>(false)
     const list  = []
-    const days = () =>{
-      
-    }
+   
     const {getRootProps, getInputProps} = useDropzone({
         accept: 'image/*',
         onDrop: acceptedFiles => {
@@ -271,7 +269,7 @@ export default function Orders() {
        });
      },[])
      useEffect(()=>{
-        // 
+        document.title = "الحساب الشخصي | أمانة"
         fetch(`https://amanacart.com/api/addresses`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`

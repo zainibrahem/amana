@@ -48,7 +48,7 @@ export default function Category(props) {
         setView(e);
     }
     useEffect(() => {
-        
+        document.title = "تفاصيل التصنيف | أمانة"
         fetch(`https://amanacart.com/api/sort_category/${pid}?sort_by=${sort}`)
          .then(res => res.json())
          .then(result =>{

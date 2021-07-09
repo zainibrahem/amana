@@ -53,6 +53,7 @@ export default function Brand(props) {
     const router = useRouter()
     const { pids } = router.query;
     useEffect(() => {
+        document.title = "تفاصيل المتجر | أمانة"
         fetch(`https://amanacart.com/api/shop/${pids}`)
          .then(res => res.json())
          .then(result =>{

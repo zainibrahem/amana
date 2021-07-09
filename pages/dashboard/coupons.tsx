@@ -36,6 +36,7 @@ export default function Orders() {
           }, 5000)
     }
     useEffect(()=>{
+        document.title = "الكوبونات | أمانة"
         fetch(`https://amanacart.com/api/coupons`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`

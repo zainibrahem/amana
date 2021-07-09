@@ -17,6 +17,7 @@ export default function Reset(props) {
     const [statics,setStatics] =  useState();
     const [token,setToken] = useState();
     useEffect(() => {
+        document.title = "ضبط كلمة المرور | أمانة";
         const queryParams = new URLSearchParams(window.location.search);
         setToken(queryParams.get('token'));
     }),[statics];

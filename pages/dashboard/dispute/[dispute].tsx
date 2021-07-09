@@ -338,7 +338,7 @@ export default function Orders() {
           });
     }
     useEffect(() => {
-        
+        document.title = "النزاع | أمانة"
         fetch(`https://amanacart.com/api/order/${pid}/dispute`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`

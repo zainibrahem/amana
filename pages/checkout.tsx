@@ -108,6 +108,7 @@ export default function Orders() {
      const form = new FormData();
      useEffect(()=>{
         // 
+        document.title = "متابعة الشراء | أمانة"
         fetch(`https://amanacart.com/api/addresses`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`

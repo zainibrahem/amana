@@ -42,6 +42,7 @@ export default function Orders() {
     }
     const [data,setData] = useState<Data[]>();
     useEffect(() => {
+        document.title = "النزاعات | أمانة"
         fetch(`https://amanacart.com/api/disputes`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`

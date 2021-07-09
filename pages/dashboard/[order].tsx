@@ -186,6 +186,7 @@ export default function Orders() {
         
     }
     useEffect(() => {
+        document.title = "الطلبات | أمانة"
         fetch(`https://amanacart.com/api/dashboard/orders`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`

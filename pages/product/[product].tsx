@@ -117,6 +117,7 @@ export default function Product(props) {
         setShip(!ship);
     }
     useEffect(() => {
+        document.title = "تفاصيل المنتج | أمانة"
         fetch(`https://amanacart.com/api/item/${pids}`)
          .then(res => res.json())
          .then(result =>{

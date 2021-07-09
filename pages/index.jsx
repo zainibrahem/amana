@@ -49,6 +49,7 @@ export default function Home() {
   }, [dispatch]
   );
   useEffect(() => {
+      document.title = "أمانة";
      fetch("https://amanacart.com/api/home")
       .then(res => res.json())
       .then(result =>{

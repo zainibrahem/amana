@@ -12,6 +12,7 @@ import Proposals from '../../components/proposals/proposals';
 import { Waypoint } from 'react-waypoint';
 import AllCatsSlider from '../../components/allcatsSlider/allCatsSlider';
 import Discover from '../../components/discover/discover';
+import Link from 'next/link';
 export default function Index() {
     interface Order {
         order_date:""
@@ -100,6 +101,7 @@ export default function Index() {
     }
     // removeFav
     useEffect(() => {
+        document.title = "لوحة التحكم | أمانة"
         fetch(`https://amanacart.com/api/dashboard/index`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`
@@ -114,7 +116,7 @@ export default function Index() {
      },[])
 
     return (
-        <div className="grid grid-cols-12 gap-6 mt-12" dir="rtl">
+        <div className="grid grid-cols-12 gap-6 mt-12 pb-4" dir="rtl">
             <div className="col-span-6 lg:col-span-3">
                 <div className="w-full shadow rounded flex justify-between py-6 p-3 items-center bg-blue-400">
                     <div className=" flex justify-start items-center  p-1 lg:p-2 rounded ">
@@ -184,13 +186,13 @@ export default function Index() {
                     </div>
                 </div>
             </div>
-            <div className={`col-span-12 lg:col-span-4 rounded bg-white shadow  `}>
+            <div className={`col-span-12 lg:col-span-4 rounded bg-white shadow  `} style={{minHeight:"200px"}}>
                 <div className="w-full flex justify-start items-center py-3 px-4 " style={{border:"1px solid #eee"}}>
                     <span className="text-sm font-bold">
                         المفضلة
                     </span>
                 </div>
-                {data?data.wishlist.map(ele=>
+                {data&&data.wishlist.length>0?data.wishlist.map(ele=>
                 <div key={ele.id} className="w-full flex flex-col justify-between items-center mt-2 mb-2 scr overflow-y-scroll">
                     <div className="w-full flex justify-between items-center px-2">
                         
@@ -205,15 +207,22 @@ export default function Index() {
                     </div>
                    
                 </div>
-                ):""}
+                ):
+                <div className="flex justify-center items-center h-full">
+                    <span className="text-xs text-center font-bold">
+                        لا توجد منتجات في قائمة المفضلة لديك
+                    </span>
+                </div>
+                }
             </div>
-            <div className={` lg:col-span-8 col-span-12   rounded bg-white shadow `}>
+            <div className={` lg:col-span-8 col-span-12   rounded bg-white shadow `} >
                 <div className="w-full flex justify-start items-center py-3 px-5 ">
                     <span className="text-sm font-bold">
                         الطلبات
                     </span>
                 </div>
-                <div className="w-full flex justify-between max-h-72 overflow-y-scroll scr overflow-x-scroll lg:overflow-visible items-center">
+                <div className="w-full flex justify-between max-h-72 overflow-y-scroll scr overflow-x-scroll lg:overflow-visible items-center" style={{minHeight:"200px"}}>
+                {data&&data.orders.length>0?
                     <table className="w-full">
                         <thead className="">
                             <tr className="bg-gray-200">
@@ -226,7 +235,7 @@ export default function Index() {
                             </tr>
                         </thead>
                         <tbody>
-                            {data?data.orders.map((ele,index)=>
+                          {data.orders.map((ele,index)=>
                                 <tr key={index} className="hover-gray-200" style={data.orders.length==index+1?{}:{borderBottom:"1px solid rgb(224 225 225)"}}>
                                     <td className="text-center " style={{padding:".4rem 0rem"}}>
                                         <a className="w-full" href={`dashboard/payment/payment?pid=${ele.id}`}>
@@ -265,9 +274,21 @@ export default function Index() {
                                     <svg  width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#8899a4" strokeWidth="2" strokeLinecap="square" ><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5"></path></svg>
                                 </td>
                             </tr>
-                            ):<></>}
+                            )}
                         </tbody>
                     </table>
+                    :
+                    <div className="flex flex-col justify-center items-center h-full w-full mt-10">
+                        <span className="text-xs text-center font-bold">
+                            لا توجد طلبات بعد لديك
+                        </span>
+                        <Link href="/">
+                            <button className="rounded bg-yellow-500 text-white px-2 py-1 text-center text-xs mt-5">
+                                ابدأ التسوق
+                            </button>
+                        </Link>
+                    </div>
+            }
                 </div>
             </div>
             <div className="col-span-12 lg:col-span-6  rounded bg-white shadow ">
@@ -276,7 +297,8 @@ export default function Index() {
                         النزاعات   
                     </span>
                 </div>
-                <div className="w-full flex justify-between overflow-x-scroll max-h-80 overflow-y-scroll scr lg:overflow-visible items-center  pb-2  ">
+                <div className="w-full flex justify-between overflow-x-scroll max-h-80 overflow-y-scroll scr lg:overflow-visible items-center  pb-2  " style={{minHeight:"200px"}}>
+                {data&&data.disputes.length>0?
                     <table className="w-full">
                         <thead className="">
                             <tr className="bg-gray-200">
@@ -287,7 +309,7 @@ export default function Index() {
                             </tr>
                         </thead>
                         <tbody>
-                           {data?data.disputes.map((ele,index)=>
+                            {data.disputes.map((ele,index)=>
                                  <tr key={index} className="hover-gray-200" style={data.orders.length==index+1?{}:{borderBottom:"1px solid rgb(224 225 225)"}}>
                                 
                                  <td className="text-center py-2">
@@ -308,9 +330,16 @@ export default function Index() {
                                      <span className="text-gray-600">{ele.reason}</span>
                                  </td>
                              </tr>
-                           ):<></>}
+                            )}
                         </tbody>
                     </table>
+                           :
+                           <div className="flex justify-center items-center h-full w-full mt-10">
+                                <span className="text-xs text-center font-bold">
+                                    لا توجد نزاعات بعد لديك
+                                </span>
+                            </div>
+                           }
                 </div>
             </div>
             <div className={` col-span-12 lg:col-span-6 rounded bg-white shadow `}>
@@ -319,8 +348,8 @@ export default function Index() {
                         الرسائل
                     </span>
                 </div>
-            <div className="w-full flex flex-col justify-between items-center max-h-72 overflow-y-scroll scr mt-3   pb-2 ">
-                    {data?data.messages.map((ele,index)=>
+            <div className="w-full flex flex-col justify-between items-center max-h-72 overflow-y-scroll scr mt-3   pb-2 " style={{minHeight:"200px"}}>
+                    {data&&data.messages.length>0?data.messages.map((ele,index)=>
                         <a key={index} className="w-full hover-gray-200" href={`/dashboard/conversation/conversation?pid=${ele.id}`}>
                             <div className="w-full flex justify-between items-center px-2 pb-2" style={data.orders.length==index+1?{}:{borderBottom:"1px solid rgb(224 225 225)"}}>
                                 <div className="w-24 lg:w-12 h-14 rounded-full  shadow " style={{border:"1px solid #eee",background:`url(https://amanacart.com/image/${ele.shop.image.path})`,backgroundSize:"contain",backgroundRepeat:"no-repeat",backgroundPosition:"center center"}}></div>
@@ -346,7 +375,13 @@ export default function Index() {
                                 </div>
                             </div>
                         </a>
-                    ):""}
+                    ):
+                    <div className="flex justify-center items-center h-full w-full mt-24">
+                        <span className="text-xs text-center font-bold">
+                            لا توجد رسائل بعد لديك
+                        </span>
+                    </div>
+                    }
                 </div>
             </div>
         </div>

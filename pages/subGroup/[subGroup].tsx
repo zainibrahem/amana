@@ -36,6 +36,7 @@ export default function subGroup(props) {
     const { pids } = router.query;
 
     useEffect(() => {
+        document.title = "أمانة"
         fetch(`http://amanacart.com/api/category_sub_group/${pids}`)
          .then(res => res.json())
          .then(result =>{

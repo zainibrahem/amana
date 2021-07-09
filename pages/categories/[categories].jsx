@@ -24,6 +24,7 @@ export default function categories(props) {
     const { pids } = router.query;
 
     useEffect(() => {
+        document.title = "التصنيفات | أمانة"
         fetch(`https://amanacart.com/api/category_group/${pids}`)
          .then(res => res.json())
          .then(result =>{

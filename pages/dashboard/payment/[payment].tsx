@@ -157,6 +157,7 @@ const sendMessage = () =>{
   }, [files]);
     const [data,setData] = useState<Data>()
     useEffect(() => {
+        document.title = "تفاصيل الطلب | أمانة"
         fetch(`https://amanacart.com/api/dashboard/order_details/${pid}`,{
             headers:{
                 'Authorization' : `Bearer ${localStorage.getItem('token')}`
