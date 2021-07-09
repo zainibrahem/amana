@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAppDispatch, useAppState } from '../../contexts/app/app.provider';
 import { AuthContext } from '../../contexts/auth/auth.context';
+import validator from 'validator'
 
 // import Slide1 from '../../public/images/slider/maher.png';
 export default function Modal (props) {
@@ -17,8 +18,19 @@ export default function Modal (props) {
     const [subscribe,setSubscibe] = useState(false);
     const [agree,setAgree] = useState(false);
     const Route = useAppState('Route')
+    const [emailError, setEmailError] = useState<boolean>(false)
+
     const handleemail = (e) =>{
         setEmail(e.target.value)
+        var email = e.target.value
+           
+            if (validator.isEmail(email)) {
+                setEmailError(false)
+                setError(null)
+            } else {
+                setEmailError(true)
+                setError('يجب إدخال بريد الكتروني صالح')
+            }
     }
     const togglesubscibe = () =>{
         setSubscibe(!subscribe);
@@ -128,6 +140,7 @@ export default function Modal (props) {
        
     }
     const toggleReset = (e) => {
+        setError(null)
         setModalType(e);
     }
     const handleForget = () =>{
@@ -231,7 +244,7 @@ export default function Modal (props) {
       useOutsideAlerters(modalRed);
     return(
         <div id="overlay"  className={` ${Modal?"block":"hidden"}  fixed w-screen h-screen bg-black bg-opacity-80  z-50`}>
-            <div ref={modalRed} className={`positionTopmobile ${Modal?"slideUps":"slideDowns"}   overflow-hidden modal rounded grid grid-cols-12 w-3/4 md:w-2/3 h-v-12/12 lg:h-v-10/12 2xl:h-v-11/12  relative left-1/2 top-1/2 transform -translate-y-2/4 -translate-x-2/4`}>
+            <div ref={modalRed} className={`positionTopmobile ${Modal?"slideUps":"slideDowns"}   overflow-hidden modal rounded grid grid-cols-12 w-3/4 md:w-2/3 h-v-12/12 lg:h-v-10/12 2xl:h-v-11/12  relative left-1/2 top-1/2 transform -translate-y-2/3 lg:-translate-y-1/2 -translate-x-2/4`}>
                 <div className="hidden md:block col-span-6 rounded h-v-12/12 lg:h-v-10/12 2xl:h-v-11/12 relative" style={{background:"url('./images/secondback.png')",backgroundSize:"cover",backgroundPosition:"right",backgroundRepeat:"no-repeat"}}>
                 <div className="bg-black rounded bg-opacity-90 w-full h-v-12/12 lg:h-v-10/12 2xl:h-v-11/12 absolute top-0 left-0"></div>
                 <div className="absolute rounded top-0 -right-1 w-full h-v-12/12 lg:h-v-10/12 2xl:h-v-11/12"></div>
@@ -261,35 +274,37 @@ export default function Modal (props) {
                     </svg>
                     
                     <div className="flex flex-col justify-between items-end">
-                        <span className="text-2xl text-white text-right">
-                            أكبر منصة بيع بالتجزئة في سلطنة عمان
+                        <span className="text-lg text-white text-right">
+                            ابدأ البيع الآن حيث يتسوق الآلاف من المتسوقين يوميا
                         </span>
-                        <span className="text-md text-white text-right mt-2">
-                            كل ما تحتاجه لدينا
-                        </span>
+                        
+                        <button className="bg-white self-center mt-6 text-xs rounded px-3 font-bold py-3">
+                            تسجيل دخول كـ بائع
+                        </button>
                     </div>
                     <div className="flex w-full flex-col justify-start items-center">
                         <div className="grid grid-cols-12">
                             <div className="col-span-3"></div>
                             <div className="col-span-6">
                                 <div className="flex w-full flex-col justify-start items-center text-white">
-                                    <span className="text-xs mb-4">حمل التطبيق</span>
-                                    <div className="flex justify-between items-center mt-2">
+                                    {/* <span className="text-xs mb-4">حمل التطبيق</span> */}
+                                    {/* <div className="flex justify-between items-center mt-2">
                                         <img className="w-24 2xl:w-36" src={`${Route}/images/google.png`} alt="" />
                                         <img className="w-24 2xl:w-36 ml-2" src={`${Route}/images/appstore.png`} alt="" />
-                                    </div>
+                                    </div> */}
                                 
                                 </div>
                             </div>
                             <div className="col-span-3"></div>
                         </div>
-                        <span className="mt-10 text-white" style={{fontSize:"12px"}}>
+                        
+                        {/* <span className="mt-10 text-white" style={{fontSize:"12px"}}>
                             جميع الحقوق محفوظة لـ شركة أمانة
                             &copy;    
                             2021
                             ,
                             مسجلة في سلطنة عمان
-                        </span>
+                        </span> */}
                     </div>
                    
                 </div>
@@ -299,7 +314,7 @@ export default function Modal (props) {
                     <div className={`${modalType==0? "centered" :"slideLeft" } h-full col-span-12 md:col-span-6 rounded relative flex flex-col justify-start items-center pt-0 md:pt-0 md:pb-0 p-3 md:p-12`}>
                             <div className="flex flex-col w-full 2xl:justify-center justify-between items-center ">
                                 <div className="w-full h-20 flex justify-center items-center" style={{background:"url(./images/border.png)",backgroundPosition:"center bottom",backgroundRepeat:"no-repeat"}}>
-                                    <span className="text-sm cursor-pointer md:text-md">تسجيل الدخول</span>
+                                    <span className="text-sm cursor-pointer md:text-md">دخول العملاء</span>
                                 </div>
                             </div>
                             <div className="flex justify-between 2xl:justify-center items-center w-full ">
@@ -337,19 +352,20 @@ export default function Modal (props) {
                                     </span>:<></>
                                     }
                                     {/* <label htmlFor="" className="self-end text-xs">البريد الالكتروني</label> */}
-                                    <input type="text" onChange={handleemail} className="w-full 2xl:h-14 rounded h-13 text-xs py-4 px-2 2xl:mt-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="البريد الالكتروني"  style={{border:"1px solid #dddfe2",color:"#1d2129"}}/>
+                                    <input type="email" onChange={handleemail} className="w-full 2xl:h-14 rounded h-13 text-xs py-4 px-2 2xl:mt-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="البريد الالكتروني"  style={{border:"1px solid #dddfe2",color:"#1d2129"}}/>
                                     {/* <label htmlFor="" className="self-end text-xs mt-4">كلمة السر</label> */}
                                     <input type="password" onChange={handlepassword} className="w-full 2xl:h-14 mt-6 rounded h-13 py-4 2xl:mt-9 text-xs  border-2  px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="كلمة المرور" style={{border:"1px solid #dddfe2",color:"#1d2129"}}/>
                                     <button onClick={handleLogin} className="cursor-pointer text-md mt-6 2xl:mt-9 w-full text-white py-4 flex justify-center 2xl:h-14 items-center rounded bg-yellow-500  h-13">
                                         تسجيل دخول
                                     </button>
                                     <div className="w-full flex flex-col justify-between items-center mt-3">
-                                        <div className="w-full flex justify-center items-center">
+                                        <div className="w-full flex flex-col justify-center items-center">
                                             {/* <div className="flex justify-between items-center">
                                                 <label htmlFor="" className="text-xs mr-2">تذكرني</label>
                                                 <input type="checkbox" className="rounded-full bg-white border-2 w-4 h-4 checked:bg-yellow-500 checked:border-transparent appearance-none" name="" id="" />
                                             </div> */}
                                             <span onClick={()=>toggleReset(1)} className="text-xs self-center flex cursor-pointer 2xl:mt-6">نسيت كلمة المرور؟</span>
+                                            
                                         </div>
                                             <hr className="w-full mt-3" />
                                             <button onClick={()=>toggleReset(5)} className="cursor-pointer 2xl:h-14 text-xs lg:text-md  mt-4 w-1/2 text-white py-4 flex justify-center items-center rounded bg-gray-700  h-13">
@@ -400,7 +416,7 @@ export default function Modal (props) {
                                     لا تقلق , سنرسل لك رابط إعادة تعيين كلمة المرور 
                                 </span>
                                 {/* <label htmlFor="" className="self-end text-xs">البريد الالكتروني</label> */}
-                                <input type="text" onChange={handleemail}    className=" w-full mt-4 2xl:h-14 py-4 rounded h-13 text-xs px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="البريد الالكتروني"  style={{border:"1px solid #dddfe2",color:"#1d2129"}} />
+                                <input type="email" onChange={handleemail}    className={`${emailError == true?"border-red-500":""} w-full mt-4 2xl:h-14 py-4 rounded h-13 text-xs px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent`} dir="rtl" placeholder="البريد الالكتروني"  style={{border:"1px solid #dddfe2",color:"#1d2129"}} />
                                 
                                 <button onClick={handleForget} className="w-full mt-4 2xl:h-14 text-white flex justify-center items-center rounded bg-yellow-500  h-13">
                                     إرسال
@@ -489,11 +505,11 @@ export default function Modal (props) {
                                 <div className="hidden md:block col-span-3"></div>
                                 <div className="col-span-12 md:col-span-6">
                                     <div className="flex w-full flex-col justify-start items-center text-white">
-                                        <span className="text-xs mb-4">حمل التطبيق</span>
+                                        {/* <span className="text-xs mb-4">حمل التطبيق</span>
                                         <div className="flex justify-between items-center mt-2">
                                             <img className="w-24 2xl:w-36" src={`${Route}/images/google.png`} alt="" />
                                             <img className="w-24 2xl:w-36 ml-2" src={`${Route}/images/appstore.png`} alt="" />
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                                 <div className="hidden md:block col-span-3"></div>
@@ -553,7 +569,7 @@ export default function Modal (props) {
                                 {/* <label htmlFor="" className="self-end text-xs">الاسم الكامل</label> */}
                                 <input type="text" onChange={handlename}    className="w-full mt-4 2xl:h-14 2xl:mt-8  py-4 text-xs rounded h-13   px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="اسمك بالكامل" style={{border:"1px solid #dddfe2",color:"#1d2129"}} />
                                 {/* <label htmlFor="" className="self-end text-xs">البريد الالكتروني</label> */}
-                                <input type="text" onChange={handleemail}    className="w-full mt-4 2xl:h-14 2xl:mt-8  py-4 text-xs rounded h-13   px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="البريد الالكتروني" style={{border:"1px solid #dddfe2",color:"#1d2129"}} />
+                                <input type="email" onChange={handleemail}    className="w-full mt-4 2xl:h-14 2xl:mt-8  py-4 text-xs rounded h-13   px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="البريد الالكتروني" style={{border:"1px solid #dddfe2",color:"#1d2129"}} />
                                 {/* <label htmlFor="" className="self-end text-xs mt-2">كلمة السر</label> */}
                                 <input type="password" onChange={handlepassword} className="w-full mt-4 2xl:h-14 2xl:mt-8  py-4 text-xs rounded h-13    px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="كلمة المرور" style={{border:"1px solid #dddfe2",color:"#1d2129"}} />
                                 {/* <label htmlFor="" className="self-end text-xs mt-2">تأكيد كلمة السر</label> */}

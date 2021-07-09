@@ -206,7 +206,7 @@ import Link from 'next/link'
                                     </li>
                             :""
                             ):
-                                    <span className="text-xs">هنا يتم عرض اخر زياراتك</span>
+                                    <span className="text-xs text-right">هنا يتم عرض اخر زياراتك</span>
                             }
                                 </ul>
                             </div>
