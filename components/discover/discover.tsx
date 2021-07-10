@@ -89,7 +89,7 @@ export default function Discover (props) {
                         </div>
                         <div className="col-span-12 order-3 mt-7">
                             {props.data? props.data.map((ele,index)=>
-                                <div className="flex flex-col justify-center items-center w-full">
+                                <div className="flex flex-col justify-center items-center w-ful mt-3 lg:mr-0 mr-4">
                                     <div  onClick={toggleAcc} className="cursor-pointer flex flex-row-reverse justify-start items-center mb-3 w-full">
                                         <span className="text-md font-bold text-yellow-500 text-right">
                                             {ele.name}

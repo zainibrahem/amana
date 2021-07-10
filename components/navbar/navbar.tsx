@@ -46,6 +46,7 @@ export const NavBar = (props) => {
     }
     useEffect(()=>{
         setRoutes(window.location.href);
+        console.log(localStorage.getItem('avatar'))
     },[])
     const toggleprofile = () => {
         setProfile(!profile);
@@ -707,10 +708,10 @@ export const NavBar = (props) => {
                                 <div className="col-span-12 rounded px-5 noti-hover py-3 flex justify-start relative items-center">
                                     <Link href="/dashboard">
                                     <div  className="w-full flex justify-start relative items-center">
-                                    <div className="rounded-full w-10 h-8 " style={{background:`url(${localStorage.getItem('avatar')?localStorage.getItem('avatar'):""})`,backgroundSize:"cover",backgroundPosition:"center"}}></div>
+                                    <div className="rounded-full w-10 h-8 " style={{background:`url(${localStorage.getItem('avatar')!='null'?localStorage.getItem('avatar'):"/images/vippng.com-empty-circle-png-4161690.png"})`,backgroundSize:"cover",backgroundPosition:"center"}}></div>
                                     <div className="flex  flex-col justify-between items-start mr-2">
-                                        <span className="text-xs text-black">{localStorage.getItem('nice_name')?localStorage.getItem('nice_name'):""}</span>
-                                        <span className="text-xs text-gray-500 mt-2">الرصيد : 500 ر.ل </span>
+                                        <span className="text-xs text-black">{localStorage.getItem('nice_name')!='null'?localStorage.getItem('nice_name'):"الاسم المستعار"}</span>
+                                        <span className="text-xs text-gray-500 mt-2">الرصيد : {localStorage.getItem('wallet') =='null'?"0":localStorage.getItem('wallet')} </span>
                                     </div>
                                     </div>
                                     </Link>
@@ -776,7 +777,7 @@ export const NavBar = (props) => {
                             </div>
                         </div>
                         {localStorage.getItem('token')?
-                            <div onClick={toggleprofile} className={`hidden ml-3 cursor-pointer w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center ${Loading?"skeleton-box":""}`}  style={Loading?{}:{background:`url(${localStorage.getItem('avatar')!=null?localStorage.getItem('avatar'):""})`,backgroundSize:"cover",backgroundPosition:"center"}}>
+                            <div onClick={toggleprofile} className={`hidden ml-3 cursor-pointer w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center ${Loading?"skeleton-box":""}`}  style={Loading?{}:{background:`url(${localStorage.getItem('avatar')!='null'?localStorage.getItem('avatar'):"/images/vippng.com-empty-circle-png-4161690.png"})`,backgroundSize:"cover",backgroundPosition:"center"}}>
                             </div>
                             :
                             <span className="text-xs block bg-yellow-500 text-white py-1 px-3 rounded cursor-pointer " onClick={toggleModal}>

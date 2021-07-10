@@ -23,6 +23,7 @@ import ProductCard from '../components/productCard/productCard';
 import StoreCard from '../components/storecard/storecard';
 
 import { Title1 } from '../components/title1/title1';
+import Link from 'next/link';
 
 export default function Offer(props) {
     const [data,setData] = useState([]);
@@ -115,7 +116,11 @@ export default function Offer(props) {
                                 {data&&data.length>0?data.map(ele=>
                                 <div key={ele.id} className="col-span-6 lg:col-span-2 flex justify-center items-center">
                                     {/* <ProductCard card={ele} type={"proposals"}></ProductCard> */}
-                                    <StoreCard data={ele}></StoreCard>
+                                    <Link href={`/shop/shop?pids=${ele.id}`}>
+                                        <div className="cursor-pointer">
+                                            <StoreCard data={ele}></StoreCard>
+                                        </div>
+                                    </Link>
                                 </div>
                                 ):""}
                             </div>

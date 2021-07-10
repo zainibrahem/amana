@@ -117,6 +117,8 @@ interface ListItem {
          .then(res => res.json())
          .then(result =>{
            setData(result.data);
+           console.log(result.data)
+           localStorage.setItem('wallet',result.data.balance)
            const wid = document.querySelector('#col').clientWidth;
            var elements = 0;
            var all = 0;
@@ -324,8 +326,10 @@ interface ListItem {
                       </div>
                     :
                       <div className="col-span-2 h-full flex flex-col justify-center items-center">
-                        <img className="w-5" src={`${Route}/images/logout.svg`}/>
-                        <span className="text-xs mt-1">استكشاف</span>  
+                        <a href="/explore" className="flex flex-col justify-center items-center">
+                          <img className="w-5" src={`${Route}/images/logout.svg`}/>
+                          <span className="text-xs mt-1">استكشاف</span>  
+                        </a>
                       </div>
                     }
                   

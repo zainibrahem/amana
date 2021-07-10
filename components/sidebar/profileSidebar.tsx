@@ -64,17 +64,17 @@ import Link from 'next/link'
                 <div className="flex flex-col  sm:justify-around">
                     <div className={"w-full h-screen shadow"}>
                     <nav className={"h-full flex flex-col justify-start items-end pr-5 pt-10"}>
-                        <div className="rounded-full shadow-md w-24 h-24 flex flex-col items-center self-center relative" style={{background:`url(${localStorage.getItem('avatar')?localStorage.getItem('avatar'):""})`,backgroundRepeat:"no-repeat",backgroundSize:"cover",backgroundPosition:"center center"}}>
+                        <div className="rounded-full shadow-md w-24 h-24 flex flex-col items-center self-center relative" style={{background:`url(${localStorage.getItem('avatar')!='null'?localStorage.getItem('avatar'):"/images/vippng.com-empty-circle-png-4161690.png"})`,backgroundSize:"contain",backgroundPosition:"center"}}>
                                 {/* <a href="/dashboard/profile" className='absolute -bottom-5 bg-yellow-500 rounded-full px-3 text-sm cursor-pointer text-white py-1 '>
                                         تعديل
                                 </a> */}
                         </div>
                         <div className="flex flex-col justify-between items-center mt-3 self-center  ">
                             <div className="text-md font-bold">
-                                    {localStorage.getItem('nice_name')?localStorage.getItem('nice_name'):""}
+                                    {localStorage.getItem('nice_name')!='null'?localStorage.getItem('nice_name'):"الاسم المستعار"}
                             </div>
                             <div className="mt-1" style={{fontSize:"12px"}}>
-                                 الرصيد : 2500 ر.ع
+                                 الرصيد : {localStorage.getItem('wallet') =='null'?"0":localStorage.getItem('wallet')}
                             </div>
                         </div>
                         <div className="flex flex-col justify-between items-center w-full mt-7" dir="rtl">

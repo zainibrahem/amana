@@ -91,7 +91,7 @@ export default function Modal (props) {
         .then( async response => {
             const isJson = response.headers.get('content-type')?.includes('application/json');
             const data = isJson && await response.json();
-
+            console.log(data)
             // check for error response
             if (!response.ok) {
                 // get error message from body or default to response status
@@ -99,6 +99,7 @@ export default function Modal (props) {
                 setError(error);
                 return Promise.reject(error);
             }
+            
             localStorage.setItem('token', data.data.api_token)
             // toggleNotification('تم بنجاح تسجيل حسابك','success');
             handleLogin();
@@ -214,7 +215,10 @@ export default function Modal (props) {
             localStorage.setItem('token', data.data.api_token)
             localStorage.setItem('nice_name', data.data.nice_name)
             localStorage.setItem('name', data.data.name)
-            localStorage.setItem('avatar', data.data.avatar)
+            if(data.data.avatar && data.data.avatar != null && data.data.avatar !='null' && data.data.avatar != ''){
+                localStorage.setItem('avatar', data.data.avatar)
+            }
+            console.log(typeof(localStorage.getItem('avatar')))
             localStorage.setItem('email', data.data.email)
             localStorage.setItem('member_since', data.data.member_since)
 
@@ -567,7 +571,7 @@ export default function Modal (props) {
                                 }
 
                                 {/* <label htmlFor="" className="self-end text-xs">الاسم الكامل</label> */}
-                                <input type="text" onChange={handlename}    className="w-full mt-4 2xl:h-14 2xl:mt-8  py-4 text-xs rounded h-13   px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="اسمك بالكامل" style={{border:"1px solid #dddfe2",color:"#1d2129"}} />
+                                <input type="text" onChange={handlename}    className="w-full mt-4 2xl:h-14 2xl:mt-8  py-4 text-xs rounded h-13   px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="الاسم المستعار" style={{border:"1px solid #dddfe2",color:"#1d2129"}} />
                                 {/* <label htmlFor="" className="self-end text-xs">البريد الالكتروني</label> */}
                                 <input type="email" onChange={handleemail}    className="w-full mt-4 2xl:h-14 2xl:mt-8  py-4 text-xs rounded h-13   px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="البريد الالكتروني" style={{border:"1px solid #dddfe2",color:"#1d2129"}} />
                                 {/* <label htmlFor="" className="self-end text-xs mt-2">كلمة السر</label> */}
