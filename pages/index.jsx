@@ -54,6 +54,8 @@ export default function Home() {
       .then(res => res.json())
       .then(result =>{
         setData(result.data);
+        console.log('data.featured_categories')
+        console.log(result.data)
       })
       .catch(e => {
     });

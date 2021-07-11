@@ -27,7 +27,8 @@ export default function Slider (props) {
   }
   
     return (
-      <div className="slider rounded" >
+      <>
+      <div className="slider rounded hidden lg:block" >
         <Swiper
         spaceBetween={20}
         onClick={toggleDrag}
@@ -48,7 +49,7 @@ export default function Slider (props) {
             <div className="w-full">
               <div className={`w-full h-41 skeleton-box ${Loading?"block":"hidden"}`}></div>
               <img onLoad={() => LoadingFalse()} src={ele.image?ele.image.path:""} className={`img hidden lg:block rounded w-full ${Loading?"hidden":"block"}`} alt="" />
-              <img onLoad={() => LoadingFalse()} src={ele.image_mobile?ele.image_mobile.path:""} className={`img block lg:hidden rounded w-full ${Loading?"hidden":"block"}`} alt="" />
+              
             </div>
           </SwiperSlide>
         ):""}
@@ -58,5 +59,37 @@ export default function Slider (props) {
         {/* <SwiperPagination></SwiperPagination> */}
       </Swiper>
       </div>
+      <div className="slider rounded block lg:hidden" >
+        <Swiper
+        spaceBetween={20}
+        onClick={toggleDrag}
+        slidesPerView={1}
+        draggable={false}
+        resizeObserver={true}
+        loop={true}
+        pagination={{ clickable: true }}
+        autoplay={{
+          pauseOnMouseEnter:true,
+          delay:5000
+        }}
+        speed={400}
+      >
 
+        {props.sliders?props.sliders.map(ele => 
+        ele.image_mobile?
+          <SwiperSlide key={ele.id}>
+            <div className="w-full">
+              <div className={`w-full h-41 skeleton-box ${Loading?"block":"hidden"}`}></div>
+              <img onLoad={() => LoadingFalse()} src={ele.image_mobile?ele.image_mobile.path:""} className={`img block lg:hidden rounded w-full ${Loading?"hidden":"block"}`} alt="" />              
+            </div>
+          </SwiperSlide>
+          :""
+        ):""}
+        {/* <SwiperSlide>
+        <div className={`img rounded w-full h-36 sm:h-36 lg:h-90 ${Loading?"skeleton-box":""}`} style={Loading?{}:{backgroundImage:"url('./images/slider/maher.png')"}}></div>
+        </SwiperSlide> */}
+        {/* <SwiperPagination></SwiperPagination> */}
+      </Swiper>
+      </div>
+  </>
 );}

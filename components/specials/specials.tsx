@@ -7,6 +7,7 @@ import SpecialBrands from '../specialBrands/SpecialBrands';
 import React from "react";
 import { useAppState } from '../../contexts/app/app.provider';
 import Slider from '../slider/slider';
+import Link from 'next/link';
 
 // import Slide1 from '../../public/images/slider/maher.png';
 export default function Specials (props) {
@@ -39,9 +40,9 @@ return (
                 {props.cats.map((ele,index) => 
                     index<=3?
                     <div key={ele.id} className="col-span-6   rounded  ">
-                        {/* <div className={`w-full ${Loading?"skeleton-box":""} h-41 rounded`} style={Loading?{}:{background:"url("+ele.feature_image+")",backgroundSize:"cover",backgroundPosition:"center"}}></div> */}
-                        <img src={ele.feature_image} className="img shadow-md rounded w-full " alt="" />
-
+                        <Link href={`/category/category?pid=${ele.id}`}>
+                            <img src={ele.feature_image} className="img cursor-pointer shadow-md rounded w-full " alt="" />
+                        </Link>
                     </div>
                     :""
                 )}

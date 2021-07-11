@@ -18,7 +18,12 @@ import Fslider from '../../components/F-sale/Fsale';
 import { Title } from '../../components/title/title';
 import CardSlider from '../../components/cardSlider/cardSlider';
 import { useRouter } from 'next/router';
-import ShopModal from '../../components/modal/shopmodal'
+import ShopModal from '../../components/modal/shopmodal';
+import { makeStyles } from '@material-ui/core/styles';
+import Rating from '@material-ui/lab/Rating';
+import Favorite from '@material-ui/icons/Favorite';
+
+import Box from '@material-ui/core/Box';
 export default function Product(props) {
     const [openTab, setOpenTab] = React.useState(1);
     const [dimage,setDImage] = useState("");
@@ -35,6 +40,7 @@ export default function Product(props) {
         model_number:string
         description:string
         value:[]
+        images:[]
     }
     interface Item {
         id:string
@@ -54,15 +60,20 @@ export default function Product(props) {
     interface Inven {
         attributes:Attr1[]
     }
+    interface label{
+        0:string
+    }
     interface NewData{
-        title:""
-        brand:""
+        title:string
+        brand:string
+        stock_quantity:string
         product:Pro
-        slug:""
+        slug:string
+        labels:label
         images:[]
-        price:""
-        description:""
-        offer_price:null
+        price:string
+        description:string
+        offer_price:string
         linked_items:Item[]
         currency_symbol:string
         attributes:Attr1[]
@@ -108,14 +119,24 @@ export default function Product(props) {
     const [values , setValues] = useState([])
     const [shipping,setShipping] = useState([])
     const [modal,setModal] = useState(false)
+    const [image,setImage] = useState<string>('');
+    const [color,setcolor] = useState<string>('');
+    const [takes,setTakes] = useState('')
+    const [rating, setRating] = useState(0)
     const setAttr = (value,names) => {
         var obj = [value,names];
         setActive(obj)
     }
+    const handleRating = (rate) => {
+        setRating(rate)
+        // Some logic
+      }
     const [ship,setShip] = useState(false);    
     const toggleShipping = () =>{
         setShip(!ship);
     }
+    const [disc,setdisc] = useState<Number>(0);
+
     useEffect(() => {
         document.title = "تفاصيل المنتج | أمانة"
         fetch(`https://amanacart.com/api/item/${pids}`)
@@ -123,35 +144,41 @@ export default function Product(props) {
          .then(result =>{
            setDatas(result.data);
            setAttributes(result.attributes);
+           var pri = parseInt(result.data.raw_price,10);
+           var fullpri = parseInt(result.data.price,10);
+           result.data.linked_items.map(el => {
+                pri = pri+= parseInt(el.raw_price,10);
+                fullpri = fullpri+= parseInt(el.price,10);
+           })
+           setPricess(pri);
+           setdisc(fullpri - pri);
+           console.log(result.data)
+           result.attributes.map(ele=>{
+            if(ele.type == 'Color/Pattern'){
+                ele.values.map(eles=>{
+                    if(eles.selected == 1){
+                        setcolor(eles.value)
+                    }
+                })
+            }
+        })
            setShipping(result.shipping_options);
            setImages(result.data.images);
+           setImage(result.data.product.images[0].path);
+           setDImage(result.data.images[0].path)
            setId(pids);
-        //    imagess=result.data.images;
-        //    result.data.product.image.forEach(element => {
-               
-        //    }); 
-        var pri = parseInt(result.data.raw_price,10);
-        result.data.linked_items.map(el => {
-             pri = pri+= parseInt(el.raw_price,10);
-        })
-        setPricess(pri);
+          
+       
+        
+      
            setTitle(result.data.title);
          })
          .catch(e => {
        });
      },[pids])
-     const changeData = (e,attrid,attrvalue,pids,type) =>{
+     const changeData = (e,attrid,attrvalue,pids,type,color) =>{
         if(type == 'Color/Pattern'){
-            for (let i = 0; i < e.target.parentElement.children.length; i++) {
-                if(e.target.parentElement.children[i].classList.contains('border-yellow-500')){
-                    e.target.parentElement.children[i].classList.remove('border-yellow-500');
-                    e.target.parentElement.children[i].classList.remove('border-2');
-                }
-            }
-          
-            e.target.classList.add('border-2');
-            e.target.classList.add('border-yellow-500');
-
+                setcolor(color)
         }
         else{
             for (let i = 0; i < e.target.parentElement.children.length; i++) {
@@ -170,6 +197,15 @@ export default function Product(props) {
             setDatas(result.data);
             setId(result.data.id);
             setAttributes(result.attributes);
+            result.attributes.map(ele=>{
+                if(ele.type == 'Color/Pattern'){
+                    ele.values.map(eles=>{
+                        if(eles.selected == 1){
+                            setcolor(eles.value)
+                        }
+                    })
+                }
+            })
             setShipping(result.shipping_options);
             setImages(result.data.images);
         })
@@ -279,10 +315,9 @@ export default function Product(props) {
         <>
             <ShopModal shop={datas?datas.shop:""} handleModal={closeModal} modal={modal}></ShopModal>
             <div className="grid grid-cols-12 gap-3 bg-white shadow rounded mt-12 p-4" dir="rtl">
-                <div className="col-span-1"></div>
-                <div className="col-span-12 lg:col-span-5 flex flex-col justify-between">
-                    <ThumbSlider images={images?images:""}></ThumbSlider>
-                    <div className="w-full flex flex-col justify-start items-start mt-1">
+                <div className="col-span-12 lg:col-span-4 flex flex-col justify-start">
+                    <ThumbSlider defaults={image?image:""} images={images?images:""}></ThumbSlider>
+                    <div className="w-full flex flex-col justify-start items-start mt-4">
                         <div className="bg-gray-100 w-full flex flex-col justify-start items-start p-2">
                         <div className="flex justify-start items-center border-b-2 pb-2 border-gray-300 w-full text-right mt-2">
                             <span className="text-sm text-gray-500 ml-2">شحن إلى دمشق</span>
@@ -331,7 +366,7 @@ export default function Product(props) {
                         <div className="flex justify-between items-center w-full px-2 mt-2">
                             <span className="text-black font-bold text-xs">
                                  توصيل مجاني 
-                                <span className="text-blue-300 text-xs"> غدا - 22 أيار </span>
+                                <span className="text-blue-300 text-xs"> {takes?takes:""} </span>
                             </span>
                                 <img className={`w-14 2xl:w-16 h-2  `} src="../images/SPEED AR.svg" alt="" />
                         </div>
@@ -352,116 +387,212 @@ export default function Product(props) {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-12 lg:col-span-5 flex flex-col justify-between items-start pr-2">
-                    <span className="text-gray-500 text-right text-md ">
-                        {/* {data?data.item.product.brand:""} */}
-                        {datas?datas.brand:""}
-                    </span>
-                    <span className="text-gray-500 text-right text-md ">
-                        {/* {data?data.item.product.brand:""} */}
-                        اسم المتجر : <span className="text-yellow-500 cursor-pointer" onClick={handleModal}>
-                            {datas?datas.shop.name:""}
+                <div className="col-span-12 lg:col-span-8 relative flex flex-col justify-start items-start pr-4" style={{borderRight:"1px solid #eee"}}>
+                    <div className="flex justify-start items-center w-full">
+                        <span className="text-right text-sm text-md text-gray-500 flex justify-between items-center">
+                            {/* {data?data.item.product.brand:""} */}
+                            <img className="w-6 ml-2" src="/images/icons/colors/Group 5462.svg" alt="" />
+                            {datas?datas.brand:""}
                         </span>
-                    </span>
-                    <span className="text-black font-bold text-right text-lg ">
+                        <span className="text-right text-sm 2xl:text-md text-gray-500 flex justify-between items-center mr-3">
+                            {/* {data?data.item.product.brand:""} */}
+                            <img className="w-6 ml-2" src="/images/icons/colors/Group 5450.svg" alt="" />
+                            تباع بواسطة: <span className="text-blue-500 mr-1 cursor-pointer" onClick={handleModal}>
+                                {datas?datas.shop.name:""}
+                            </span>
+                        </span>
+                        {localStorage.getItem('token')?
+                            <div onClick={()=>AddToFav(datas?datas.slug:"")} className="cursor-pointer mt-2 rounded flex justify-center items-center  text-red-500 px-3 lg:px-3 absolute left-0 lg:py-1">
+                                    <Favorite />
+                            </div>
+                            :""
+                        }
+                    </div>
+                    <span className="text-black text-right text-xl mt-5">
                         {/* {data?data.item.product.name:""} */}
                         {datas?datas.title:""}
                     </span>
-                    <span className="text-black text-right text-md ">
-                        {/* رقم الموديل : {data?data.item.product.model_number:""} */}
-                         رقم الموديل 
-                        {datas?datas.product.model_number:""}
-                    </span>
-                    {attributes.map(ele=>{
+                    <div className="flex justify-between items-center mt-5">
+                        <span className="text-gray-700 text-right text-sm ">
+                            {/* رقم الموديل : {data?data.item.product.model_number:""} */}
+                            رقم الموديل:  
+                            {/* <span className="mr-2">{datas?datas.product.model_number:""}</span> */}
+                            <span className="mr-2 ml-6">LOS231</span>
+                        </span>
+                        <Rating dir="ltr" name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
+                        <span className="px-2  text-white rounded mr-4" style={{background:"#81b214"}}>
+                            4.5
+                        </span>
+                        <span className="text-blue-500 mr-4 text-sm">
+                            110 مستخدمين قاموا بتقييم المنتج
+                        </span>
+                    </div>
+                    <div className="grid grid-cols-12 w-full pt-4">
+                        
+                        <div className="col-span-6 pl-2">
+                        {attributes.map(ele=>{
                         return(
                             ele.type=="Color/Pattern"?
-                             <div>
-                                <span className="text-xs mt-2">
-                                    {ele.name}:
+                             <div className="">
+                                <span className="text-xs ">
+                                    {ele.name}: {color}
                                 </span>
-                                <div className="flex justify-end-items-center">
+                                <div className="flex justify-start items-center mt-2">
                                     {ele.values.map(valuess=>{
                                         return (
-                                            <div data-id={`${ele.type}`} onClick={(e)=>changeData(e,ele.id,valuess.id,pids,ele.type)} className={`w-10 h-8 mr-2 cursor-pointer rounded-full ${valuess.selected == 1 ?"border-2 border-yellow-500":""}`} style={{background:`${valuess.color}`}}></div>
+                                            <div data-id={`${ele.type}`} onClick={(e)=>changeData(e,ele.id,valuess.id,pids,ele.type,valuess.value)} className={`w-8 h-6 mr-2 cursor-pointer onHovers rounded-full flex justify-center items-center `} style={{background:`${valuess.color}`,border:"1px solid #eee"}}>
+                                                {valuess.selected == 1 ?
+                                                
+                                                     valuess.color == '#fff'?
+                                                     
+                                                     
+                                                    <img src="/images/icons/colors/Icon-Check b.svg" className="w-4" alt="" /> 
+                                                    :
+                                                    <img src="/images/icons/colors/Icon-Check w.svg" className="w-4" alt="" /> 
+                                                    :""
+                                                }
+                                            </div>
                                             );
                                     })}
                                 </div>
-                                
                             </div>
                             :
-                            <div>
-                               <span className="text-xs mt-2">
+                            ele.type=="Select"?
+                            <div className="flex flex-col">
+                                <span className="text-xs">
                                     {ele.name}:
                                 </span>
-                                <div className="flex justify-end-items-center">
-                                    {ele.values.map(valuess=>{
-                                        return (
-                                            <span data-id={`${ele.type}`}  onClick={(e)=>changeData(e,ele.id,valuess.id,pids,ele.type)} className={`${valuess.selected == 1? "bg-yellow-500":"border-2"} cursor-pointer rounded  mr-2 px-2 py-1`}>
-                                                {valuess.value}
-                                            </span>
-                                            );
-                                    })}
-                                </div>
+                                
+                                <select name="" id=""  className="px-2 text-xs w-3/12 h-6 border-2 rounded mt-2 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
+                                    <option value="">اختر</option>
+                                    {ele.values.map(eles =>
+                                        <option key={eles.id} value={eles.value}>{eles.value}</option>
+                                    )}
+                                </select>
                             </div>
+                            :
+                            <div className="">
+                            <span className="text-xs">
+                                 {ele.name}:
+                             </span>
+                             <div className="flex justify-end-items-center flex-wrap">
+                                 {ele.values.map(valuess=>{
+                                     return (
+                                         <span data-id={`${ele.type}`}  onClick={(e)=>changeData(e,ele.id,valuess.id,pids,ele.type,"أبيض")} className={`${valuess.selected == 1? "bg-yellow-500":"border-2"} onHovers cursor-pointer rounded  flex justify-center items-center mr-2 px-4 h-6  mt-3 numbers`} >
+                                             {valuess.value}
+                                         </span>
+                                         );
+                                 })}
+                             </div>
+                         </div>
+                         
                             );
                         
                     })}
-                  
-                    
-              
-                   
-
-
-                    <div className="flex flex-row-reverse justify-end w-full items-center mt-2" >
-                            {datas&&datas.offer_price?
-                                <span className="text-lg text-gray-500 discount relative">
-                                    {datas.offer_price}
+                      <div className="flex justify-start items-center w-2/3 mt-5">
+                        <span className="text-xs w-20 2xl:w-16">
+                            السعر:
+                        </span>
+                        {datas&&datas.offer_price?
+                                <span className="text-2xl text-right numbers font-bold text-black mr-4"  style={{fontWeight:"bold"}}>
+                                    {datas.offer_price?datas.offer_price.split('ر.ع'):""} <span className="text-2xl">ر.ع</span>
                                 </span>  
                             :""}
-                          
-                            {datas&&datas.price?
-                                <span className="text-md font-bold text-black ml-4">
-                                    {datas.price}
+                        
+                    </div>
+                    <div className="flex justify-start items-center w-2/3 mt-3">
+                        <span className="text-xs w-20 2xl:w-16">
+                            قبل الحسم:
+                        </span>
+                        {datas&&datas.price?
+                            <span className="text-lg mr-4 text-right numbers text-gray-500  discount relative ">
+                                {datas.price?datas.price.split('ر.ع'):""} <span className="text-2xl">ر.ع</span>
+                            </span>
+                        :""}
+                    </div>
+
+                    <div className="flex justify-start items-center w-2/3 mt-3">
+                        <span className="text-xs w-20 2xl:w-16">
+                            التوفير:
+                        </span>
+                        {datas&&datas.price?
+                            <span className="text-xl numbers font-bold  mr-4" style={{fontWeight:"bold",color:"#81b214"}}>
+                                {datas&&datas.labels[0]?datas.labels[0].split('Off'):""}
+                            </span>
+                        :""}
+                    </div>
+                        </div>
+                        <div className="col-span-6 pr-2  flex flex-col justify-start items-center " style={{borderRight:"1px solid #eee"}}>
+                        {/* <div className="flex flex-row-reverse justify-between items-center  mt-2 pb-2">
+                            <p className="text-xs text-right text gray-300 mr-2">هذا المنتج لا يمكن إعادته أو تبديله تعلم المزيد عن سياسة الإرجاع لدينا</p>
+                            <img className={`w-14 2xl:w-16 h-2  `} src="../images/icon1.svg" alt="" />
+                        </div>
+                        <div className="flex flex-row-reverse justify-between items-center mt-3  pb-2">
+                            <p className="text-xs text-right text gray-300 mr-2">هذا المنتج لا يمكن إعادته أو تبديله تعلم المزيد عن سياسة الإرجاع لدينا</p>
+                            <img className={`w-14 2xl:w-16 h-2  `} src="../images/icon2.svg" alt="" />
+                        </div>
+                        <div className="flex flex-row-reverse justify-between items-center mt-3  pb-2">
+                            <div className="flex flex-col justify-between items-start mr-2">
+                                <span className="text-xs text-black font-bold">
+                                    شحن موثوق
+                                </span>
+                                <p className="text-xs text-right text gray-300 ">هذا المنتج لا يمكن إعادته أو تبديله تعلم المزيد عن سياسة الإرجاع لدينا</p>
+                            </div>
+                            
+                            <img className={`w-14 2xl:w-16 h-2  `} src="../images/icon3.svg" alt="" />
+                        </div>
+                        <div className="flex flex-row-reverse justify-between items-center mt-3  pb-2">
+                            <div className="flex flex-col justify-between items-start mr-2">
+                                <span className="text-xs text-black font-bold">
+                                    شحن موثوق
+                                </span>
+                                <p className="text-xs text-right text gray-300 ">هذا المنتج لا يمكن إعادته أو تبديله تعلم المزيد عن سياسة الإرجاع لدينا</p>
+                            </div>
+                            
+                            <img className={`w-14 2xl:w-16 h-2  `} src="../images/icon4.svg" alt="" />
+                        </div>
+                        <div className="flex flex-row-reverse justify-between items-center mt-3  pb-2">
+                            <div className="flex flex-col justify-between items-start mr-2">
+                                <span className="text-xs text-black font-bold">
+                                    شحن موثوق
+                                </span>
+                                <p className="text-xs text-right text gray-300 ">هذا المنتج لا يمكن إعادته أو تبديله تعلم المزيد عن سياسة الإرجاع لدينا</p>
+                            </div>
+                            
+                            <img className={`w-14 2xl:w-16 h-2  `} src="../images/icon3.svg" alt="" />
+                        </div> */}
+                        </div>
+                    </div>
+                    
+                  
+                    
+                    
+                        <div className="flex justify-between items-center mt-3">
+                            {/* <span className="text-red-500 text-xs text-right mr-1">شحن مجاني للطلبات التي تتجاوز 12000 ل.س</span> */}
+                            <span className="text-xs w-20 2xl:w-16">
+                                الكمية:
+                            </span>
+                            {datas&&parseInt(datas.stock_quantity)<6?
+                                <span className="text-red-500 text-xs">
+                                    الكمية الموجودة لهذا المنتج محدودة اطلبه الان
                                 </span>
                             :""}
+                            {/* {datas&&datas.price?
+                                    <span className="text-xl text-gray-500 numbers  mr-4">
+                                        {datas?datas.stock_quantity:""}
+                                    </span>
+                            :""} */}
                         </div>
-                        <div className="flex flex-row-reverse mt-2 pl-2 justify-end pr-3 items-center w-full">
-                            <span className="text-red-500 text-xs text-right mr-1">شحن مجاني للطلبات التي تتجاوز 12000 ل.س</span>
-                            <span dir="rtl" className="font-bold text-xs">الكمية:</span>
-                        </div>
-                        <div className="flex flex-row-reverse  justify-between items-center w-full">
-                            <div onClick={()=>AddToCart(datas?datas.slug:"")} className="cursor-pointer mt-2 rounded flex justify-center items-center bg-yellow-500 text-white px-3 lg:px-24  lg:py-1">إضافة للسلة</div>
-                            {localStorage.getItem('token')?
-                            <div onClick={()=>AddToFav(datas?datas.slug:"")} className="cursor-pointer mt-2 rounded flex justify-center items-center bg-red-500 text-white px-3 lg:px-3  lg:py-1">
-                                    &#9825;
-                            </div>
-                            :""
-                            }
-                            <span className="border-2 flex flex-row-reverse mt-2 rounded">
-                                <span onClick={()=>setquan(quan+1)} className="cursor-pointer px-2 py-1 flex justify-center border-r-2 items-center">+</span>
-                                <span className="px-3 py-1 text-xs flex justify-center items-center">{quan}</span>
-                                <span onClick={()=> {if(quan>1) setquan(quan-1) }} className="cursor-pointer px-2 py-1 flex justify-center border-l-2 items-center">-</span>
+                        <div className="flex flex-row-reverse  justify-end items-center w-full ">
+                            <div onClick={()=>AddToCart(datas?datas.slug:"")} className="cursor-pointer mr-3 mt-2 rounded flex justify-center items-center bg-yellow-500 text-white px-3 lg:px-24 hover:shadow  h-6 onHovers">إضافة للسلة</div>
+                           
+                            <span className="flex flex-row-reverse 2xl:text-2xl mt-2 rounded" style={{border:"1px solid rgb(195 195 195)"}}>
+                                <span onClick={()=>setquan(quan+1)} className="cursor-pointer 2xl:text-2xl px-2 py-1 flex justify-center  items-center" style={{borderRight:"1px solid rgb(195 195 195)"}}>+</span>
+                                <span className="px-3 py-1 text-sm 2xl:text-2xl flex justify-center numbers items-center">{quan}</span>
+                                <span onClick={()=> {if(quan>1) setquan(quan-1) }} className="cursor-pointer 2xl:text-4xl px-2 py-1 flex justify-center  items-center" style={{borderLeft:"1px solid rgb(195 195 195)"}}>-</span>
                             </span>
                         </div>
-                                    {datas&&datas.linked_items.length>0?
-                        <div className="pt-2  w-full">
-                            <div className="shadow rounded w-full flex flex-col p-3 justify-between items-center">
-                                <div className="flex flex-row-reverse justify-between w-full items-center text-sm">
-                                    <div className="text-green-500 text-md font-bold">
-                                        {pricess} {datas?datas.currency_symbol:""}
-                                    </div>
-                                    <CardTitle title={"مبيع متكرر لهذا المنتج"}></CardTitle>
-                                </div>
-                                    <Fslider price={prices} items={datas?datas.linked_items:""} item={datas?datas:""} image={dimage}></Fslider>
-                                <div className="flex mt-2 flex-col justify-between items-center w-full ">
-                                    <div className="w/4-12 text-sm rounded bg-transparent  border-green-700 text-green-700 px-4 py-1 mt-2" style={{border:"1px solid"}}>اشتريها معا بسعر :
-                                        <span className="numbers text-sm" style={{fontWeight:"bold"}}>  {pricess} {datas?datas.currency_symbol:""} </span>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        :"" }
+                                    
                         
                 </div>
 
@@ -470,11 +601,10 @@ export default function Product(props) {
                 
             </div>
             
-            <div className="grid grid-cols-12 bg-white rounded shadow mt-12 p-3" dir="rtl">
-                <div className="col-span-12 lg:col-span-7 p-2 rounded ">
+            <div className="grid grid-cols-10 bg-white rounded shadow mt-12 p-3" dir="rtl">
+                <div className="col-span-12 lg:col-span-6 p-2 rounded ">
                     <div className="grid grid-cols-12" dir="ltr">
-                        <div className="col-span-4"></div>
-                        <div className="col-span-8">
+                        <div className="col-span-12">
                             <ul
                                 className="flex mb-0 border-b-2 list-none  flex-row lg:mb-2"
                                 role="tablist"
@@ -547,8 +677,7 @@ export default function Product(props) {
                             <div className="order-0 relative flex flex-col min-w-0 break-words w-full ">
                                 <div className="sm:px-4 lg:px-0  flex-auto">
                                 <div className="tab-content tab-space" >
-                                    <div  className={`${openTab==1?"block":"hidden"} text-right flex flex-col justify-between items-end p-2`} id={`link1`}>
-                                        
+                                    <div className={`${openTab==1?"block":"hidden"} overflow-hidden text-right flex flex-col justify-between items-end p-2`} id={`link1`}>
                                         {datas?renderHTML(datas.product.description):""}
                                         {/* تفاصيل */}
                                     </div>
@@ -567,45 +696,32 @@ export default function Product(props) {
                         </div>
                     </div>
                 </div>
-                <div className="col-span-12 lg:col-span-5 2xl:col-span-3 p-2">
-                        <div className="flex flex-row-reverse justify-between items-center mt-3 border-b-2 pb-2">
-                            <p className="text-xs text-right text gray-300 mr-2">هذا المنتج لا يمكن إعادته أو تبديله تعلم المزيد عن سياسة الإرجاع لدينا</p>
-                            <img className={`w-14 2xl:w-16 h-2  `} src="../images/icon1.svg" alt="" />
-                        </div>
-                        <div className="flex flex-row-reverse justify-between items-center mt-3 border-b-2 pb-2">
-                            <p className="text-xs text-right text gray-300 mr-2">هذا المنتج لا يمكن إعادته أو تبديله تعلم المزيد عن سياسة الإرجاع لدينا</p>
-                            <img className={`w-14 2xl:w-16 h-2  `} src="../images/icon2.svg" alt="" />
-                        </div>
-                        <div className="flex flex-row-reverse justify-between items-center mt-3 border-b-2 pb-2">
-                            <div className="flex flex-col justify-between items-start mr-2">
-                                <span className="text-xs text-black font-bold">
-                                    شحن موثوق
-                                </span>
-                                <p className="text-xs text-right text gray-300 ">هذا المنتج لا يمكن إعادته أو تبديله تعلم المزيد عن سياسة الإرجاع لدينا</p>
+                <div className="col-span-12 lg:col-span-4 6  p-2  rounded flex justify-end items-center">
+                    <div className="w-full p-6" style={{background:"#f9fafb"}}>
+                    {datas&&datas.linked_items.length>0?
+                        <div className="pt-2  w-full ">
+                            <div className="rounded w-full flex flex-col p-3 justify-between items-center">
+                                <div className="flex flex-row-reverse justify-between w-full items-center text-sm">
+                                    <div className="text-green-500 text-md font-bold">
+                                            توفير: {disc}
+                                    </div>
+                                    <CardTitle title={"مبيع متكرر لهذا المنتج"}></CardTitle>
+                                </div>
+                                
+                                <div className="w-full linked mt-4 bg-white rounded " style={{border:"1px solid #eee"}}>
+                                    <Fslider price={prices} items={datas?datas.linked_items:""} item={datas?datas:""} image={image}></Fslider>
+                                </div>
+                                <div className="flex mt-2 flex-col justify-between items-center w-full ">
+                                    <div className="w-full text-sm text-center rounded bg-white  border-yellow-500 font-bold text-yellow-500 px-4 py-1 mt-2" style={{border:"1px solid"}}>اشتر {datas?datas.linked_items.length + 1:""} معا  بسعر :
+                                        <span className="numbers text-sm" style={{fontWeight:"bold"}}>  {pricess} {datas?datas.currency_symbol:""} </span>
+                                        
+                                    </div>
+                                </div>
                             </div>
-                            
-                            <img className={`w-14 2xl:w-16 h-2  `} src="../images/icon3.svg" alt="" />
                         </div>
-                        <div className="flex flex-row-reverse justify-between items-center mt-3 border-b-2 pb-2">
-                            <div className="flex flex-col justify-between items-start mr-2">
-                                <span className="text-xs text-black font-bold">
-                                    شحن موثوق
-                                </span>
-                                <p className="text-xs text-right text gray-300 ">هذا المنتج لا يمكن إعادته أو تبديله تعلم المزيد عن سياسة الإرجاع لدينا</p>
-                            </div>
-                            
-                            <img className={`w-14 2xl:w-16 h-2  `} src="../images/icon4.svg" alt="" />
-                        </div>
-                        <div className="flex flex-row-reverse justify-between items-center mt-3 border-b-2 pb-2">
-                            <div className="flex flex-col justify-between items-start mr-2">
-                                <span className="text-xs text-black font-bold">
-                                    شحن موثوق
-                                </span>
-                                <p className="text-xs text-right text gray-300 ">هذا المنتج لا يمكن إعادته أو تبديله تعلم المزيد عن سياسة الإرجاع لدينا</p>
-                            </div>
-                            
-                            <img className={`w-14 2xl:w-16 h-2  `} src="../images/icon3.svg" alt="" />
-                        </div>
+                    :"" }  
+                    </div>
+                  
                 </div>
                 <div className="col-span-1 lg:hidden"></div>
             </div>

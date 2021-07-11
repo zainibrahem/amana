@@ -14,14 +14,25 @@ import AllCatsSlider from '../components/allcatsSlider/allCatsSlider';
 import Discover from '../components/discover/discover';
 export default function Home() {
     useEffect(()=> 
-        {document.title = "استكشاف | أمانة";}
-    ,[])
+        {
+            document.title = "استكشاف | أمانة";
+            setTimeout(() => {
+                setLoading(false)
+            }, 2000);
+        }
+        ,[])
+    const [Loading,setLoading] = useState(true)
     return (
-      <div className="flex flex-col justify-center items-center h-140 height-2xl">
-          <img src="/images/123123.png" className="w-96" alt="" />
+        <>
+        <div className={`${Loading?"flex":"hidden"}  flex-col justify-center items-center h-140 height-2xl`}>
+            <div className="w-96 h-95 skeleton-box"></div>
+        </div>
+      <div className={`${Loading?"hidden":"flex"}  flex-col justify-center items-center h-140 height-2xl`}>
+          <img onLoad={()=>setLoading(false)} src="/images/123123.png" className="w-96" alt="" />
           <span className="text-md text-center">
               قريبا استكشاف منصة أمانة
           </span>
       </div>
+      </>
     );
 }

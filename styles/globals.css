@@ -242,6 +242,8 @@ body::-webkit-scrollbar-thumb {
 .hoverme:hover{
   color:rgba(245, 158, 11)
 }
+
+
 .hoverme:hover svg path{
   fill:rgba(245, 158, 11)
 }
@@ -359,6 +361,20 @@ body::-webkit-scrollbar-thumb {
 .swiper-button-next:after{
   font-size: 22px !important;
 }
+.linked .swiper-button-next:after{
+  font-size: 16px !important;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-60%,-50%) ;
+}
+.linked .swiper-button-prev:after{
+  font-size: 16px !important;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-60%,-50%) ;
+}
 .swiper-container:hover .swiper-button-prev{
   opacity: 1;
   transition: all .4s ease;
@@ -376,6 +392,7 @@ body::-webkit-scrollbar-thumb {
   height:40px !important;
   transition: all .4s ease;
 }
+
 .swiper-button-next{
   opacity: 0;
   left:0px !important;
@@ -383,6 +400,24 @@ body::-webkit-scrollbar-thumb {
   border-radius: 100%;
   width:40px !important;
   height:40px !important;
+  transition: all .4s ease;
+}
+.linked .swiper-button-next {
+  opacity: 0;
+  left:0px !important;
+  background:rgb(245, 158, 11,.6);
+  border-radius: 100%;
+  width:30px !important;
+  height:30px !important;
+  transition: all .4s ease;
+}
+.linked .swiper-button-prev {
+  opacity: 0;
+  right:0px !important;
+  background:rgb(245, 158, 11,.6);
+  border-radius: 100%;
+  width:30px !important;
+  height:30px !important;
   transition: all .4s ease;
 }
 .categories .swiper-button-prev{
@@ -855,10 +890,30 @@ background-color: rgb(78, 78, 78);
     font-size: 10px;
   }
 }
-span{
-  user-select: none; /* supported by Chrome and Opera */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
+a{
+  user-select: none !important; /* supported by Chrome and Opera */
+  -webkit-user-select: none !important; /* Safari */
+  -khtml-user-select: none !important; /* Konqueror HTML */
+  -moz-user-select: none !important; /* Firefox */
+  -ms-user-select: none !important; /* Internet Explorer/Edge */
+  outline:none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+span,a,img,button{
+  user-select: none !important; /* supported by Chrome and Opera */
+  -webkit-user-select: none !important; /* Safari */
+  -khtml-user-select: none !important; /* Konqueror HTML */
+  -moz-user-select: none !important; /* Firefox */
+  -ms-user-select: none !important; /* Internet Explorer/Edge */
+}
+body{
+  padding-right:0px !important;
+  overflow-y: scroll !important;
+}
+.onHovers{
+  transition: .6s all ease;
+}
+.onHovers:hover{
+  box-shadow: 0px 2px 2px #a7a5a5;
+  transition: .6s all ease;
 }

@@ -28,25 +28,8 @@ export default function ThumbSlider(props) {
     <>
     
     <div className="grid grid-cols-12 gap-3 product-gallery">
-      <div className="col-span-2">
-        <Swiper
-        onSwiper={setThumbsSwiper}
-        spaceBetween={15}
-        slidesPerView={5}
-        direction={'vertical'}
-        freeMode={false}
-        watchSlidesVisibility={true}
-        watchSlidesProgress={true}
-        className="mySwiper">
-
-          {props.images.map(ele=>
-              <SwiperSlide>
-                <img className="rounded w-full" src={`${ele.path}`} />
-              </SwiperSlide>
-              )}
-      </Swiper>
-      </div>
-      <div className="col-span-10 rounded">
+    
+      <div className="col-span-12 rounded overflow-hidden">
         <Swiper
           loop={true}
           spaceBetween={0}
@@ -56,6 +39,9 @@ export default function ThumbSlider(props) {
           thumbs={{ swiper: thumbsSwiper }}
           dir="rtl"
           className="mySwiper2">
+             <SwiperSlide>
+                <img className="rounded w-full" src={`${props.defaults}`} />
+             </SwiperSlide>
             {props.images.map(ele=>
               <SwiperSlide>
                 <img className="rounded w-full" src={`${ele.path}`} />
@@ -63,6 +49,25 @@ export default function ThumbSlider(props) {
               )}
           
         </Swiper>
+        <div className="mt-4"></div>
+        <Swiper
+        onSwiper={setThumbsSwiper}
+        spaceBetween={15}
+        slidesPerView={5}
+        freeMode={false}
+        watchSlidesVisibility={true}
+        watchSlidesProgress={true}
+        className="mySwiper">
+            <SwiperSlide>
+                <img className="rounded shadow w-full" src={`${props.defaults}`} style={{border:"1px solid #eee"}} />
+             </SwiperSlide>
+          {props.images.map(ele=>
+              <SwiperSlide>
+                <img className="rounded shadow w-full" src={`${ele.path}`} style={{border:"1px solid #eee"}} />
+              </SwiperSlide>
+              )}
+      </Swiper>
+      
       </div>
     </div>
   

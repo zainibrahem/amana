@@ -15,7 +15,7 @@ import Discover from '../components/discover/discover';
 import Link from 'next/link';
 export default function Cart() {
     interface Cart{
-        total_cart:""
+        total_cart:any
         shop:Shop
         items:Item[]
         id:""
@@ -88,6 +88,7 @@ export default function Cart() {
     const [coupons,setCoupon] = useState<string>();
     const [discount,setDiscound] = useState<string>()
     const [pack,setpack] = useState([])
+    const [change,setChange] = useState(1)
     const refInput = useRef();
     const toggleShipping = () =>{
         setShip(!ship);
@@ -122,10 +123,13 @@ export default function Cart() {
                  .then(res => res.json())
                  .then(result =>{
                     // setDiscound(result.coupon_id)
+                    console.log(result)
                     let carsCopy = [...carts];
                     carsCopy[index].items[prod_indexx].quantity = result.cart.items[prod_indexx].quantity;
                     carsCopy[index].items[prod_indexx].total = result.cart.items[prod_indexx].total;
+                    // carsCopy[index].total_cart = parseInt(carsCopy[index].total) - parseInt(carsCopy[index].items[prod_indexx].total + result.cart.items[prod_indexx].total);
                     changeCart();
+                    setChange(change+1)
                     setCart(carsCopy);
                     // setCart([index]:result.cart)
                  })
@@ -150,6 +154,7 @@ export default function Cart() {
             carsCopy[index].items[prod_indexx].quantity = result.cart.items[prod_indexx].quantity;
             carsCopy[index].items[prod_indexx].total = result.cart.items[prod_indexx].total;
             changeCart();
+            setChange(change+1)
             setCart(carsCopy);
             // setCart([index]:result.cart)
          })
@@ -389,7 +394,7 @@ export default function Cart() {
                                              <span className="text-sm">مجمل السلة</span>
                                              <div className="w-full bg-gray-100 text-xs mt-2 flex justify-between items-center">
                                                  <span className="text-xs py-2  px-2">السعر الأولي</span>
-                                                 <span className="text-xs py-1  px-2 numbers">{ele.total}</span>
+                                                 <span className="text-xs py-1  px-2 numbers">{ele.total_cart}</span>
                                              </div>
                                             <div className="w-full bg-gray-50 text-xs flex justify-between items-center">
                                                 <span className="text-xs  w-full px-2 py-1 flex justify-between relative items-center " onMouseEnter={toggleShippings} onMouseLeave={toggleShippings}>
@@ -489,6 +494,7 @@ export default function Cart() {
                                                 <span className="text-xs py-1  px-2 flex flex-col justify-between items-start font-bold">
                                                     المجمل
                                                 </span>
+                                           {change?
                                             <span className="text-xs py-1  px-2 numbers">
                                                     {shipping[ele.id]?
                                                     pack[ele.id]?
@@ -501,6 +507,7 @@ export default function Cart() {
                                                 parseInt(ele.total)   - parseInt(ele.discount)
                                                 } ر.ع
                                             </span>
+                                            :""}
                                             </div>
                                             <div onClick={()=>buy(ele.shipping_zones?ele.shipping_zones.tax_id:"0",ele.shipping_zones?ele.shipping_zones.id:"",ele.ship_to_state_id,ele.handling_cost,ele.id,ele,ele.coupon?ele.coupon.id:0)} className="rounded cursor-pointer flex justify-between items-center bg-yellow-500 text-xs text-black px-12 py-1 shadow mb-1 mt-4">
                                                  شراء من هذا البائع

@@ -56,53 +56,65 @@ export default function Orders() {
                     الكوبونات
                 </span>
             </div>
-            <div className="col-span-12 mt-4 ">
-                <div className="flex justify-between overflow-x-scroll lg:overflow-visible items-center">
-                    <table className="lg:w-full" style={{width:"200%"}}>
-                        <thead>
-                            <tr className="bg-gray-100">
-                                <th className="text-xs  text-gray-700 w-2/12  py-1">القيمة</th>
-                                <th className="text-xs  text-gray-700   py-1">المتجر</th>
-                                <th className="text-xs  text-gray-700   py-1">الرمز</th>
-                                <th className="text-xs  text-gray-700   py-1">الصلاحية</th>
-                            </tr>
-                        </thead>
-                        <tbody >
-                        {data?data.map((ele,index)=>
-                                <tr key={index} className={`cursor-pointer ${index+1 != data.length?"border-b-2":""}`} onClick={(e) => Copy(e)}>
-                                    <td className="flex justify-center  text-center py-5">
-                                        <span className="hidden lg:block text-sm  lg:text-xl text-white rounded bg-yellow-500 py-1 px-2 w-2/3">
-                                            خصم {ele.amount}
-                                        </span>
-                                        <span className="block lg:hidden text-sm  lg:text-2xl text-white rounded bg-yellow-500 px-2 lg:px-4">
-                                            خصم {ele.amount}
-                                        </span>
-                                        
-                                    </td>
-                                    <td className="text-center">
-                                        <span className="text-xs font-bold text-blue-500">
-                                            <a href={`/shop/shop?pids=${ele.shop.id}`}>
-                                                {ele.shop.name}
-                                            </a>
-                                        </span>
-                                    </td>
-                                    <td className="text-center">
-                                        <span  className="code text-xs font-bold " ref={ref}>
-                                            {ele.code}
-                                        </span>
-                                    </td>
-                                    <td className="text-center ">
-                                        <span className="text-xs w-96 font-bold">
-                                                {ele.validity}
-                                        </span>
-                                    </td>
-                                </tr>
-                            
-                        ):""}
-                            </tbody>
-                    </table>
-                </div>
+            {data&&data.length>0?
+              <div className="col-span-12 mt-4 ">
+              <div className="flex justify-between overflow-x-scroll lg:overflow-visible items-center">
+                  <table className="lg:w-full" style={{width:"200%"}}>
+                      <thead>
+                          <tr className="bg-gray-100">
+                              <th className="text-xs  text-gray-700 w-2/12  py-1">القيمة</th>
+                              <th className="text-xs  text-gray-700   py-1">المتجر</th>
+                              <th className="text-xs  text-gray-700   py-1">الرمز</th>
+                              <th className="text-xs  text-gray-700   py-1">الصلاحية</th>
+                          </tr>
+                      </thead>
+                      <tbody >
+                      {data?data.map((ele,index)=>
+                              <tr key={index} className={`cursor-pointer ${index+1 != data.length?"border-b-2":""}`} onClick={(e) => Copy(e)}>
+                                  <td className="flex justify-center  text-center py-5">
+                                      <span className="hidden lg:block text-sm  lg:text-xl text-white rounded bg-yellow-500 py-1 px-2 w-2/3">
+                                          خصم {ele.amount}
+                                      </span>
+                                      <span className="block lg:hidden text-sm  lg:text-2xl text-white rounded bg-yellow-500 px-2 lg:px-4">
+                                          خصم {ele.amount}
+                                      </span>
+                                      
+                                  </td>
+                                  <td className="text-center">
+                                      <span className="text-xs font-bold text-blue-500">
+                                          <a href={`/shop/shop?pids=${ele.shop.id}`}>
+                                              {ele.shop.name}
+                                          </a>
+                                      </span>
+                                  </td>
+                                  <td className="text-center">
+                                      <span  className="code text-xs font-bold " ref={ref}>
+                                          {ele.code}
+                                      </span>
+                                  </td>
+                                  <td className="text-center ">
+                                      <span className="text-xs w-96 font-bold">
+                                              {ele.validity}
+                                      </span>
+                                  </td>
+                              </tr>
+                          
+                      ):""}
+                          </tbody>
+                  </table>
+              </div>
+          </div>
+      
+        :   
+        <div className="col-span-12">
+            <div className="flex w-full flex-col justify-center items-center" style={{minHeight:"23rem"}}>
+                <img src="/images/icons/empty-co.svg" className="w-96" alt="" />
+                <h2 className="mt-10 text-center">
+                    لا توجد كوبونات لديك
+                </h2>
             </div>
         </div>
+        }
+          </div>
     )
 }

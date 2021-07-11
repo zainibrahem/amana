@@ -118,11 +118,11 @@ export default function ProductCard (props) {
                                 وصف المنتج الأول  الذي الذي ستقوم بشراءه ويمكنك استعراض تفاصيله عبر الضغط على الصورة أعلاه 
                             </span>
                         </p>
-                        <p  className={counter?`text-right opacity-0 transition-all self-end lg:self-center text-xs  overflow-hidden text-gray-500 mt-2 before-hover ${Loading?"skeleton-box":""}`:`text-right opacity-1 transition-all self-end lg:self-center text-xs  overflow-hidden text-gray-500 mt-2 before-hover ${Loading?"skeleton-box":""}`}>
+                        {/* <p  className={counter?`text-right opacity-0 transition-all self-end lg:self-center text-xs  overflow-hidden text-gray-500 mt-2 before-hover ${Loading?"skeleton-box":""}`:`text-right opacity-1 transition-all self-end lg:self-center text-xs  overflow-hidden text-gray-500 mt-2 before-hover ${Loading?"skeleton-box":""}`}>
                             <span style={Loading?{opacity:"0"}:{}}>
                                 تصلك يوم الثلاثاء
                             </span>
-                        </p>
+                        </p> */}
                         <div onClick={()=>toggleCounter(props.card.slug)} id={props.card.slug} className={!counter?"card-mobile z-20 transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-10 h-7 bg-gray-100 left-0 bottom-0":"z-20  transition-all flex flex-row justify-between  items-center lg:hidden absolute rounded-md w-full h-7 bg-gray-100 left-0  bottom-0 card-mobile"}>
                             <span className={!counter?"hidden rounded  h-full  justify-center items-center text-2xl font-bold px-3":"text-2xl rounded-l font-bold px-3 bg-gray-200 h-full flex justify-center items-center"}>-</span>
                             <span className={!counter?"hidden rounded text-xl font-bold":"block rounded text-xl font-bold"}>1</span>

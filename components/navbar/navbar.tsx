@@ -88,6 +88,9 @@ export const NavBar = (props) => {
                         if(ref.current.id == "profile"){
                             setProfile(false);
                         }
+                        if(ref.current.id == "cart"){
+                            setCart(false);
+                        }
                     }
             }
             // Bind the event listener
@@ -283,7 +286,7 @@ export const NavBar = (props) => {
                         </svg> */}
 
                         <div ref={cartRef} id="cart" className={cart?`cart hidden md:block w-80 shadow-2xl bg-white rounded absolute ${localStorage.getItem('token')?"left-44":"left-16" }  -bottom-2 transform translate-y-full `:`cart overflow-hidden hidden w-96 shadow-2xl bg-white rounded absolute  ${localStorage.getItem('token')?"left-60":"left-16" }  bottom-0 transform translate-y-full`}>
-                        <div className="grid grid-cols-12 shadow-md 2xl:shadow-lg">
+                            <div className="grid grid-cols-12 shadow-md 2xl:shadow-lg">
                                 <div className="col-span-12 flex justify-between items-center  py-2">
                                     <span className="px-5">
                                         <Link href="/cart">السلة</Link>
@@ -308,35 +311,37 @@ export const NavBar = (props) => {
                                 </div>
                                 <div className="col-span-12" style={{borderTop:"1px solid #dcdcdc"}}>
                                     <div className="col-span-12">
-                                        {props.carts&&props.carts.length>0?props.carts.carts.map(ele=>
-                                            <div className="grid grid-cols-12 w-full">
-                                            <div className="col-span-12 bg-gray-100 flex flex-row-reverse px-5 py-2 items-center justify-end">
-                                                <span className="text-yellow-500 text-xs">
-                                                     {ele.shop.name} 
-                                                </span>
+                                        {props.carts&&props.carts.carts.length>0?
+                                            props.carts.carts.map(ele=>
+                                                <div className="grid grid-cols-12 w-full">
+                                                <div className="col-span-12 bg-gray-100 flex flex-row-reverse px-5 py-2 items-center justify-end">
+                                                    <span className="text-yellow-500 text-xs">
+                                                        {ele.shop.name} 
+                                                    </span>
+                                                </div>
+                                                {ele.items.map(ele1=>
+                                                            <a className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" href={`/product/product?pids=${ele1.id}`}>
+                                                            <div className="flex  flex-col justify-between items-start max-w-2xl max-h-12 overflow-hidden">
+                                                                <span className="text-xs text-gray-500 leading-5 mt-2">
+                                                                    {ele1.description}
+                                                                </span>
+                                                            </div>
+                                                            <div className="flex flex-col h-full justify-between items-center">
+                                                                <span className="text-xs  text-gray-700 mt-2  rounded text-center w-20 flex items-center justify-center h-full">
+                                                                    {ele1.unit_price}
+                                                                </span>
+                                                            </div>
+                                                            <div className="absolute top-2 left-5">
+                                                            </div>
+                                                    </a>
+                                                )}
+                                                
+                                                </div>
+                                            )
+                                        :
+                                            <div className="flex justify-center items-center h-80">
+                                                <img src="/images/icons/empty-cart.svg" className="w-64" alt="" />
                                             </div>
-                                            {ele.items.map(ele1=>
-                                                        <a className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" href={`/product/product?pids=${ele1.id}`}>
-                                                        <div className="flex  flex-col justify-between items-start max-w-2xl max-h-12 overflow-hidden">
-                                                            <span className="text-xs text-gray-500 leading-5 mt-2">
-                                                                {ele1.description}
-                                                            </span>
-                                                        </div>
-                                                        <div className="flex flex-col h-full justify-between items-center">
-                                                            <span className="text-xs  text-gray-700 mt-2  rounded text-center w-20 flex items-center justify-center h-full">
-                                                                {ele1.unit_price}
-                                                            </span>
-                                                        </div>
-                                                        <div className="absolute top-2 left-5">
-                                                        </div>
-                                                </a>
-                                            )}
-                                            
-                                            </div>
-                                        ):
-                                        <div className="flex justify-center items-center h-80">
-                                            <img src="/images/icons/empty-cart.svg" className="w-64" alt="" />
-                                        </div>
                                         }
                                     </div>
                                     {/* <img className="w-6 h-2 rounded-full" src="./images/med-1.jpg" alt="" /> */}
@@ -350,6 +355,14 @@ export const NavBar = (props) => {
                                 </div>
                             </div>
                         </div>
+                        <button onClick={togglecart} className={`ml-3 w-8 md:w-10 hidden h-6  md:h-8 lg:h-10 lg:w-10  focus:outline-none rounded-full  lg:flex items-center justify-center ${Loading?"skeleton-box":""}`}>
+                            <div className="relative " style={Loading?{opacity:"0"}:{}}>
+                                <div className="absolute -right-1 w-4 h-4 -top-1 rounded-full text-xs text-white bg-red-400 flex justify-center items-center">{Cart}</div>
+                                <img src={`${Route}/images/shopping-cart.svg`} className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current " alt="" />
+                                
+                            </div>
+                        </button>
+
                         <a href="/cart" className="lg:hidden">
                             <button onClick={togglecart} className={`ml-3 w-8 md:w-10  h-6  md:h-8 lg:h-10 lg:w-10  focus:outline-none rounded-full  flex items-center justify-center ${Loading?"skeleton-box":""}`}>
                                 <div className="relative " style={Loading?{opacity:"0"}:{}}>
@@ -359,13 +372,7 @@ export const NavBar = (props) => {
                                 </div>
                             </button>
                         </a>
-                        <button onClick={togglecart} className={`ml-3 w-8 md:w-10 hidden h-6  md:h-8 lg:h-10 lg:w-10  focus:outline-none rounded-full  lg:flex items-center justify-center ${Loading?"skeleton-box":""}`}>
-                            <div className="relative " style={Loading?{opacity:"0"}:{}}>
-                                <div className="absolute -right-1 w-4 h-4 -top-1 rounded-full text-xs text-white bg-red-400 flex justify-center items-center">{Cart}</div>
-                                <img src={`${Route}/images/shopping-cart.svg`} className="w-4 h-4 lg:w-6 lg:h-6 fill-current text-gray-600 stroke-current " alt="" />
-                                
-                            </div>
-                        </button>
+                       
                         
                             {/* <button className={`hidden ${Loading?"skeleton-box":""} ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 bg-gray-300 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center`}>
                                 <div style={Loading?{opacity:"0"}:{}}>
@@ -710,7 +717,7 @@ export const NavBar = (props) => {
                                     <div  className="w-full flex justify-start relative items-center">
                                     <div className="rounded-full w-10 h-8 " style={{background:`url(${localStorage.getItem('avatar')!='null'?localStorage.getItem('avatar'):"/images/vippng.com-empty-circle-png-4161690.png"})`,backgroundSize:"cover",backgroundPosition:"center"}}></div>
                                     <div className="flex  flex-col justify-between items-start mr-2">
-                                        <span className="text-xs text-black">{localStorage.getItem('nice_name')!='null'?localStorage.getItem('nice_name'):"الاسم المستعار"}</span>
+                                        <span className="text-xs text-black">{localStorage.getItem('nice_name')!='null'?localStorage.getItem('name') + localStorage.getItem('nice_name'):localStorage.getItem('name')}</span>
                                         <span className="text-xs text-gray-500 mt-2">الرصيد : {localStorage.getItem('wallet') =='null'?"0":localStorage.getItem('wallet')} </span>
                                     </div>
                                     </div>

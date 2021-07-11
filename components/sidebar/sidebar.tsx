@@ -15,6 +15,7 @@ import Link from 'next/link'
 
         useEffect(()=>{
             setCatss(props.cats);
+            console.log(props.cats)
             if(window.location.href.includes('categories')){
                 setType('categories');
             }
@@ -28,7 +29,7 @@ import Link from 'next/link'
         
         
         if(event.currentTarget.children[1].classList.contains('block')){
-
+            
             event.currentTarget.children[1].classList.remove('block');
             event.currentTarget.children[1].classList.add('hidden');
             event.currentTarget.classList.add('duration-1000');
@@ -36,13 +37,16 @@ import Link from 'next/link'
             event.currentTarget.classList.add('max-h-11');
             event.currentTarget.classList.remove('max-h-96');
             event.currentTarget.style.background="#fff";
-            
+            event.currentTarget.children[0].classList.remove('text-yellow-500');
+            event.currentTarget.children[0].classList.add('text-black');
         }
         else{
             var items = document.getElementsByClassName('items');
 
             for(var i = 0; i < items.length; i++)
                 {
+                    items[i].children[0].classList.add('text-black');
+                    items[i].children[0].classList.remove('text-yellow-500');
                     items[i].children[1].classList.remove('block');
                     items[i].children[1].classList.add('hidden');
                     items[i].classList.add('max-h-11');
@@ -54,6 +58,8 @@ import Link from 'next/link'
             
             event.currentTarget.children[1].classList.remove('hidden');
             event.currentTarget.children[1].classList.add('block');
+            event.currentTarget.children[0].classList.add('text-yellow-500');
+            event.currentTarget.children[0].classList.remove('text-black');
             event.currentTarget.classList.add('max-h-96');
             event.currentTarget.classList.remove('max-h-11');
             event.currentTarget.classList.add('duration-1000');
@@ -174,11 +180,16 @@ import Link from 'next/link'
                                             <ul className="flex h-full flex-col justify-between items-center">
                                                 {sub.categories.map(secSub => 
                                                     <Link href={`/category/category?pid=${secSub.id}`} key={secSub.id}>
-                                                        <li className="w-full flex flex-col text-right pt-2 pb-2 px-3 justify-end items-center text-sm">
-                                                            {secSub.name}
+                                                        <li className="w-full flex flex-row-reverse  text-right pt-2 pb-2 px-3 justify-start items-center text-sm">
+                                                            <div className="rounded-full ml-2 w-2 h-0.7 bg-gray-700 "></div> {secSub.name}
                                                         </li>
                                                     </Link>
                                                 )}
+                                                <Link href={`/subGroup/subGroup?pids=${sub.id}`} >
+                                                        <li className="w-full flex flex-row-reverse  text-right pt-2 pb-2 px-3 justify-start items-center text-sm">
+                                                            <div className="rounded-full ml-2 w-2 h-0.7 bg-gray-700 "></div> عرض كل المنتجات
+                                                        </li>
+                                                </Link>
                                             </ul>
                                         </div>
                                     </li>
@@ -195,7 +206,7 @@ import Link from 'next/link'
                                             اخر زياراتك
                                         </div>
                                 </li>
-                                {catss.visited_categories.length>0?catss.visited_categories[0].map(ele => 
+                                {catss.visited_categories.length>0?catss.visited_categories.map(ele => 
                                     ele.name!=null?
                                     <li key={ele.id} className="text-gray-600 w-full flex flex-row pb-2 justify-end items-center text-sm text-right">
                                         <Link href={`/category/category?pid=${ele.id}`}>

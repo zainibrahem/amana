@@ -48,12 +48,13 @@ export default function Orders() {
                     الرسائل
                 </span>
                 <span className="text-gray-500 self-end text-xs">
-                    10-1 من 12 محادثة
+                    {data?data.length:""} محادثة
                 </span>
             </div>
             <div className="col-span-12 overflow-x-scroll  border-b-2 flex justify-between items-center py-2">
+            {data&&data.length>0?
                 <table className="conversation lgw-full " >
-                    {data?data.map(ele=>
+                    {data.map(ele=>
                         <a key={ele.id} href={`/dashboard/conversation/conversation?pid=${ele.id}`}>
                             <tr className="w-full">
                                 <td className="py-3 w-1/12">
@@ -96,9 +97,17 @@ export default function Orders() {
                                 </td>
                             </tr>
                         </a>
-                    ):""}
+                    )}
                    
                 </table>
+                :
+                        <div className="flex w-full flex-col justify-center items-center" style={{minHeight:"23rem"}}>
+                            <img src={`${Route}/images/icons/empty-mas.svg`} className="w-96" alt="" />
+                            <h2 className="mt-10 text-center">
+                                لا توجد أي محادثات بعد
+                            </h2>
+                        </div>
+                    }
             </div>
             
            

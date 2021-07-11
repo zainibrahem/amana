@@ -71,7 +71,7 @@ import Link from 'next/link'
                         </div>
                         <div className="flex flex-col justify-between items-center mt-3 self-center  ">
                             <div className="text-md font-bold">
-                                    {localStorage.getItem('nice_name')!='null'?localStorage.getItem('nice_name'):"الاسم المستعار"}
+                            {localStorage.getItem('nice_name')!='null'?localStorage.getItem('name') + localStorage.getItem('nice_name'):localStorage.getItem('name')}
                             </div>
                             <div className="mt-1" style={{fontSize:"12px"}}>
                                  الرصيد : {localStorage.getItem('wallet') =='null'?"0":localStorage.getItem('wallet')}

@@ -97,11 +97,11 @@ export default function Offer(props) {
                                     <label className="text-xs mr-2" htmlFor="">اختر نوعا</label>
                                 </div>
                             </div> */}
-                            <div className="flex flex-row-reverse justify-between items-center pr-3 text-gray-500 w-full lg:w-1/2 ">
-                                <div className="flex flex-row-reverse justify-between items-center mr-4 w-full">
+                            <div className="flex flex-row-reverse justify-between items-center lg:pr-3 text-gray-500 w-full lg:w-1/2 ">
+                                <div className="flex flex-row-reverse justify-between items-center lg:mr-4 w-full">
                                     <div className='w-full relative'>
-                                        <input type="text" onChange={handleSearch}  className={`rounded w-full border-2 focus:outline-none text-right text-sm py-1 `}/>
-                                        <button onClick={search} className={`text-xs sm:text-md  focus:outline-none flex justify-between items-center absolute left-0 top-0 h-full px-3 sm:px-5 lg:px-10 rounded bg-yellow-500`}>
+                                        <input type="text" onChange={handleSearch}  className={`rounded w-full h-full border-2 focus:outline-none text-right text-sm lg:py-1 `}/>
+                                        <button onClick={search} className={`text-xs sm:text-md focus:outline-none flex justify-between items-center absolute left-0 top-0 h-full px-3 sm:px-5 lg:px-10 rounded bg-yellow-500`}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" className='mr-3' width="18.179" height="18.179" viewBox="0 0 18.179 18.179">
                                                     <path id="search_icon" d="M6.817,0a6.817,6.817,0,0,0,0,13.634,6.817,6.817,0,0,0,3.693-.994l5.4,5.539,2.272-2.272-5.539-5.4a6.817,6.817,0,0,0,.994-3.693A6.817,6.817,0,0,0,6.817,0m0,2.272A4.545,4.545,0,1,1,2.272,6.817,4.545,4.545,0,0,1,6.817,2.272" fill="#000"/>
                                                 </svg>

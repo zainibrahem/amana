@@ -45,13 +45,15 @@ export default function Offer(props) {
     useEffect(() => {
         document.title = "العروض | أمانة";
         fetch(`https://amanacart.com/api/offers`)
-         .then(res => res.json())
-         .then(result =>{
-            setData(result);
-            setItems(result[0].items);
-         })
-         .catch(e => {
-       });
+        .then(res => res.json())
+        .then(result =>{
+           setData(result);
+           console.log(result)
+           setItems(result[0].items);
+        })
+        .catch(e => {
+
+        });
      },[])
     return (
         <div className="grid grid-cols-12">
@@ -100,7 +102,7 @@ export default function Offer(props) {
                         <div className="flex flex-row-reverse justify-between w-full items-center flex-wrap">
                             <div className="flex flex-row-reverse justify-between items-center px-3 text-gray-500">
                                 <div className="flex flex-row-reverse justify-between items-center mr-4">
-                                    <span className="hidden lg:block text-xs">عرض</span>
+                                    {/* <span className="hidden lg:block text-xs">عرض</span> */}
                                 </div>
                                 <div className="flex flex-row-reverse justify-between items-center mr-4">
                                     <span className="text-xs mt-2 lg:mt-0">عدد المنتجات ضمن هذا التصنيف  <span className="text-xs numbers text-black" style={{fontWeight:"bold"}}>{items?items.length:0}</span> منتج</span>

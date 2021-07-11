@@ -101,6 +101,10 @@ export default function Orders() {
     const [phone,setphone] = useState<string>()
     const [avatar,setAvatar] = useState([])
     const [change,setChange] = useState<boolean>(false)
+    const [yearsse,setyear] = useState('1970')
+    const [monthss,setmonth] = useState('01')
+    const [day,setday] = useState('12')
+    
     const list  = []
    
     const {getRootProps, getInputProps} = useDropzone({
@@ -190,13 +194,14 @@ export default function Orders() {
             }})
          .then(res => res.json())
          .then(result =>{
+             console.log(result)
             setAddressInfo(result.data);
             seteditadd(result.data.address)
             setAddressType(result.data.address.address_type)
             setAddressTitle(result.data.address.address_title)
             setaddressdesc(result.data.address.address_line_1)
             setcity(result.data.address.city)
-            setstate(result.data.address.state)
+            setstate(result.data.address.state.id)
             setphone(result.data.address.phone)
          })
          .catch(e => {
@@ -238,6 +243,7 @@ export default function Orders() {
     const [sex,setSex] = useState<string>('app.male');
     const [newlist,setnewlist] = useState([]);
     const [year,setyears] = useState([]);
+    const [dateOfBirth,setdateOfBirth] = useState<string>()
     const month = []
     const yearss = []
     useEffect(() => {
@@ -256,6 +262,7 @@ export default function Orders() {
             }})
          .then(res => res.json())
          .then(result =>{
+            setdateOfBirth(yearsse+'-'+monthss+'-'+day)
             setData(result.data)
             setName(result.data.name)
             setNickname(result.data.nice_name)
@@ -285,7 +292,7 @@ export default function Orders() {
      }
      const datas = {
          name : name,
-         dob:dob,
+         dob:dateOfBirth,
          nice_name:nickname,
          email:email,
          sex:sex,   
@@ -302,7 +309,7 @@ export default function Orders() {
         formData.append('nice_name',nickname)
         formData.append('avatar',avatar[0])
         formData.append('sex',sex)
-        formData.append('dob',dob)
+        formData.append('dob',dateOfBirth)
         formData.append('email',email)
         async function postData(data) {
         const response = await fetch('https://amanacart.com/api/account/update', {
@@ -316,7 +323,7 @@ export default function Orders() {
      }
     
      const handleSubmit = () =>{
-         
+        setdateOfBirth(yearsse+'-'+monthss+'-'+day)
         postData(datas)
         .then(data => {
             localStorage.setItem('name',data.data.name);
@@ -405,10 +412,10 @@ export default function Orders() {
             </div>
         </div>
         <div className={`${modal?"flex":"hidden"} fixed z-50 top-0 left-0 h-screen w-full flex flex-col  justify-center items-center bg-black bg-opacity-70`}>
-            <div onClick={closeModal} className="rounded-full border-2 border-white w-8 h-6 mb-4 text-white text-center text-md cursor-pointer">
+            <div onClick={closeModal} className="rounded-full border-2 border-white w-8 h-6 mb-4 text-white text-center text-md cursor-pointer -mt-20 lg:mt-0">
                 x
             </div>
-            <div className={`${modal?"slideUpss":"slideDownss"} relative p-5 w-11/12 lg:w-1/2 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
+            <div className={`${modal?"slideUpss":"slideDownss"} relative p-5 w-3/4 lg:w-1/2 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
                     <div className="col-span-12">
                         <span className="text-sm font-bold">
                             إضافة عنوان جديد
@@ -427,11 +434,8 @@ export default function Orders() {
                         <span className="text-sm pb-1 mt-4 w-full">
                             اسم العنوان
                         </span>
-                        <select name="" id="" onChange={(e) => {setAddressTitle(e.target.value)}} className="w-full border-2 rounded mt-3 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
-                                    <option value={"المنزل"}>المنزل</option>
-                                    <option value={"العمل"}>العمل</option>
-                                    <option value={"مكان اخر"}>مكان اخر</option>
-                        </select>
+                        <input type="text"  name="" onChange={(e) => {setAddressTitle(e.target.value)}} className="w-full h-6 border-2 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent rounded mt-1" id="" />
+
 
                         <span className="w-full text-sm mt-5">
                             تفاصيل العنوان
@@ -448,32 +452,33 @@ export default function Orders() {
                                 <span className="w-full text-sm ">
                                     الولاية
                                 </span>
-                                <select name="" onChange={(e) => {setstate(e.target.value)}} id="" className="w-full border-2 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
+                                <select name="" onChange={(e) => {setstate(e.target.value),console.log(e.target.value)}} id="" className="w-full h-6 border-2 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
                                     <option value="">اختر ولاية</option>
                                     {addinfo?Object.entries(addinfo.states).map(([key, ele])=>
-                                            <option key={key} value={key}>{ele}</option>
+                                            <option key={key}  value={key}>{ele}</option>
                                     ):""}
                                 </select>
+
                             </div>
                         </div>
                         <span className="w-full text-sm mt-5">
                             رقم الهاتف
                         </span>
                         <input type="text" name="" onChange={(e) => {setphone(e.target.value)}} className="w-full h-6 border-2 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent rounded mt-1" id="" />
-                        <span onClick={addAddress} className="text-sm text-white text-center w-56 cursor-pointer py-1 rounded bg-yellow-500 mt-4">
+                        <span onClick={addAddress} className="text-sm text-white self-center text-center w-56 cursor-pointer py-1 rounded bg-yellow-500 mt-4">
                             حفظ العنوان
                         </span>
                     </div>
             </div>
         </div>
         <div className={`${modals?"flex":"hidden"} fixed z-50 top-0 left-0 h-screen w-full flex flex-col  justify-center items-center bg-black bg-opacity-70`}>
-            <div onClick={closeModals} className="rounded-full border-2 border-white w-8 h-6 mb-4 text-white text-center text-md cursor-pointer">
+            <div onClick={closeModals} className="rounded-full border-2 border-white w-8 h-6 mb-4 text-white text-center text-md cursor-pointer  -mt-20 lg:mt-0">
                 x
             </div>
-            <div className={`${modals?"slideUpss":"slideDownss"} relative p-5 w-1/2 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
+            <div className={`${modals?"slideUpss":"slideDownss"} relative p-5 w-3/4 lg:w-1/2 bg-white rounded shadow grid grid.cols-12 `} dir="rtl">
                     <div className="col-span-12">
                         <span className="text-sm font-bold">
-                            إضافة عنوان جديد
+                            تعديل العنوان
                         </span>
                     </div>
                     <div className="col-span-12 mt-5 flex flex-col justify-between items-start">
@@ -506,7 +511,7 @@ export default function Orders() {
                                 <span className="w-full text-sm ">
                                     الولاية
                                 </span>
-                                <select name="" onChange={(e) => {setstate(e.target.value)}} id="" className="w-full border-2 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
+                                <select name="" onChange={(e) => {setstate(e.target.value),console.log(e.target.value)}} id="" className="w-full h-6 border-2 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
                                     <option value="">اختر ولاية</option>
                                     {addinfo?Object.entries(addinfo.states).map(([key, ele])=>
                                             <option key={key} selected={editadd&&editadd.state.id == key? true:false} value={key}>{ele}</option>
@@ -518,7 +523,7 @@ export default function Orders() {
                             رقم الهاتف
                         </span>
                         <input type="text" name="" value={phone?phone:""} onChange={(e) => {setphone(e.target.value)}} className="w-full h-6 border-2 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent rounded mt-1" id="" />
-                        <span onClick={()=>updateAddress(editadd?editadd.id:"")} className="text-sm text-white text-center w-56 cursor-pointer py-1 rounded bg-yellow-500 mt-4">
+                        <span onClick={()=>updateAddress(editadd?editadd.id:"")} className="text-sm text-white text-center self-center w-56 cursor-pointer py-1 rounded bg-yellow-500 mt-4">
                             حفظ العنوان
                         </span>
                     </div>
@@ -582,15 +587,15 @@ export default function Orders() {
                             
                             <div className="col-span-12 lg:col-span-6 flex flex-col justify-between items-end">
                                 <label htmlFor=""  className="w-full text-sm text-right">
-                                    * اسم المستخدم 
+                                    * الاسم الأخير 
                                 </label>
-                                <input type="text" onChange={(e)=>setNickname(e.target.value)} value={nickname?nickname:""} placeholder="ابراهيم" className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded  mt-2 py-1" />
+                                <input type="text" onChange={(e)=>setNickname(e.target.value)} value={nickname?nickname:""}  className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded  mt-2 py-1" />
                             </div>
                             <div className="col-span-12 lg:col-span-6 flex flex-col justify-between items-end">
                                 <label htmlFor="" className="w-full text-sm text-right">
                                     * الاسم الأول 
                                 </label>
-                                <input type="text" onChange={(e)=>setName(e.target.value)} value={name?name:""} placeholder="زين" className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded  mt-2 py-1" />
+                                <input type="text" onChange={(e)=>setName(e.target.value)} value={name?name:""}  className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded  mt-2 py-1" />
                             </div>
                             <div className="hidden lg:block lg:col-span-2"></div>
                             <div className="col-span-12 lg:col-span-4 flex flex-col justify-between items-end">
@@ -621,12 +626,12 @@ export default function Orders() {
                                 </label>
                                 {/* <input type="date" onChange={(e)=>{setDob(e.target.value),console.log(e.target.value)}} value={"2021-07-14"}  className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded mt-2 py-1" /> */}
                              <div className="flex justify-between items-center">
-                                <select className="focus:outline-none mr-2 focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded ">
+                                <select onChange={(e)=>setyear(e.target.value)} className="focus:outline-none mr-2 focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded ">
                                     {year.map(ele=>
                                         <option value={ele}>{ele}</option>    
                                     )}
                                 </select>
-                                <select className="focus:outline-none mr-2 focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded ">
+                                <select onChange={(e)=>setmonth(e.target.value)} className="focus:outline-none mr-2 focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded ">
                                         <option value="01">كانون الثاني</option>
                                         <option value="02">شباط</option>
                                         <option value="03">اذار</option>
@@ -640,7 +645,7 @@ export default function Orders() {
                                         <option value="11">تشرين الثاني</option>
                                         <option value="12">كانون الأول</option>
                                 </select>
-                                <select className="focus:outline-none  focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded ">
+                                <select onChange={(e)=>setday(e.target.value)}  className="focus:outline-none  focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded ">
                                     {newlist.map((ele,index)=>
                                         <option value={ele+1}>{ele+1}</option>
                                         )}
@@ -682,7 +687,7 @@ export default function Orders() {
                              </div>
                              <div className="col-span-4 flex flex-col justify-between items-end"></div>
                              <div className="col-span-4 flex flex-col justify-between items-end">
-                                <span onClick={()=> handleSubmit()} className="cursor-pointer w-full px-2 text-white bg-yellow-500 text-center mt-4 rounded">
+                                <span onClick={()=> handleSubmit()} className="cursor-pointer w-full px-2 text-white py-1 bg-yellow-500 text-center mt-4 rounded">
                                     حفظ
                                 </span>
                             </div>
@@ -698,14 +703,14 @@ export default function Orders() {
                                 <label htmlFor="" className="w-full text-sm text-right">
                                     * كلمة السر القديمة 
                                 </label>
-                                <input type="password" onChange={(e)=>setName(e.target.value)} value={name?name:""} placeholder="زين" className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded  mt-2 py-1" />
+                                <input type="password" onChange={(e)=>setName(e.target.value)} value={name?name:""} placeholder="***" className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded  mt-2 py-1" />
                                 <label htmlFor=""  className="w-full text-sm text-right mt-4">
                                     * كلمة السر الجديدة
                                 </label>
-                                <input type="password" onChange={(e)=>setNickname(e.target.value)} value={nickname?nickname:""} placeholder="ابراهيم" className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded  mt-2 py-1" />
+                                <input type="password" onChange={(e)=>setNickname(e.target.value)} value={nickname?nickname:""} placeholder="***" className=" focus:outline-none w-full focus:ring-2 focus:ring-yellow-500 focus:border-transparent text-right  px-2 border-2 rounded  mt-2 py-1" />
                                                   
                               
-                                <span onClick={()=> handleSubmit()} className="cursor-pointer w-full px-2 text-white bg-yellow-500 text-center mt-4 rounded">
+                                <span onClick={()=> handleSubmit()} className="cursor-pointer w-full px-2 text-white bg-yellow-500 text-center py-1 mt-4 rounded">
                                     حفظ
                                 </span>
                                 

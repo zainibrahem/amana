@@ -217,11 +217,11 @@ interface ListItem {
             </div>
             <div id="col" className={isDrawerOpen?"hidden relative sm:col-span-4 md:col-span-3 lg:block lg:col-span-3 xl:col-span-2 overflow-x-hidden":"hidden overflow-x-hidden md:block md:col-span-1 lg:col-span-1 xl:col-span-1 relative"}>
             {data?
-            route.indexOf('dashboard')==-1&&route.indexOf('categories')==-1?
-                <SideBar cats={data} width={el2}></SideBar>
+            route.indexOf('dashboard')==-1&&route.indexOf('category')==-1&&route.indexOf('subGroup')==-1?
+              <SideBar cats={data} width={el2}></SideBar>
                 :
               <>
-              {route.indexOf('categories')!=-1?
+              {route.indexOf('category') !=-1 || route.indexOf('subGroup') !=-1?
               <>
               <FilterSide width={el2}></FilterSide>
               </>
@@ -342,12 +342,17 @@ interface ListItem {
                     </div>
                     :
                     <div className="col-span-2 h-full flex flex-col justify-center items-center">
-                    {/* <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div> */}
-                    {/* <img className="w-5 " src="https://img.icons8.com/ios/50/000000/administrator-male--v1.png"/> */}
-                    <a href="/dashboard/profile" className="flex flex-col justify-center items-center">
-                      <img className="w-5 " src={`${Route}/images/icons/user (1).svg`}/>
-                      <span className="text-xs mt-1">حسابي</span>
-                    </a>
+                      {/* <div className="w-8 h-2" style={{background:`url(${Route}/images/orders.svg)`,backgroundSize:"contain",backgroundPosition:"center",backgroundRepeat:"no-repeat"}}></div> */}
+                      {/* <img className="w-5 " src="https://img.icons8.com/ios/50/000000/administrator-male--v1.png"/> */}
+                      <a href="/dashboard/profile" className="flex flex-col justify-center items-center">
+                        {route == Route+'/dashboard/profile'?
+                          <img className="w-5 " src={`${Route}/images/icons/colors/user (1).svg`}/>
+                          :
+                          <img className="w-5 " src={`${Route}/images/icons/user (1).svg`}/>
+                      }
+                        <span className={`text-xs mt-1 ${route == Route+'/dashboard/profile'? "text-yellow-500":"" }`}>حسابي</span>
+
+                      </a>
                   </div>
                   }
                   <div className="col-span-3 h-full flex flex-col justify-center items-center">
@@ -362,13 +367,23 @@ interface ListItem {
                   {/* <img className="w-5" src="https://img.icons8.com/material-outlined/48/000000/sorting-answers.png"/> */}
                   {localStorage.getItem('token')?
                     <a href="/dashboard/order" className="flex flex-col justify-around items-center">
-                      <img src={`${Route}/images/icons/ordersblack.svg`} className="w-5 " alt="" />
-                      <span className="text-xs mt-1">طلباتك</span>
+                      
+                      {route == Route+'/dashboard/order' ?
+                        <img src={`${Route}/images/icons/colors/ordersblack.svg`} className="w-5 " alt="" />
+                        :
+                        <img src={`${Route}/images/icons/ordersblack.svg`} className="w-5 " alt="" />
+                      }
+                      <span className={`text-xs mt-1 ${route == Route+'/dashboard/order'? "text-yellow-500":"" }`}>طلباتك</span>
+
                     </a>
                     :
                     <a href="/allcats" className="flex flex-col justify-around items-center">
-                      <img className="w-5" src={`${Route}/images/icons/list.svg`}/>
-                      <span className="text-xs mt-1">تصنيفات</span>
+                      {route == Route+'/dashboard/allcats' ?
+                        <img className="w-5" src={`${Route}/images/icons/colors/list.svg`}/>
+                      :
+                        <img className="w-5" src={`${Route}/images/icons/list.svg`}/>
+                      }
+                      <span className={`text-xs mt-1 ${route == Route+'/dashboard/allcats' ?"text-yellow-500":""}`}>تصنيفات</span>
                     </a>
                   }
                   </div>
@@ -377,13 +392,23 @@ interface ListItem {
                     {localStorage.getItem('token')?
                     
                       <a href="/dashboard" className="flex flex-col justify-around items-center">
-                      <img className="w-5" src={`${Route}/images/icons/home.svg`}/>
-                        <span className="text-xs mt-1">الرئيسية</span>
+                        {route == Route+'/' || route == Route+'/dashboard' ?
+                        
+                        <img className="w-5" src={`${Route}/images/icons/colors/home.svg`}/>
+                        :
+                        <img className="w-5" src={`${Route}/images/icons/home.svg`}/>
+                      }
+                        <span className={`text-xs mt-1 ${route == Route+'/dashboard'? "text-yellow-500":"" }`}>الرئيسية</span>
                       </a>
                     :
                       <a href="/" className="flex flex-col justify-around items-center">
+                      {route == Route+'/' || route == Route+'/dashboard' ?
+                        
+                        <img className="w-5" src={`${Route}/images/icons/colors/home.svg`}/>
+                        :
                         <img className="w-5" src={`${Route}/images/icons/home.svg`}/>
-                        <span className="text-xs mt-1">الرئيسية</span>
+                      }
+                        <span className={`text-xs mt-1 ${route == Route+'/'? "text-yellow-500":"" }`}>الرئيسية</span>
                       </a>
                     }
                   </div>
