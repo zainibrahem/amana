@@ -8,7 +8,7 @@ import { useAppState } from '../../contexts/app/app.provider';
 export default function Proposals (props) {
     const isDrawerOpen = useAppState('isDrawerOpen');
 
-    const title = 'اقترحنا لك';
+    const title = props.title;
     return (
         props.data?
         <>
@@ -18,12 +18,16 @@ export default function Proposals (props) {
         <Title title={title}></Title>
         <div className="grid grid-cols-12">
             <div className="col-span-12">
-                <div className="proposals flex flex-row flex-wrap bg-white rounded pt-6 md:pt-2 pb-4 px-3 md:px-5 justify-around items-center">
-                {props.data.map(eles => 
+                <div className="proposals flex flex-row flex-wrap bg-white rounded pt-6 md:pt-2 pb-4 px-3 md:px-5 justify-end items-center" style={{minHeight:"24rem"}}>
+                {props.data.length>0?props.data.map(eles => 
                         <>
                         <ProductCard card={eles} type={"proposals"}></ProductCard>
                         </>
-                    )}
+                    ):
+                        <span className="text-center text-md w-full">
+                            لا توجد منتجات حسب ما تم تحديده
+                        </span>
+                    }
                 </div>
             </div>
         </div>

@@ -13,7 +13,8 @@ export default function CatProducts (props) {
         props.data&&props.data.length>0?
         <>
         <div className="grid grid-cols-12">
-            <div className="col-span-12">
+
+            <div className="col-span-12 px-12">
                 <div className="proposals flex flex-row-reverse flex-wrap  rounded pt-6 md:pt-2 pb-4  justify-between items-center">
                 {props.data.map(eles => 
                         <>
@@ -22,6 +23,7 @@ export default function CatProducts (props) {
                     )}
                 </div>
             </div>
+            
         </div>
         </>
             :

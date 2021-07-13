@@ -4,6 +4,9 @@ import { useAppDispatch, useAppState } from '../../contexts/app/app.provider';
 import Link from 'next/link'
 import { useRouter } from 'next/router';
 import { route } from 'next/dist/next-server/server/router';
+import { withStyles, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Slider from '@material-ui/core/Slider';
+
 
     export default function SideBar (props) {
         
@@ -53,15 +56,63 @@ import { route } from 'next/dist/next-server/server/router';
     const Route = useAppState('Route');
     const [routes,setRoutes] = useState<string>();
     const [data,setData] = useState<Data>();
+    const [brand,setBrand] = useState([]);
+    const [attr,setAttr] = useState([]);
+    const [minPrice,setminPrice] = useState(0);
+    const [maxPrice,setmaxPrice] = useState(0);
+    const [color,setColor] = useState([]);
+    const [radio,setRadio] = useState([]);
+    const [hasOffers,setHasOffers] = useState(false);
+    const [newArrivals,setNewArrivals] = useState(false);
+    const [stings,setstings] = useState('');
+    const [attrValues,setattrValues] = useState('');
     const router = useRouter()
     const { pid } = router.query;
     const { pids } = router.query;
+
+    const [value, setValue] = React.useState<number | number[]>(1);
+
+    const handleChange = (newValue,types) => {
+      
+      var priceString  ='';
+
+      if(types == 'min'){
+          
+        setminPrice(parseInt(newValue))
+        priceString = `price_min=${newValue}&price_max=${maxPrice}`;
+      }
+      if(types == 'max'){
+        setmaxPrice(parseInt(newValue))
+        priceString = `price_min=${minPrice}&price_max=${newValue}`;
+      }
+      
+      brands= brand;
+      attrs = attr;
+      Filter(brands,attrs,'price',priceString)
+    };
+
+    const handlearrivals = (types) => {
+      
+        var priceString  = types == 'newss'?'new_arrivals=1':'has_offers=1';
+       
+        if(types == 'newss'){
+            setNewArrivals(!newArrivals)
+        }
+        else{
+            setHasOffers(!hasOffers)
+        }
+        brands= brand;
+        attrs = attr;
+        Filter(brands,attrs,'newss',priceString)
+      };
+   
         useEffect(()=>{
             fetch(`https://amanacart.com/api/filters?${pids?`sub_category=${pids}`:`category=${pid}`}`)
             .then(res => res.json())
             .then(result =>{
               setData(result);
-              console.log(result)
+              setmaxPrice(result.price_range.max)
+              setminPrice(result.price_range.min)
             })
             .catch(e => {
           });
@@ -69,8 +120,229 @@ import { route } from 'next/dist/next-server/server/router';
         useEffect(()=>{
             setRoutes(window.location.href)
         })
-  
+        const marks = [
+            {
+                value: data?parseInt(data.price_range.min):0,
+                label: `${data?data.price_range.min:0} ر.ع`,
+            },
+            {
+                value: data?parseInt(data.price_range.max):1,
+                label: `${data?data.price_range.max:1} ر.ع`,
+            },
+          ];
+        var brands = [];
+        var attrs = [];
+        var colors = [];
+        var radios = [];
+        
+        var string ='';
+        var attrString ='';
+        var colorString ='';
+        var radioString ='';
+        const dispatch = useAppDispatch();
 
+        const setFilter = React.useCallback(() => {
+            dispatch({
+              type: 'ToggleFiltered'
+            });
+            }
+            ,[dispatch]
+          );
+          const setFilters = React.useCallback((data) => {
+            dispatch({
+              type: 'SetFilters',payload:data
+            });
+            }
+            ,[dispatch]
+          );
+        const addBrand = (type,id?,indexss?) => {
+                    if(type=='brand'){
+                        brands = brand;
+                        attrs= attr;
+                        colors = color;
+                        radios = radio;
+                        var indexs = brands.indexOf(id)
+
+                        if(indexs != -1){
+                            brands = brands.filter((item) => item !== id)
+                            console.log(brands)
+                            setBrand(brands)
+                        }
+                        else{
+                            brands.push(id);
+                            setBrand(brands);
+                        }
+                        Filter(brands,attrs,type)
+                    }
+                    if(type == 'attr'){
+                        brands = brand;
+                        attrs= attr;
+                        colors = color;
+                        radios = radio;
+                        
+                        attrString = '';
+                        var indexs = attrs.indexOf(id)
+
+                        if(indexs != -1){
+                            attrs[indexss] = id;
+                            setAttr(attrs)
+                        }
+                        else{
+                            attrs[indexss] = id;
+                            setAttr(attrs);
+                        }
+
+                        Filter(brands,attrs,type,indexss)
+                    }
+                    if(type == 'price'){
+                        attrs= attr;
+                        brands = brand;
+                        // var price_min = ;
+                        // var price_max = ;
+                        Filter(brands,attrs,type)
+                        
+                    }
+                    // if(type == 'new'){
+                    //     brands = brand;
+                    //     attrs= attr;
+                    //     let news = !newArrivals;
+                    //     if(news){
+                    //         Filter(brands,attrs,type,indexss,news)
+                    //     }
+                    //     else{
+                    //         Filter(brands,attrs,type,indexss)
+                    //     }
+
+                    // }
+            
+            
+        }
+       var newss = '';
+    const Filter  = (brands,attrs,type,price?,indexs?,news?) => {
+            brands&&brands.length > 0 ?brands.map((ele,index)=>
+                {
+                    if(string.indexOf(`brands[${indexs}]=${ele}`)==-1){
+                        if(index != brands.length-1){
+                            string+=`brands[${index}]=${ele}&&`
+                        }
+                        else{
+                            string+=`brands[${index}]=${ele}`
+                        }
+                    }
+                    else{
+                        string.replace(`brands[${index}]=${ele}`,'');
+                        string.replace(`brands[${index}]=${ele}&&`,'');
+                    }
+                    
+                    
+                }
+            )
+        : ""
+
+        attrs&&attrs.length > 0?attrs.map((ele,index) => {
+                
+            if(attrString.indexOf(`attr_values[${index}]=${ele}`)==-1){
+                if(index != attrs.length-1){
+                    attrString+=`attr_values[${index}]=${ele}&&`
+                }
+                else{
+                    attrString+=`attr_values[${index}]=${ele}`
+                }
+            }
+            else{
+                attrString.replace(`attr_values[${index}]=${ele}`,'');
+                attrString.replace(`attr_values[${index}]=${ele}&&`,'');
+            }
+            }):""
+
+        
+            type=='price'?
+              (
+                price = price,
+                brands.length > 0 ?brands.map((ele,index)=>
+                {
+                    if(string.indexOf(`brands[${index}]=${ele}`)==-1){
+                        if(index != brands.length-1){
+                            string+=`brands[${index}]=${ele}&&`
+                        }
+                        else{
+                            string+=`brands[${index}]=${ele}`
+                        }
+                    }
+                    else{
+                        string.replace(`brands[${index}]=${ele}`,'');
+                        string.replace(`brands[${index}]=${ele}&&`,'');
+                    }
+                    
+                    
+                }):"",
+                attrs.length > 0?attrs.map((ele,index) => {
+                
+                    if(index != attrs.length-1){
+                        attrString+=`attr_values[${index}]=${ele}&&`
+                    }
+                    else{
+                        attrString+=`attr_values[${index}]=${ele}`
+                    }
+                })
+                :""
+              )
+              :""
+              type=='news'?
+              (
+                !newArrivals?price = price:price='',
+                brands.length > 0 ?brands.map((ele,index)=>
+                {
+                    if(string.indexOf(`brands[${index}]=${ele}`)==-1){
+                        if(index != brands.length-1){
+                            string+=`brands[${index}]=${ele}&&`
+                        }
+                        else{
+                            string+=`brands[${index}]=${ele}`
+                        }
+                    }
+                    else{
+                        string.replace(`brands[${index}]=${ele}`,'');
+                        string.replace(`brands[${index}]=${ele}&&`,'');
+                    }
+                    
+                    
+                }):"",
+                attrs.length > 0?attrs.map((ele,index) => {
+                
+                    if(index != attrs.length-1){
+                        attrString+=`attr_values[${index}]=${ele}&&`
+                    }
+                    else{
+                        attrString+=`attr_values[${index}]=${ele}`
+                    }
+                })
+                :""
+              )
+              :""
+            
+        fetch(`https://amanacart.com/api/${pids?`sub_categories_filters_results/${pids}`:`categories_filters_results/${pid}`}?${string}&&${attrString}&&${price}&&${newss}`)
+        .then(res => res.json())
+        .then(result =>{
+        setFilter()
+        setFilters(result.data)
+        })
+        .catch(e => {
+      });
+        // amanacart.com/api/sub_categories_filters_results/47
+    }
+    const iOSBoxShadow =
+    '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
+   
+    function AirbnbThumbComponent(props: any) {
+        return (
+          <span {...props}>
+            <span className="bar" />
+            <span className="bar" />
+            <span className="bar" />
+          </span>
+        );
+      }
     const toggleAccordoin = (event) => {
         
         
@@ -122,44 +394,14 @@ import { route } from 'next/dist/next-server/server/router';
                                 <div className="line h-0.5 w-full rounded-2xl bg-black"></div> */}  
                             </div>
                         </div>
-                        <ul  className={isDrawerOpen?"flex flex-col justify-between items-center border-b-2 pb-2 w-11/12":"flex flex-col justify-between items-center  w-full"}>
-                                <li className={isDrawerOpen?`cursor-pointer pt-2 pb-2  w-full flex flex-row justify-end items-center ${Loading?"skeleton-box mt-1":""}`:`cursor-pointer pt-2 small-hover text-xs pb-2 w-full flex flex-col-reverse justify-center items-center ${Loading?"skeleton-box mt-1":""}`}>
-                            <Link href="/">
-                                    <div style={Loading?{opacity:"0"}:{}} className={`w-full text-right flex ${routes == Route+'/' ? "text-yellow-500":""}  ${isDrawerOpen?"flex-row justify-end items-center":"flex-col-reverse justify-center items-center"}  `}>
-                                        {isDrawerOpen?
-                                            "الصفحة الرئيسية":"الرئيسية"
-                                        }
-                                        {routes == Route+'/'?
-                                         <svg className="ml-3 w-5" xmlns="http://www.w3.org/2000/svg" width="167.941" height="23.53" viewBox="0 0 167.941 169">
-                                         <path fill="rgba(245, 158, 11)" id="Path_12039" data-name="Path 12039" d="M167.2,77.115,84.152,0,1.107,77.115A2.9,2.9,0,0,0,5.048,81.36L17.554,69.746V169H63.883V116.88a20.269,20.269,0,0,1,40.538,0V169H150.75V69.746L163.256,81.36a2.9,2.9,0,0,0,3.944-4.245Z" transform="translate(-0.183)"/>
-                                         </svg>
-                                         :
-                                         <svg className="ml-3 w-5" xmlns="http://www.w3.org/2000/svg" width="171.942" height="23.53" viewBox="0 0 171.942 173.729">
-                                             <path fill="none" id="Path_12055" data-name="Path 12055" d="M167.2,77.115,84.152,0,1.107,77.115A2.9,2.9,0,0,0,5.048,81.36L17.554,69.746V169H63.883V116.88a20.269,20.269,0,0,1,40.538,0V169H150.75V69.746L163.256,81.36a2.9,2.9,0,0,0,3.944-4.245Z" transform="translate(1.818 2.729)" stroke="#000" strokeWidth="4"/>
-                                         </svg>
-                                         }
-                                    </div>
-                            </Link>
-                                </li>
-                                <li className={isDrawerOpen?`cursor-pointer pt-2 pb-2  w-full flex flex-row justify-end items-center ${Loading?"skeleton-box mt-1":""}`:`pt-2 text-xs small-hover pb-2 w-full flex flex-col-reverse justify-center items-center cursor-pointer ${Loading?"skeleton-box mt-1":""}`}>
-                                    <Link href="/explore">
-                                        <div style={Loading?{opacity:"0"}:{}} className={`w-full text-right flex  ${routes == Route+'/explore' ? "text-yellow-500":""} ${isDrawerOpen?"flex-row justify-end items-center":"flex-col-reverse justify-center items-center"}  `}>
-                                            استكشاف
-                                            <svg className={isDrawerOpen?"ml-3 w-5":"w-5"} xmlns="http://www.w3.org/2000/svg" width="30.259" height="23.53" viewBox="0 0 149.824 145.112">
-                                                <path fill={`${routes == Route+'/explore'?"rgba(245, 158, 11)":""}`} id="Path_11747" data-name="Path 11747" d="M3677.091,340.627H3818.1a4.4,4.4,0,0,0,2.981-7.625l-40.892-37.755-1.454-1.341-1.487,1.306-16.92,14.876a2.195,2.195,0,0,1-1.452.55l-.153,0a2.225,2.225,0,0,1-1.517-.761l-34.226-39.831a2.2,2.2,0,0,1-.531-1.434v-7a2.2,2.2,0,0,1,2.2-2.2H3765a2.2,2.2,0,0,1,2.2,2.2v2.326a11.006,11.006,0,0,0,11,10.993h42.052l-2.507-3.483-20.206-28.081a2.193,2.193,0,0,1,0-2.568l20.206-28.086,2.507-3.483h-47.623a2.2,2.2,0,0,1-2-1.293,11.029,11.029,0,0,0-10.021-6.468h-35.957a2.2,2.2,0,0,1-2.2-2.2v-1.552a2.2,2.2,0,0,0-4.4,0v70.933a2.2,2.2,0,0,1-.392,1.253l-44.184,63.827a4.4,4.4,0,0,0,3.614,6.9Zm94.507-79.02V215.822a2.2,2.2,0,0,1,2.2-2.2h33.578a2.2,2.2,0,0,1,1.785,3.483l-17.04,23.684-.928,1.288.928,1.28,17.04,23.688a2.2,2.2,0,0,1-1.785,3.483H3778.2a6.6,6.6,0,0,1-6.6-6.6Zm-49.148-53.546a2.2,2.2,0,0,1,2.2-2.2H3760.6a6.6,6.6,0,0,1,6.6,6.6v40.354a2.2,2.2,0,0,1-2.2,2.2h-40.354a2.2,2.2,0,0,1-2.2-2.2Zm-42.971,124.721,39.26-56.708a2.2,2.2,0,0,1,1.692-.945h.114a2.2,2.2,0,0,1,1.667.765l34.558,40.218,1.452,1.684,1.67-1.469,17.282-15.2a2.2,2.2,0,0,1,2.946.035l33.851,31.252a2.2,2.2,0,0,1-1.5,3.813H3681.285a2.2,2.2,0,0,1-1.807-3.448Z" transform="translate(-3672.681 -195.515)"/>
-                                            </svg>
-
-                                        </div>
-                                    </Link>
-                                </li>
-                            </ul>
+                      
                         <div className={isDrawerOpen?`${Loading?"overflows":""} scroll w-full h-9/12  overflow-x-hidden ${Loading?"overflow-y-hidden":"overflow-y-scroll"}`:`hidden scroll ${Loading?"overflow-y-hidden":"overflow-y-scroll"} overflow-x-hidden w-full h-9/12 `}>
                             <div className="ul  mt-2 ltr  border-b-2 pb-2 w-11/12">
                                 
                                 
-                                <ul className={`${shown == 0 ? "centered":"slideLeft"}  flex h-full flex-col justify-between items-center `}>
+                                <ul className={`${shown == 0 ? "centered":"slideLeft"}  flex h-full flex-col justify-between items-start `}>
                                         
-                                {routes.indexOf('subGroup') != -1?
+                                {routes&&routes.indexOf('subGroup') != -1?
                                         <li className={`${Loading?"skeleton-box":""} text-right text-gray-400 w-full flex flex-row pb-2 justify-end items-center text-sm `}>
                                             <div style={Loading?{opacity:"0"}:{}} className="w-full flex flex-row justify-end items-center">
                                                 تصنيفات
@@ -181,7 +423,7 @@ import { route } from 'next/dist/next-server/server/router';
                                             </div>
                                         </li>
                                         {data?data.brands.map(ele=>
-                                                <li className="w-full flex flex-row-reverse cursor-pointer  text-right pt-2 pb-2 px-3 justify-start items-center text-sm">
+                                                <li onClick={()=>addBrand('brand',ele.id,0)} className="w-full flex flex-row-reverse cursor-pointer  text-right pt-2 pb-2 px-3 justify-start items-center text-sm">
                                                         <input type="checkbox" className="ml-2" name="brands" />  
                                                         <label htmlFor="brands">{ele.name}</label>
                                                 </li>
@@ -198,35 +440,35 @@ import { route } from 'next/dist/next-server/server/router';
                                                 الخصائص
                                             </div>
                                         </li>
-                                        {data?data.attributes.map(ele=>
+                                        {data?data.attributes.map((ele,index)=>
                                             <>
                                                 <li className={`${Loading?"skeleton-box":""} text-right text-gray-400 w-full flex flex-row  justify-end items-center text-xs mt-2 mr-2 `}>
                                                     <div style={Loading?{opacity:"0"}:{}} className="w-full flex flex-row justify-end items-center">
                                                         {ele.name}
                                                     </div>
                                                 </li>                                        
-                                                <li className="w-full flex flex-row-reverse cursor-pointer  text-right pt-2 pb-2 px-3 justify-start items-center text-sm">
+                                                <li className="w-full flex flex-row-reverse flex-wrap cursor-pointer  text-right pt-2 pb-2 px-3 justify-start items-center text-sm">
                                                         {ele.type=='Select'?
-                                                            <select name="" id="" dir="rtl" className="w-full border-2 rounded  focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
+                                                            <select onChange={(e)=>addBrand('attr',e.target.value,index)} name="" id="" dir="rtl" className="w-full border-2 rounded  focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
                                                                 {ele.values?ele.values.map(eles=>
-                                                                        <option key={eles.id} value={eles.value}>{eles.value}</option>
+                                                                        <option key={eles.id} value={eles.id}>{eles.value}</option>
                                                                 ):""}
                                                             </select>
-                                                            :ele.type=='Color/Pattern'?
+                                                            :
+                                                            ele.type=='Color/Pattern'?
                                                                 ele.values.map(eles=>
-                                                                    <div className="flex flex-row-reverse w-full justify-start items-center flex-wrap">
-                                                                        <div className="rounded-full cursor-pointer w-6 h-2" style={{background:`${eles.color}`,border:"1px solid #929292"}}></div>    
-                                                                    </div>
+                                                                        <div onClick={(e)=>addBrand('attr',eles.id,index)} className="rounded-full mr-1 mt-2 cursor-pointer w-6 h-2" style={{background:`${eles.color}`,border:"1px solid #929292"}}>
+                                                                        </div>    
                                                                 )
                                                                 :
-                                                                ele.type=="Radio"?
-                                                                        ele.values.map(eles=>
-                                                                            <div className="rounded px-2" style={{border:"1px solid #929292"}}>
-                                                                                {eles.value}
-                                                                            </div>
-                                                                        )
-                                                                    :
-                                                                    ""
+                                                            ele.type=="Radio"?
+                                                                    ele.values.map(eles=>
+                                                                        <div onClick={(e)=>addBrand('attr',eles.id,index)} className="rounded px-2 mr-1 mt-2" style={{border:"1px solid #929292"}}>
+                                                                            {eles.value}
+                                                                        </div>
+                                                                    )
+                                                                :
+                                                                ""
                                                         }
                                                 </li>
                                             </>    
@@ -236,52 +478,47 @@ import { route } from 'next/dist/next-server/server/router';
                                                 السعر
                                             </div>
                                         </li>
-                                        <li className="w-full flex flex-row-reverse cursor-pointer  text-right  pb-2 px-3 justify-start items-center text-sm">
-                                                <select name="" id="" dir="rtl" className="w-full border-2 rounded  focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent mt-2">
-                                                    {data?data.ranges.map(eles=>
-                                                        <option value="">
-                                                            {eles.text}
-                                                        </option>
-                                                    ):""}
-                                                </select>
+                                        <li className={`${Loading?"skeleton-box":""} text-right text-gray-400 w-full flex flex-row  justify-center items-center text-sm mt-2 `}>
+                                       
+                                        <div className="mt-2 w-44 ">
+                                            {/* <Slider
+                                                defaultValue={[data?parseInt(data.price_range.min):40, data?parseInt(data.price_range.max):100]}
+                                                valueLabelDisplay="on"
+                                                aria-labelledby="discrete-slider"
+                                                step={30}
+                                                onChange={handleChange}
+                                                marks={marks}
+                                                min={data?parseInt(data.price_range.min):40}
+                                                max={data?parseInt(data.price_range.max):100}
+                                            /> */}
+                                            <div className="flex justify-end items-center w-44">
+                                                <div className="flex flex-col mr-2 justify-between items-center">
+                                                    <span className="text-xs text-right" dir="rtl">
+                                                        إلى
+                                                    </span>
+                                                    <input type="number" min={minPrice} max={maxPrice} value={maxPrice} onChange={(e)=>handleChange(e.target.value,'max')} className="p-2 w-16 h-6 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent rounded mt-1" style={{border:"1px solid #eee"}} />
+                                                </div>
+                                                <div className="flex flex-col mr-2 justify-between items-center" >
+                                                    <span className="text-xs text-right" dir="rtl">
+                                                        من
+                                                    </span>
+                                                    <input type="number" min={minPrice} max={maxPrice} value={minPrice} onChange={(e)=>handleChange(e.target.value,'min')} className="p-2 w-16 h-6 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent rounded mt-1" style={{border:"1px solid #eee"}} />
+                                                </div>
+                                            </div>
+                                        </div>
                                         </li>
+                                        
                                         <li className="w-full flex flex-row-reverse cursor-pointer  text-right pt-2 pb-2 px-3 justify-start items-center text-sm">
-                                            <input type="checkbox" className="ml-2" name="new_arrivals" />  
+                                            <input type="checkbox" onChange={()=>handlearrivals('newss')} className="ml-2" name="new_arrivals" checked={newArrivals?true:false} />  
                                             <label htmlFor="brands">وصل جديدا</label>
                                         </li>
                                         <li className="w-full flex flex-row-reverse cursor-pointer  text-right pt-2 pb-2 px-3 justify-start items-center text-sm">
-                                            <input type="checkbox" className="ml-2" name="has_offers" />  
+                                            <input type="checkbox" checked={hasOffers?true:false} onChange={()=>handlearrivals('offers')} className="ml-2" name="has_offers" />  
                                             <label htmlFor="brands">عليها عروض</label>
                                         </li>
 
                                 </ul>
                             </div>
-                            {/* catss */}
-                            
-                            {/* <div className="ul  mt-2 ltr">
-                                <ul className="flex h-full flex-col justify-between items-center">
-                                <li className={`${Loading?"skeleton-box":""} text-right text-gray-400 w-full flex flex-row pb-2 justify-end items-center text-sm `}>
-                                        <div style={Loading?{opacity:"0"}:{}} className="w-full flex flex-row justify-end items-center">
-                                            اخر زياراتك
-                                        </div>
-                                </li>
-                                {catss.visited_categories.length>0?catss.visited_categories[0].map(ele => 
-                                    ele.name!=null?
-                                    <li key={ele.id} className="text-gray-600 w-full flex flex-row pb-2 justify-end items-center text-sm text-right">
-                                        <Link href={`/category/category?pid=${ele.id}`}>
-                                            <div className="flex cursor-pointer flex-row-reverse justify-between items-center">
-                                                <img src="/images/lastseen.png" className="w-4 ml-1" alt="" /> {ele.name}
-                                            </div>
-                                        </Link>
-                                    </li>
-                            :""
-                            ):
-                                    <span className="text-xs text-right">هنا يتم عرض اخر زياراتك</span>
-                            }
-                                </ul>
-                            </div> */}
-                           
-                        
                         </div>
                     </nav>
                 </div>
@@ -289,3 +526,9 @@ import { route } from 'next/dist/next-server/server/router';
             </div>   
         )
 }
+
+
+// amanacart.com/api/categories_filters_results/47?brands[0]=30&brands[1]=31&price_min=12&price_max=20&attr_values[0]=81
+
+
+// amanacart.com/api/sub_categories_filters_results/47?brands[0]=30&brands[1]=31&price_min=12&price_max=20&attr_values[0]=81

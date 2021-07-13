@@ -28,6 +28,8 @@ export default function Category(props) {
     const Loading = useAppState("Loading");
     const router = useRouter()
     const { pid } = router.query;
+    const filtered = useAppState('Filtered')
+    const filters = useAppState('Filters')
     const Route = useAppState('Route');
     interface Data {
         products: [];
@@ -83,7 +85,9 @@ export default function Category(props) {
     }
   
     return(
-    <>
+        <>
+        {!filtered?
+        <>
         <Nav></Nav>
         <div>
             <div className={"transition-all duration-300 overflow-hidden ease-in-out delay-300 rounded w-full hidden md:flex flex-col justify-start items-center content-between  h-16  bg-white shadow-md mt-5 mb-5 sm:mb-7"}>
@@ -138,6 +142,12 @@ export default function Category(props) {
         <div className="categories">
         <Categories type="category" data={data?data.suggested_categories:""}></Categories>
         </div>
+    </>
+    :
+    <>
+        <Proposals title="نتائج البحث"  data={filters?filters:""}></Proposals>
+    </>
+    }
     </>
     );
 

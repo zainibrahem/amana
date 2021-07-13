@@ -34,7 +34,8 @@ export default function subGroup(props) {
     const [userId,setUserId] = useState(0);
     const router = useRouter()
     const { pids } = router.query;
-
+    const filtered = useAppState('Filtered')
+    const filters = useAppState('Filters')
     useEffect(() => {
         document.title = "أمانة"
         fetch(`http://amanacart.com/api/category_sub_group/${pids}`)
@@ -48,23 +49,33 @@ export default function subGroup(props) {
      const loaded = useAppState('loaded');
     return (
         <>
-            <div className="special-brands-slider mt-6 md:mt-6">
+           
+            {!filtered?
+            <>
+             <div className="special-brands-slider mt-6 md:mt-6">
                 <Slider sliders={data?data.first_slider:""}></Slider>
             </div>
-            
-            <div className="categories mt-5">
+                <div className="categories mt-5">
                 <Catgory data={data?data.sub_groups:""}></Catgory>
-            </div>
-            <Brands1 data={data?data.brands:""}></Brands1>
-            <Card1 color="pink" title="الشائع في أمانة" data={data?data.trending_now:""}></Card1>
-            <Banners data={data?data.banners:""}></Banners>
-            <Deal data={data?data.deal_of_the_day:""}></Deal>
-            <CategoryBannerSlider data={data?data.price_banners:""}></CategoryBannerSlider>
-            <Proposals slider={data?data.second_slider:""} data={data?data.suggested:""}></Proposals>
-            <div className="categories">
-                <Categories type="categories" data={data?data.suggested_categories:""}></Categories>
-            </div>
-            <Offers data={data?data.offers:""}></Offers>
+                </div>
+                <Brands1 data={data?data.brands:""}></Brands1>
+                <Card1 color="pink" title="الشائع في أمانة" data={data?data.trending_now:""}></Card1>
+                <Banners data={data?data.banners:""}></Banners>
+                <Deal data={data?data.deal_of_the_day:""}></Deal>
+                <CategoryBannerSlider data={data?data.price_banners:""}></CategoryBannerSlider>
+                <Proposals title="اقترحنا لك" slider={data?data.second_slider:""} data={data?data.suggested:""}></Proposals>
+                <div className="categories">
+                    <Categories type="categories" data={data?data.suggested_categories:""}></Categories>
+                </div>
+                <Offers data={data?data.offers:""}></Offers>
+            </>
+            :
+            <>
+                <Proposals title="نتائج البحث" slider={data?data.second_slider:""} data={filters?filters:""}></Proposals>
+            </>
+            }
+            
+            
         </>
     );
 }

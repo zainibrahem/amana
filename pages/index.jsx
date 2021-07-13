@@ -100,7 +100,9 @@ export default function Home() {
       </Waypoint>
       <Card color="pink" title="الشائع في أمانة" data={data?data.trending_now:""}></Card>
       <Deal data={data?data.deal_of_the_day:""}></Deal>
+      {data&&data.recent.length > 0 ?
       <Recent color="pink" title="وصل حديثا" data={data?data.recent:""}></Recent>
+      :""}
       <Specials cats={data?data.featured_categories:""} brands={data?data.featured_brands:""}></Specials>
       {data?
       data.categories_sections.map((ele,index) => 

@@ -9,7 +9,9 @@ export const initialState = {
   toggleIcon:false,
   Loading:true,
   Modal:false,
+  Filters:[],
   CartChange:false,
+  Filtered:false,
   Route:"https://amana-63oux.ondigitalocean.app",
   // Route:"http://localhost:3000",
   Token:null,
@@ -28,6 +30,7 @@ type ActionType =
   | { type: 'TOGGLE_DRAWER' }
   | { type: 'TOGGLE_Modal' }
   | { type: 'NotDraggable' }
+  | { type: 'ToggleFiltered' }
   | { type: 'ToggleSearch' }
   | { type: 'NotoggleIcon' }
   | { type: 'toggleIcon' }
@@ -37,6 +40,7 @@ type ActionType =
   | { type: 'Loaded' }
   | { type: 'Loadeds' }
   | { type: 'AddToCart' }
+  | { type: 'SetFilters',payload:[] }
   | { type: 'CartChange' }
   | { type: 'Cart' ,payload:number }
   | { type: 'setToken'; payload: string }
@@ -51,11 +55,28 @@ export function appReducer(state: StateType, action: ActionType): StateType {
         ...state,
         searchTerm: action.payload,
       }
+    case 'SET_SEARCH_TERM':
+      return {
+        ...state,
+        Filtered: !state.Filtered,
+      }
       case 'CartChange' :
         return {
           ...state,
           CartChange: !state.CartChange,
-        } 
+        }
+      case 'ToggleFiltered' :
+        return {
+          ...state,
+          Filtered: true,
+        }
+        
+      case 'SetFilters' :
+        return {
+          ...state,
+          Filters: action.payload,
+        }
+
     case 'setToken':
       return {
         ...state,

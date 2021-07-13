@@ -152,7 +152,7 @@ export default function ProductCard (props) {
             </div>
             :
             
-                <div className={props.type?`cards ${Loading?"skeleton-box":""} flex flex-col justify-center items-center rounded shadow-md card-responsive w-40 sm:w-48 mb-3`:`cards  flex flex-col justify-center items-center rounded shadow-md w-full sm:w-48 mb-3 ${Loading?"skeleton-box":""}`} style={{direction:"ltr"}}>
+                <div className={props.type?`cards mr-2 ${Loading?"skeleton-box":""} flex flex-col justify-center items-center rounded shadow-md card-responsive w-40 sm:w-48 mb-3`:`cards  flex flex-col justify-center items-center rounded shadow-md w-full sm:w-48 mb-3 ${Loading?"skeleton-box":""}`} style={{direction:"ltr"}}>
                 <Link href={`/product/product?pids=${props.card.id}`}>
                 <div className="w-full cursor-pointer  relative rounded-tl rounded-tr">
                 <img src={props.card.image} className="w-full relative rounded-tl rounded-tr" alt="" />

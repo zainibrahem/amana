@@ -49,6 +49,7 @@ export default function Product(props) {
         price:string
         offer_price:string
         image:string
+        raw_price:""
     }
     interface Attr1 {
         id:string
@@ -68,6 +69,8 @@ export default function Product(props) {
         brand:string
         stock_quantity:string
         product:Pro
+        rating:""
+        raw_price:""
         slug:string
         labels:label
         images:[]
@@ -123,6 +126,8 @@ export default function Product(props) {
     const [color,setcolor] = useState<string>('');
     const [takes,setTakes] = useState('')
     const [rating, setRating] = useState(0)
+    const [cartItems, setCartItems] = useState([])
+    const [selected , setselected] = useState(0)
     const setAttr = (value,names) => {
         var obj = [value,names];
         setActive(obj)
@@ -135,7 +140,7 @@ export default function Product(props) {
     const toggleShipping = () =>{
         setShip(!ship);
     }
-    const [disc,setdisc] = useState<Number>(0);
+    const [disc,setdisc] = useState<number>(0);
 
     useEffect(() => {
         document.title = "تفاصيل المنتج | أمانة"
@@ -143,13 +148,17 @@ export default function Product(props) {
          .then(res => res.json())
          .then(result =>{
            setDatas(result.data);
+           let arrays = [result.data.id];
+          
            setAttributes(result.attributes);
-           var pri = parseInt(result.data.raw_price,10);
            var fullpri = parseInt(result.data.price,10);
+           var pri = parseInt(result.data.raw_price,10);
            result.data.linked_items.map(el => {
                 pri = pri+= parseInt(el.raw_price,10);
                 fullpri = fullpri+= parseInt(el.price,10);
+                arrays.push(el.id)
            })
+           setCartItems(arrays);
            setPricess(pri);
            setdisc(fullpri - pri);
            console.log(result.data)
@@ -176,6 +185,51 @@ export default function Product(props) {
          .catch(e => {
        });
      },[pids])
+     const cartss = () => {
+         console.log(cartItems)
+            var string = ``;
+            cartItems.map((ele,index)=>{
+                if(index != cartItems.length-1){
+                    string+=`items[${index}]=${ele}&&`
+                }
+                else{
+                    string+=`items[${index}]=${ele}`
+                }
+            })
+         fetch(`https://amanacart.com/api/addItemsToCart?${string}`, {
+             method: 'post',
+             headers: {'Content-Type':'application/json'},
+         })
+         .then( async response => {
+             const isJson = response.headers.get('content-type')?.includes('application/json');
+             const data = isJson && await response.json();
+ 
+             // check for error response
+             if (!response.ok) {
+                 // get error message from body or default to response status
+                 const error = (data && data.message) || response.status;
+                 setError(error);
+                 toggleNotification(error,'error');
+                 setTimeout(() => {
+                     dispatch({
+                         type: 'Nonotification',
+                       })
+                   }, 5000)
+                 return Promise.reject(error);
+             }
+             // setMessgae(data.message);
+             addCart();
+             changeCart();
+             toggleNotification(data.message,'success');
+             setTimeout(() => {
+                 dispatch({
+                     type: 'Nonotification',
+                   })
+               }, 5000)
+           
+         })
+
+     }
      const changeData = (e,attrid,attrvalue,pids,type,color) =>{
         if(type == 'Color/Pattern'){
                 setcolor(color)
@@ -307,8 +361,15 @@ export default function Product(props) {
      const closeModal = () =>{
         setModal(false);
      }
-     const prices = (number) =>{
+     const prices = (number,pricee,checkss) =>{
         setPricess(number);
+        setCartItems(checkss);
+            var fullpri = parseInt(datas.price,10);
+
+            datas.linked_items.map(el => {
+             fullpri = fullpri+= parseInt(el.price,10);
+        })
+        setdisc(pricee - number)
      }
    
     return(
@@ -416,16 +477,26 @@ export default function Product(props) {
                         <span className="text-gray-700 text-right text-sm ">
                             {/* رقم الموديل : {data?data.item.product.model_number:""} */}
                             رقم الموديل:  
-                            {/* <span className="mr-2">{datas?datas.product.model_number:""}</span> */}
-                            <span className="mr-2 ml-6">LOS231</span>
+                            <span className="mr-2 ml-6">{datas?datas.product.model_number:""}</span>
+                            {/* <span className="mr-2 ml-6">LOS231</span> */}
                         </span>
-                        <Rating dir="ltr" name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
-                        <span className="px-2  text-white rounded mr-4" style={{background:"#81b214"}}>
-                            4.5
-                        </span>
-                        <span className="text-blue-500 mr-4 text-sm">
-                            110 مستخدمين قاموا بتقييم المنتج
-                        </span>
+                        {data&&datas.rating != null &&datas.rating? 
+                            <>
+                                <Rating dir="ltr" name="half-rating-read" defaultValue={datas.rating} precision={0.5} readOnly />
+                                <span className="px-2  text-white rounded mr-4" style={{background:"#81b214"}}>
+                                    {datas.rating}
+                                </span>
+                                <span className="text-blue-500 mr-4 text-sm">
+                                    110 مستخدمين قاموا بتقييم المنتج
+                                </span>
+                            </>
+                        :
+                            <span className="text-blue-500 mr-4 text-sm">
+                                لم يقم أحد بتقييم المنتج بعد
+                            </span>
+                        
+                        }
+                        
                     </div>
                     <div className="grid grid-cols-12 w-full pt-4">
                         
@@ -441,9 +512,9 @@ export default function Product(props) {
                                     {ele.values.map(valuess=>{
                                         return (
                                             <div data-id={`${ele.type}`} onClick={(e)=>changeData(e,ele.id,valuess.id,pids,ele.type,valuess.value)} className={`w-8 h-6 mr-2 cursor-pointer onHovers rounded-full flex justify-center items-center `} style={{background:`${valuess.color}`,border:"1px solid #eee"}}>
-                                                {valuess.selected == 1 ?
+                                                {color == valuess.value ?
                                                 
-                                                     valuess.color == '#fff'?
+                                                    valuess.color == '#fff'?
                                                      
                                                      
                                                     <img src="/images/icons/colors/Icon-Check b.svg" className="w-4" alt="" /> 
@@ -518,11 +589,12 @@ export default function Product(props) {
                         {datas&&datas.price?
                             <span className="text-xl numbers font-bold  mr-4" style={{fontWeight:"bold",color:"#81b214"}}>
                                 {datas&&datas.labels[0]?datas.labels[0].split('Off'):""}
+                               
                             </span>
                         :""}
                     </div>
                         </div>
-                        <div className="col-span-6 pr-2  flex flex-col justify-start items-center " style={{borderRight:"1px solid #eee"}}>
+                        <div className="col-span-6 pr-2  flex flex-col justify-start items-center " >
                         {/* <div className="flex flex-row-reverse justify-between items-center  mt-2 pb-2">
                             <p className="text-xs text-right text gray-300 mr-2">هذا المنتج لا يمكن إعادته أو تبديله تعلم المزيد عن سياسة الإرجاع لدينا</p>
                             <img className={`w-14 2xl:w-16 h-2  `} src="../images/icon1.svg" alt="" />
@@ -703,16 +775,16 @@ export default function Product(props) {
                             <div className="rounded w-full flex flex-col p-3 justify-between items-center">
                                 <div className="flex flex-row-reverse justify-between w-full items-center text-sm">
                                     <div className="text-green-500 text-md font-bold">
-                                            توفير: {disc}
+                                            {disc!=0? `توفير: ${disc} ر.ع`:``} 
                                     </div>
-                                    <CardTitle title={"مبيع متكرر لهذا المنتج"}></CardTitle>
+                                    <CardTitle title={"يباع معها أيضا"}></CardTitle>
                                 </div>
                                 
                                 <div className="w-full linked mt-4 bg-white rounded " style={{border:"1px solid #eee"}}>
                                     <Fslider price={prices} items={datas?datas.linked_items:""} item={datas?datas:""} image={image}></Fslider>
                                 </div>
                                 <div className="flex mt-2 flex-col justify-between items-center w-full ">
-                                    <div className="w-full text-sm text-center rounded bg-white  border-yellow-500 font-bold text-yellow-500 px-4 py-1 mt-2" style={{border:"1px solid"}}>اشتر {datas?datas.linked_items.length + 1:""} معا  بسعر :
+                                    <div onClick={cartss}  className="w-full cursor-pointer text-sm text-center rounded bg-white  border-yellow-500 font-bold text-yellow-500 px-4 py-1 mt-2" style={{border:"1px solid"}}>اشتر {datas?datas.linked_items.length + 1:""} معا  بسعر :
                                         <span className="numbers text-sm" style={{fontWeight:"bold"}}>  {pricess} {datas?datas.currency_symbol:""} </span>
                                         
                                     </div>
