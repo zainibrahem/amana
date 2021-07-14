@@ -124,11 +124,11 @@ export const NavBar = (props) => {
                 <nav className="w-full bg-white shadow-md h-16 flex justify-between items-center ">
                         <div className="w-full lg:w-4/6 xl:w-full  h-full flex items-center md:pr-1 lg:px-4 ">
                         <div className="flex border-b-4 border-white">
-                                {routes&&routes.indexOf('dashboard')==-1?
+                                {/* {routes&&routes.indexOf('dashboard')==-1?
                                         <button onClick={props.toggleHandler} className="hidden items-center h-full w-16 md:flex md:w-12  lg:w-9 xl:w-9 justify-center  bg-white hover:bg-gray-200 focus:outline-none rounded-md">
                                             <svg className="fill-current text-gray-500 w-6 h-6" xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="3" strokeLinecap="square" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                                         </button>
-                                :""}
+                                :""} */}
                         </div>
                         <Link href="/">
                             <svg xmlns="http://www.w3.org/2000/svg" className="hidden cursor-pointer sm:block pr-3" width="134.034" height="22.087" viewBox="0 0 134.034 22.087">
@@ -350,7 +350,12 @@ export const NavBar = (props) => {
                             <div className="col-span-12 py-2  border-t-2 flex flex-col justify-between items-center">
                                 <div className="flex flex-row w-full justify-center cursor-pointer items-center px-5">
                                     <span className="font-bold text-gray-700 text-center text-sm">
-                                        المجموع الكلي : {props.alls} ر.ع
+                                            <Link href="/cart">
+                                                <span className="text-xs ml-2 text-green-600">
+                                                        إتمام الشراء
+                                                        : {props.alls} ر.ع
+                                                </span>
+                                            </Link>
                                     </span>
                                 </div>
                             </div>
@@ -383,7 +388,7 @@ export const NavBar = (props) => {
                             <div className="grid grid-cols-12 shadow-md 2xl:shadow-lg">
                                 <div className="col-span-12 flex justify-between items-center  py-2">
                                     <span className="px-5">الرسائل</span>
-                                    <span className="mx-4 rounded bg-red-400 px-2 text-sm text-white">4 جديد  </span>
+                                    <span className="mx-4 rounded bg-red-400 px-2 text-sm text-white">{props&&props.carts.messages?props.carts.messages.length:0} جديد  </span>
                                 </div>
                             </div>
                             <div className="scrolls h-110 overflow-y-scroll">
@@ -466,9 +471,10 @@ export const NavBar = (props) => {
                             <div className="grid grid-cols-12 shadow-md 2xl:shadow-lg ">
                                 <div className="col-span-12 flex justify-between items-center  py-2">
                                     <span className="px-5">الإشعارات</span>
-                                    <span className="mx-4 rounded bg-red-400 px-2 text-sm text-white">4 جديد  </span>
+                                    <span className="mx-4 rounded bg-red-400 px-2 text-sm text-white">0 جديد  </span>
                                 </div>
                             </div>
+                        
                             <div className="scrolls h-90 overflow-y-scroll">
                                 <div className="hidden col-span-12 border-t-2 px-2 py-3  justify-between relative items-center">
                                     <div className="flex  flex-col justify-between items-start">
@@ -483,7 +489,7 @@ export const NavBar = (props) => {
                                     <span className="text-xs">1200 ل.س</span>
                                     <div className="absolute top-1 left-3">x</div>
                                 </div>
-                                <div className="col-span-12  px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                <div className="col-span-12 hidden px-5 noti-hover py-4  justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
                                     {/* <img className="w-6 h-2 rounded-full" src="./images/med-1.jpg" alt="" /> */}
                                     <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
                                     <div className="flex  flex-col justify-between items-start">
@@ -503,7 +509,7 @@ export const NavBar = (props) => {
                                         {/* <img src="./images/x.svg" className="w-2" alt="" /> */}
                                     </div>
                                 </div>
-                                <div className="col-span-12   px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                <div className="col-span-12  hidden px-5 noti-hover py-4  justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
                                     {/* <img className="w-6 h-2 rounded-full" src="./images/med-1.jpg" alt="" /> */}
                                     <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
                                     <div className="flex  flex-col justify-between items-start">
@@ -523,7 +529,7 @@ export const NavBar = (props) => {
                                     </div>
                                 </div>
                                 
-                                <div className="col-span-12   px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                <div className="col-span-12 hidden  px-5 noti-hover py-4  justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
                                     <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
                                     <div className="flex  flex-col justify-between items-start">
                                         <span className="text-xs text-black">المنتج الأول المنتج الأول المنتج الأول </span>
@@ -537,7 +543,7 @@ export const NavBar = (props) => {
                                     </div>
                                 </div>
                                 
-                                <div className="col-span-12   px-5 noti-hover py-4 flex justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
+                                <div className="col-span-12 hidden   px-5 noti-hover py-4  justify-between relative items-center" style={{borderTop:"1px solid #dcdcdc"}}>
                                     <div className="rounded-full w-2 h-0.7 bg-red-400 absolute right-1.5"></div>
                                     <div className="flex  flex-col justify-between items-start">
                                         <span className="text-xs text-black">المنتج الأول المنتج الأول المنتج الأول </span>
@@ -550,14 +556,22 @@ export const NavBar = (props) => {
                                     <div className="absolute top-2 left-5">
                                     </div>
                                 </div>
+                                
+                                
+                                <div className="flex justify-center items-center h-80">
+                                    <img src="/images/icons/empty-mas.svg" className="w-64" alt="" />
+                                </div>
+                                    
                             </div>
+                        
+                        
                         </div>
                         
                             <button onClick={togglenotifications} className={`relative ml-3 w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10  focus:outline-none  rounded-full flex items-center justify-center ${Loading?"skeleton-box":""}`}>
                             <div style={Loading?{opacity:"0"}:{}}>
                                 <img src="/images/notis (1).svg" className="w-4 h-4 lg:w-6 lg:h-6"  alt="" />
                                 <div className="absolute top-0 right-2 w-4  h-4 text-xs text-white -mr-2 rounded-full bg-red-400">
-                                    3
+                                    0
                                 </div>
                             </div>
                         </button>
@@ -787,7 +801,7 @@ export const NavBar = (props) => {
                             <div onClick={toggleprofile} className={`hidden ml-3 cursor-pointer w-8 md:w-10 h-6  md:h-8 lg:h-10 lg:w-10 focus:outline-none hover:bg-gray-400 rounded-full md:flex items-center justify-center ${Loading?"skeleton-box":""}`}  style={Loading?{}:{background:`url(${localStorage.getItem('avatar')!='null'?localStorage.getItem('avatar'):"/images/vippng.com-empty-circle-png-4161690.png"})`,backgroundSize:"cover",backgroundPosition:"center"}}>
                             </div>
                             :
-                            <span className="text-xs block bg-yellow-500 text-white py-1 px-3 rounded cursor-pointer " onClick={toggleModal}>
+                            <span className="text-xs block hover:shadow-md bg-yellow-500 text-white py-1 px-3 rounded cursor-pointer " onClick={toggleModal}>
                                 دخول
                             </span>    
                         }

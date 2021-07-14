@@ -395,7 +395,7 @@ import Slider from '@material-ui/core/Slider';
                             </div>
                         </div>
                       
-                        <div className={isDrawerOpen?`${Loading?"overflows":""} scroll w-full h-9/12  overflow-x-hidden ${Loading?"overflow-y-hidden":"overflow-y-scroll"}`:`hidden scroll ${Loading?"overflow-y-hidden":"overflow-y-scroll"} overflow-x-hidden w-full h-9/12 `}>
+                        <div className={isDrawerOpen?`${Loading?"overflows":""} scroll w-full h-11/12  overflow-x-hidden ${Loading?"overflow-y-hidden":"overflow-y-scroll"}`:`hidden scroll ${Loading?"overflow-y-hidden":"overflow-y-scroll"} overflow-x-hidden w-full h-11/12 `}>
                             <div className="ul  mt-2 ltr  border-b-2 pb-2 w-11/12">
                                 
                                 
@@ -449,7 +449,7 @@ import Slider from '@material-ui/core/Slider';
                                                 </li>                                        
                                                 <li className="w-full flex flex-row-reverse flex-wrap cursor-pointer  text-right pt-2 pb-2 px-3 justify-start items-center text-sm">
                                                         {ele.type=='Select'?
-                                                            <select onChange={(e)=>addBrand('attr',e.target.value,index)} name="" id="" dir="rtl" className="w-full border-2 rounded  focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
+                                                            <select onChange={(e)=>addBrand('attr',e.target.value,index)} name="" id="" dir="rtl" className="w-28 border-2 rounded  focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent">
                                                                 {ele.values?ele.values.map(eles=>
                                                                         <option key={eles.id} value={eles.id}>{eles.value}</option>
                                                                 ):""}
@@ -478,9 +478,9 @@ import Slider from '@material-ui/core/Slider';
                                                 السعر
                                             </div>
                                         </li>
-                                        <li className={`${Loading?"skeleton-box":""} text-right text-gray-400 w-full flex flex-row  justify-center items-center text-sm mt-2 `}>
+                                        <li className={`${Loading?"skeleton-box":""} text-right text-gray-400 w-full flex flex-row  justify-end items-center text-sm mt-2 `}>
                                        
-                                        <div className="mt-2 w-44 ">
+                                        <div className="mt-2 w-36 ">
                                             {/* <Slider
                                                 defaultValue={[data?parseInt(data.price_range.min):40, data?parseInt(data.price_range.max):100]}
                                                 valueLabelDisplay="on"
@@ -491,14 +491,14 @@ import Slider from '@material-ui/core/Slider';
                                                 min={data?parseInt(data.price_range.min):40}
                                                 max={data?parseInt(data.price_range.max):100}
                                             /> */}
-                                            <div className="flex justify-end items-center w-44">
-                                                <div className="flex flex-col mr-2 justify-between items-center">
+                                            <div className="flex justify-end items-start w-36">
+                                                <div className="flex flex-col mr-2 justify-between items-end">
                                                     <span className="text-xs text-right" dir="rtl">
                                                         إلى
                                                     </span>
                                                     <input type="number" min={minPrice} max={maxPrice} value={maxPrice} onChange={(e)=>handleChange(e.target.value,'max')} className="p-2 w-16 h-6 focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent rounded mt-1" style={{border:"1px solid #eee"}} />
                                                 </div>
-                                                <div className="flex flex-col mr-2 justify-between items-center" >
+                                                <div className="flex flex-col mr-2 justify-between items-end" >
                                                     <span className="text-xs text-right" dir="rtl">
                                                         من
                                                     </span>

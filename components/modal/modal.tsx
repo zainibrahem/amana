@@ -281,10 +281,9 @@ export default function Modal (props) {
                         <span className="text-lg text-white text-right">
                             ابدأ البيع الآن حيث يتسوق الآلاف من المتسوقين يوميا
                         </span>
-                        
-                        <button className="bg-white self-center mt-6 text-xs rounded px-3 font-bold py-3">
+                        <a href="https://website.shares-grocery.com/register" className="bg-white self-center mt-6 text-xs rounded px-3 font-bold py-3">
                             تسجيل دخول كـ بائع
-                        </button>
+                        </a>
                     </div>
                     <div className="flex w-full flex-col justify-start items-center">
                         <div className="grid grid-cols-12">
@@ -359,7 +358,7 @@ export default function Modal (props) {
                                     <input type="email" onChange={handleemail} className="w-full 2xl:h-14 rounded h-13 text-xs py-4 px-2 2xl:mt-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="البريد الالكتروني"  style={{border:"1px solid #dddfe2",color:"#1d2129"}}/>
                                     {/* <label htmlFor="" className="self-end text-xs mt-4">كلمة السر</label> */}
                                     <input type="password" onChange={handlepassword} className="w-full 2xl:h-14 mt-6 rounded h-13 py-4 2xl:mt-9 text-xs  border-2  px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent" dir="rtl" placeholder="كلمة المرور" style={{border:"1px solid #dddfe2",color:"#1d2129"}}/>
-                                    <button onClick={handleLogin} className="cursor-pointer text-md mt-6 2xl:mt-9 w-full text-white py-4 flex justify-center 2xl:h-14 items-center rounded bg-yellow-500  h-13">
+                                    <button onClick={handleLogin} className="cursor-pointer hover:shadow-md text-md mt-6 2xl:mt-9 w-full text-white py-4 flex justify-center 2xl:h-14 items-center rounded bg-yellow-500  h-13">
                                         تسجيل دخول
                                     </button>
                                     <div className="w-full flex flex-col justify-between items-center mt-3">
@@ -422,7 +421,7 @@ export default function Modal (props) {
                                 {/* <label htmlFor="" className="self-end text-xs">البريد الالكتروني</label> */}
                                 <input type="email" onChange={handleemail}    className={`${emailError == true?"border-red-500":""} w-full mt-4 2xl:h-14 py-4 rounded h-13 text-xs px-2 focus:bg-white focus:text-gray-500 focus:outline-none focus:ring-1 focus:ring-yellow-500 focus:border-transparent`} dir="rtl" placeholder="البريد الالكتروني"  style={{border:"1px solid #dddfe2",color:"#1d2129"}} />
                                 
-                                <button onClick={handleForget} className="w-full mt-4 2xl:h-14 text-white flex justify-center items-center rounded bg-yellow-500  h-13">
+                                <button onClick={handleForget} className="w-full mt-4 2xl:h-14 hover:shadow-md text-white flex justify-center items-center rounded bg-yellow-500  h-13">
                                     إرسال
                                 </button>
                                     <div className="w-full flex justify-between items-center mt-6">
@@ -431,7 +430,7 @@ export default function Modal (props) {
                                         <hr className="w-5/12" />
                                     </div>
                                     <div className="w-full flex flex-col justify-between items-center mt-2">
-                                            <button onClick={()=>toggleReset(0)} className="cursor-pointer text-md mt-4 2xl:h-14  w-1/2 text-white py-4 flex justify-center items-center rounded bg-gray-700  h-13">
+                                            <button onClick={()=>toggleReset(0)} className="cursor-pointer hover:shadow-md text-md mt-4 2xl:h-14  w-1/2 text-white py-4 flex justify-center items-center rounded bg-gray-700  h-13">
                                                 تسجيل الدخول
                                             </button>
                                     <span className="text-xs self-end mt-4">
@@ -532,7 +531,7 @@ export default function Modal (props) {
                     <div  className={`${modalType==5? "centered" :"slideLeft" } col-span-12 md:col-span-6 rounded relative flex flex-col justify-between items-center pt-0 md:pt-0 md:pb-0 p-3 md:p-12`}>
                             <div className="flex flex-col w-full justify-center items-center ">
                                 <div className="w-full h-20 flex justify-center items-center" style={{background:"url(./images/border.png)",backgroundPosition:"center bottom",backgroundRepeat:"no-repeat"}}>
-                                    <span className="text-sm cursor-pointer md:text-md">تسجيل جديد</span>
+                                    <span className="text-sm cursor-pointer md:text-md ">تسجيل جديد</span>
                                 </div>
                             </div>
                             <div className="flex 2xl:justify-center justify-between items-center w-full ">
@@ -584,7 +583,7 @@ export default function Modal (props) {
                                         شروط الاستخدام
                                     </a>
                                 </span>
-                                <button onClick={handleRegister} className="w-full cursor-pointer  text-white flex justify-center items-center rounded bg-yellow-500 mt-4 2xl:h-14 h-13">
+                                <button onClick={handleRegister} className="w-full cursor-pointer hover:shadow-md  text-white flex justify-center items-center rounded bg-yellow-500 mt-4 2xl:h-14 h-13">
                                     تسجيل 
                                 </button>
                                 <div className="w-full flex flex-col justify-between items-center mt-2">

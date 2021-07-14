@@ -29,7 +29,7 @@ export default function Offer(props) {
         setRoute(window.location.href);
     })
     return (
-        route&&route.indexOf('brands')!=-1? <div className="flex flex-col hover:shadow justify-start bg-white w-full items-center mt-12 rounded" style={{minHeight:"16rem"}}>
+        route&&route.indexOf('brands')!=-1? <div className="flex flex-col hover:shadow-md justify-start bg-white w-full items-center mt-12 rounded" style={{minHeight:"16rem"}}>
             <div className="w-full relative rounded" style={{height:"100px"}}>
                 <a href={`/brand/brand?pids=${props.data?props.data.id:""}`} >
                     <img src={`${props.data?props.data.cover_image:""}`} style={{height:"100px"}} className="rounded" alt="" />
@@ -72,19 +72,22 @@ export default function Offer(props) {
                         مسجل منذ: {props.data.available_from}
                     </span>
                 :""}
+                <div className="flex justify-start items-center mt-2">
                 {route&&route.indexOf('brands')!=-1?props.data.shops.map((ele,index)=>{
                     if(index<5){
                         return (
-                            <div key={index} className="rounded-full h-8 w-10" style={{background:`url(${ele.image})`,backgroundSize:"cover",backgroundPosition:"center center"}}></div>
-                            );
-                    }
-                }
-                ):""}
+                            
+                                <div key={index} className="rounded-full mr-2 shadow h-8 w-10" style={{background:`url(${ele.image})`,backgroundSize:"cover",backgroundPosition:"center center",border:"1px solid #eee"}}></div>
+                                );
+                            }
+                        }
+                        ):""}
+                </div>
             </div>
         </div>
         :
         <>
-          <div className="flex flex-col justify-between bg-white w-full items-center">
+          <div className="flex flex-col hover:shadow-md justify-between bg-white w-full items-center">
             <div className="w-full relative">
                 <img src={`${props.data?props.data.cover_image:""}`} alt="" />
                 {/* <img src={`${Route}/images/brandlogo.png`} className="absolute w-4/12 left-1/2 top-full transform -translate-y-1/2 -translate-x-1/2" alt="" /> */}
