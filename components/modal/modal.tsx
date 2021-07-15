@@ -281,7 +281,7 @@ export default function Modal (props) {
                         <span className="text-lg text-white text-right">
                             ابدأ البيع الآن حيث يتسوق الآلاف من المتسوقين يوميا
                         </span>
-                        <a href="https://website.shares-grocery.com/register" className="bg-white self-center mt-6 text-xs rounded px-3 font-bold py-3">
+                        <a href="https://amana-dashboadrd-2-lm3zi.ondigitalocean.app/login" className="bg-white self-center mt-6 text-xs rounded px-3 font-bold py-3">
                             تسجيل دخول كـ بائع
                         </a>
                     </div>

@@ -73,7 +73,7 @@ export default function Offer(props) {
                     <div className="absolute h-full w-full top-0 left-0" style={{background:"url(./images/signinback.png)",backgroundSize:"contain",backgroundRepeat:"no-repeat",backgroundPosition:"right"}}>
                         <Title1 title="قم بالوصول لجميع الزبائن في عمان"></Title1>
                         <p className="hidden lg:block text-white w-2/5 lg:w-1/5 text-xs text-right transform translate-x-1/2">إن كنت في البيت أو في أي مكان اخر</p>
-                        <a href="https://website.shares-grocery.com/register">
+                        <a href="https://amana-dashboadrd-2-lm3zi.ondigitalocean.app/register">
                             <div className="bg-yellow-500 px-5 py-2 cursor-pointer w-2/5 lg:w-1/5 text-xs transform translate-x-1/2 text-center text-white rounded mt-4">ابدأ البيع على أمانة</div>
                         </a>
                     </div>
